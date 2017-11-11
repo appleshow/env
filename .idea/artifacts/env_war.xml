@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="env:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="com.aps.env.war">
+      <element id="artifact" artifact-name="env:war exploded" />
+    </root>
+  </artifact>
+</component>

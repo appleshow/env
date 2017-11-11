@@ -1,0 +1,797 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aps.env.dao.ComPageshowMapper" >
+  <resultMap id="BaseResultMap" type="com.aps.env.entity.ComPageshow" >
+    <id column="PAGE_ID" property="pageId" jdbcType="INTEGER" />
+    <id column="COLUMN_ID" property="columnId" jdbcType="VARCHAR" />
+    <result column="COLUMN_NAME" property="columnName" jdbcType="VARCHAR" />
+    <result column="COLUMN_COUNT" property="columnCount" jdbcType="INTEGER" />
+    <result column="COLUMN_PRIMARY" property="columnPrimary" jdbcType="INTEGER" />
+    <result column="COLUMN_EDIT" property="columnEdit" jdbcType="INTEGER" />
+    <result column="COLUMN_UPDATE" property="columnUpdate" jdbcType="INTEGER" />
+    <result column="COLUMN_SORT" property="columnSort" jdbcType="INTEGER" />
+    <result column="COLUMN_WIDTH" property="columnWidth" jdbcType="INTEGER" />
+    <result column="COLUMN_TYPE" property="columnType" jdbcType="VARCHAR" />
+    <result column="COLUMN_ALIGN" property="columnAlign" jdbcType="INTEGER" />
+    <result column="COLUMN_MERGE" property="columnMerge" jdbcType="INTEGER" />
+    <result column="COLUMN_EDITOR" property="columnEditor" jdbcType="VARCHAR" />
+    <result column="COLUMN_HIDE" property="columnHide" jdbcType="INTEGER" />
+    <result column="COLUMN_INDEX" property="columnIndex" jdbcType="INTEGER" />
+    <result column="COLUMN_LOCK" property="columnLock" jdbcType="INTEGER" />
+    <result column="PRFLAG" property="prflag" jdbcType="DECIMAL" />
+    <result column="PRGROUP" property="prgroup" jdbcType="VARCHAR" />
+    <result column="PRTYPE" property="prtype" jdbcType="VARCHAR" />
+    <result column="PRCLASS" property="prclass" jdbcType="VARCHAR" />
+    <result column="PROPERTY0" property="property0" jdbcType="VARCHAR" />
+    <result column="PROPERTY1" property="property1" jdbcType="VARCHAR" />
+    <result column="PROPERTY2" property="property2" jdbcType="VARCHAR" />
+    <result column="PROPERTY3" property="property3" jdbcType="VARCHAR" />
+    <result column="PROPERTY4" property="property4" jdbcType="VARCHAR" />
+    <result column="PROPERTY5" property="property5" jdbcType="VARCHAR" />
+    <result column="PROPERTY6" property="property6" jdbcType="VARCHAR" />
+    <result column="PROPERTY7" property="property7" jdbcType="VARCHAR" />
+    <result column="PROPERTY8" property="property8" jdbcType="VARCHAR" />
+    <result column="PROPERTY9" property="property9" jdbcType="VARCHAR" />
+    <result column="PROPERTY10" property="property10" jdbcType="DECIMAL" />
+    <result column="PROPERTY11" property="property11" jdbcType="DECIMAL" />
+    <result column="PROPERTY12" property="property12" jdbcType="DECIMAL" />
+    <result column="PROPERTY13" property="property13" jdbcType="DECIMAL" />
+    <result column="PROPERTY14" property="property14" jdbcType="DECIMAL" />
+    <result column="PROPERTY15" property="property15" jdbcType="DECIMAL" />
+    <result column="PRINF" property="prinf" jdbcType="VARCHAR" />
+    <result column="PREXP" property="prexp" jdbcType="VARCHAR" />
+    <result column="ITIME" property="itime" jdbcType="TIMESTAMP" />
+    <result column="IPERSON" property="iperson" jdbcType="INTEGER" />
+    <result column="UTIME" property="utime" jdbcType="TIMESTAMP" />
+    <result column="UPERSON" property="uperson" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    PAGE_ID, COLUMN_ID, COLUMN_NAME, COLUMN_COUNT, COLUMN_PRIMARY, COLUMN_EDIT, COLUMN_UPDATE, 
+    COLUMN_SORT, COLUMN_WIDTH, COLUMN_TYPE, COLUMN_ALIGN, COLUMN_MERGE, COLUMN_EDITOR, 
+    COLUMN_HIDE, COLUMN_INDEX, COLUMN_LOCK, PRFLAG, PRGROUP, PRTYPE, PRCLASS, PROPERTY0, 
+    PROPERTY1, PROPERTY2, PROPERTY3, PROPERTY4, PROPERTY5, PROPERTY6, PROPERTY7, PROPERTY8, 
+    PROPERTY9, PROPERTY10, PROPERTY11, PROPERTY12, PROPERTY13, PROPERTY14, PROPERTY15, 
+    PRINF, PREXP, ITIME, IPERSON, UTIME, UPERSON
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.aps.env.entity.ComPageshowExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from com_pageshow
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.aps.env.entity.ComPageshowKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from com_pageshow
+    where PAGE_ID = #{pageId,jdbcType=INTEGER}
+      and COLUMN_ID = #{columnId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.aps.env.entity.ComPageshowKey" >
+    delete from com_pageshow
+    where PAGE_ID = #{pageId,jdbcType=INTEGER}
+      and COLUMN_ID = #{columnId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.aps.env.entity.ComPageshowExample" >
+    delete from com_pageshow
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.aps.env.entity.ComPageshow" >
+    insert into com_pageshow (PAGE_ID, COLUMN_ID, COLUMN_NAME, 
+      COLUMN_COUNT, COLUMN_PRIMARY, COLUMN_EDIT, 
+      COLUMN_UPDATE, COLUMN_SORT, COLUMN_WIDTH, 
+      COLUMN_TYPE, COLUMN_ALIGN, COLUMN_MERGE, 
+      COLUMN_EDITOR, COLUMN_HIDE, COLUMN_INDEX, 
+      COLUMN_LOCK, PRFLAG, PRGROUP, 
+      PRTYPE, PRCLASS, PROPERTY0, 
+      PROPERTY1, PROPERTY2, PROPERTY3, 
+      PROPERTY4, PROPERTY5, PROPERTY6, 
+      PROPERTY7, PROPERTY8, PROPERTY9, 
+      PROPERTY10, PROPERTY11, PROPERTY12, 
+      PROPERTY13, PROPERTY14, PROPERTY15, 
+      PRINF, PREXP, ITIME, 
+      IPERSON, UTIME, UPERSON
+      )
+    values (#{pageId,jdbcType=INTEGER}, #{columnId,jdbcType=VARCHAR}, #{columnName,jdbcType=VARCHAR}, 
+      #{columnCount,jdbcType=INTEGER}, #{columnPrimary,jdbcType=INTEGER}, #{columnEdit,jdbcType=INTEGER}, 
+      #{columnUpdate,jdbcType=INTEGER}, #{columnSort,jdbcType=INTEGER}, #{columnWidth,jdbcType=INTEGER}, 
+      #{columnType,jdbcType=VARCHAR}, #{columnAlign,jdbcType=INTEGER}, #{columnMerge,jdbcType=INTEGER}, 
+      #{columnEditor,jdbcType=VARCHAR}, #{columnHide,jdbcType=INTEGER}, #{columnIndex,jdbcType=INTEGER}, 
+      #{columnLock,jdbcType=INTEGER}, #{prflag,jdbcType=DECIMAL}, #{prgroup,jdbcType=VARCHAR}, 
+      #{prtype,jdbcType=VARCHAR}, #{prclass,jdbcType=VARCHAR}, #{property0,jdbcType=VARCHAR}, 
+      #{property1,jdbcType=VARCHAR}, #{property2,jdbcType=VARCHAR}, #{property3,jdbcType=VARCHAR}, 
+      #{property4,jdbcType=VARCHAR}, #{property5,jdbcType=VARCHAR}, #{property6,jdbcType=VARCHAR}, 
+      #{property7,jdbcType=VARCHAR}, #{property8,jdbcType=VARCHAR}, #{property9,jdbcType=VARCHAR}, 
+      #{property10,jdbcType=DECIMAL}, #{property11,jdbcType=DECIMAL}, #{property12,jdbcType=DECIMAL}, 
+      #{property13,jdbcType=DECIMAL}, #{property14,jdbcType=DECIMAL}, #{property15,jdbcType=DECIMAL}, 
+      #{prinf,jdbcType=VARCHAR}, #{prexp,jdbcType=VARCHAR}, #{itime,jdbcType=TIMESTAMP}, 
+      #{iperson,jdbcType=INTEGER}, #{utime,jdbcType=TIMESTAMP}, #{uperson,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.aps.env.entity.ComPageshow" >
+    insert into com_pageshow
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pageId != null" >
+        PAGE_ID,
+      </if>
+      <if test="columnId != null" >
+        COLUMN_ID,
+      </if>
+      <if test="columnName != null" >
+        COLUMN_NAME,
+      </if>
+      <if test="columnCount != null" >
+        COLUMN_COUNT,
+      </if>
+      <if test="columnPrimary != null" >
+        COLUMN_PRIMARY,
+      </if>
+      <if test="columnEdit != null" >
+        COLUMN_EDIT,
+      </if>
+      <if test="columnUpdate != null" >
+        COLUMN_UPDATE,
+      </if>
+      <if test="columnSort != null" >
+        COLUMN_SORT,
+      </if>
+      <if test="columnWidth != null" >
+        COLUMN_WIDTH,
+      </if>
+      <if test="columnType != null" >
+        COLUMN_TYPE,
+      </if>
+      <if test="columnAlign != null" >
+        COLUMN_ALIGN,
+      </if>
+      <if test="columnMerge != null" >
+        COLUMN_MERGE,
+      </if>
+      <if test="columnEditor != null" >
+        COLUMN_EDITOR,
+      </if>
+      <if test="columnHide != null" >
+        COLUMN_HIDE,
+      </if>
+      <if test="columnIndex != null" >
+        COLUMN_INDEX,
+      </if>
+      <if test="columnLock != null" >
+        COLUMN_LOCK,
+      </if>
+      <if test="prflag != null" >
+        PRFLAG,
+      </if>
+      <if test="prgroup != null" >
+        PRGROUP,
+      </if>
+      <if test="prtype != null" >
+        PRTYPE,
+      </if>
+      <if test="prclass != null" >
+        PRCLASS,
+      </if>
+      <if test="property0 != null" >
+        PROPERTY0,
+      </if>
+      <if test="property1 != null" >
+        PROPERTY1,
+      </if>
+      <if test="property2 != null" >
+        PROPERTY2,
+      </if>
+      <if test="property3 != null" >
+        PROPERTY3,
+      </if>
+      <if test="property4 != null" >
+        PROPERTY4,
+      </if>
+      <if test="property5 != null" >
+        PROPERTY5,
+      </if>
+      <if test="property6 != null" >
+        PROPERTY6,
+      </if>
+      <if test="property7 != null" >
+        PROPERTY7,
+      </if>
+      <if test="property8 != null" >
+        PROPERTY8,
+      </if>
+      <if test="property9 != null" >
+        PROPERTY9,
+      </if>
+      <if test="property10 != null" >
+        PROPERTY10,
+      </if>
+      <if test="property11 != null" >
+        PROPERTY11,
+      </if>
+      <if test="property12 != null" >
+        PROPERTY12,
+      </if>
+      <if test="property13 != null" >
+        PROPERTY13,
+      </if>
+      <if test="property14 != null" >
+        PROPERTY14,
+      </if>
+      <if test="property15 != null" >
+        PROPERTY15,
+      </if>
+      <if test="prinf != null" >
+        PRINF,
+      </if>
+      <if test="prexp != null" >
+        PREXP,
+      </if>
+      <if test="itime != null" >
+        ITIME,
+      </if>
+      <if test="iperson != null" >
+        IPERSON,
+      </if>
+      <if test="utime != null" >
+        UTIME,
+      </if>
+      <if test="uperson != null" >
+        UPERSON,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pageId != null" >
+        #{pageId,jdbcType=INTEGER},
+      </if>
+      <if test="columnId != null" >
+        #{columnId,jdbcType=VARCHAR},
+      </if>
+      <if test="columnName != null" >
+        #{columnName,jdbcType=VARCHAR},
+      </if>
+      <if test="columnCount != null" >
+        #{columnCount,jdbcType=INTEGER},
+      </if>
+      <if test="columnPrimary != null" >
+        #{columnPrimary,jdbcType=INTEGER},
+      </if>
+      <if test="columnEdit != null" >
+        #{columnEdit,jdbcType=INTEGER},
+      </if>
+      <if test="columnUpdate != null" >
+        #{columnUpdate,jdbcType=INTEGER},
+      </if>
+      <if test="columnSort != null" >
+        #{columnSort,jdbcType=INTEGER},
+      </if>
+      <if test="columnWidth != null" >
+        #{columnWidth,jdbcType=INTEGER},
+      </if>
+      <if test="columnType != null" >
+        #{columnType,jdbcType=VARCHAR},
+      </if>
+      <if test="columnAlign != null" >
+        #{columnAlign,jdbcType=INTEGER},
+      </if>
+      <if test="columnMerge != null" >
+        #{columnMerge,jdbcType=INTEGER},
+      </if>
+      <if test="columnEditor != null" >
+        #{columnEditor,jdbcType=VARCHAR},
+      </if>
+      <if test="columnHide != null" >
+        #{columnHide,jdbcType=INTEGER},
+      </if>
+      <if test="columnIndex != null" >
+        #{columnIndex,jdbcType=INTEGER},
+      </if>
+      <if test="columnLock != null" >
+        #{columnLock,jdbcType=INTEGER},
+      </if>
+      <if test="prflag != null" >
+        #{prflag,jdbcType=DECIMAL},
+      </if>
+      <if test="prgroup != null" >
+        #{prgroup,jdbcType=VARCHAR},
+      </if>
+      <if test="prtype != null" >
+        #{prtype,jdbcType=VARCHAR},
+      </if>
+      <if test="prclass != null" >
+        #{prclass,jdbcType=VARCHAR},
+      </if>
+      <if test="property0 != null" >
+        #{property0,jdbcType=VARCHAR},
+      </if>
+      <if test="property1 != null" >
+        #{property1,jdbcType=VARCHAR},
+      </if>
+      <if test="property2 != null" >
+        #{property2,jdbcType=VARCHAR},
+      </if>
+      <if test="property3 != null" >
+        #{property3,jdbcType=VARCHAR},
+      </if>
+      <if test="property4 != null" >
+        #{property4,jdbcType=VARCHAR},
+      </if>
+      <if test="property5 != null" >
+        #{property5,jdbcType=VARCHAR},
+      </if>
+      <if test="property6 != null" >
+        #{property6,jdbcType=VARCHAR},
+      </if>
+      <if test="property7 != null" >
+        #{property7,jdbcType=VARCHAR},
+      </if>
+      <if test="property8 != null" >
+        #{property8,jdbcType=VARCHAR},
+      </if>
+      <if test="property9 != null" >
+        #{property9,jdbcType=VARCHAR},
+      </if>
+      <if test="property10 != null" >
+        #{property10,jdbcType=DECIMAL},
+      </if>
+      <if test="property11 != null" >
+        #{property11,jdbcType=DECIMAL},
+      </if>
+      <if test="property12 != null" >
+        #{property12,jdbcType=DECIMAL},
+      </if>
+      <if test="property13 != null" >
+        #{property13,jdbcType=DECIMAL},
+      </if>
+      <if test="property14 != null" >
+        #{property14,jdbcType=DECIMAL},
+      </if>
+      <if test="property15 != null" >
+        #{property15,jdbcType=DECIMAL},
+      </if>
+      <if test="prinf != null" >
+        #{prinf,jdbcType=VARCHAR},
+      </if>
+      <if test="prexp != null" >
+        #{prexp,jdbcType=VARCHAR},
+      </if>
+      <if test="itime != null" >
+        #{itime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="iperson != null" >
+        #{iperson,jdbcType=INTEGER},
+      </if>
+      <if test="utime != null" >
+        #{utime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uperson != null" >
+        #{uperson,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.aps.env.entity.ComPageshowExample" resultType="java.lang.Integer" >
+    select count(*) from com_pageshow
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update com_pageshow
+    <set >
+      <if test="record.pageId != null" >
+        PAGE_ID = #{record.pageId,jdbcType=INTEGER},
+      </if>
+      <if test="record.columnId != null" >
+        COLUMN_ID = #{record.columnId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.columnName != null" >
+        COLUMN_NAME = #{record.columnName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.columnCount != null" >
+        COLUMN_COUNT = #{record.columnCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.columnPrimary != null" >
+        COLUMN_PRIMARY = #{record.columnPrimary,jdbcType=INTEGER},
+      </if>
+      <if test="record.columnEdit != null" >
+        COLUMN_EDIT = #{record.columnEdit,jdbcType=INTEGER},
+      </if>
+      <if test="record.columnUpdate != null" >
+        COLUMN_UPDATE = #{record.columnUpdate,jdbcType=INTEGER},
+      </if>
+      <if test="record.columnSort != null" >
+        COLUMN_SORT = #{record.columnSort,jdbcType=INTEGER},
+      </if>
+      <if test="record.columnWidth != null" >
+        COLUMN_WIDTH = #{record.columnWidth,jdbcType=INTEGER},
+      </if>
+      <if test="record.columnType != null" >
+        COLUMN_TYPE = #{record.columnType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.columnAlign != null" >
+        COLUMN_ALIGN = #{record.columnAlign,jdbcType=INTEGER},
+      </if>
+      <if test="record.columnMerge != null" >
+        COLUMN_MERGE = #{record.columnMerge,jdbcType=INTEGER},
+      </if>
+      <if test="record.columnEditor != null" >
+        COLUMN_EDITOR = #{record.columnEditor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.columnHide != null" >
+        COLUMN_HIDE = #{record.columnHide,jdbcType=INTEGER},
+      </if>
+      <if test="record.columnIndex != null" >
+        COLUMN_INDEX = #{record.columnIndex,jdbcType=INTEGER},
+      </if>
+      <if test="record.columnLock != null" >
+        COLUMN_LOCK = #{record.columnLock,jdbcType=INTEGER},
+      </if>
+      <if test="record.prflag != null" >
+        PRFLAG = #{record.prflag,jdbcType=DECIMAL},
+      </if>
+      <if test="record.prgroup != null" >
+        PRGROUP = #{record.prgroup,jdbcType=VARCHAR},
+      </if>
+      <if test="record.prtype != null" >
+        PRTYPE = #{record.prtype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.prclass != null" >
+        PRCLASS = #{record.prclass,jdbcType=VARCHAR},
+      </if>
+      <if test="record.property0 != null" >
+        PROPERTY0 = #{record.property0,jdbcType=VARCHAR},
+      </if>
+      <if test="record.property1 != null" >
+        PROPERTY1 = #{record.property1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.property2 != null" >
+        PROPERTY2 = #{record.property2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.property3 != null" >
+        PROPERTY3 = #{record.property3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.property4 != null" >
+        PROPERTY4 = #{record.property4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.property5 != null" >
+        PROPERTY5 = #{record.property5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.property6 != null" >
+        PROPERTY6 = #{record.property6,jdbcType=VARCHAR},
+      </if>
+      <if test="record.property7 != null" >
+        PROPERTY7 = #{record.property7,jdbcType=VARCHAR},
+      </if>
+      <if test="record.property8 != null" >
+        PROPERTY8 = #{record.property8,jdbcType=VARCHAR},
+      </if>
+      <if test="record.property9 != null" >
+        PROPERTY9 = #{record.property9,jdbcType=VARCHAR},
+      </if>
+      <if test="record.property10 != null" >
+        PROPERTY10 = #{record.property10,jdbcType=DECIMAL},
+      </if>
+      <if test="record.property11 != null" >
+        PROPERTY11 = #{record.property11,jdbcType=DECIMAL},
+      </if>
+      <if test="record.property12 != null" >
+        PROPERTY12 = #{record.property12,jdbcType=DECIMAL},
+      </if>
+      <if test="record.property13 != null" >
+        PROPERTY13 = #{record.property13,jdbcType=DECIMAL},
+      </if>
+      <if test="record.property14 != null" >
+        PROPERTY14 = #{record.property14,jdbcType=DECIMAL},
+      </if>
+      <if test="record.property15 != null" >
+        PROPERTY15 = #{record.property15,jdbcType=DECIMAL},
+      </if>
+      <if test="record.prinf != null" >
+        PRINF = #{record.prinf,jdbcType=VARCHAR},
+      </if>
+      <if test="record.prexp != null" >
+        PREXP = #{record.prexp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.itime != null" >
+        ITIME = #{record.itime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.iperson != null" >
+        IPERSON = #{record.iperson,jdbcType=INTEGER},
+      </if>
+      <if test="record.utime != null" >
+        UTIME = #{record.utime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.uperson != null" >
+        UPERSON = #{record.uperson,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update com_pageshow
+    set PAGE_ID = #{record.pageId,jdbcType=INTEGER},
+      COLUMN_ID = #{record.columnId,jdbcType=VARCHAR},
+      COLUMN_NAME = #{record.columnName,jdbcType=VARCHAR},
+      COLUMN_COUNT = #{record.columnCount,jdbcType=INTEGER},
+      COLUMN_PRIMARY = #{record.columnPrimary,jdbcType=INTEGER},
+      COLUMN_EDIT = #{record.columnEdit,jdbcType=INTEGER},
+      COLUMN_UPDATE = #{record.columnUpdate,jdbcType=INTEGER},
+      COLUMN_SORT = #{record.columnSort,jdbcType=INTEGER},
+      COLUMN_WIDTH = #{record.columnWidth,jdbcType=INTEGER},
+      COLUMN_TYPE = #{record.columnType,jdbcType=VARCHAR},
+      COLUMN_ALIGN = #{record.columnAlign,jdbcType=INTEGER},
+      COLUMN_MERGE = #{record.columnMerge,jdbcType=INTEGER},
+      COLUMN_EDITOR = #{record.columnEditor,jdbcType=VARCHAR},
+      COLUMN_HIDE = #{record.columnHide,jdbcType=INTEGER},
+      COLUMN_INDEX = #{record.columnIndex,jdbcType=INTEGER},
+      COLUMN_LOCK = #{record.columnLock,jdbcType=INTEGER},
+      PRFLAG = #{record.prflag,jdbcType=DECIMAL},
+      PRGROUP = #{record.prgroup,jdbcType=VARCHAR},
+      PRTYPE = #{record.prtype,jdbcType=VARCHAR},
+      PRCLASS = #{record.prclass,jdbcType=VARCHAR},
+      PROPERTY0 = #{record.property0,jdbcType=VARCHAR},
+      PROPERTY1 = #{record.property1,jdbcType=VARCHAR},
+      PROPERTY2 = #{record.property2,jdbcType=VARCHAR},
+      PROPERTY3 = #{record.property3,jdbcType=VARCHAR},
+      PROPERTY4 = #{record.property4,jdbcType=VARCHAR},
+      PROPERTY5 = #{record.property5,jdbcType=VARCHAR},
+      PROPERTY6 = #{record.property6,jdbcType=VARCHAR},
+      PROPERTY7 = #{record.property7,jdbcType=VARCHAR},
+      PROPERTY8 = #{record.property8,jdbcType=VARCHAR},
+      PROPERTY9 = #{record.property9,jdbcType=VARCHAR},
+      PROPERTY10 = #{record.property10,jdbcType=DECIMAL},
+      PROPERTY11 = #{record.property11,jdbcType=DECIMAL},
+      PROPERTY12 = #{record.property12,jdbcType=DECIMAL},
+      PROPERTY13 = #{record.property13,jdbcType=DECIMAL},
+      PROPERTY14 = #{record.property14,jdbcType=DECIMAL},
+      PROPERTY15 = #{record.property15,jdbcType=DECIMAL},
+      PRINF = #{record.prinf,jdbcType=VARCHAR},
+      PREXP = #{record.prexp,jdbcType=VARCHAR},
+      ITIME = #{record.itime,jdbcType=TIMESTAMP},
+      IPERSON = #{record.iperson,jdbcType=INTEGER},
+      UTIME = #{record.utime,jdbcType=TIMESTAMP},
+      UPERSON = #{record.uperson,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aps.env.entity.ComPageshow" >
+    update com_pageshow
+    <set >
+      <if test="columnName != null" >
+        COLUMN_NAME = #{columnName,jdbcType=VARCHAR},
+      </if>
+      <if test="columnCount != null" >
+        COLUMN_COUNT = #{columnCount,jdbcType=INTEGER},
+      </if>
+      <if test="columnPrimary != null" >
+        COLUMN_PRIMARY = #{columnPrimary,jdbcType=INTEGER},
+      </if>
+      <if test="columnEdit != null" >
+        COLUMN_EDIT = #{columnEdit,jdbcType=INTEGER},
+      </if>
+      <if test="columnUpdate != null" >
+        COLUMN_UPDATE = #{columnUpdate,jdbcType=INTEGER},
+      </if>
+      <if test="columnSort != null" >
+        COLUMN_SORT = #{columnSort,jdbcType=INTEGER},
+      </if>
+      <if test="columnWidth != null" >
+        COLUMN_WIDTH = #{columnWidth,jdbcType=INTEGER},
+      </if>
+      <if test="columnType != null" >
+        COLUMN_TYPE = #{columnType,jdbcType=VARCHAR},
+      </if>
+      <if test="columnAlign != null" >
+        COLUMN_ALIGN = #{columnAlign,jdbcType=INTEGER},
+      </if>
+      <if test="columnMerge != null" >
+        COLUMN_MERGE = #{columnMerge,jdbcType=INTEGER},
+      </if>
+      <if test="columnEditor != null" >
+        COLUMN_EDITOR = #{columnEditor,jdbcType=VARCHAR},
+      </if>
+      <if test="columnHide != null" >
+        COLUMN_HIDE = #{columnHide,jdbcType=INTEGER},
+      </if>
+      <if test="columnIndex != null" >
+        COLUMN_INDEX = #{columnIndex,jdbcType=INTEGER},
+      </if>
+      <if test="columnLock != null" >
+        COLUMN_LOCK = #{columnLock,jdbcType=INTEGER},
+      </if>
+      <if test="prflag != null" >
+        PRFLAG = #{prflag,jdbcType=DECIMAL},
+      </if>
+      <if test="prgroup != null" >
+        PRGROUP = #{prgroup,jdbcType=VARCHAR},
+      </if>
+      <if test="prtype != null" >
+        PRTYPE = #{prtype,jdbcType=VARCHAR},
+      </if>
+      <if test="prclass != null" >
+        PRCLASS = #{prclass,jdbcType=VARCHAR},
+      </if>
+      <if test="property0 != null" >
+        PROPERTY0 = #{property0,jdbcType=VARCHAR},
+      </if>
+      <if test="property1 != null" >
+        PROPERTY1 = #{property1,jdbcType=VARCHAR},
+      </if>
+      <if test="property2 != null" >
+        PROPERTY2 = #{property2,jdbcType=VARCHAR},
+      </if>
+      <if test="property3 != null" >
+        PROPERTY3 = #{property3,jdbcType=VARCHAR},
+      </if>
+      <if test="property4 != null" >
+        PROPERTY4 = #{property4,jdbcType=VARCHAR},
+      </if>
+      <if test="property5 != null" >
+        PROPERTY5 = #{property5,jdbcType=VARCHAR},
+      </if>
+      <if test="property6 != null" >
+        PROPERTY6 = #{property6,jdbcType=VARCHAR},
+      </if>
+      <if test="property7 != null" >
+        PROPERTY7 = #{property7,jdbcType=VARCHAR},
+      </if>
+      <if test="property8 != null" >
+        PROPERTY8 = #{property8,jdbcType=VARCHAR},
+      </if>
+      <if test="property9 != null" >
+        PROPERTY9 = #{property9,jdbcType=VARCHAR},
+      </if>
+      <if test="property10 != null" >
+        PROPERTY10 = #{property10,jdbcType=DECIMAL},
+      </if>
+      <if test="property11 != null" >
+        PROPERTY11 = #{property11,jdbcType=DECIMAL},
+      </if>
+      <if test="property12 != null" >
+        PROPERTY12 = #{property12,jdbcType=DECIMAL},
+      </if>
+      <if test="property13 != null" >
+        PROPERTY13 = #{property13,jdbcType=DECIMAL},
+      </if>
+      <if test="property14 != null" >
+        PROPERTY14 = #{property14,jdbcType=DECIMAL},
+      </if>
+      <if test="property15 != null" >
+        PROPERTY15 = #{property15,jdbcType=DECIMAL},
+      </if>
+      <if test="prinf != null" >
+        PRINF = #{prinf,jdbcType=VARCHAR},
+      </if>
+      <if test="prexp != null" >
+        PREXP = #{prexp,jdbcType=VARCHAR},
+      </if>
+      <if test="itime != null" >
+        ITIME = #{itime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="iperson != null" >
+        IPERSON = #{iperson,jdbcType=INTEGER},
+      </if>
+      <if test="utime != null" >
+        UTIME = #{utime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uperson != null" >
+        UPERSON = #{uperson,jdbcType=INTEGER},
+      </if>
+    </set>
+    where PAGE_ID = #{pageId,jdbcType=INTEGER}
+      and COLUMN_ID = #{columnId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aps.env.entity.ComPageshow" >
+    update com_pageshow
+    set COLUMN_NAME = #{columnName,jdbcType=VARCHAR},
+      COLUMN_COUNT = #{columnCount,jdbcType=INTEGER},
+      COLUMN_PRIMARY = #{columnPrimary,jdbcType=INTEGER},
+      COLUMN_EDIT = #{columnEdit,jdbcType=INTEGER},
+      COLUMN_UPDATE = #{columnUpdate,jdbcType=INTEGER},
+      COLUMN_SORT = #{columnSort,jdbcType=INTEGER},
+      COLUMN_WIDTH = #{columnWidth,jdbcType=INTEGER},
+      COLUMN_TYPE = #{columnType,jdbcType=VARCHAR},
+      COLUMN_ALIGN = #{columnAlign,jdbcType=INTEGER},
+      COLUMN_MERGE = #{columnMerge,jdbcType=INTEGER},
+      COLUMN_EDITOR = #{columnEditor,jdbcType=VARCHAR},
+      COLUMN_HIDE = #{columnHide,jdbcType=INTEGER},
+      COLUMN_INDEX = #{columnIndex,jdbcType=INTEGER},
+      COLUMN_LOCK = #{columnLock,jdbcType=INTEGER},
+      PRFLAG = #{prflag,jdbcType=DECIMAL},
+      PRGROUP = #{prgroup,jdbcType=VARCHAR},
+      PRTYPE = #{prtype,jdbcType=VARCHAR},
+      PRCLASS = #{prclass,jdbcType=VARCHAR},
+      PROPERTY0 = #{property0,jdbcType=VARCHAR},
+      PROPERTY1 = #{property1,jdbcType=VARCHAR},
+      PROPERTY2 = #{property2,jdbcType=VARCHAR},
+      PROPERTY3 = #{property3,jdbcType=VARCHAR},
+      PROPERTY4 = #{property4,jdbcType=VARCHAR},
+      PROPERTY5 = #{property5,jdbcType=VARCHAR},
+      PROPERTY6 = #{property6,jdbcType=VARCHAR},
+      PROPERTY7 = #{property7,jdbcType=VARCHAR},
+      PROPERTY8 = #{property8,jdbcType=VARCHAR},
+      PROPERTY9 = #{property9,jdbcType=VARCHAR},
+      PROPERTY10 = #{property10,jdbcType=DECIMAL},
+      PROPERTY11 = #{property11,jdbcType=DECIMAL},
+      PROPERTY12 = #{property12,jdbcType=DECIMAL},
+      PROPERTY13 = #{property13,jdbcType=DECIMAL},
+      PROPERTY14 = #{property14,jdbcType=DECIMAL},
+      PROPERTY15 = #{property15,jdbcType=DECIMAL},
+      PRINF = #{prinf,jdbcType=VARCHAR},
+      PREXP = #{prexp,jdbcType=VARCHAR},
+      ITIME = #{itime,jdbcType=TIMESTAMP},
+      IPERSON = #{iperson,jdbcType=INTEGER},
+      UTIME = #{utime,jdbcType=TIMESTAMP},
+      UPERSON = #{uperson,jdbcType=INTEGER}
+    where PAGE_ID = #{pageId,jdbcType=INTEGER}
+      and COLUMN_ID = #{columnId,jdbcType=VARCHAR}
+  </update>
+</mapper>
