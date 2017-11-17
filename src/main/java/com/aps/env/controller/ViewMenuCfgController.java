@@ -37,7 +37,7 @@ public class ViewMenuCfgController extends ExceptionController {
         ResponseData responseData = new ResponseData();
 
         if (CommUtil.isPermissoned(httpSession, formId, "referMenu", responseData)) {
-            viewMenuCfgService.referMenu(httpSession, StringUtil.conversionRequestReferData(requestRefPar), responseData);
+            viewMenuCfgService.referMenu(httpSession, requestRefPar, responseData);
         }
         return responseData;
     }
@@ -69,7 +69,7 @@ public class ViewMenuCfgController extends ExceptionController {
         ResponseData responseData = new ResponseData();
 
         if (CommUtil.isPermissoned(httpSession, formId, "modifyMenu", responseData)) {
-            viewMenuCfgService.modifyMenu(httpSession, StringUtil.conversionRequestMdyData(requestMdyPar), responseData);
+            viewMenuCfgService.modifyMenu(httpSession, requestMdyPar, responseData);
         }
 
         return responseData;
@@ -86,7 +86,7 @@ public class ViewMenuCfgController extends ExceptionController {
         ResponseData responseData = new ResponseData();
 
         if (CommUtil.isPermissoned(httpSession, formId, "referAllForms", responseData)) {
-            viewMenuCfgService.referAllForms(httpSession, StringUtil.conversionRequestReferData(requestRefPar), responseData);
+            viewMenuCfgService.referAllForms(httpSession, requestRefPar, responseData);
         }
 
         return responseData;

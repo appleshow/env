@@ -55,7 +55,7 @@ public class ViewCodeCfgController extends ExceptionController {
         ResponseData responseData = new ResponseData();
 
         if (CommUtil.isPermissoned(httpSession, formId, "modifyCode", responseData)) {
-            viewCodeCfgService.modifyCode(httpSession, StringUtil.conversionRequestMdyData(requestMdyPar), responseData);
+            viewCodeCfgService.modifyCode(httpSession, requestMdyPar, responseData);
         }
 
         return responseData;

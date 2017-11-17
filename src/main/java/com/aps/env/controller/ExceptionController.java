@@ -23,18 +23,17 @@ import javax.servlet.http.HttpServletRequest;
 public abstract class ExceptionController {
 
     /**
-     *
      * @param request
      * @param e
      * @return
      */
     @ExceptionHandler
     @ResponseBody
-    public String exception(HttpServletRequest request, Exception e) {
+    public ResponseData exception(HttpServletRequest request, Exception e) {
         ResponseData responseData = new ResponseData();
 
         responseData.setData(e);
 
-        return JsonUtil.writeResponseAsString(responseData);
+        return responseData;
     }
 }

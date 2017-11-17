@@ -43,13 +43,16 @@
                 <td>&nbsp;</td>
                 <td><a href="javascript:selectUserID()"
                        class="easyui-linkbutton c6"
-                       style="width: 70px">用户工号:</a> <input id="user_id"
-                                                            class="easyui-textbox"
-                                                            style="width: 80px; height: 28px"> <a href="javascript:selectUserName()"
-                                                                                                  class="easyui-linkbutton c6"
-                                                                                                  style="width: 70px">用户姓名:</a> <input id="user_name"
-                                                                                                                                       class="easyui-textbox"
-                                                                                                                                       style="width: 100px; height: 28px">
+                       style="width: 70px">用户工号:</a>
+                    <input id="user_id"
+                           class="easyui-textbox"
+                           style="width: 80px; height: 28px">
+                    <a href="javascript:selectUserName()"
+                       class="easyui-linkbutton c6"
+                       style="width: 70px">用户姓名:</a>
+                    <input id="user_name"
+                           class="easyui-textbox"
+                           style="width: 100px; height: 28px">
                 </td>
             </tr>
         </table>
@@ -84,7 +87,7 @@
     function pageIni() {
 
         // 取得COM_ORG数据
-        var url = "personOrgConfig.referOrg";
+        var url = "${ctx}/viewPersonOrgConfig/referOrg";
         var inf = {};
         $.ajax({
             async: false,
@@ -111,7 +114,7 @@
         });
 
         // 取得COM_PERSON数据
-        url = "personOrgConfig.referPerson";
+        url = "${ctx}/viewPersonOrgConfig/referPerson";
         inf = {};
         $.ajax({
             async: false,
@@ -178,7 +181,7 @@
         dgUser.setHeadCol(1, "utime", "更新时间", 140, "left", 0, 0, false, false, true, null, null, null, null, false, false, false, false);
 
         dgUser.dbinf.query = {
-            url: "personOrgConfig.referPersonOrg",
+            url: "${ctx}/viewPersonOrgConfig/referPersonOrg",
             inpar: [
                 {
                     type: "jtext",
@@ -193,7 +196,7 @@
         };
 
         dgUser.dbinf.modify = {
-            url: "personOrgConfig.modifyPersonOrg",
+            url: "${ctx}/viewPersonOrgConfig/modifyPersonOrg",
         };
 
         // 初始化Grid属性

@@ -168,7 +168,7 @@ public class StringUtil {
      * @author LiuGuanbang
      * @date 2017年3月23日 上午12:36:15
      */
-    public static RequestRefPar conversionRequestReferData(RequestRefPar requestRefPar) {
+    public static RequestRefPar convertRequestReferData(RequestRefPar requestRefPar) {
         String requestString = getConversionString(JsonUtil.writeValueAsString(requestRefPar));
         return JsonUtil.readRequestRefPar(requestString);
     }
@@ -181,7 +181,7 @@ public class StringUtil {
      * @author LiuGuanbang
      * @date 2017年3月23日 上午12:36:15
      */
-    public static RequestMdyPar conversionRequestMdyData(RequestMdyPar requestMdyPar) {
+    public static RequestMdyPar convertRequestMdyData(RequestMdyPar requestMdyPar) {
         String requestString = getConversionString(JsonUtil.writeValueAsString(requestMdyPar));
         return JsonUtil.readRequestMdyPar(requestString);
     }

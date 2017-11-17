@@ -40,7 +40,7 @@ public class ViewOrgCfgController extends ExceptionController {
         ResponseData responseData = new ResponseData();
 
         if (CommUtil.isPermissoned(httpSession, formId, "referOrg", responseData)) {
-            viewOrgCfgService.referOrg(httpSession, StringUtil.conversionRequestReferData(requestRefPar), responseData);
+            viewOrgCfgService.referOrg(httpSession, requestRefPar, responseData);
         }
 
         return responseData;
@@ -57,7 +57,7 @@ public class ViewOrgCfgController extends ExceptionController {
         ResponseData responseData = new ResponseData();
 
         if (CommUtil.isPermissoned(httpSession, formId, "modifyOrg", responseData)) {
-            viewOrgCfgService.modifyOrg(httpSession, StringUtil.conversionRequestMdyData(requestMdyPar), responseData);
+            viewOrgCfgService.modifyOrg(httpSession, requestMdyPar, responseData);
         }
 
         return responseData;

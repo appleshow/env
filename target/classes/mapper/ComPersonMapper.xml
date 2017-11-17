@@ -116,7 +116,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from com_person
     where PERSON_ID = #{personId,jdbcType=INTEGER}
@@ -131,7 +131,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.aps.env.entity.ComPerson" >
+  <insert id="insert" parameterType="com.aps.env.entity.ComPerson" useGeneratedKeys="true" keyProperty="personId" >
     insert into com_person (PERSON_ID, USER_ID, USER_NAME, 
       USER_ORG, USER_PSW, USER_SEX, 
       USER_TEL, USER_ADDR, USER_EMAIL, 
@@ -157,7 +157,7 @@
       #{ushift,jdbcType=VARCHAR}, #{ugroup,jdbcType=VARCHAR}, #{uperson,jdbcType=INTEGER}, 
       #{ufrom,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.aps.env.entity.ComPerson" >
+  <insert id="insertSelective" parameterType="com.aps.env.entity.ComPerson" useGeneratedKeys="true" keyProperty="personId">
     insert into com_person
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="personId != null" >

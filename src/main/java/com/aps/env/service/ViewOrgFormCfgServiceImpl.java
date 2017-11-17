@@ -73,18 +73,13 @@ public class ViewOrgFormCfgServiceImpl implements ViewOrgFormCfgService {
     @Override
     public void referOrgForm(HttpSession httpSession, RequestRefPar requestRefPar, ResponseData responseData) {
         List<?> comOrgForms;
+        ComOrgForm comOrgForm = new ComOrgForm();
         Integer orgId = requestRefPar.getIntegerPar("orgId");
         Integer formId = requestRefPar.getIntegerPar("formId");
-        ComOrgFormExample comOrgFormExample = new ComOrgFormExample();
-        ComOrgFormExample.Criteria criteria = comOrgFormExample.createCriteria();
 
-        if (orgId != null) {
-            criteria.andOrgIdEqualTo(orgId);
-        }
-        if (formId != null) {
-            criteria.andFormIdEqualTo(formId);
-        }
-        comOrgForms = comOrgFormMapper.selectByExample(comOrgFormExample);
+        comOrgForm.setOrgId(orgId);
+        comOrgForm.setFormId(formId);
+        comOrgForms = comOrgFormMapper.selectAssociation(comOrgForm);
 
         responseData.setData(comOrgForms);
     }
@@ -97,14 +92,11 @@ public class ViewOrgFormCfgServiceImpl implements ViewOrgFormCfgService {
     @Override
     public void referFormRights(HttpSession httpSession, RequestRefPar requestRefPar, ResponseData responseData) {
         List<?> comFormRightss;
+        ComFormRights comFormRights = new ComFormRights();
         Integer formId = requestRefPar.getIntegerPar("formId");
-        ComFormRightsExample comFormRightsExample = new ComFormRightsExample();
-        ComFormRightsExample.Criteria criteria = comFormRightsExample.createCriteria();
 
-        if (formId != null) {
-            criteria.andFormIdEqualTo(formId);
-        }
-        comFormRightss = comFormRightsMapper.selectByExample(comFormRightsExample);
+        comFormRights.setFormId(formId);
+        comFormRightss = comFormRightsMapper.selectAssociation(comFormRights);
 
         responseData.setData(comFormRightss);
     }
@@ -117,18 +109,13 @@ public class ViewOrgFormCfgServiceImpl implements ViewOrgFormCfgService {
     @Override
     public void referOrgFormRights(HttpSession httpSession, RequestRefPar requestRefPar, ResponseData responseData) {
         List<?> comOrgFormRightss;
+        ComOrgFormRights comOrgFormRights = new ComOrgFormRights();
         Integer formId = requestRefPar.getIntegerPar("formId");
         Integer orgId = requestRefPar.getIntegerPar("orgId");
-        ComOrgFormRightsExample comOrgFormRightsExample = new ComOrgFormRightsExample();
-        ComOrgFormRightsExample.Criteria criteria = comOrgFormRightsExample.createCriteria();
 
-        if (formId != null) {
-            criteria.andFormIdEqualTo(formId);
-        }
-        if (orgId != null) {
-            criteria.andOrgIdEqualTo(orgId);
-        }
-        comOrgFormRightss = comOrgFormRightsMapper.selectByExample(comOrgFormRightsExample);
+        comOrgFormRights.setOrgId(orgId);
+        comOrgFormRights.setFormId(formId);
+        comOrgFormRightss = comOrgFormRightsMapper.selectAssociation(comOrgFormRights);
 
         responseData.setData(comOrgFormRightss);
     }

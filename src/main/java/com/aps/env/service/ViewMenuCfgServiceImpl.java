@@ -51,6 +51,7 @@ public class ViewMenuCfgServiceImpl implements ViewMenuCfgService {
         if (!StringUtil.isNullOrEmpty(menuName)) {
             criteria.andMenuNameLike("%" + menuName + "%");
         }
+        comMenuExample.setOrderByClause("FAR_MENU_ID,MENU_SEQ");
         comMenus = comMenuMapper.selectByExample(comMenuExample);
 
         responseData.setData(comMenus);

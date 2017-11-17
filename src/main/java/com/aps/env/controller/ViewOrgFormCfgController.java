@@ -40,7 +40,7 @@ public class ViewOrgFormCfgController extends ExceptionController {
         ResponseData responseData = new ResponseData();
 
         if (CommUtil.isPermissoned(httpSession, formId, "referOrg", responseData)) {
-            viewOrgFormCfgService.referOrg(httpSession, StringUtil.conversionRequestReferData(requestRefPar), responseData);
+            viewOrgFormCfgService.referOrg(httpSession, requestRefPar, responseData);
         }
         return responseData;
     }
@@ -56,7 +56,7 @@ public class ViewOrgFormCfgController extends ExceptionController {
         ResponseData responseData = new ResponseData();
 
         if (CommUtil.isPermissoned(httpSession, formId, "referForm", responseData)) {
-            viewOrgFormCfgService.referForm(httpSession, StringUtil.conversionRequestReferData(requestRefPar), responseData);
+            viewOrgFormCfgService.referForm(httpSession, requestRefPar, responseData);
         }
 
         return responseData;
@@ -73,7 +73,7 @@ public class ViewOrgFormCfgController extends ExceptionController {
         ResponseData responseData = new ResponseData();
 
         if (CommUtil.isPermissoned(httpSession, formId, "referOrgForm", responseData)) {
-            viewOrgFormCfgService.referOrgForm(httpSession, StringUtil.conversionRequestReferData(requestRefPar), responseData);
+            viewOrgFormCfgService.referOrgForm(httpSession, requestRefPar, responseData);
         }
 
         return responseData;
@@ -90,7 +90,7 @@ public class ViewOrgFormCfgController extends ExceptionController {
         ResponseData responseData = new ResponseData();
 
         if (CommUtil.isPermissoned(httpSession, formId, "referFormRights", responseData)) {
-            viewOrgFormCfgService.referFormRights(httpSession, StringUtil.conversionRequestReferData(requestRefPar), responseData);
+            viewOrgFormCfgService.referFormRights(httpSession, requestRefPar, responseData);
         }
 
         return responseData;
@@ -107,7 +107,7 @@ public class ViewOrgFormCfgController extends ExceptionController {
         ResponseData responseData = new ResponseData();
 
         if (CommUtil.isPermissoned(httpSession, formId, "referOrgFormRights", responseData)) {
-            viewOrgFormCfgService.referOrgFormRights(httpSession, StringUtil.conversionRequestReferData(requestRefPar), responseData);
+            viewOrgFormCfgService.referOrgFormRights(httpSession, requestRefPar, responseData);
         }
 
         return responseData;
@@ -124,7 +124,7 @@ public class ViewOrgFormCfgController extends ExceptionController {
         ResponseData responseData = new ResponseData();
 
         if (CommUtil.isPermissoned(httpSession, formId, "referCombCode", responseData)) {
-            viewOrgFormCfgService.referCombCode(httpSession, StringUtil.conversionRequestReferData(requestRefPar), responseData);
+            viewOrgFormCfgService.referCombCode(httpSession, requestRefPar, responseData);
         }
 
         return responseData;
@@ -141,7 +141,7 @@ public class ViewOrgFormCfgController extends ExceptionController {
         ResponseData responseData = new ResponseData();
 
         if (CommUtil.isPermissoned(httpSession, formId, "modifyOrgForm", responseData)) {
-            viewOrgFormCfgService.modifyOrgForm(httpSession, StringUtil.conversionRequestMdyData(requestMdyPar), responseData);
+            viewOrgFormCfgService.modifyOrgForm(httpSession, requestMdyPar, responseData);
         }
         return responseData;
     }
@@ -157,7 +157,7 @@ public class ViewOrgFormCfgController extends ExceptionController {
         ResponseData responseData = new ResponseData();
 
         if (CommUtil.isPermissoned(httpSession, formId, "modifyOrgFormRights", responseData)) {
-            viewOrgFormCfgService.modifyOrgFormRights(httpSession, StringUtil.conversionRequestMdyData(requestMdyPar), responseData);
+            viewOrgFormCfgService.modifyOrgFormRights(httpSession, requestMdyPar, responseData);
         }
         return responseData;
     }

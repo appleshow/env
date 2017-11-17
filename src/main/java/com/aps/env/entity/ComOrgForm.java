@@ -1,5 +1,8 @@
 package com.aps.env.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class ComOrgForm extends ComOrgFormKey {
@@ -43,6 +46,7 @@ public class ComOrgForm extends ComOrgFormKey {
 
     private String prexp;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date itime;
 
     private String ishift;
@@ -51,6 +55,7 @@ public class ComOrgForm extends ComOrgFormKey {
 
     private Integer iperson;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date utime;
 
     private String ushift;
@@ -60,6 +65,16 @@ public class ComOrgForm extends ComOrgFormKey {
     private String ugroup;
 
     private String ufrom;
+
+    /**
+     * Association Objects
+     */
+    private ComOrg comOrg;
+
+    /**
+     * Association Objects
+     */
+    private ComForm comForm;
 
     public Integer getPrflag() {
         return prflag;
@@ -221,6 +236,7 @@ public class ComOrgForm extends ComOrgFormKey {
         this.prexp = prexp == null ? null : prexp.trim();
     }
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     public Date getItime() {
         return itime;
     }
@@ -253,6 +269,7 @@ public class ComOrgForm extends ComOrgFormKey {
         this.iperson = iperson;
     }
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     public Date getUtime() {
         return utime;
     }
@@ -291,5 +308,21 @@ public class ComOrgForm extends ComOrgFormKey {
 
     public void setUfrom(String ufrom) {
         this.ufrom = ufrom == null ? null : ufrom.trim();
+    }
+
+    public ComOrg getComOrg() {
+        return comOrg;
+    }
+
+    public void setComOrg(ComOrg comOrg) {
+        this.comOrg = comOrg;
+    }
+
+    public ComForm getComForm() {
+        return comForm;
+    }
+
+    public void setComForm(ComForm comForm) {
+        this.comForm = comForm;
     }
 }

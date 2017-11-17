@@ -36,8 +36,9 @@ public class ViewOrgCfgServiceImpl implements ViewOrgCfgService {
     @Override
     public void referOrg(HttpSession httpSession, RequestRefPar requestRefPar, ResponseData responseData) {
         List<?> comOrgs;
-
         ComOrgExample comOrgExample = new ComOrgExample();
+
+        comOrgExample.setOrderByClause("FAR_ORG_ID,PRFLAG");
         comOrgs = comOrgMapper.selectByExample(comOrgExample);
 
         responseData.setData(comOrgs);

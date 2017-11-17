@@ -53,7 +53,7 @@ public class ViewMainController extends ExceptionController {
     public ResponseData updatePersonPSW(HttpSession httpSession, @RequestBody RequestMdyPar requestMdyPar) {
         ResponseData responseData = new ResponseData();
 
-        viewMainService.modifyPersonPassword(httpSession, StringUtil.conversionRequestMdyData(requestMdyPar), responseData);
+        viewMainService.modifyPersonPassword(httpSession, requestMdyPar, responseData);
 
         return responseData;
     }

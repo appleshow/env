@@ -14,7 +14,7 @@ import java.util.Map;
  * @author appleshow
  */
 public class RequestRefPar {
-    private int parCount;
+    private int parCount = 0;
     private Map<String, String> inPar;
     private int page;
     private int rows;

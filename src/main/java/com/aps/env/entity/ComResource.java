@@ -1,5 +1,8 @@
 package com.aps.env.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -72,16 +75,19 @@ public class ComResource {
 
     private String prexp;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date itime;
 
     private Integer iperson;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date utime;
 
     private Integer uperson;
 
     private String dflag;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date dtime;
 
     private Integer dperson;
@@ -358,6 +364,7 @@ public class ComResource {
         this.prexp = prexp == null ? null : prexp.trim();
     }
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     public Date getItime() {
         return itime;
     }
@@ -374,6 +381,7 @@ public class ComResource {
         this.iperson = iperson;
     }
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     public Date getUtime() {
         return utime;
     }
@@ -398,6 +406,7 @@ public class ComResource {
         this.dflag = dflag == null ? null : dflag.trim();
     }
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     public Date getDtime() {
         return dtime;
     }

@@ -86,7 +86,7 @@
     function pageIni() {
 
         // 取得COM_ORG数据
-        var url = "personConfig.referOrg";
+        var url = "${ctx}/viewPersonConfig/referOrg";
         var inf = {};
 
         $.ajax({
@@ -187,7 +187,7 @@
         }, null, false, false, true, false);
 
         dgUser.dbinf.query = {
-            url: "personConfig.referPerson",
+            url: "${ctx}/viewPersonConfig/referPerson",
             inpar: [
                 {
                     type: "jtext",
@@ -202,7 +202,7 @@
         };
 
         dgUser.dbinf.modify = {
-            url: "personConfig.modifyPerson",
+            url: "${ctx}/viewPersonConfig/modifyPerson",
         };
 
         // 初始化Grid属性

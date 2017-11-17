@@ -1,9 +1,12 @@
 package com.aps.env.dao;
 
+import com.aps.env.entity.ComPerson;
 import com.aps.env.entity.ComPersonOrg;
 import com.aps.env.entity.ComPersonOrgExample;
 import com.aps.env.entity.ComPersonOrgKey;
+
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface ComPersonOrgMapper {
@@ -28,4 +31,7 @@ public interface ComPersonOrgMapper {
     int updateByPrimaryKeySelective(ComPersonOrg record);
 
     int updateByPrimaryKey(ComPersonOrg record);
+
+    //----------- additional ---------------
+    List<ComPersonOrg> selectByPerson(ComPerson comPerson);
 }

@@ -1,135 +1,198 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.aps.env.dao.ComOrgFormMapper" >
-  <resultMap id="BaseResultMap" type="com.aps.env.entity.ComOrgForm" >
-    <id column="ORG_ID" property="orgId" jdbcType="INTEGER" />
-    <id column="FORM_ID" property="formId" jdbcType="INTEGER" />
-    <result column="PRFLAG" property="prflag" jdbcType="INTEGER" />
-    <result column="PRGROUP" property="prgroup" jdbcType="VARCHAR" />
-    <result column="PRTYPE" property="prtype" jdbcType="VARCHAR" />
-    <result column="REA" property="rea" jdbcType="INTEGER" />
-    <result column="REL" property="rel" jdbcType="INTEGER" />
-    <result column="R1" property="r1" jdbcType="INTEGER" />
-    <result column="R2" property="r2" jdbcType="INTEGER" />
-    <result column="R3" property="r3" jdbcType="INTEGER" />
-    <result column="PROPERTY0" property="property0" jdbcType="VARCHAR" />
-    <result column="PROPERTY1" property="property1" jdbcType="VARCHAR" />
-    <result column="PROPERTY2" property="property2" jdbcType="VARCHAR" />
-    <result column="PROPERTY3" property="property3" jdbcType="VARCHAR" />
-    <result column="PROPERTY4" property="property4" jdbcType="VARCHAR" />
-    <result column="PROPERTY5" property="property5" jdbcType="VARCHAR" />
-    <result column="PROPERTY6" property="property6" jdbcType="VARCHAR" />
-    <result column="PROPERTY7" property="property7" jdbcType="VARCHAR" />
-    <result column="PROPERTY8" property="property8" jdbcType="VARCHAR" />
-    <result column="PROPERTY9" property="property9" jdbcType="VARCHAR" />
-    <result column="PRINF" property="prinf" jdbcType="VARCHAR" />
-    <result column="PREXP" property="prexp" jdbcType="VARCHAR" />
-    <result column="ITIME" property="itime" jdbcType="TIMESTAMP" />
-    <result column="ISHIFT" property="ishift" jdbcType="VARCHAR" />
-    <result column="IGROUP" property="igroup" jdbcType="VARCHAR" />
-    <result column="IPERSON" property="iperson" jdbcType="INTEGER" />
-    <result column="UTIME" property="utime" jdbcType="TIMESTAMP" />
-    <result column="USHIFT" property="ushift" jdbcType="VARCHAR" />
-    <result column="UPERSON" property="uperson" jdbcType="INTEGER" />
-    <result column="UGROUP" property="ugroup" jdbcType="VARCHAR" />
-    <result column="UFROM" property="ufrom" jdbcType="VARCHAR" />
-  </resultMap>
-  <sql id="Example_Where_Clause" >
-    <where >
-      <foreach collection="oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+<mapper namespace="com.aps.env.dao.ComOrgFormMapper">
+    <resultMap id="BaseResultMap" type="com.aps.env.entity.ComOrgForm">
+        <id column="ORG_ID" property="orgId" jdbcType="INTEGER"/>
+        <id column="FORM_ID" property="formId" jdbcType="INTEGER"/>
+        <result column="PRFLAG" property="prflag" jdbcType="INTEGER"/>
+        <result column="PRGROUP" property="prgroup" jdbcType="VARCHAR"/>
+        <result column="PRTYPE" property="prtype" jdbcType="VARCHAR"/>
+        <result column="REA" property="rea" jdbcType="INTEGER"/>
+        <result column="REL" property="rel" jdbcType="INTEGER"/>
+        <result column="R1" property="r1" jdbcType="INTEGER"/>
+        <result column="R2" property="r2" jdbcType="INTEGER"/>
+        <result column="R3" property="r3" jdbcType="INTEGER"/>
+        <result column="PROPERTY0" property="property0" jdbcType="VARCHAR"/>
+        <result column="PROPERTY1" property="property1" jdbcType="VARCHAR"/>
+        <result column="PROPERTY2" property="property2" jdbcType="VARCHAR"/>
+        <result column="PROPERTY3" property="property3" jdbcType="VARCHAR"/>
+        <result column="PROPERTY4" property="property4" jdbcType="VARCHAR"/>
+        <result column="PROPERTY5" property="property5" jdbcType="VARCHAR"/>
+        <result column="PROPERTY6" property="property6" jdbcType="VARCHAR"/>
+        <result column="PROPERTY7" property="property7" jdbcType="VARCHAR"/>
+        <result column="PROPERTY8" property="property8" jdbcType="VARCHAR"/>
+        <result column="PROPERTY9" property="property9" jdbcType="VARCHAR"/>
+        <result column="PRINF" property="prinf" jdbcType="VARCHAR"/>
+        <result column="PREXP" property="prexp" jdbcType="VARCHAR"/>
+        <result column="ITIME" property="itime" jdbcType="TIMESTAMP"/>
+        <result column="ISHIFT" property="ishift" jdbcType="VARCHAR"/>
+        <result column="IGROUP" property="igroup" jdbcType="VARCHAR"/>
+        <result column="IPERSON" property="iperson" jdbcType="INTEGER"/>
+        <result column="UTIME" property="utime" jdbcType="TIMESTAMP"/>
+        <result column="USHIFT" property="ushift" jdbcType="VARCHAR"/>
+        <result column="UPERSON" property="uperson" jdbcType="INTEGER"/>
+        <result column="UGROUP" property="ugroup" jdbcType="VARCHAR"/>
+        <result column="UFROM" property="ufrom" jdbcType="VARCHAR"/>
+        <association property="comOrg" resultMap="ComOrgMap" columnPrefix="comorg_"/>
+        <association property="comForm" resultMap="ComFormMap" columnPrefix="comform_"/>
+    </resultMap>
+    <resultMap id="ComOrgMap" type="com.aps.env.entity.ComOrg">
+        <id column="ORG_ID" property="orgId" jdbcType="INTEGER"/>
+        <result column="ORG_NAME" property="orgName" jdbcType="VARCHAR"/>
+        <result column="FAR_ORG_ID" property="farOrgId" jdbcType="INTEGER"/>
+        <result column="PRFLAG" property="prflag" jdbcType="INTEGER"/>
+        <result column="PRGROUP" property="prgroup" jdbcType="VARCHAR"/>
+        <result column="PRTYPE" property="prtype" jdbcType="VARCHAR"/>
+        <result column="PROPERTY0" property="property0" jdbcType="VARCHAR"/>
+        <result column="PROPERTY1" property="property1" jdbcType="VARCHAR"/>
+        <result column="PROPERTY2" property="property2" jdbcType="VARCHAR"/>
+        <result column="PROPERTY3" property="property3" jdbcType="VARCHAR"/>
+        <result column="PROPERTY4" property="property4" jdbcType="VARCHAR"/>
+        <result column="PROPERTY5" property="property5" jdbcType="VARCHAR"/>
+        <result column="PROPERTY6" property="property6" jdbcType="VARCHAR"/>
+        <result column="PROPERTY7" property="property7" jdbcType="VARCHAR"/>
+        <result column="PROPERTY8" property="property8" jdbcType="VARCHAR"/>
+        <result column="PROPERTY9" property="property9" jdbcType="VARCHAR"/>
+        <result column="PRINF" property="prinf" jdbcType="VARCHAR"/>
+        <result column="PREXP" property="prexp" jdbcType="VARCHAR"/>
+        <result column="ITIME" property="itime" jdbcType="TIMESTAMP"/>
+        <result column="ISHIFT" property="ishift" jdbcType="VARCHAR"/>
+        <result column="IGROUP" property="igroup" jdbcType="VARCHAR"/>
+        <result column="IPERSON" property="iperson" jdbcType="INTEGER"/>
+        <result column="UTIME" property="utime" jdbcType="DATE"/>
+        <result column="USHIFT" property="ushift" jdbcType="VARCHAR"/>
+        <result column="UPERSON" property="uperson" jdbcType="INTEGER"/>
+        <result column="UGROUP" property="ugroup" jdbcType="VARCHAR"/>
+    </resultMap>
+    <resultMap id="ComFormMap" type="com.aps.env.entity.ComForm">
+        <id column="FORM_ID" property="formId" jdbcType="INTEGER"/>
+        <result column="FORM_NAME" property="formName" jdbcType="VARCHAR"/>
+        <result column="FORM_FDSG" property="formFdsg" jdbcType="INTEGER"/>
+        <result column="FORM_BDSG" property="formBdsg" jdbcType="INTEGER"/>
+        <result column="FORM_PROC" property="formProc" jdbcType="VARCHAR"/>
+        <result column="PRFLAG" property="prflag" jdbcType="INTEGER"/>
+        <result column="PRGROUP" property="prgroup" jdbcType="VARCHAR"/>
+        <result column="PRTYPE" property="prtype" jdbcType="VARCHAR"/>
+        <result column="PROPERTY0" property="property0" jdbcType="VARCHAR"/>
+        <result column="PROPERTY1" property="property1" jdbcType="VARCHAR"/>
+        <result column="PROPERTY2" property="property2" jdbcType="VARCHAR"/>
+        <result column="PROPERTY3" property="property3" jdbcType="VARCHAR"/>
+        <result column="PROPERTY4" property="property4" jdbcType="VARCHAR"/>
+        <result column="PROPERTY5" property="property5" jdbcType="VARCHAR"/>
+        <result column="PROPERTY6" property="property6" jdbcType="VARCHAR"/>
+        <result column="PROPERTY7" property="property7" jdbcType="VARCHAR"/>
+        <result column="PROPERTY8" property="property8" jdbcType="VARCHAR"/>
+        <result column="PROPERTY9" property="property9" jdbcType="VARCHAR"/>
+        <result column="PRINF" property="prinf" jdbcType="VARCHAR"/>
+        <result column="PREXP" property="prexp" jdbcType="VARCHAR"/>
+        <result column="ITIME" property="itime" jdbcType="TIMESTAMP"/>
+        <result column="ISHIFT" property="ishift" jdbcType="VARCHAR"/>
+        <result column="IGROUP" property="igroup" jdbcType="VARCHAR"/>
+        <result column="IPERSON" property="iperson" jdbcType="INTEGER"/>
+        <result column="UTIME" property="utime" jdbcType="TIMESTAMP"/>
+        <result column="USHIFT" property="ushift" jdbcType="VARCHAR"/>
+        <result column="UGROUP" property="ugroup" jdbcType="VARCHAR"/>
+        <result column="UPERSON" property="uperson" jdbcType="INTEGER"/>
+        <result column="UFROM" property="ufrom" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause" >
-    <where >
-      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List" >
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
     ORG_ID, FORM_ID, PRFLAG, PRGROUP, PRTYPE, REA, REL, R1, R2, R3, PROPERTY0, PROPERTY1, 
     PROPERTY2, PROPERTY3, PROPERTY4, PROPERTY5, PROPERTY6, PROPERTY7, PROPERTY8, PROPERTY9, 
     PRINF, PREXP, ITIME, ISHIFT, IGROUP, IPERSON, UTIME, USHIFT, UPERSON, UGROUP, UFROM
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.aps.env.entity.ComOrgFormExample" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from com_org_form
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.aps.env.entity.ComOrgFormKey" >
-    select 
-    <include refid="Base_Column_List" />
-    from com_org_form
-    where ORG_ID = #{orgId,jdbcType=INTEGER}
-      and FORM_ID = #{formId,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="com.aps.env.entity.ComOrgFormKey" >
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.aps.env.entity.ComOrgFormExample">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from com_org_form
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.aps.env.entity.ComOrgFormKey">
+        select
+        <include refid="Base_Column_List"/>
+        from com_org_form
+        where ORG_ID = #{orgId,jdbcType=INTEGER}
+        and FORM_ID = #{formId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="com.aps.env.entity.ComOrgFormKey">
     delete from com_org_form
     where ORG_ID = #{orgId,jdbcType=INTEGER}
       and FORM_ID = #{formId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.aps.env.entity.ComOrgFormExample" >
-    delete from com_org_form
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="com.aps.env.entity.ComOrgForm" >
+    <delete id="deleteByExample" parameterType="com.aps.env.entity.ComOrgFormExample">
+        delete from com_org_form
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.aps.env.entity.ComOrgForm">
     insert into com_org_form (ORG_ID, FORM_ID, PRFLAG, 
       PRGROUP, PRTYPE, REA, 
       REL, R1, R2, R3, 
@@ -153,438 +216,454 @@
       #{uperson,jdbcType=INTEGER}, #{ugroup,jdbcType=VARCHAR}, #{ufrom,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.aps.env.entity.ComOrgForm" >
-    insert into com_org_form
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="orgId != null" >
-        ORG_ID,
-      </if>
-      <if test="formId != null" >
-        FORM_ID,
-      </if>
-      <if test="prflag != null" >
-        PRFLAG,
-      </if>
-      <if test="prgroup != null" >
-        PRGROUP,
-      </if>
-      <if test="prtype != null" >
-        PRTYPE,
-      </if>
-      <if test="rea != null" >
-        REA,
-      </if>
-      <if test="rel != null" >
-        REL,
-      </if>
-      <if test="r1 != null" >
-        R1,
-      </if>
-      <if test="r2 != null" >
-        R2,
-      </if>
-      <if test="r3 != null" >
-        R3,
-      </if>
-      <if test="property0 != null" >
-        PROPERTY0,
-      </if>
-      <if test="property1 != null" >
-        PROPERTY1,
-      </if>
-      <if test="property2 != null" >
-        PROPERTY2,
-      </if>
-      <if test="property3 != null" >
-        PROPERTY3,
-      </if>
-      <if test="property4 != null" >
-        PROPERTY4,
-      </if>
-      <if test="property5 != null" >
-        PROPERTY5,
-      </if>
-      <if test="property6 != null" >
-        PROPERTY6,
-      </if>
-      <if test="property7 != null" >
-        PROPERTY7,
-      </if>
-      <if test="property8 != null" >
-        PROPERTY8,
-      </if>
-      <if test="property9 != null" >
-        PROPERTY9,
-      </if>
-      <if test="prinf != null" >
-        PRINF,
-      </if>
-      <if test="prexp != null" >
-        PREXP,
-      </if>
-      <if test="itime != null" >
-        ITIME,
-      </if>
-      <if test="ishift != null" >
-        ISHIFT,
-      </if>
-      <if test="igroup != null" >
-        IGROUP,
-      </if>
-      <if test="iperson != null" >
-        IPERSON,
-      </if>
-      <if test="utime != null" >
-        UTIME,
-      </if>
-      <if test="ushift != null" >
-        USHIFT,
-      </if>
-      <if test="uperson != null" >
-        UPERSON,
-      </if>
-      <if test="ugroup != null" >
-        UGROUP,
-      </if>
-      <if test="ufrom != null" >
-        UFROM,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="orgId != null" >
-        #{orgId,jdbcType=INTEGER},
-      </if>
-      <if test="formId != null" >
-        #{formId,jdbcType=INTEGER},
-      </if>
-      <if test="prflag != null" >
-        #{prflag,jdbcType=INTEGER},
-      </if>
-      <if test="prgroup != null" >
-        #{prgroup,jdbcType=VARCHAR},
-      </if>
-      <if test="prtype != null" >
-        #{prtype,jdbcType=VARCHAR},
-      </if>
-      <if test="rea != null" >
-        #{rea,jdbcType=INTEGER},
-      </if>
-      <if test="rel != null" >
-        #{rel,jdbcType=INTEGER},
-      </if>
-      <if test="r1 != null" >
-        #{r1,jdbcType=INTEGER},
-      </if>
-      <if test="r2 != null" >
-        #{r2,jdbcType=INTEGER},
-      </if>
-      <if test="r3 != null" >
-        #{r3,jdbcType=INTEGER},
-      </if>
-      <if test="property0 != null" >
-        #{property0,jdbcType=VARCHAR},
-      </if>
-      <if test="property1 != null" >
-        #{property1,jdbcType=VARCHAR},
-      </if>
-      <if test="property2 != null" >
-        #{property2,jdbcType=VARCHAR},
-      </if>
-      <if test="property3 != null" >
-        #{property3,jdbcType=VARCHAR},
-      </if>
-      <if test="property4 != null" >
-        #{property4,jdbcType=VARCHAR},
-      </if>
-      <if test="property5 != null" >
-        #{property5,jdbcType=VARCHAR},
-      </if>
-      <if test="property6 != null" >
-        #{property6,jdbcType=VARCHAR},
-      </if>
-      <if test="property7 != null" >
-        #{property7,jdbcType=VARCHAR},
-      </if>
-      <if test="property8 != null" >
-        #{property8,jdbcType=VARCHAR},
-      </if>
-      <if test="property9 != null" >
-        #{property9,jdbcType=VARCHAR},
-      </if>
-      <if test="prinf != null" >
-        #{prinf,jdbcType=VARCHAR},
-      </if>
-      <if test="prexp != null" >
-        #{prexp,jdbcType=VARCHAR},
-      </if>
-      <if test="itime != null" >
-        #{itime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="ishift != null" >
-        #{ishift,jdbcType=VARCHAR},
-      </if>
-      <if test="igroup != null" >
-        #{igroup,jdbcType=VARCHAR},
-      </if>
-      <if test="iperson != null" >
-        #{iperson,jdbcType=INTEGER},
-      </if>
-      <if test="utime != null" >
-        #{utime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="ushift != null" >
-        #{ushift,jdbcType=VARCHAR},
-      </if>
-      <if test="uperson != null" >
-        #{uperson,jdbcType=INTEGER},
-      </if>
-      <if test="ugroup != null" >
-        #{ugroup,jdbcType=VARCHAR},
-      </if>
-      <if test="ufrom != null" >
-        #{ufrom,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="com.aps.env.entity.ComOrgFormExample" resultType="java.lang.Integer" >
-    select count(*) from com_org_form
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map" >
-    update com_org_form
-    <set >
-      <if test="record.orgId != null" >
-        ORG_ID = #{record.orgId,jdbcType=INTEGER},
-      </if>
-      <if test="record.formId != null" >
+    <insert id="insertSelective" parameterType="com.aps.env.entity.ComOrgForm">
+        insert into com_org_form
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="orgId != null">
+                ORG_ID,
+            </if>
+            <if test="formId != null">
+                FORM_ID,
+            </if>
+            <if test="prflag != null">
+                PRFLAG,
+            </if>
+            <if test="prgroup != null">
+                PRGROUP,
+            </if>
+            <if test="prtype != null">
+                PRTYPE,
+            </if>
+            <if test="rea != null">
+                REA,
+            </if>
+            <if test="rel != null">
+                REL,
+            </if>
+            <if test="r1 != null">
+                R1,
+            </if>
+            <if test="r2 != null">
+                R2,
+            </if>
+            <if test="r3 != null">
+                R3,
+            </if>
+            <if test="property0 != null">
+                PROPERTY0,
+            </if>
+            <if test="property1 != null">
+                PROPERTY1,
+            </if>
+            <if test="property2 != null">
+                PROPERTY2,
+            </if>
+            <if test="property3 != null">
+                PROPERTY3,
+            </if>
+            <if test="property4 != null">
+                PROPERTY4,
+            </if>
+            <if test="property5 != null">
+                PROPERTY5,
+            </if>
+            <if test="property6 != null">
+                PROPERTY6,
+            </if>
+            <if test="property7 != null">
+                PROPERTY7,
+            </if>
+            <if test="property8 != null">
+                PROPERTY8,
+            </if>
+            <if test="property9 != null">
+                PROPERTY9,
+            </if>
+            <if test="prinf != null">
+                PRINF,
+            </if>
+            <if test="prexp != null">
+                PREXP,
+            </if>
+            <if test="itime != null">
+                ITIME,
+            </if>
+            <if test="ishift != null">
+                ISHIFT,
+            </if>
+            <if test="igroup != null">
+                IGROUP,
+            </if>
+            <if test="iperson != null">
+                IPERSON,
+            </if>
+            <if test="utime != null">
+                UTIME,
+            </if>
+            <if test="ushift != null">
+                USHIFT,
+            </if>
+            <if test="uperson != null">
+                UPERSON,
+            </if>
+            <if test="ugroup != null">
+                UGROUP,
+            </if>
+            <if test="ufrom != null">
+                UFROM,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="orgId != null">
+                #{orgId,jdbcType=INTEGER},
+            </if>
+            <if test="formId != null">
+                #{formId,jdbcType=INTEGER},
+            </if>
+            <if test="prflag != null">
+                #{prflag,jdbcType=INTEGER},
+            </if>
+            <if test="prgroup != null">
+                #{prgroup,jdbcType=VARCHAR},
+            </if>
+            <if test="prtype != null">
+                #{prtype,jdbcType=VARCHAR},
+            </if>
+            <if test="rea != null">
+                #{rea,jdbcType=INTEGER},
+            </if>
+            <if test="rel != null">
+                #{rel,jdbcType=INTEGER},
+            </if>
+            <if test="r1 != null">
+                #{r1,jdbcType=INTEGER},
+            </if>
+            <if test="r2 != null">
+                #{r2,jdbcType=INTEGER},
+            </if>
+            <if test="r3 != null">
+                #{r3,jdbcType=INTEGER},
+            </if>
+            <if test="property0 != null">
+                #{property0,jdbcType=VARCHAR},
+            </if>
+            <if test="property1 != null">
+                #{property1,jdbcType=VARCHAR},
+            </if>
+            <if test="property2 != null">
+                #{property2,jdbcType=VARCHAR},
+            </if>
+            <if test="property3 != null">
+                #{property3,jdbcType=VARCHAR},
+            </if>
+            <if test="property4 != null">
+                #{property4,jdbcType=VARCHAR},
+            </if>
+            <if test="property5 != null">
+                #{property5,jdbcType=VARCHAR},
+            </if>
+            <if test="property6 != null">
+                #{property6,jdbcType=VARCHAR},
+            </if>
+            <if test="property7 != null">
+                #{property7,jdbcType=VARCHAR},
+            </if>
+            <if test="property8 != null">
+                #{property8,jdbcType=VARCHAR},
+            </if>
+            <if test="property9 != null">
+                #{property9,jdbcType=VARCHAR},
+            </if>
+            <if test="prinf != null">
+                #{prinf,jdbcType=VARCHAR},
+            </if>
+            <if test="prexp != null">
+                #{prexp,jdbcType=VARCHAR},
+            </if>
+            <if test="itime != null">
+                #{itime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="ishift != null">
+                #{ishift,jdbcType=VARCHAR},
+            </if>
+            <if test="igroup != null">
+                #{igroup,jdbcType=VARCHAR},
+            </if>
+            <if test="iperson != null">
+                #{iperson,jdbcType=INTEGER},
+            </if>
+            <if test="utime != null">
+                #{utime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="ushift != null">
+                #{ushift,jdbcType=VARCHAR},
+            </if>
+            <if test="uperson != null">
+                #{uperson,jdbcType=INTEGER},
+            </if>
+            <if test="ugroup != null">
+                #{ugroup,jdbcType=VARCHAR},
+            </if>
+            <if test="ufrom != null">
+                #{ufrom,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.aps.env.entity.ComOrgFormExample" resultType="java.lang.Integer">
+        select count(*) from com_org_form
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <select id="selectAssociation" resultMap="BaseResultMap" parameterType="com.aps.env.entity.ComOrgForm">
+        select
+        a.*,
+        b.org_name as comorg_org_name,
+        c.form_name as comform_form_name,
+        c.prgroup as comform_prgroup
+        from com_org_form a, com_org b, com_form c
+        <where>
+            b.org_id = a.org_id and c.form_id = a.form_id
+            <if test="orgId != null"> and a.ORG_ID=#{orgId,jdbcType=VARCHAR}
+            </if>
+            <if test="formId != null"> and a.FORM_ID=#{formId,jdbcType=VARCHAR}
+            </if>
+        </where>
+        order by b.org_id, c.prgroup, c.form_id
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update com_org_form
+        <set>
+            <if test="record.orgId != null">
+                ORG_ID = #{record.orgId,jdbcType=INTEGER},
+            </if>
+            <if test="record.formId != null">
+                FORM_ID = #{record.formId,jdbcType=INTEGER},
+            </if>
+            <if test="record.prflag != null">
+                PRFLAG = #{record.prflag,jdbcType=INTEGER},
+            </if>
+            <if test="record.prgroup != null">
+                PRGROUP = #{record.prgroup,jdbcType=VARCHAR},
+            </if>
+            <if test="record.prtype != null">
+                PRTYPE = #{record.prtype,jdbcType=VARCHAR},
+            </if>
+            <if test="record.rea != null">
+                REA = #{record.rea,jdbcType=INTEGER},
+            </if>
+            <if test="record.rel != null">
+                REL = #{record.rel,jdbcType=INTEGER},
+            </if>
+            <if test="record.r1 != null">
+                R1 = #{record.r1,jdbcType=INTEGER},
+            </if>
+            <if test="record.r2 != null">
+                R2 = #{record.r2,jdbcType=INTEGER},
+            </if>
+            <if test="record.r3 != null">
+                R3 = #{record.r3,jdbcType=INTEGER},
+            </if>
+            <if test="record.property0 != null">
+                PROPERTY0 = #{record.property0,jdbcType=VARCHAR},
+            </if>
+            <if test="record.property1 != null">
+                PROPERTY1 = #{record.property1,jdbcType=VARCHAR},
+            </if>
+            <if test="record.property2 != null">
+                PROPERTY2 = #{record.property2,jdbcType=VARCHAR},
+            </if>
+            <if test="record.property3 != null">
+                PROPERTY3 = #{record.property3,jdbcType=VARCHAR},
+            </if>
+            <if test="record.property4 != null">
+                PROPERTY4 = #{record.property4,jdbcType=VARCHAR},
+            </if>
+            <if test="record.property5 != null">
+                PROPERTY5 = #{record.property5,jdbcType=VARCHAR},
+            </if>
+            <if test="record.property6 != null">
+                PROPERTY6 = #{record.property6,jdbcType=VARCHAR},
+            </if>
+            <if test="record.property7 != null">
+                PROPERTY7 = #{record.property7,jdbcType=VARCHAR},
+            </if>
+            <if test="record.property8 != null">
+                PROPERTY8 = #{record.property8,jdbcType=VARCHAR},
+            </if>
+            <if test="record.property9 != null">
+                PROPERTY9 = #{record.property9,jdbcType=VARCHAR},
+            </if>
+            <if test="record.prinf != null">
+                PRINF = #{record.prinf,jdbcType=VARCHAR},
+            </if>
+            <if test="record.prexp != null">
+                PREXP = #{record.prexp,jdbcType=VARCHAR},
+            </if>
+            <if test="record.itime != null">
+                ITIME = #{record.itime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.ishift != null">
+                ISHIFT = #{record.ishift,jdbcType=VARCHAR},
+            </if>
+            <if test="record.igroup != null">
+                IGROUP = #{record.igroup,jdbcType=VARCHAR},
+            </if>
+            <if test="record.iperson != null">
+                IPERSON = #{record.iperson,jdbcType=INTEGER},
+            </if>
+            <if test="record.utime != null">
+                UTIME = #{record.utime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.ushift != null">
+                USHIFT = #{record.ushift,jdbcType=VARCHAR},
+            </if>
+            <if test="record.uperson != null">
+                UPERSON = #{record.uperson,jdbcType=INTEGER},
+            </if>
+            <if test="record.ugroup != null">
+                UGROUP = #{record.ugroup,jdbcType=VARCHAR},
+            </if>
+            <if test="record.ufrom != null">
+                UFROM = #{record.ufrom,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update com_org_form
+        set ORG_ID = #{record.orgId,jdbcType=INTEGER},
         FORM_ID = #{record.formId,jdbcType=INTEGER},
-      </if>
-      <if test="record.prflag != null" >
         PRFLAG = #{record.prflag,jdbcType=INTEGER},
-      </if>
-      <if test="record.prgroup != null" >
         PRGROUP = #{record.prgroup,jdbcType=VARCHAR},
-      </if>
-      <if test="record.prtype != null" >
         PRTYPE = #{record.prtype,jdbcType=VARCHAR},
-      </if>
-      <if test="record.rea != null" >
         REA = #{record.rea,jdbcType=INTEGER},
-      </if>
-      <if test="record.rel != null" >
         REL = #{record.rel,jdbcType=INTEGER},
-      </if>
-      <if test="record.r1 != null" >
         R1 = #{record.r1,jdbcType=INTEGER},
-      </if>
-      <if test="record.r2 != null" >
         R2 = #{record.r2,jdbcType=INTEGER},
-      </if>
-      <if test="record.r3 != null" >
         R3 = #{record.r3,jdbcType=INTEGER},
-      </if>
-      <if test="record.property0 != null" >
         PROPERTY0 = #{record.property0,jdbcType=VARCHAR},
-      </if>
-      <if test="record.property1 != null" >
         PROPERTY1 = #{record.property1,jdbcType=VARCHAR},
-      </if>
-      <if test="record.property2 != null" >
         PROPERTY2 = #{record.property2,jdbcType=VARCHAR},
-      </if>
-      <if test="record.property3 != null" >
         PROPERTY3 = #{record.property3,jdbcType=VARCHAR},
-      </if>
-      <if test="record.property4 != null" >
         PROPERTY4 = #{record.property4,jdbcType=VARCHAR},
-      </if>
-      <if test="record.property5 != null" >
         PROPERTY5 = #{record.property5,jdbcType=VARCHAR},
-      </if>
-      <if test="record.property6 != null" >
         PROPERTY6 = #{record.property6,jdbcType=VARCHAR},
-      </if>
-      <if test="record.property7 != null" >
         PROPERTY7 = #{record.property7,jdbcType=VARCHAR},
-      </if>
-      <if test="record.property8 != null" >
         PROPERTY8 = #{record.property8,jdbcType=VARCHAR},
-      </if>
-      <if test="record.property9 != null" >
         PROPERTY9 = #{record.property9,jdbcType=VARCHAR},
-      </if>
-      <if test="record.prinf != null" >
         PRINF = #{record.prinf,jdbcType=VARCHAR},
-      </if>
-      <if test="record.prexp != null" >
         PREXP = #{record.prexp,jdbcType=VARCHAR},
-      </if>
-      <if test="record.itime != null" >
         ITIME = #{record.itime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.ishift != null" >
         ISHIFT = #{record.ishift,jdbcType=VARCHAR},
-      </if>
-      <if test="record.igroup != null" >
         IGROUP = #{record.igroup,jdbcType=VARCHAR},
-      </if>
-      <if test="record.iperson != null" >
         IPERSON = #{record.iperson,jdbcType=INTEGER},
-      </if>
-      <if test="record.utime != null" >
         UTIME = #{record.utime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.ushift != null" >
         USHIFT = #{record.ushift,jdbcType=VARCHAR},
-      </if>
-      <if test="record.uperson != null" >
         UPERSON = #{record.uperson,jdbcType=INTEGER},
-      </if>
-      <if test="record.ugroup != null" >
         UGROUP = #{record.ugroup,jdbcType=VARCHAR},
-      </if>
-      <if test="record.ufrom != null" >
-        UFROM = #{record.ufrom,jdbcType=VARCHAR},
-      </if>
-    </set>
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map" >
-    update com_org_form
-    set ORG_ID = #{record.orgId,jdbcType=INTEGER},
-      FORM_ID = #{record.formId,jdbcType=INTEGER},
-      PRFLAG = #{record.prflag,jdbcType=INTEGER},
-      PRGROUP = #{record.prgroup,jdbcType=VARCHAR},
-      PRTYPE = #{record.prtype,jdbcType=VARCHAR},
-      REA = #{record.rea,jdbcType=INTEGER},
-      REL = #{record.rel,jdbcType=INTEGER},
-      R1 = #{record.r1,jdbcType=INTEGER},
-      R2 = #{record.r2,jdbcType=INTEGER},
-      R3 = #{record.r3,jdbcType=INTEGER},
-      PROPERTY0 = #{record.property0,jdbcType=VARCHAR},
-      PROPERTY1 = #{record.property1,jdbcType=VARCHAR},
-      PROPERTY2 = #{record.property2,jdbcType=VARCHAR},
-      PROPERTY3 = #{record.property3,jdbcType=VARCHAR},
-      PROPERTY4 = #{record.property4,jdbcType=VARCHAR},
-      PROPERTY5 = #{record.property5,jdbcType=VARCHAR},
-      PROPERTY6 = #{record.property6,jdbcType=VARCHAR},
-      PROPERTY7 = #{record.property7,jdbcType=VARCHAR},
-      PROPERTY8 = #{record.property8,jdbcType=VARCHAR},
-      PROPERTY9 = #{record.property9,jdbcType=VARCHAR},
-      PRINF = #{record.prinf,jdbcType=VARCHAR},
-      PREXP = #{record.prexp,jdbcType=VARCHAR},
-      ITIME = #{record.itime,jdbcType=TIMESTAMP},
-      ISHIFT = #{record.ishift,jdbcType=VARCHAR},
-      IGROUP = #{record.igroup,jdbcType=VARCHAR},
-      IPERSON = #{record.iperson,jdbcType=INTEGER},
-      UTIME = #{record.utime,jdbcType=TIMESTAMP},
-      USHIFT = #{record.ushift,jdbcType=VARCHAR},
-      UPERSON = #{record.uperson,jdbcType=INTEGER},
-      UGROUP = #{record.ugroup,jdbcType=VARCHAR},
-      UFROM = #{record.ufrom,jdbcType=VARCHAR}
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.aps.env.entity.ComOrgForm" >
-    update com_org_form
-    <set >
-      <if test="prflag != null" >
-        PRFLAG = #{prflag,jdbcType=INTEGER},
-      </if>
-      <if test="prgroup != null" >
-        PRGROUP = #{prgroup,jdbcType=VARCHAR},
-      </if>
-      <if test="prtype != null" >
-        PRTYPE = #{prtype,jdbcType=VARCHAR},
-      </if>
-      <if test="rea != null" >
-        REA = #{rea,jdbcType=INTEGER},
-      </if>
-      <if test="rel != null" >
-        REL = #{rel,jdbcType=INTEGER},
-      </if>
-      <if test="r1 != null" >
-        R1 = #{r1,jdbcType=INTEGER},
-      </if>
-      <if test="r2 != null" >
-        R2 = #{r2,jdbcType=INTEGER},
-      </if>
-      <if test="r3 != null" >
-        R3 = #{r3,jdbcType=INTEGER},
-      </if>
-      <if test="property0 != null" >
-        PROPERTY0 = #{property0,jdbcType=VARCHAR},
-      </if>
-      <if test="property1 != null" >
-        PROPERTY1 = #{property1,jdbcType=VARCHAR},
-      </if>
-      <if test="property2 != null" >
-        PROPERTY2 = #{property2,jdbcType=VARCHAR},
-      </if>
-      <if test="property3 != null" >
-        PROPERTY3 = #{property3,jdbcType=VARCHAR},
-      </if>
-      <if test="property4 != null" >
-        PROPERTY4 = #{property4,jdbcType=VARCHAR},
-      </if>
-      <if test="property5 != null" >
-        PROPERTY5 = #{property5,jdbcType=VARCHAR},
-      </if>
-      <if test="property6 != null" >
-        PROPERTY6 = #{property6,jdbcType=VARCHAR},
-      </if>
-      <if test="property7 != null" >
-        PROPERTY7 = #{property7,jdbcType=VARCHAR},
-      </if>
-      <if test="property8 != null" >
-        PROPERTY8 = #{property8,jdbcType=VARCHAR},
-      </if>
-      <if test="property9 != null" >
-        PROPERTY9 = #{property9,jdbcType=VARCHAR},
-      </if>
-      <if test="prinf != null" >
-        PRINF = #{prinf,jdbcType=VARCHAR},
-      </if>
-      <if test="prexp != null" >
-        PREXP = #{prexp,jdbcType=VARCHAR},
-      </if>
-      <if test="itime != null" >
-        ITIME = #{itime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="ishift != null" >
-        ISHIFT = #{ishift,jdbcType=VARCHAR},
-      </if>
-      <if test="igroup != null" >
-        IGROUP = #{igroup,jdbcType=VARCHAR},
-      </if>
-      <if test="iperson != null" >
-        IPERSON = #{iperson,jdbcType=INTEGER},
-      </if>
-      <if test="utime != null" >
-        UTIME = #{utime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="ushift != null" >
-        USHIFT = #{ushift,jdbcType=VARCHAR},
-      </if>
-      <if test="uperson != null" >
-        UPERSON = #{uperson,jdbcType=INTEGER},
-      </if>
-      <if test="ugroup != null" >
-        UGROUP = #{ugroup,jdbcType=VARCHAR},
-      </if>
-      <if test="ufrom != null" >
-        UFROM = #{ufrom,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where ORG_ID = #{orgId,jdbcType=INTEGER}
-      and FORM_ID = #{formId,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.aps.env.entity.ComOrgForm" >
+        UFROM = #{record.ufrom,jdbcType=VARCHAR}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.aps.env.entity.ComOrgForm">
+        update com_org_form
+        <set>
+            <if test="prflag != null">
+                PRFLAG = #{prflag,jdbcType=INTEGER},
+            </if>
+            <if test="prgroup != null">
+                PRGROUP = #{prgroup,jdbcType=VARCHAR},
+            </if>
+            <if test="prtype != null">
+                PRTYPE = #{prtype,jdbcType=VARCHAR},
+            </if>
+            <if test="rea != null">
+                REA = #{rea,jdbcType=INTEGER},
+            </if>
+            <if test="rel != null">
+                REL = #{rel,jdbcType=INTEGER},
+            </if>
+            <if test="r1 != null">
+                R1 = #{r1,jdbcType=INTEGER},
+            </if>
+            <if test="r2 != null">
+                R2 = #{r2,jdbcType=INTEGER},
+            </if>
+            <if test="r3 != null">
+                R3 = #{r3,jdbcType=INTEGER},
+            </if>
+            <if test="property0 != null">
+                PROPERTY0 = #{property0,jdbcType=VARCHAR},
+            </if>
+            <if test="property1 != null">
+                PROPERTY1 = #{property1,jdbcType=VARCHAR},
+            </if>
+            <if test="property2 != null">
+                PROPERTY2 = #{property2,jdbcType=VARCHAR},
+            </if>
+            <if test="property3 != null">
+                PROPERTY3 = #{property3,jdbcType=VARCHAR},
+            </if>
+            <if test="property4 != null">
+                PROPERTY4 = #{property4,jdbcType=VARCHAR},
+            </if>
+            <if test="property5 != null">
+                PROPERTY5 = #{property5,jdbcType=VARCHAR},
+            </if>
+            <if test="property6 != null">
+                PROPERTY6 = #{property6,jdbcType=VARCHAR},
+            </if>
+            <if test="property7 != null">
+                PROPERTY7 = #{property7,jdbcType=VARCHAR},
+            </if>
+            <if test="property8 != null">
+                PROPERTY8 = #{property8,jdbcType=VARCHAR},
+            </if>
+            <if test="property9 != null">
+                PROPERTY9 = #{property9,jdbcType=VARCHAR},
+            </if>
+            <if test="prinf != null">
+                PRINF = #{prinf,jdbcType=VARCHAR},
+            </if>
+            <if test="prexp != null">
+                PREXP = #{prexp,jdbcType=VARCHAR},
+            </if>
+            <if test="itime != null">
+                ITIME = #{itime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="ishift != null">
+                ISHIFT = #{ishift,jdbcType=VARCHAR},
+            </if>
+            <if test="igroup != null">
+                IGROUP = #{igroup,jdbcType=VARCHAR},
+            </if>
+            <if test="iperson != null">
+                IPERSON = #{iperson,jdbcType=INTEGER},
+            </if>
+            <if test="utime != null">
+                UTIME = #{utime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="ushift != null">
+                USHIFT = #{ushift,jdbcType=VARCHAR},
+            </if>
+            <if test="uperson != null">
+                UPERSON = #{uperson,jdbcType=INTEGER},
+            </if>
+            <if test="ugroup != null">
+                UGROUP = #{ugroup,jdbcType=VARCHAR},
+            </if>
+            <if test="ufrom != null">
+                UFROM = #{ufrom,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where ORG_ID = #{orgId,jdbcType=INTEGER}
+        and FORM_ID = #{formId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.aps.env.entity.ComOrgForm">
     update com_org_form
     set PRFLAG = #{prflag,jdbcType=INTEGER},
       PRGROUP = #{prgroup,jdbcType=VARCHAR},

@@ -3,7 +3,9 @@ package com.aps.env.dao;
 import com.aps.env.entity.ComOrgForm;
 import com.aps.env.entity.ComOrgFormExample;
 import com.aps.env.entity.ComOrgFormKey;
+
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface ComOrgFormMapper {
@@ -28,4 +30,7 @@ public interface ComOrgFormMapper {
     int updateByPrimaryKeySelective(ComOrgForm record);
 
     int updateByPrimaryKey(ComOrgForm record);
+
+    //----------- additional ---------------
+    List<ComOrgForm> selectAssociation(ComOrgForm comOrgForm);
 }

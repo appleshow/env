@@ -28,4 +28,7 @@ public interface ComFormRightsMapper {
     int updateByPrimaryKeySelective(ComFormRights record);
 
     int updateByPrimaryKey(ComFormRights record);
+
+    //----------- additional ---------------
+    List<ComFormRights> selectAssociation(ComFormRights comFormRights);
 }

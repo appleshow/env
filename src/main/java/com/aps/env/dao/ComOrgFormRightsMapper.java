@@ -33,4 +33,6 @@ public interface ComOrgFormRightsMapper {
 
     //----------- additional ---------------
     List<ComOrgFormRights> selectByPersonId(Integer personId);
+
+    List<ComOrgFormRights> selectAssociation(ComOrgFormRights comOrgFormRights);
 }

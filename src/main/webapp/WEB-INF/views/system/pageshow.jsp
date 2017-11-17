@@ -78,14 +78,16 @@
                              style="margin-bottom: 6px;">
                             <div class="controls">
                                 <div class="input-group">
-                                                  <span class="input-group-btn">
-                                                       <button class="btn btn-default"
-                                                               type="button">界面名称</button>
-                                                  </span> <select class="form-control"
-                                                                  style="width: 200px;"
-                                                                  id="pageId">
-                                    <option></option>
-                                </select>
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default"
+                                                type="button">界面名称
+                                        </button>
+                                    </span>
+                                    <select class="form-control"
+                                            style="width: 200px;"
+                                            id="pageId">
+                                        <option></option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -190,6 +192,7 @@
 
 <script>
     var tablePageShow, CombFormData = [];
+    var pageShowDataUrl = "${ctx}/comm/referPageShow";
 
     jQuery(document).ready(function () {
         $("#pageId").select2({
@@ -198,10 +201,10 @@
             language: "zh-CN"
         });
         getFormComb();
-        tablePageShow = new CommDataTables("#table-pageshow", "#table-pageshow-columns", 9, callError);
-        tablePageShow.serverInfo.referUrl = "pageShow.referPageShow";
+        tablePageShow = new CommDataTables("#table-pageshow", "#table-pageshow-columns", 9, callError, pageShowDataUrl);
+        tablePageShow.serverInfo.referUrl = "${ctx}/viewPageShow/referPageShow";
         tablePageShow.serverInfo.referControls.push(ControlPar("text", "pageId", "", $("#pageId")));
-        tablePageShow.serverInfo.modifyUrl = "pageShow.modifyPageShow";
+        tablePageShow.serverInfo.modifyUrl = "${ctx}/viewPageShow/modifyPageShow";
 
         // ***** Add information to Column *****
         tablePageShow.columns["pageId"].render = function (data, type, row) {
@@ -309,7 +312,7 @@
         $.ajax({
             async: false,
             type: "POST",
-            url: "pageShow.referAllForms",
+            url: "${ctx}/viewPageShow/referAllForms",
             cache: false,
             data: ServerRequestPar(0, {}),
             dataType: "json",
