@@ -11,6 +11,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 
 /**
  * <dl>
@@ -65,7 +69,7 @@ public class ViewMainController extends ExceptionController {
      */
     @RequestMapping(value = "showPage", method = RequestMethod.GET)
     public ModelAndView showPage(HttpSession httpSession, @RequestParam("url") String url) {
-        ModelAndView modelAndView = new ModelAndView();
+        final ModelAndView modelAndView = new ModelAndView();
 
         if (null == httpSession.getAttribute(CommUtil.SESSION_PERSON_ID) || null == url || "".equals(url.trim())) {
             httpSession.removeAttribute(CommUtil.SESSION_PERSON_ID);
@@ -73,7 +77,30 @@ public class ViewMainController extends ExceptionController {
 
             modelAndView.setViewName("reload");
         } else {
-            modelAndView.setViewName(url);
+            Map<String, String> convertUrl = StringUtil.convertUrl(url);
+            convertUrl.forEach((key, value) -> {
+                if (!key.equals("url")) {
+                    modelAndView.addObject(key, value);
+                    if (key.equals("pageId")) {
+                        int pageId = Integer.parseInt(value);
+                        switch (pageId) {
+                            case 19:
+                                modelAndView.addObject("codeName", "企业分类名称");
+                                break;
+                            case 20:
+                                modelAndView.addObject("codeName", "设备厂商名称");
+                                break;
+                            case 21:
+                                modelAndView.addObject("codeName", "设备型号名称");
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                }
+            });
+
+            modelAndView.setViewName(convertUrl.get("url"));
         }
 
         return modelAndView;

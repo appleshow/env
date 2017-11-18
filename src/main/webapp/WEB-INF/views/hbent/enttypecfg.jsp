@@ -10,7 +10,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>类别管理</title>
+    <title>企业分类</title>
     <meta name="description"
           content="Dashboard"/>
     <meta name="viewport"
@@ -39,8 +39,6 @@
     <!--  -->
     <link rel="stylesheet"
           href="${ctx}/assets-view/comm/color.css"/>
-    <link rel="stylesheet"
-          href="${ctx}/assets-view/comm/select2-4.0.2/css/select2.min.css"/>
     <style type="text/css">
         .table > tbody > tr > td, .table > tbody > tr > th {
             padding: 3px;
@@ -49,19 +47,6 @@
         .table-bordered > tfoot > tr > td, .table-bordered > tfoot > tr > th,
         .table-bordered > thead > tr > td, .table-bordered > thead > tr > th {
             border: 1px solid black;
-        }
-
-        .select2-container .select2-selection--single {
-            height: 34px !important;
-            line-height: 34px;
-        }
-
-        .select2-container--default .select2-selection--single .select2-selection__rendered {
-            line-height: 34px;
-        }
-
-        .select2-container--default .select2-selection--single .select2-selection__arrow {
-            height: 34px;
         }
     </style>
 </head>
@@ -91,12 +76,12 @@
                         </div>
                     </div>
                 </div>
-                <table id="table-pageshow"
+                <table id="table-enttype"
                        class="table table-striped table-bordered display responsive nowrap"
                        cellspacing="0"
                        width="100%">
                     <thead>
-                    <tr id="table-pageshow-columns">
+                    <tr id="table-enttype-columns">
                     </tr>
                     </thead>
                 </table>
@@ -184,8 +169,6 @@
 <script src="${ctx}/dataTables/Buttons-1.1.2/js/buttons.html5.min.js"></script>
 <script src="${ctx}/dataTables/Buttons-1.1.2/js/buttons.print.min.js"></script>
 <!--  -->
-<script src="${ctx}/assets-view/comm/select2-4.0.2/js/select2.full.min.js"></script>
-<script src="${ctx}/assets-view/comm/select2-4.0.2/js/i18n/zh-CN.js"></script>
 <script src="${ctx}/assets-view/comm/commDataTables.js"></script>
 
 <script>
@@ -193,7 +176,7 @@
     var pageShowDataUrl = "${ctx}/comm/referPageShow";
 
     jQuery(document).ready(function () {
-        tableEntType = new CommDataTables("#table-pageshow", "#table-pageshow-columns", 19, callError, pageShowDataUrl);
+        tableEntType = new CommDataTables("#table-enttype", "#table-enttype-columns", 19, callError, pageShowDataUrl);
         tableEntType.serverInfo.referUrl = "${ctx}/viewEntTypeConfig/refEntType";
         tableEntType.serverInfo.referControls.push(ControlPar("text", "codeName", "", $("#codeName")));
         tableEntType.serverInfo.modifyUrl = "${ctx}/viewEntTypeConfig/modifyEntType";

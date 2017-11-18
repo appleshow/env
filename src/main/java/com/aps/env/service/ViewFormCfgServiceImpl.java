@@ -89,6 +89,8 @@ public class ViewFormCfgServiceImpl implements ViewFormCfgService {
                         comFormMapper.insertSelective(comForm);
                         break;
                     case CommUtil.MODIFY_TYPE_UPDATE:
+                        comForm.setUtime(now);
+                        comForm.setUperson(personId);
                         comFormMapper.updateByPrimaryKeySelective(comForm);
                         break;
                     case CommUtil.MODIFY_TYPE_DELETE:

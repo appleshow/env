@@ -104,6 +104,8 @@ public class ViewPageShowServiceImpl implements ViewPageShowService {
                         comPageshowMapper.insertSelective(comPageshow);
                         break;
                     case CommUtil.MODIFY_TYPE_UPDATE:
+                        comPageshow.setUtime(now);
+                        comPageshow.setUperson(personId);
                         comPageshowMapper.updateByPrimaryKeySelective(comPageshow);
                         break;
                     case CommUtil.MODIFY_TYPE_DELETE:

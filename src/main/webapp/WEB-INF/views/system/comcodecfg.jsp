@@ -2,7 +2,7 @@
   Created by IntelliJ IDEA.
   User: liuguanb
   Date: 2017/11/18
-  Time: 0:13
+  Time: 15:55
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8"
@@ -10,7 +10,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>企业分类</title>
+    <title>${codeDesc}</title>
     <meta name="description"
           content="Dashboard"/>
     <meta name="viewport"
@@ -64,24 +64,24 @@
                                 <div class="input-group">
                                     <span class="input-group-btn">
                                         <button class="btn btn-default"
-                                                type="button">企业类别名称
+                                                type="button">${codeName}
                                         </button>
                                     </span>
                                     <input class="form-control"
-                                            style="width: 200px;"
-                                            id="codeName">
+                                           style="width: 200px;"
+                                           id="codeName">
                                     </input>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <table id="table-enttype"
+                <table id="table-comcode"
                        class="table table-striped table-bordered display responsive nowrap"
                        cellspacing="0"
                        width="100%">
                     <thead>
-                    <tr id="table-enttype-columns">
+                    <tr id="table-comcode-columns">
                     </tr>
                     </thead>
                 </table>
@@ -172,23 +172,73 @@
 <script src="${ctx}/assets-view/comm/commDataTables.js"></script>
 
 <script>
-    var tableEntType;
+    var tableComCode;
+    var comCodeEnterprise = [];
     var pageShowDataUrl = "${ctx}/comm/referPageShow";
 
     jQuery(document).ready(function () {
-        tableEntType = new CommDataTables("#table-enttype", "#table-enttype-columns", 19, callError, pageShowDataUrl);
-        tableEntType.serverInfo.referUrl = "${ctx}/viewEntTypeConfig/refEntType";
-        tableEntType.serverInfo.referControls.push(ControlPar("text", "codeName", "", $("#codeName")));
-        tableEntType.serverInfo.modifyUrl = "${ctx}/viewEntTypeConfig/modifyEntType";
+        if ('${pageId}' == '21') {
+            getComCodeEnterprice();
+        }
+
+        tableComCode = new CommDataTables("#table-comcode", "#table-comcode-columns", ${pageId}, callError, pageShowDataUrl);
+        tableComCode.serverInfo.referUrl = "${ctx}/viewComCodeConfig/refComCode";
+        tableComCode.serverInfo.referControls.push(ControlPar("real", "codeType", "${pageId}", ""));
+        tableComCode.serverInfo.referControls.push(ControlPar("text", "codeName", "", $("#codeName")));
+        tableComCode.serverInfo.modifyUrl = "${ctx}/viewComCodeConfig/modifyComCode";
 
         // ***** Add information to Column *****
+        if ('${pageId}' == '21') {
+            tableComCode.columns["property0"].render = function (data, type, row) {
+                var fixData = data;
 
+                if (type === 'display') {
+                    $.each(comCodeEnterprise, function (index, value) {
+                        if (value["codeValue"] === data) {
+                            fixData = value["codeName"];
+                        }
+                    });
+                }
+
+                return fixData;
+            };
+        }
         // *********************************
         // ***** Add information to Field *****
-
+        if ('${pageId}' == '21') {
+            tableComCode.fields["property0"].options = TransToOptions(comCodeEnterprise, "codeValue", "codeName");
+        }
+        tableComCode.fields["codeType"].options = [{
+            label: '${pageId}',
+            value: '${pageId}',
+        }];
         // *********************************
-        tableEntType.create();
+        tableComCode.create();
     });
+
+    function getComCodeEnterprice() {
+        $.ajax({
+            async: false,
+            type: "POST",
+            url: "${ctx}/viewComCodeConfig/refComCode",
+            cache: false,
+            data: ServerRequestPar(1, {codeType: '20', pageNumber: 1, pageSize: 2000,}),
+            dataType: "json",
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            success: function (res) {
+                if (res.code != 0) {
+                    callError(res.code, res.message);
+                } else {
+                    comCodeEnterprise = res.data;
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                callError(-900, "操作未完成，向服务器请求失败...");
+            }
+        });
+    }
 
     function callError(code, message) {
         $("#mwTitle").html('<span class="glyphicon glyphicon-bullhorn" aria-hidden="true">&nbsp;警告</span>');

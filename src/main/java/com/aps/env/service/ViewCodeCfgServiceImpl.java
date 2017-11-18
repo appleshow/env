@@ -81,6 +81,8 @@ public class ViewCodeCfgServiceImpl implements ViewCodeCfgService {
                         comCodeMapper.insertSelective(comCode);
                         break;
                     case CommUtil.MODIFY_TYPE_UPDATE:
+                        comCode.setUtime(now);
+                        comCode.setUperson(personId);
                         comCodeMapper.updateByPrimaryKeySelective(comCode);
                         break;
                     case CommUtil.MODIFY_TYPE_DELETE:

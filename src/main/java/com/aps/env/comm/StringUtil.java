@@ -9,9 +9,14 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
+import java.lang.reflect.Array;
 import java.nio.charset.Charset;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * <dl>
@@ -30,14 +35,13 @@ public class StringUtil {
     /**
      * 字符串是否为null或""
      *
+     * @throws @since 1.0.0
      * @Title: isNullOrEmpty
      * @Description: TODO
      * @param: @param
-     *             value
+     * value
      * @param: @return
      * @return: boolean
-     * @throws @since
-     *             1.0.0
      */
     public static boolean isNullOrEmpty(String value) {
         return (null == value || "".equals(value));
@@ -62,8 +66,7 @@ public class StringUtil {
      * @param opar
      * @param ilen
      * @param sadd
-     * @param bcut
-     *            是否移除超出部分
+     * @param bcut 是否移除超出部分
      * @return
      */
     public static String getLpad(Object opar, int ilen, String sadd, boolean bcut) {
@@ -97,12 +100,10 @@ public class StringUtil {
     }
 
     /**
-     *
      * @param opar
      * @param ilen
      * @param sadd
-     * @param bcut
-     *            是否移除超出部分
+     * @param bcut 是否移除超出部分
      * @return
      */
     public static String getRpad(Object opar, int ilen, String sadd, boolean bcut) {
@@ -145,10 +146,9 @@ public class StringUtil {
     }
 
     /**
-     *
+     * @return String
      * @Title: getConversionString
      * @Description: TODO
-     * @return String
      * @author LiuGuanbang
      * @date 2017年3月23日 上午12:36:15
      */
@@ -161,10 +161,9 @@ public class StringUtil {
     }
 
     /**
-     *
+     * @return String
      * @Title: conversionRequestReferData
      * @Description: TODO
-     * @return String
      * @author LiuGuanbang
      * @date 2017年3月23日 上午12:36:15
      */
@@ -174,10 +173,9 @@ public class StringUtil {
     }
 
     /**
-     *
+     * @return String
      * @Title: conversionRequestReferData
      * @Description: TODO
-     * @return String
      * @author LiuGuanbang
      * @date 2017年3月23日 上午12:36:15
      */
@@ -248,5 +246,30 @@ public class StringUtil {
         } catch (Exception e) {
             return null;
         }
+    }
+
+    /**
+     * @param url
+     * @return
+     */
+    public static Map<String, String> convertUrl(String url) {
+        int targetIndex = isNullOrEmpty(url) ? 0 : url.indexOf("?");
+        final Map<String, String> convertResult = new HashMap<>();
+
+        if (targetIndex > 0) {
+            final String parString = url.substring(targetIndex + 1);
+            final List<String> listPars = Arrays.asList(parString.split("&"));
+
+            convertResult.put("url", url.substring(0, targetIndex));
+            listPars.stream().forEach(par -> {
+                List<String> pars = Arrays.asList(par.split("="));
+
+                convertResult.put(pars.get(0), pars.get(1));
+            });
+        } else {
+            convertResult.put("url", url);
+        }
+
+        return convertResult;
     }
 }

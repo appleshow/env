@@ -73,6 +73,8 @@ public class ViewOrgCfgServiceImpl implements ViewOrgCfgService {
                         comOrgMapper.insertSelective(comOrg);
                         break;
                     case CommUtil.MODIFY_TYPE_UPDATE:
+                        comOrg.setUtime(now);
+                        comOrg.setUperson(personId);
                         comOrgMapper.updateByPrimaryKeySelective(comOrg);
                         break;
                     case CommUtil.MODIFY_TYPE_DELETE:

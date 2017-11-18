@@ -86,6 +86,8 @@ public class ViewMenuCfgServiceImpl implements ViewMenuCfgService {
                         comMenuMapper.insertSelective(comMenu);
                         break;
                     case CommUtil.MODIFY_TYPE_UPDATE:
+                        comMenu.setUtime(now);
+                        comMenu.setUperson(personId);
                         comMenuMapper.updateByPrimaryKeySelective(comMenu);
                         break;
                     case CommUtil.MODIFY_TYPE_DELETE:

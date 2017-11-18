@@ -4,7 +4,6 @@ import com.aps.env.comm.*;
 import com.aps.env.dao.ComCodeMapper;
 import com.aps.env.entity.ComCode;
 import com.aps.env.entity.ComCodeExample;
-import com.aps.env.entity.ComPageshow;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
@@ -17,7 +16,7 @@ import java.util.Map;
 
 /**
  * <dl>
- * <dt>com.aps.env.service.ViewEntTypeCfgServiceImpl</dt>
+ * <dt>com.aps.env.service.ViewComCodeCfgServiceImpl</dt>
  * <dd>Description:</dd>
  * <dd>Copyright:  Copyright (C) 2017</dd>
  * <dd>Company:    AppleShow Technology </dd>
@@ -27,20 +26,22 @@ import java.util.Map;
  * @author appleshow
  */
 @Service
-public class ViewEntTypeCfgServiceImpl implements ViewEntTypeCfgService {
-    private final String codeType = "ENTTYPE";
+public class ViewComCodeCfgServiceImpl implements ViewComCodeCfgService {
     @Resource
     private ComCodeMapper comCodeMapper;
 
     @Override
-    public void refEntType(HttpSession httpSession, RequestRefPar requestRefPar, ResponseData responseData) {
+    public void refComCode(HttpSession httpSession, RequestRefPar requestRefPar, ResponseData responseData) {
         List<ComCode> comCodes;
         PageInfo<ComCode> pageInfo;
         ComCodeExample comCodeExample = new ComCodeExample();
         ComCodeExample.Criteria criteria = comCodeExample.createCriteria();
+        String codeType = requestRefPar.getStringPar("codeType");
         String codeName = requestRefPar.getStringPar("codeName");
 
-        criteria.andCodeTypeEqualTo(codeType);
+        if (!StringUtil.isNullOrEmpty(codeType)) {
+            criteria.andCodeTypeEqualTo(codeType);
+        }
         if (!StringUtil.isNullOrEmpty(codeName)) {
             criteria.andCodeNameLike("%" + codeName + "%");
         }
@@ -55,7 +56,7 @@ public class ViewEntTypeCfgServiceImpl implements ViewEntTypeCfgService {
     }
 
     @Override
-    public void modifyEntType(HttpSession httpSession, RequestMdyPar requestMdyPar, ResponseData responseData) {
+    public void modifyComCode(HttpSession httpSession, RequestMdyPar requestMdyPar, ResponseData responseData) {
         int personId;
         boolean jsonParseException = false;
         String type;
@@ -69,7 +70,6 @@ public class ViewEntTypeCfgServiceImpl implements ViewEntTypeCfgService {
             comCode = (ComCode) JsonUtil.readValueAsObject(rowData, ComCode.class);
             if (null != comCode) {
                 personId = requestMdyPar.getPersonId(httpSession, now, rowData);
-                comCode.setCodeType(codeType);
                 switch (type) {
                     case CommUtil.MODIFY_TYPE_INSERT:
                         comCode.setItime(now);
@@ -79,6 +79,8 @@ public class ViewEntTypeCfgServiceImpl implements ViewEntTypeCfgService {
                         comCodeMapper.insertSelective(comCode);
                         break;
                     case CommUtil.MODIFY_TYPE_UPDATE:
+                        comCode.setUtime(now);
+                        comCode.setUperson(personId);
                         comCodeMapper.updateByPrimaryKeySelective(comCode);
                         break;
                     case CommUtil.MODIFY_TYPE_DELETE:

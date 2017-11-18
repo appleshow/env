@@ -219,7 +219,7 @@
             }
 
             return fixData;
-        }
+        };
         tablePageShow.columns["columnAlign"].render = function (data, type, row) {
             if (type === 'display') {
                 if (data === 2) {
