@@ -1,21 +1,17 @@
 <%--
   Created by IntelliJ IDEA.
   User: liuguanb
-  Date: 2017/11/18
-  Time: 15:55
+  Date: 2017/11/17
+  Time: 16:18
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8"
          pageEncoding="UTF-8"
          language="java" %>
-<html>
 <head>
-    <meta charset="UTF-8">
-    <title>${codeDesc}</title>
+    <title>标准参数</title>
     <meta name="description"
           content="Dashboard"/>
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1">
     <meta name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta http-equiv="X-UA-Compatible"
@@ -24,22 +20,24 @@
           content="text/html; charset=utf-8"/>
     <!--DataTables Styles-->
     <link rel="stylesheet"
-          href="${ctx}/dataTables/Bootstrap-3.3.6/css/bootstrap.min.css">
+          href="${ctx}/dataTables/Bootstrap-3.3.6/css/bootstrap.min.css"/>
     <link rel="stylesheet"
-          href="${ctx}/dataTables/DataTables-1.10.11/css/dataTables.bootstrap.min.css">
+          href="${ctx}/dataTables/DataTables-1.10.11/css/dataTables.bootstrap.min.css"/>
     <link rel="stylesheet"
-          href="${ctx}/dataTables/Responsive-2.0.2/css/responsive.bootstrap.css">
+          href="${ctx}/dataTables/Responsive-2.0.2/css/responsive.bootstrap.css"/>
     <link rel="stylesheet"
-          href="${ctx}/dataTables/Buttons-1.1.2/css/buttons.bootstrap.min.css">
+          href="${ctx}/dataTables/Buttons-1.1.2/css/buttons.bootstrap.min.css"/>
     <link rel="stylesheet"
-          href="${ctx}/dataTables/Buttons-1.1.2/css/buttons.bootstrap.min.css">
+          href="${ctx}/dataTables/Buttons-1.1.2/css/buttons.bootstrap.min.css"/>
     <link rel="stylesheet"
-          href="${ctx}/dataTables/Select-1.1.2/css/select.bootstrap.min.css">
+          href="${ctx}/dataTables/Select-1.1.2/css/select.bootstrap.min.css"/>
     <link rel="stylesheet"
-          href="${ctx}/dataTables/Editor-1.5.5/css/editor.bootstrap.min.css">
+          href="${ctx}/dataTables/Editor-1.5.5/css/editor.bootstrap.min.css"/>
     <!--  -->
     <link rel="stylesheet"
           href="${ctx}/assets-view/comm/color.css"/>
+    <link rel="stylesheet"
+          href="${ctx}/assets-view/comm/select2-4.0.2/css/select2.min.css"/>
     <style type="text/css">
         .table > tbody > tr > td, .table > tbody > tr > th {
             padding: 3px;
@@ -49,45 +47,54 @@
         .table-bordered > thead > tr > td, .table-bordered > thead > tr > th {
             border: 1px solid black;
         }
+
+        .select2-container .select2-selection--single {
+            height: 34px !important;
+            line-height: 34px;
+        }
+
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            line-height: 34px;
+        }
+
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+            height: 34px;
+        }
     </style>
 </head>
 <body>
 <div class="row"
      style="margin-right: 0px; margin-bottom: 0px;">
-    <div class="col-lg-12 col-sm-12 col-xs-12">
-        <div class="widget flat radius-bordered">
-            <div class="widget-body">
-                <div class="row">
-                    <div class="col-lg-4 col-sm-4 col-xs-12">
-                        <div class="form-group"
-                             style="margin-bottom: 6px;">
-                            <div class="controls">
-                                <div class="input-group">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-default"
-                                                type="button">${codeName}
-                                        </button>
-                                    </span>
-                                    <input class="form-control"
-                                           style="width: 200px;"
-                                           id="codeName">
-                                    </input>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+    <div class="col-lg-4 col-sm-4 col-xs-12">
+        <div class="form-group"
+             style="margin-bottom: 6px;">
+            <div class="controls">
+                <div class="input-group">
+                              <span class="input-group-btn">
+                                   <button class="btn btn-default"
+                                           type="button">站点分类</button>
+                              </span> <select class="form-control"
+                                              style="width: 200px;"
+                                              id="typeId">
+                    <option></option>
+                </select>
                 </div>
-                <table id="table-comcode"
-                       class="table table-striped table-bordered display responsive nowrap"
-                       cellspacing="0"
-                       width="100%">
-                    <thead>
-                    <tr id="table-comcode-columns">
-                    </tr>
-                    </thead>
-                </table>
             </div>
         </div>
+    </div>
+</div>
+<div class="row"
+     style="margin-right: 0px; margin-bottom: 0px;">
+    <div class="col-lg-12 col-sm-12 col-xs-12">
+        <table id="table-typeitem"
+               class="table table-striped table-bordered display responsive nowrap"
+               cellspacing="0"
+               width="100%">
+            <thead>
+            <tr id="table-typeitem-columns">
+            </tr>
+            </thead>
+        </table>
     </div>
 </div>
 <div class="modal fade"
@@ -170,69 +177,69 @@
 <script src="${ctx}/dataTables/Buttons-1.1.2/js/buttons.html5.min.js"></script>
 <script src="${ctx}/dataTables/Buttons-1.1.2/js/buttons.print.min.js"></script>
 <!--  -->
+<script src="${ctx}/assets-view/comm/select2-4.0.2/js/select2.full.min.js"></script>
 <script src="${ctx}/assets-view/comm/commDataTables.js"></script>
 
-<script>
-    var tableComCode;
-    var comCodeEnterprise = [];
+<script type="application/javascript">
+    var tableTypeItem, CombTypeData = [];
     var pageShowDataUrl = "${ctx}/comm/referPageShow";
 
     jQuery(document).ready(function () {
-        if ('${pageId}' == '21') {
-            getComCodeEnterprice();
-        }
-
-        tableComCode = new CommDataTables("#table-comcode", "#table-comcode-columns", ${pageId}, callError, pageShowDataUrl);
-        tableComCode.serverInfo.referUrl = "${ctx}/viewComCodeConfig/refComCode";
-        tableComCode.serverInfo.referControls.push(ControlPar("real", "codeType", "${pageId}", ""));
-        tableComCode.serverInfo.referControls.push(ControlPar("text", "codeName", "", $("#codeName")));
-        tableComCode.serverInfo.modifyUrl = "${ctx}/viewComCodeConfig/modifyComCode";
+        $("#typeId").select2({
+            placeholder: "选择一个分类",
+            allowClear: true,
+            language: "zh-CN"
+        });
+        getHbTypeComb();
+        tableTypeItem = new CommDataTables("#table-typeitem", "#table-typeitem-columns", ${pageId}, callError, pageShowDataUrl);
+        tableTypeItem.serverInfo.referUrl = "${ctx}/viewHbTypeItemConfig/referHbTypeItem";
+        tableTypeItem.serverInfo.referControls.push(ControlPar("text", "typeId", "", $("#typeId")));
+        tableTypeItem.serverInfo.modifyUrl = "${ctx}/viewHbTypeItemConfig/modifyHbTypeItem";
 
         // ***** Add information to Column *****
-        if ('${pageId}' == '21') {
-            tableComCode.columns["property0"].render = function (data, type, row) {
-                var fixData = data;
+        tableTypeItem.columns["typeId"].render = function (data, type, row) {
+            var fixData = data;
 
-                if (type === 'display') {
-                    $.each(comCodeEnterprise, function (index, value) {
-                        if (value["codeValue"] === data) {
-                            fixData = value["codeName"];
-                        }
-                    });
-                }
+            if (type === 'display') {
+                $.each(CombTypeData, function (index, value) {
+                    if (value["typeId"] === data) {
+                        fixData = value["typeName"];
+                    }
+                });
+            }
 
-                return fixData;
-            };
+            return fixData;
         }
         // *********************************
         // ***** Add information to Field *****
-        if ('${pageId}' == '21') {
-            tableComCode.fields["property0"].options = TransToOptions(comCodeEnterprise, "codeValue", "codeName");
-        }
-        tableComCode.fields["codeType"].options = [{
-            label: '${pageId}',
-            value: '${pageId}',
-        }];
+        tableTypeItem.fields["typeId"].options = TransToOptions(CombTypeData, "typeId", "typeName");
         // *********************************
-        tableComCode.create();
-    });
 
-    function getComCodeEnterprice() {
+        tableTypeItem.create();
+    })
+
+    function getHbTypeComb() {
         $.ajax({
             async: false,
             type: "POST",
-            url: "${ctx}/viewComCodeConfig/refComCode",
+            url: "${ctx}/viewHbTypeItemConfig/referHbType",
             cache: false,
-            data: ServerRequestPar(1, {codeType: '20', pageNumber: 1, pageSize: 2000,}),
+            data: ServerRequestPar(0, {}),
             dataType: "json",
             headers: {
                 'Content-Type': 'application/json;charset=utf-8'
-            },
-            success: function (res) {
+            }, success: function (res) {
                 if (res.code != 0) {
                     callError(res.code, res.message);
                 } else {
-                    comCodeEnterprise = res.data;
+                    CombTypeData = res.data;
+
+                    var html = "";
+                    $.each(res.data, function (index, value) {
+                        html += "<option value='" + value.typeId + "'>" + value.typeName + "</option>";
+                    });
+
+                    $("#typeId").append(html);
                 }
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -246,7 +253,6 @@
         $("#mwMessage").html(message);
         $("#modal-warning").modal("show");
     }
-
 </script>
 </body>
 </html>

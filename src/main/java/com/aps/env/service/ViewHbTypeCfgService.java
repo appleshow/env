@@ -8,17 +8,18 @@ import javax.servlet.http.HttpSession;
 
 /**
  * <dl>
- * <dt>com.aps.env.service.ViewCodeCfgService</dt>
+ * <dt>com.aps.env.service.ViewHbTypeCfgService</dt>
  * <dd>Description:</dd>
  * <dd>Copyright:  Copyright (C) 2017</dd>
  * <dd>Company:    AppleShow Technology </dd>
- * <dd>CreateDate: 2017/11/10</dd>
+ * <dd>CreateDate: 2017/11/19</dd>
  * </dl>
  *
  * @author appleshow
  */
-public interface ViewCodeCfgService {
-    void referCode(HttpSession session, RequestRefPar requestRefPar, ResponseData responseData);
+public interface ViewHbTypeCfgService {
 
-    void modifyCode(HttpSession session, RequestMdyPar requestMdyPar, ResponseData responseData);
+    void referHbType(HttpSession httpSession, RequestRefPar requestRefPar, ResponseData responseData);
+
+    void modifyHbType(HttpSession httpSession, RequestMdyPar requestMdyPar, ResponseData responseData);
 }

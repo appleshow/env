@@ -45,6 +45,7 @@ public class ViewPageShowServiceImpl implements ViewPageShowService {
         List<?> comForms;
         ComFormExample comFormExample = new ComFormExample();
 
+        comFormExample.setOrderByClause("PRGROUP,FORM_ID");
         comForms = comFormMapper.selectByExample(comFormExample);
 
         responseData.setData(comForms);
@@ -65,7 +66,7 @@ public class ViewPageShowServiceImpl implements ViewPageShowService {
         if (pageId != null) {
             comPageshowExample.createCriteria().andPageIdEqualTo(pageId);
         }
-        comPageshowExample.setOrderByClause("COLUMN_INDEX");
+        comPageshowExample.setOrderByClause("PAGE_ID,COLUMN_INDEX");
 
         PageHelper.startPage(requestRefPar.getIntegerPar("pageNumber"), requestRefPar.getIntegerPar("pageSize"));
         comPageshows = comPageshowMapper.selectByExample(comPageshowExample);

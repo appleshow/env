@@ -1,20 +1,17 @@
 <%--
   Created by IntelliJ IDEA.
   User: liuguanb
-  Date: 2017/11/18
-  Time: 0:13
+  Date: 2017/11/17
+  Time: 16:18
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8"
+         pageEncoding="UTF-8"
          language="java" %>
-<html>
 <head>
-    <meta charset="UTF-8">
-    <title>企业分类</title>
+    <title>站点分类</title>
     <meta name="description"
           content="Dashboard"/>
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1">
     <meta name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta http-equiv="X-UA-Compatible"
@@ -28,8 +25,6 @@
           href="${ctx}/dataTables/DataTables-1.10.11/css/dataTables.bootstrap.min.css">
     <link rel="stylesheet"
           href="${ctx}/dataTables/Responsive-2.0.2/css/responsive.bootstrap.css">
-    <link rel="stylesheet"
-          href="${ctx}/dataTables/Buttons-1.1.2/css/buttons.bootstrap.min.css">
     <link rel="stylesheet"
           href="${ctx}/dataTables/Buttons-1.1.2/css/buttons.bootstrap.min.css">
     <link rel="stylesheet"
@@ -54,39 +49,15 @@
 <div class="row"
      style="margin-right: 0px; margin-bottom: 0px;">
     <div class="col-lg-12 col-sm-12 col-xs-12">
-        <div class="widget flat radius-bordered">
-            <div class="widget-body">
-                <div class="row">
-                    <div class="col-lg-4 col-sm-4 col-xs-12">
-                        <div class="form-group"
-                             style="margin-bottom: 6px;">
-                            <div class="controls">
-                                <div class="input-group">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-default"
-                                                type="button">企业类别名称
-                                        </button>
-                                    </span>
-                                    <input class="form-control"
-                                            style="width: 200px;"
-                                            id="codeName">
-                                    </input>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <table id="table-enttype"
-                       class="table table-striped table-bordered display responsive nowrap"
-                       cellspacing="0"
-                       width="100%">
-                    <thead>
-                    <tr id="table-enttype-columns">
-                    </tr>
-                    </thead>
-                </table>
-            </div>
-        </div>
+        <table id="table-type"
+               class="table table-striped table-bordered display responsive nowrap"
+               cellspacing="0"
+               width="100%">
+            <thead>
+            <tr id="table-type-columns">
+            </tr>
+            </thead>
+        </table>
     </div>
 </div>
 <div class="modal fade"
@@ -171,23 +142,20 @@
 <!--  -->
 <script src="${ctx}/assets-view/comm/commDataTables.js"></script>
 
-<script>
-    var tableEntType;
+<script type="application/javascript">
+    var tableType;
     var pageShowDataUrl = "${ctx}/comm/referPageShow";
 
     jQuery(document).ready(function () {
-        tableEntType = new CommDataTables("#table-enttype", "#table-enttype-columns", 19, callError, pageShowDataUrl);
-        tableEntType.serverInfo.referUrl = "${ctx}/viewEntTypeConfig/refEntType";
-        tableEntType.serverInfo.referControls.push(ControlPar("text", "codeName", "", $("#codeName")));
-        tableEntType.serverInfo.modifyUrl = "${ctx}/viewEntTypeConfig/modifyEntType";
+        tableType = new CommDataTables("#table-type", "#table-type-columns", ${pageId}, callError, pageShowDataUrl);
+        tableType.serverInfo.referUrl = "${ctx}/viewHbTypeConfig/referHbType";
+        tableType.serverInfo.modifyUrl = "${ctx}/viewHbTypeConfig/modifyHbType";
 
         // ***** Add information to Column *****
-
         // *********************************
         // ***** Add information to Field *****
-
         // *********************************
-        tableEntType.create();
+        tableType.create();
     });
 
     function callError(code, message) {
@@ -195,7 +163,6 @@
         $("#mwMessage").html(message);
         $("#modal-warning").modal("show");
     }
-
 </script>
 </body>
 </html>

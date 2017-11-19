@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.aps.env.dao.HbTypeitemMapper" >
-  <resultMap id="BaseResultMap" type="com.aps.env.entity.HbTypeitem" >
+<mapper namespace="com.aps.env.dao.HbTypeItemMapper" >
+  <resultMap id="BaseResultMap" type="com.aps.env.entity.HbTypeItem" >
     <id column="TYPE_ID" property="typeId" jdbcType="INTEGER" />
     <id column="ITEM_ID" property="itemId" jdbcType="VARCHAR" />
     <result column="ITEM_NAME" property="itemName" jdbcType="VARCHAR" />
     <result column="ITEM_UNIT" property="itemUnit" jdbcType="VARCHAR" />
+    <result column="ITEM_UNIT_CONVERT" property="itemUnitConvert" jdbcType="VARCHAR" />
     <result column="ITEM_VMIN" property="itemVmin" jdbcType="DECIMAL" />
     <result column="ITEM_VMAX" property="itemVmax" jdbcType="DECIMAL" />
+    <result column="ITEM_VSTA" property="itemVsta" jdbcType="DECIMAL" />
+    <result column="ITEM_VALA1" property="itemVala1" jdbcType="DECIMAL" />
+    <result column="ITEM_VALA2" property="itemVala2" jdbcType="DECIMAL" />
+    <result column="ITEM_VALA3" property="itemVala3" jdbcType="DECIMAL" />
+    <result column="ITEM_CONVERT_FORMAT" property="itemConvertFormat" jdbcType="VARCHAR" />
     <result column="PRFLAG" property="prflag" jdbcType="INTEGER" />
     <result column="PRGROUP" property="prgroup" jdbcType="VARCHAR" />
     <result column="PRTYPE" property="prtype" jdbcType="VARCHAR" />
@@ -97,18 +103,20 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    TYPE_ID, ITEM_ID, ITEM_NAME, ITEM_UNIT, ITEM_VMIN, ITEM_VMAX, PRFLAG, PRGROUP, PRTYPE, 
-    PROPERTY0, PROPERTY1, PROPERTY2, PROPERTY3, PROPERTY4, PROPERTY5, PROPERTY6, PROPERTY7, 
-    PROPERTY8, PROPERTY9, PROPERTY10, PROPERTY11, PROPERTY12, PROPERTY13, PROPERTY14, 
-    PRINF, PREXP, ITIME, ISHIFT, IGROUP, IPERSON, UTIME, USHIFT, UGROUP, UPERSON, UFROM
+    TYPE_ID, ITEM_ID, ITEM_NAME, ITEM_UNIT, ITEM_UNIT_CONVERT, ITEM_VMIN, ITEM_VMAX, 
+    ITEM_VSTA, ITEM_VALA1, ITEM_VALA2, ITEM_VALA3, ITEM_CONVERT_FORMAT, PRFLAG, PRGROUP, 
+    PRTYPE, PROPERTY0, PROPERTY1, PROPERTY2, PROPERTY3, PROPERTY4, PROPERTY5, PROPERTY6, 
+    PROPERTY7, PROPERTY8, PROPERTY9, PROPERTY10, PROPERTY11, PROPERTY12, PROPERTY13, 
+    PROPERTY14, PRINF, PREXP, ITIME, ISHIFT, IGROUP, IPERSON, UTIME, USHIFT, UGROUP, 
+    UPERSON, UFROM
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.aps.env.entity.HbTypeitemExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.aps.env.entity.HbTypeItemExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from hb_typeitem
+    from hb_type_item
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -116,27 +124,29 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.aps.env.entity.HbTypeitemKey" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.aps.env.entity.HbTypeItemKey" >
     select 
     <include refid="Base_Column_List" />
-    from hb_typeitem
+    from hb_type_item
     where TYPE_ID = #{typeId,jdbcType=INTEGER}
       and ITEM_ID = #{itemId,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="com.aps.env.entity.HbTypeitemKey" >
-    delete from hb_typeitem
+  <delete id="deleteByPrimaryKey" parameterType="com.aps.env.entity.HbTypeItemKey" >
+    delete from hb_type_item
     where TYPE_ID = #{typeId,jdbcType=INTEGER}
       and ITEM_ID = #{itemId,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.aps.env.entity.HbTypeitemExample" >
-    delete from hb_typeitem
+  <delete id="deleteByExample" parameterType="com.aps.env.entity.HbTypeItemExample" >
+    delete from hb_type_item
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.aps.env.entity.HbTypeitem" >
-    insert into hb_typeitem (TYPE_ID, ITEM_ID, ITEM_NAME, 
-      ITEM_UNIT, ITEM_VMIN, ITEM_VMAX, 
+  <insert id="insert" parameterType="com.aps.env.entity.HbTypeItem" >
+    insert into hb_type_item (TYPE_ID, ITEM_ID, ITEM_NAME, 
+      ITEM_UNIT, ITEM_UNIT_CONVERT, ITEM_VMIN, 
+      ITEM_VMAX, ITEM_VSTA, ITEM_VALA1, 
+      ITEM_VALA2, ITEM_VALA3, ITEM_CONVERT_FORMAT, 
       PRFLAG, PRGROUP, PRTYPE, 
       PROPERTY0, PROPERTY1, PROPERTY2, 
       PROPERTY3, PROPERTY4, PROPERTY5, 
@@ -148,7 +158,9 @@
       UTIME, USHIFT, UGROUP, 
       UPERSON, UFROM)
     values (#{typeId,jdbcType=INTEGER}, #{itemId,jdbcType=VARCHAR}, #{itemName,jdbcType=VARCHAR}, 
-      #{itemUnit,jdbcType=VARCHAR}, #{itemVmin,jdbcType=DECIMAL}, #{itemVmax,jdbcType=DECIMAL}, 
+      #{itemUnit,jdbcType=VARCHAR}, #{itemUnitConvert,jdbcType=VARCHAR}, #{itemVmin,jdbcType=DECIMAL}, 
+      #{itemVmax,jdbcType=DECIMAL}, #{itemVsta,jdbcType=DECIMAL}, #{itemVala1,jdbcType=DECIMAL}, 
+      #{itemVala2,jdbcType=DECIMAL}, #{itemVala3,jdbcType=DECIMAL}, #{itemConvertFormat,jdbcType=VARCHAR}, 
       #{prflag,jdbcType=INTEGER}, #{prgroup,jdbcType=VARCHAR}, #{prtype,jdbcType=VARCHAR}, 
       #{property0,jdbcType=VARCHAR}, #{property1,jdbcType=VARCHAR}, #{property2,jdbcType=VARCHAR}, 
       #{property3,jdbcType=VARCHAR}, #{property4,jdbcType=VARCHAR}, #{property5,jdbcType=VARCHAR}, 
@@ -160,8 +172,8 @@
       #{utime,jdbcType=TIMESTAMP}, #{ushift,jdbcType=VARCHAR}, #{ugroup,jdbcType=VARCHAR}, 
       #{uperson,jdbcType=INTEGER}, #{ufrom,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.aps.env.entity.HbTypeitem" >
-    insert into hb_typeitem
+  <insert id="insertSelective" parameterType="com.aps.env.entity.HbTypeItem" >
+    insert into hb_type_item
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="typeId != null" >
         TYPE_ID,
@@ -175,11 +187,29 @@
       <if test="itemUnit != null" >
         ITEM_UNIT,
       </if>
+      <if test="itemUnitConvert != null" >
+        ITEM_UNIT_CONVERT,
+      </if>
       <if test="itemVmin != null" >
         ITEM_VMIN,
       </if>
       <if test="itemVmax != null" >
         ITEM_VMAX,
+      </if>
+      <if test="itemVsta != null" >
+        ITEM_VSTA,
+      </if>
+      <if test="itemVala1 != null" >
+        ITEM_VALA1,
+      </if>
+      <if test="itemVala2 != null" >
+        ITEM_VALA2,
+      </if>
+      <if test="itemVala3 != null" >
+        ITEM_VALA3,
+      </if>
+      <if test="itemConvertFormat != null" >
+        ITEM_CONVERT_FORMAT,
       </if>
       <if test="prflag != null" >
         PRFLAG,
@@ -282,11 +312,29 @@
       <if test="itemUnit != null" >
         #{itemUnit,jdbcType=VARCHAR},
       </if>
+      <if test="itemUnitConvert != null" >
+        #{itemUnitConvert,jdbcType=VARCHAR},
+      </if>
       <if test="itemVmin != null" >
         #{itemVmin,jdbcType=DECIMAL},
       </if>
       <if test="itemVmax != null" >
         #{itemVmax,jdbcType=DECIMAL},
+      </if>
+      <if test="itemVsta != null" >
+        #{itemVsta,jdbcType=DECIMAL},
+      </if>
+      <if test="itemVala1 != null" >
+        #{itemVala1,jdbcType=DECIMAL},
+      </if>
+      <if test="itemVala2 != null" >
+        #{itemVala2,jdbcType=DECIMAL},
+      </if>
+      <if test="itemVala3 != null" >
+        #{itemVala3,jdbcType=DECIMAL},
+      </if>
+      <if test="itemConvertFormat != null" >
+        #{itemConvertFormat,jdbcType=VARCHAR},
       </if>
       <if test="prflag != null" >
         #{prflag,jdbcType=INTEGER},
@@ -377,14 +425,14 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.aps.env.entity.HbTypeitemExample" resultType="java.lang.Integer" >
-    select count(*) from hb_typeitem
+  <select id="countByExample" parameterType="com.aps.env.entity.HbTypeItemExample" resultType="java.lang.Integer" >
+    select count(*) from hb_type_item
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update hb_typeitem
+    update hb_type_item
     <set >
       <if test="record.typeId != null" >
         TYPE_ID = #{record.typeId,jdbcType=INTEGER},
@@ -398,11 +446,29 @@
       <if test="record.itemUnit != null" >
         ITEM_UNIT = #{record.itemUnit,jdbcType=VARCHAR},
       </if>
+      <if test="record.itemUnitConvert != null" >
+        ITEM_UNIT_CONVERT = #{record.itemUnitConvert,jdbcType=VARCHAR},
+      </if>
       <if test="record.itemVmin != null" >
         ITEM_VMIN = #{record.itemVmin,jdbcType=DECIMAL},
       </if>
       <if test="record.itemVmax != null" >
         ITEM_VMAX = #{record.itemVmax,jdbcType=DECIMAL},
+      </if>
+      <if test="record.itemVsta != null" >
+        ITEM_VSTA = #{record.itemVsta,jdbcType=DECIMAL},
+      </if>
+      <if test="record.itemVala1 != null" >
+        ITEM_VALA1 = #{record.itemVala1,jdbcType=DECIMAL},
+      </if>
+      <if test="record.itemVala2 != null" >
+        ITEM_VALA2 = #{record.itemVala2,jdbcType=DECIMAL},
+      </if>
+      <if test="record.itemVala3 != null" >
+        ITEM_VALA3 = #{record.itemVala3,jdbcType=DECIMAL},
+      </if>
+      <if test="record.itemConvertFormat != null" >
+        ITEM_CONVERT_FORMAT = #{record.itemConvertFormat,jdbcType=VARCHAR},
       </if>
       <if test="record.prflag != null" >
         PRFLAG = #{record.prflag,jdbcType=INTEGER},
@@ -497,13 +563,19 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update hb_typeitem
+    update hb_type_item
     set TYPE_ID = #{record.typeId,jdbcType=INTEGER},
       ITEM_ID = #{record.itemId,jdbcType=VARCHAR},
       ITEM_NAME = #{record.itemName,jdbcType=VARCHAR},
       ITEM_UNIT = #{record.itemUnit,jdbcType=VARCHAR},
+      ITEM_UNIT_CONVERT = #{record.itemUnitConvert,jdbcType=VARCHAR},
       ITEM_VMIN = #{record.itemVmin,jdbcType=DECIMAL},
       ITEM_VMAX = #{record.itemVmax,jdbcType=DECIMAL},
+      ITEM_VSTA = #{record.itemVsta,jdbcType=DECIMAL},
+      ITEM_VALA1 = #{record.itemVala1,jdbcType=DECIMAL},
+      ITEM_VALA2 = #{record.itemVala2,jdbcType=DECIMAL},
+      ITEM_VALA3 = #{record.itemVala3,jdbcType=DECIMAL},
+      ITEM_CONVERT_FORMAT = #{record.itemConvertFormat,jdbcType=VARCHAR},
       PRFLAG = #{record.prflag,jdbcType=INTEGER},
       PRGROUP = #{record.prgroup,jdbcType=VARCHAR},
       PRTYPE = #{record.prtype,jdbcType=VARCHAR},
@@ -537,8 +609,8 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.aps.env.entity.HbTypeitem" >
-    update hb_typeitem
+  <update id="updateByPrimaryKeySelective" parameterType="com.aps.env.entity.HbTypeItem" >
+    update hb_type_item
     <set >
       <if test="itemName != null" >
         ITEM_NAME = #{itemName,jdbcType=VARCHAR},
@@ -546,11 +618,29 @@
       <if test="itemUnit != null" >
         ITEM_UNIT = #{itemUnit,jdbcType=VARCHAR},
       </if>
+      <if test="itemUnitConvert != null" >
+        ITEM_UNIT_CONVERT = #{itemUnitConvert,jdbcType=VARCHAR},
+      </if>
       <if test="itemVmin != null" >
         ITEM_VMIN = #{itemVmin,jdbcType=DECIMAL},
       </if>
       <if test="itemVmax != null" >
         ITEM_VMAX = #{itemVmax,jdbcType=DECIMAL},
+      </if>
+      <if test="itemVsta != null" >
+        ITEM_VSTA = #{itemVsta,jdbcType=DECIMAL},
+      </if>
+      <if test="itemVala1 != null" >
+        ITEM_VALA1 = #{itemVala1,jdbcType=DECIMAL},
+      </if>
+      <if test="itemVala2 != null" >
+        ITEM_VALA2 = #{itemVala2,jdbcType=DECIMAL},
+      </if>
+      <if test="itemVala3 != null" >
+        ITEM_VALA3 = #{itemVala3,jdbcType=DECIMAL},
+      </if>
+      <if test="itemConvertFormat != null" >
+        ITEM_CONVERT_FORMAT = #{itemConvertFormat,jdbcType=VARCHAR},
       </if>
       <if test="prflag != null" >
         PRFLAG = #{prflag,jdbcType=INTEGER},
@@ -643,12 +733,18 @@
     where TYPE_ID = #{typeId,jdbcType=INTEGER}
       and ITEM_ID = #{itemId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.aps.env.entity.HbTypeitem" >
-    update hb_typeitem
+  <update id="updateByPrimaryKey" parameterType="com.aps.env.entity.HbTypeItem" >
+    update hb_type_item
     set ITEM_NAME = #{itemName,jdbcType=VARCHAR},
       ITEM_UNIT = #{itemUnit,jdbcType=VARCHAR},
+      ITEM_UNIT_CONVERT = #{itemUnitConvert,jdbcType=VARCHAR},
       ITEM_VMIN = #{itemVmin,jdbcType=DECIMAL},
       ITEM_VMAX = #{itemVmax,jdbcType=DECIMAL},
+      ITEM_VSTA = #{itemVsta,jdbcType=DECIMAL},
+      ITEM_VALA1 = #{itemVala1,jdbcType=DECIMAL},
+      ITEM_VALA2 = #{itemVala2,jdbcType=DECIMAL},
+      ITEM_VALA3 = #{itemVala3,jdbcType=DECIMAL},
+      ITEM_CONVERT_FORMAT = #{itemConvertFormat,jdbcType=VARCHAR},
       PRFLAG = #{prflag,jdbcType=INTEGER},
       PRGROUP = #{prgroup,jdbcType=VARCHAR},
       PRTYPE = #{prtype,jdbcType=VARCHAR},

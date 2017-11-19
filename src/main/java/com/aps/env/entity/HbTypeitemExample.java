@@ -5,14 +5,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class HbTypeitemExample {
+public class HbTypeItemExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public HbTypeitemExample() {
+    public HbTypeItemExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -376,6 +376,76 @@ public class HbTypeitemExample {
             return (Criteria) this;
         }
 
+        public Criteria andItemUnitConvertIsNull() {
+            addCriterion("ITEM_UNIT_CONVERT is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemUnitConvertIsNotNull() {
+            addCriterion("ITEM_UNIT_CONVERT is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemUnitConvertEqualTo(String value) {
+            addCriterion("ITEM_UNIT_CONVERT =", value, "itemUnitConvert");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemUnitConvertNotEqualTo(String value) {
+            addCriterion("ITEM_UNIT_CONVERT <>", value, "itemUnitConvert");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemUnitConvertGreaterThan(String value) {
+            addCriterion("ITEM_UNIT_CONVERT >", value, "itemUnitConvert");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemUnitConvertGreaterThanOrEqualTo(String value) {
+            addCriterion("ITEM_UNIT_CONVERT >=", value, "itemUnitConvert");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemUnitConvertLessThan(String value) {
+            addCriterion("ITEM_UNIT_CONVERT <", value, "itemUnitConvert");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemUnitConvertLessThanOrEqualTo(String value) {
+            addCriterion("ITEM_UNIT_CONVERT <=", value, "itemUnitConvert");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemUnitConvertLike(String value) {
+            addCriterion("ITEM_UNIT_CONVERT like", value, "itemUnitConvert");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemUnitConvertNotLike(String value) {
+            addCriterion("ITEM_UNIT_CONVERT not like", value, "itemUnitConvert");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemUnitConvertIn(List<String> values) {
+            addCriterion("ITEM_UNIT_CONVERT in", values, "itemUnitConvert");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemUnitConvertNotIn(List<String> values) {
+            addCriterion("ITEM_UNIT_CONVERT not in", values, "itemUnitConvert");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemUnitConvertBetween(String value1, String value2) {
+            addCriterion("ITEM_UNIT_CONVERT between", value1, value2, "itemUnitConvert");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemUnitConvertNotBetween(String value1, String value2) {
+            addCriterion("ITEM_UNIT_CONVERT not between", value1, value2, "itemUnitConvert");
+            return (Criteria) this;
+        }
+
         public Criteria andItemVminIsNull() {
             addCriterion("ITEM_VMIN is null");
             return (Criteria) this;
@@ -493,6 +563,316 @@ public class HbTypeitemExample {
 
         public Criteria andItemVmaxNotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("ITEM_VMAX not between", value1, value2, "itemVmax");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemVstaIsNull() {
+            addCriterion("ITEM_VSTA is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemVstaIsNotNull() {
+            addCriterion("ITEM_VSTA is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemVstaEqualTo(BigDecimal value) {
+            addCriterion("ITEM_VSTA =", value, "itemVsta");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemVstaNotEqualTo(BigDecimal value) {
+            addCriterion("ITEM_VSTA <>", value, "itemVsta");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemVstaGreaterThan(BigDecimal value) {
+            addCriterion("ITEM_VSTA >", value, "itemVsta");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemVstaGreaterThanOrEqualTo(BigDecimal value) {
+            addCriterion("ITEM_VSTA >=", value, "itemVsta");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemVstaLessThan(BigDecimal value) {
+            addCriterion("ITEM_VSTA <", value, "itemVsta");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemVstaLessThanOrEqualTo(BigDecimal value) {
+            addCriterion("ITEM_VSTA <=", value, "itemVsta");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemVstaIn(List<BigDecimal> values) {
+            addCriterion("ITEM_VSTA in", values, "itemVsta");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemVstaNotIn(List<BigDecimal> values) {
+            addCriterion("ITEM_VSTA not in", values, "itemVsta");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemVstaBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("ITEM_VSTA between", value1, value2, "itemVsta");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemVstaNotBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("ITEM_VSTA not between", value1, value2, "itemVsta");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemVala1IsNull() {
+            addCriterion("ITEM_VALA1 is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemVala1IsNotNull() {
+            addCriterion("ITEM_VALA1 is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemVala1EqualTo(BigDecimal value) {
+            addCriterion("ITEM_VALA1 =", value, "itemVala1");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemVala1NotEqualTo(BigDecimal value) {
+            addCriterion("ITEM_VALA1 <>", value, "itemVala1");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemVala1GreaterThan(BigDecimal value) {
+            addCriterion("ITEM_VALA1 >", value, "itemVala1");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemVala1GreaterThanOrEqualTo(BigDecimal value) {
+            addCriterion("ITEM_VALA1 >=", value, "itemVala1");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemVala1LessThan(BigDecimal value) {
+            addCriterion("ITEM_VALA1 <", value, "itemVala1");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemVala1LessThanOrEqualTo(BigDecimal value) {
+            addCriterion("ITEM_VALA1 <=", value, "itemVala1");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemVala1In(List<BigDecimal> values) {
+            addCriterion("ITEM_VALA1 in", values, "itemVala1");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemVala1NotIn(List<BigDecimal> values) {
+            addCriterion("ITEM_VALA1 not in", values, "itemVala1");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemVala1Between(BigDecimal value1, BigDecimal value2) {
+            addCriterion("ITEM_VALA1 between", value1, value2, "itemVala1");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemVala1NotBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("ITEM_VALA1 not between", value1, value2, "itemVala1");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemVala2IsNull() {
+            addCriterion("ITEM_VALA2 is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemVala2IsNotNull() {
+            addCriterion("ITEM_VALA2 is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemVala2EqualTo(BigDecimal value) {
+            addCriterion("ITEM_VALA2 =", value, "itemVala2");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemVala2NotEqualTo(BigDecimal value) {
+            addCriterion("ITEM_VALA2 <>", value, "itemVala2");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemVala2GreaterThan(BigDecimal value) {
+            addCriterion("ITEM_VALA2 >", value, "itemVala2");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemVala2GreaterThanOrEqualTo(BigDecimal value) {
+            addCriterion("ITEM_VALA2 >=", value, "itemVala2");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemVala2LessThan(BigDecimal value) {
+            addCriterion("ITEM_VALA2 <", value, "itemVala2");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemVala2LessThanOrEqualTo(BigDecimal value) {
+            addCriterion("ITEM_VALA2 <=", value, "itemVala2");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemVala2In(List<BigDecimal> values) {
+            addCriterion("ITEM_VALA2 in", values, "itemVala2");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemVala2NotIn(List<BigDecimal> values) {
+            addCriterion("ITEM_VALA2 not in", values, "itemVala2");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemVala2Between(BigDecimal value1, BigDecimal value2) {
+            addCriterion("ITEM_VALA2 between", value1, value2, "itemVala2");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemVala2NotBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("ITEM_VALA2 not between", value1, value2, "itemVala2");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemVala3IsNull() {
+            addCriterion("ITEM_VALA3 is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemVala3IsNotNull() {
+            addCriterion("ITEM_VALA3 is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemVala3EqualTo(BigDecimal value) {
+            addCriterion("ITEM_VALA3 =", value, "itemVala3");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemVala3NotEqualTo(BigDecimal value) {
+            addCriterion("ITEM_VALA3 <>", value, "itemVala3");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemVala3GreaterThan(BigDecimal value) {
+            addCriterion("ITEM_VALA3 >", value, "itemVala3");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemVala3GreaterThanOrEqualTo(BigDecimal value) {
+            addCriterion("ITEM_VALA3 >=", value, "itemVala3");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemVala3LessThan(BigDecimal value) {
+            addCriterion("ITEM_VALA3 <", value, "itemVala3");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemVala3LessThanOrEqualTo(BigDecimal value) {
+            addCriterion("ITEM_VALA3 <=", value, "itemVala3");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemVala3In(List<BigDecimal> values) {
+            addCriterion("ITEM_VALA3 in", values, "itemVala3");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemVala3NotIn(List<BigDecimal> values) {
+            addCriterion("ITEM_VALA3 not in", values, "itemVala3");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemVala3Between(BigDecimal value1, BigDecimal value2) {
+            addCriterion("ITEM_VALA3 between", value1, value2, "itemVala3");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemVala3NotBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("ITEM_VALA3 not between", value1, value2, "itemVala3");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemConvertFormatIsNull() {
+            addCriterion("ITEM_CONVERT_FORMAT is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemConvertFormatIsNotNull() {
+            addCriterion("ITEM_CONVERT_FORMAT is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemConvertFormatEqualTo(String value) {
+            addCriterion("ITEM_CONVERT_FORMAT =", value, "itemConvertFormat");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemConvertFormatNotEqualTo(String value) {
+            addCriterion("ITEM_CONVERT_FORMAT <>", value, "itemConvertFormat");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemConvertFormatGreaterThan(String value) {
+            addCriterion("ITEM_CONVERT_FORMAT >", value, "itemConvertFormat");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemConvertFormatGreaterThanOrEqualTo(String value) {
+            addCriterion("ITEM_CONVERT_FORMAT >=", value, "itemConvertFormat");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemConvertFormatLessThan(String value) {
+            addCriterion("ITEM_CONVERT_FORMAT <", value, "itemConvertFormat");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemConvertFormatLessThanOrEqualTo(String value) {
+            addCriterion("ITEM_CONVERT_FORMAT <=", value, "itemConvertFormat");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemConvertFormatLike(String value) {
+            addCriterion("ITEM_CONVERT_FORMAT like", value, "itemConvertFormat");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemConvertFormatNotLike(String value) {
+            addCriterion("ITEM_CONVERT_FORMAT not like", value, "itemConvertFormat");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemConvertFormatIn(List<String> values) {
+            addCriterion("ITEM_CONVERT_FORMAT in", values, "itemConvertFormat");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemConvertFormatNotIn(List<String> values) {
+            addCriterion("ITEM_CONVERT_FORMAT not in", values, "itemConvertFormat");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemConvertFormatBetween(String value1, String value2) {
+            addCriterion("ITEM_CONVERT_FORMAT between", value1, value2, "itemConvertFormat");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemConvertFormatNotBetween(String value1, String value2) {
+            addCriterion("ITEM_CONVERT_FORMAT not between", value1, value2, "itemConvertFormat");
             return (Criteria) this;
         }
 

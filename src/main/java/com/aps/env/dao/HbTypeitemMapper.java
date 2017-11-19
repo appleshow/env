@@ -1,31 +1,31 @@
 package com.aps.env.dao;
 
-import com.aps.env.entity.HbTypeitem;
-import com.aps.env.entity.HbTypeitemExample;
-import com.aps.env.entity.HbTypeitemKey;
+import com.aps.env.entity.HbTypeItem;
+import com.aps.env.entity.HbTypeItemExample;
+import com.aps.env.entity.HbTypeItemKey;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
-public interface HbTypeitemMapper {
-    int countByExample(HbTypeitemExample example);
+public interface HbTypeItemMapper {
+    int countByExample(HbTypeItemExample example);
 
-    int deleteByExample(HbTypeitemExample example);
+    int deleteByExample(HbTypeItemExample example);
 
-    int deleteByPrimaryKey(HbTypeitemKey key);
+    int deleteByPrimaryKey(HbTypeItemKey key);
 
-    int insert(HbTypeitem record);
+    int insert(HbTypeItem record);
 
-    int insertSelective(HbTypeitem record);
+    int insertSelective(HbTypeItem record);
 
-    List<HbTypeitem> selectByExample(HbTypeitemExample example);
+    List<HbTypeItem> selectByExample(HbTypeItemExample example);
 
-    HbTypeitem selectByPrimaryKey(HbTypeitemKey key);
+    HbTypeItem selectByPrimaryKey(HbTypeItemKey key);
 
-    int updateByExampleSelective(@Param("record") HbTypeitem record, @Param("example") HbTypeitemExample example);
+    int updateByExampleSelective(@Param("record") HbTypeItem record, @Param("example") HbTypeItemExample example);
 
-    int updateByExample(@Param("record") HbTypeitem record, @Param("example") HbTypeitemExample example);
+    int updateByExample(@Param("record") HbTypeItem record, @Param("example") HbTypeItemExample example);
 
-    int updateByPrimaryKeySelective(HbTypeitem record);
+    int updateByPrimaryKeySelective(HbTypeItem record);
 
-    int updateByPrimaryKey(HbTypeitem record);
+    int updateByPrimaryKey(HbTypeItem record);
 }

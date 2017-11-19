@@ -39,7 +39,7 @@ public class ViewComCodeCfgServiceImpl implements ViewComCodeCfgService {
         String codeType = requestRefPar.getStringPar("codeType");
         String codeName = requestRefPar.getStringPar("codeName");
 
-        if (!StringUtil.isNullOrEmpty(codeType)) {
+        if (!StringUtil.isNullOrEmpty(codeType) && !"1".equals(codeType)) {
             criteria.andCodeTypeEqualTo(codeType);
         }
         if (!StringUtil.isNullOrEmpty(codeName)) {

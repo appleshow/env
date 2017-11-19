@@ -1,6 +1,6 @@
 package com.aps.env.entity;
 
-public class HbTypeitemKey {
+public class HbTypeItemKey {
     private Integer typeId;
 
     private String itemId;

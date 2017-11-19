@@ -84,6 +84,9 @@ public class ViewMainController extends ExceptionController {
                     if (key.equals("pageId")) {
                         int pageId = Integer.parseInt(value);
                         switch (pageId) {
+                            case 1:
+                                modelAndView.addObject("codeName", "代码名称");
+                                break;
                             case 19:
                                 modelAndView.addObject("codeName", "企业分类名称");
                                 break;

@@ -1,19 +1,28 @@
 package com.aps.env.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import org.springframework.format.annotation.DateTimeFormat;
-
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class HbTypeitem extends HbTypeitemKey {
+public class HbTypeItem extends HbTypeItemKey {
     private String itemName;
 
     private String itemUnit;
 
+    private String itemUnitConvert;
+
     private BigDecimal itemVmin;
 
     private BigDecimal itemVmax;
+
+    private BigDecimal itemVsta;
+
+    private BigDecimal itemVala1;
+
+    private BigDecimal itemVala2;
+
+    private BigDecimal itemVala3;
+
+    private String itemConvertFormat;
 
     private Integer prflag;
 
@@ -55,7 +64,6 @@ public class HbTypeitem extends HbTypeitemKey {
 
     private String prexp;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date itime;
 
     private String ishift;
@@ -64,7 +72,6 @@ public class HbTypeitem extends HbTypeitemKey {
 
     private Integer iperson;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date utime;
 
     private String ushift;
@@ -91,6 +98,14 @@ public class HbTypeitem extends HbTypeitemKey {
         this.itemUnit = itemUnit == null ? null : itemUnit.trim();
     }
 
+    public String getItemUnitConvert() {
+        return itemUnitConvert;
+    }
+
+    public void setItemUnitConvert(String itemUnitConvert) {
+        this.itemUnitConvert = itemUnitConvert == null ? null : itemUnitConvert.trim();
+    }
+
     public BigDecimal getItemVmin() {
         return itemVmin;
     }
@@ -105,6 +120,46 @@ public class HbTypeitem extends HbTypeitemKey {
 
     public void setItemVmax(BigDecimal itemVmax) {
         this.itemVmax = itemVmax;
+    }
+
+    public BigDecimal getItemVsta() {
+        return itemVsta;
+    }
+
+    public void setItemVsta(BigDecimal itemVsta) {
+        this.itemVsta = itemVsta;
+    }
+
+    public BigDecimal getItemVala1() {
+        return itemVala1;
+    }
+
+    public void setItemVala1(BigDecimal itemVala1) {
+        this.itemVala1 = itemVala1;
+    }
+
+    public BigDecimal getItemVala2() {
+        return itemVala2;
+    }
+
+    public void setItemVala2(BigDecimal itemVala2) {
+        this.itemVala2 = itemVala2;
+    }
+
+    public BigDecimal getItemVala3() {
+        return itemVala3;
+    }
+
+    public void setItemVala3(BigDecimal itemVala3) {
+        this.itemVala3 = itemVala3;
+    }
+
+    public String getItemConvertFormat() {
+        return itemConvertFormat;
+    }
+
+    public void setItemConvertFormat(String itemConvertFormat) {
+        this.itemConvertFormat = itemConvertFormat == null ? null : itemConvertFormat.trim();
     }
 
     public Integer getPrflag() {
@@ -267,7 +322,6 @@ public class HbTypeitem extends HbTypeitemKey {
         this.prexp = prexp == null ? null : prexp.trim();
     }
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     public Date getItime() {
         return itime;
     }
@@ -300,7 +354,6 @@ public class HbTypeitem extends HbTypeitemKey {
         this.iperson = iperson;
     }
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     public Date getUtime() {
         return utime;
     }

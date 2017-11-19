@@ -266,7 +266,7 @@ public class ViewFormCfgServiceImpl implements ViewFormCfgService {
         List<String> codeTypes = new ArrayList<String>();
         ComCodeExample comCodeExample = new ComCodeExample();
 
-        codeTypes.add("C0001");
+        codeTypes.add("1");
         comCodeExample.createCriteria().andCodeTypeIn(codeTypes);
         comCodes = comCodeMapper.selectByExample(comCodeExample);
 

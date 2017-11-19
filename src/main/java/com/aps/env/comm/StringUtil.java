@@ -272,4 +272,12 @@ public class StringUtil {
 
         return convertResult;
     }
+
+    /**
+     * @param value
+     * @return
+     */
+    public static String likeValue(String value) {
+        return "%" + value + "%";
+    }
 }

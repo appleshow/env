@@ -149,7 +149,6 @@ public class ViewOrgFormCfgServiceImpl implements ViewOrgFormCfgService {
         Date now = new Date();
         Map<String, String> rowData;
         ComOrgForm comOrgForm;
-        ComOrgFormRights comOrgFormRights;
 
         for (int row = 0; row < requestMdyPar.getParCount(); row++) {
             rowData = requestMdyPar.getInPar().get(row);
@@ -169,12 +168,11 @@ public class ViewOrgFormCfgServiceImpl implements ViewOrgFormCfgService {
                         break;
                     case CommUtil.MODIFY_TYPE_DELETE:
                         comOrgFormMapper.deleteByPrimaryKey(comOrgForm);
-                        comOrgFormRights = new ComOrgFormRights();
 
-                        comOrgFormRights.setOrgId(comOrgForm.getOrgId());
-                        comOrgFormRights.setFormId(comOrgForm.getFormId());
+                        ComOrgFormRightsExample comOrgFormRightsExample = new ComOrgFormRightsExample();
+                        comOrgFormRightsExample.createCriteria().andOrgIdEqualTo(comOrgForm.getOrgId()).andFormIdEqualTo(comOrgForm.getFormId());
 
-                        comOrgFormRightsMapper.deleteByPrimaryKey(comOrgFormRights);
+                        comOrgFormRightsMapper.deleteByExample(comOrgFormRightsExample);
                         break;
                     default:
                         break;
