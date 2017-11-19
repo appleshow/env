@@ -10,9 +10,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * <dl>
@@ -32,15 +30,22 @@ public class ViewComCodeCfgServiceImpl implements ViewComCodeCfgService {
 
     @Override
     public void refComCode(HttpSession httpSession, RequestRefPar requestRefPar, ResponseData responseData) {
-        List<ComCode> comCodes;
-        PageInfo<ComCode> pageInfo;
-        ComCodeExample comCodeExample = new ComCodeExample();
-        ComCodeExample.Criteria criteria = comCodeExample.createCriteria();
+        final List<ComCode> comCodes;
+        final PageInfo<ComCode> pageInfo;
+        final ComCodeExample comCodeExample = new ComCodeExample();
+        final ComCodeExample.Criteria criteria = comCodeExample.createCriteria();
         String codeType = requestRefPar.getStringPar("codeType");
         String codeName = requestRefPar.getStringPar("codeName");
 
-        if (!StringUtil.isNullOrEmpty(codeType) && !"1".equals(codeType)) {
-            criteria.andCodeTypeEqualTo(codeType);
+        if (!StringUtil.isNullOrEmpty(codeType)) {
+            if (codeType.indexOf(",") > 0) {
+                final List<String> codeTypes = Arrays.asList(codeType.split(","));
+                final List<String> types = new ArrayList<>();
+                codeTypes.stream().forEach(type -> types.add(type));
+                criteria.andCodeTypeIn(types);
+            } else {
+                criteria.andCodeTypeEqualTo(codeType);
+            }
         }
         if (!StringUtil.isNullOrEmpty(codeName)) {
             criteria.andCodeNameLike("%" + codeName + "%");
@@ -84,7 +89,7 @@ public class ViewComCodeCfgServiceImpl implements ViewComCodeCfgService {
                         comCodeMapper.updateByPrimaryKeySelective(comCode);
                         break;
                     case CommUtil.MODIFY_TYPE_DELETE:
-                        comCodeMapper.deleteByPrimaryKey(comCode);
+                        comCodeMapper.deleteByPrimaryKey(comCode.getCodeId());
                         break;
                     default:
                         break;

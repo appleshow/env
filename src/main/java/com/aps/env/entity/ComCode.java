@@ -6,7 +6,11 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class ComCode extends ComCodeKey {
+public class ComCode {
+    private Integer codeId;
+
+    private String codeType;
+
     private String codeName;
 
     private String codeName1;
@@ -88,6 +92,22 @@ public class ComCode extends ComCodeKey {
     private Date utime;
 
     private Integer uperson;
+
+    public Integer getCodeId() {
+        return codeId;
+    }
+
+    public void setCodeId(Integer codeId) {
+        this.codeId = codeId;
+    }
+
+    public String getCodeType() {
+        return codeType;
+    }
+
+    public void setCodeType(String codeType) {
+        this.codeType = codeType == null ? null : codeType.trim();
+    }
 
     public String getCodeName() {
         return codeName;

@@ -122,22 +122,6 @@ public class ViewOrgFormCfgServiceImpl implements ViewOrgFormCfgService {
 
     /**
      * @param httpSession
-     * @param requestRefPar
-     * @param responseData
-     */
-    @Override
-    public void referCombCode(HttpSession httpSession, RequestRefPar requestRefPar, ResponseData responseData) {
-        List<?> comCodes;
-        ComCodeExample comCodeExample = new ComCodeExample();
-
-        comCodeExample.createCriteria().andCodeTypeEqualTo("C0001");
-        comCodes = comCodemapper.selectByExample(comCodeExample);
-
-        responseData.setData(comCodes);
-    }
-
-    /**
-     * @param httpSession
      * @param requestMdyPar
      * @param responseData
      */

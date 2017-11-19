@@ -18,116 +18,116 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="hbtypeitemcfg.jsp" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/hb/hbtypeitemcfg.jsp">
+      <file leaf-file-name="ViewComCodeCfgServiceImpl.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewComCodeCfgServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="319">
-              <caret line="188" column="0" lean-forward="false" selection-start-line="188" selection-start-column="0" selection-end-line="189" selection-end-column="0" />
-              <folding>
-                <element signature="n#style#0;n#select#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
-                <marker date="1511107518394" expanded="true" signature="9800:9806" ph="&amp;nbsp;" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ViewPageShowController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/controller/ViewPageShowController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="395">
-              <caret line="42" column="43" lean-forward="false" selection-start-line="42" selection-start-column="43" selection-end-line="42" selection-end-column="43" />
+            <state relative-caret-position="239">
+              <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ViewPageShowServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewPageShowServiceImpl.java">
+      <file leaf-file-name="ComForm.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/entity/ComForm.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="403">
-              <caret line="55" column="27" lean-forward="true" selection-start-line="55" selection-start-column="27" selection-end-line="55" selection-end-column="27" />
+            <state relative-caret-position="144">
+              <caret line="228" column="4" lean-forward="false" selection-start-line="228" selection-start-column="4" selection-end-line="228" selection-end-column="68" />
+              <folding>
+                <element signature="e#4841#4842#0" expanded="true" />
+                <element signature="e#4869#4870#0" expanded="true" />
+                <element signature="e#5149#5150#0" expanded="true" />
+                <element signature="e#5178#5179#0" expanded="true" />
+                <element signature="e#5324#5325#0" expanded="true" />
+                <element signature="e#5354#5355#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JsonUtil.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/comm/JsonUtil.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="266">
+              <caret line="142" column="59" lean-forward="true" selection-start-line="142" selection-start-column="59" selection-end-line="142" selection-end-column="59" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HbTypeItem.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/entity/HbTypeItem.java">
+      <file leaf-file-name="ComCode.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/entity/ComCode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="18" column="32" lean-forward="false" selection-start-line="18" selection-start-column="23" selection-end-line="18" selection-end-column="32" />
+            <state relative-caret-position="320">
+              <caret line="420" column="0" lean-forward="true" selection-start-line="420" selection-start-column="0" selection-end-line="420" selection-end-column="0" />
+              <folding>
+                <element signature="e#1652#1653#0" expanded="true" />
+                <element signature="e#1681#1682#0" expanded="true" />
+                <element signature="e#8667#8668#0" expanded="true" />
+                <element signature="e#8695#8696#0" expanded="true" />
+                <element signature="e#9018#9019#0" expanded="true" />
+                <element signature="e#9046#9047#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ViewOrgFormCfgController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/controller/ViewOrgFormCfgController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="219">
+              <caret line="131" column="0" lean-forward="true" selection-start-line="131" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ViewHbTypeItemCfgService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewHbTypeItemCfgService.java">
+      <file leaf-file-name="ViewOrgFormCfgService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewOrgFormCfgService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="17" column="20" lean-forward="true" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ViewHbTypeItemCfgServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewHbTypeItemCfgServiceImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="589">
-              <caret line="31" column="77" lean-forward="false" selection-start-line="31" selection-start-column="53" selection-end-line="31" selection-end-column="77" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ViewHbTypeItemCfgController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/controller/ViewHbTypeItemCfgController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="199">
-              <caret line="28" column="45" lean-forward="false" selection-start-line="28" selection-start-column="25" selection-end-line="28" selection-end-column="45" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ViewComCodeCfgController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/controller/ViewComCodeCfgController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="470">
-              <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+            <state relative-caret-position="190">
+              <caret line="19" column="22" lean-forward="true" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StringUtil.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/comm/StringUtil.java">
+      <file leaf-file-name="ViewOrgFormCfgServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewOrgFormCfgServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="775">
-              <caret line="276" column="0" lean-forward="false" selection-start-line="276" selection-start-column="0" selection-end-line="276" selection-end-column="0" />
-              <folding>
-                <element signature="e#7467#7468#0" expanded="true" />
-                <element signature="e#7507#7508#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="30">
+              <caret line="120" column="5" lean-forward="false" selection-start-line="120" selection-start-column="5" selection-end-line="120" selection-end-column="5" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="hbtypecfg.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/hb/hbtypecfg.jsp">
+      <file leaf-file-name="orgpagecfg.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/system/orgpagecfg.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="494">
-              <caret line="146" column="4" lean-forward="false" selection-start-line="146" selection-start-column="4" selection-end-line="147" selection-end-column="0" />
-              <folding>
-                <marker date="1511102455482" expanded="true" signature="6435:6441" ph="&amp;nbsp;" />
-              </folding>
+            <state relative-caret-position="660">
+              <caret line="1448" column="4" lean-forward="false" selection-start-line="1448" selection-start-column="3" selection-end-line="1448" selection-end-column="4" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RequestRefPar.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/comm/RequestRefPar.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pagecfg.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/system/pagecfg.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="246">
+              <caret line="105" column="64" lean-forward="false" selection-start-line="105" selection-start-column="19" selection-end-line="105" selection-end-column="64" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -146,11 +146,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>mon</find>
-      <find>map</find>
-      <find>username</find>
-      <find>drawVerification</find>
-      <find>main.</find>
       <find>beyond-link</find>
       <find>.</find>
       <find>reload</find>
@@ -176,6 +171,11 @@
       <find>referControls</find>
       <find>enttype</find>
       <find>./</find>
+      <find>refcom</find>
+      <find>comCode</find>
+      <find>formctldata</find>
+      <find>referCombCode</find>
+      <find>C001</find>
     </findStrings>
     <replaceStrings>
       <replace>src=&quot;${ctx}</replace>
@@ -200,12 +200,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/entity/HbDataMode.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/entity/HbDataRecord.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/entity/HbNode.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/entity/HbType.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/entity/HbTypeitem.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/hb/hbdatacur.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/hb/hbdatahis.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/hb/hbdatastatistics.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/hb/hbnodeaccess.jsp" />
@@ -213,7 +207,6 @@
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/hb/hbnodemap.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/hb/hbnodstatus.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/hb/hbdatacontrast.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/entity/ComCode.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/aps/env/entity/ComForm.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/aps/env/entity/ComFormRights.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/aps/env/entity/ComMenu.java" />
@@ -235,22 +228,29 @@
         <option value="$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewOrgCfgServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/system/pageshow.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/main.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewOrgFormCfgServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/aps/env/controller/ViewMainController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewFormCfgServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewComCodeCfgServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewHbTypeCfgService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewHbTypeCfgServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/aps/env/controller/ViewHbTypeCfgController.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/system/comcodecfg.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/hb/hbtypecfg.jsp" />
-        <option value="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewHbTypeItemCfgService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/aps/env/comm/StringUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewHbTypeItemCfgServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/aps/env/controller/ViewHbTypeItemCfgController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewPageShowServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/hb/hbtypeitemcfg.jsp" />
+        <option value="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewFormCfgServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewFormCfgService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/controller/ViewFormcfgServiceController.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/system/comcodecfg.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewComCodeCfgServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/system/pagecfg.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/entity/ComCode.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewOrgFormCfgService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewOrgFormCfgServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/controller/ViewOrgFormCfgController.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/system/orgpagecfg.jsp" />
       </list>
     </option>
   </component>
@@ -328,7 +328,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
+      <pane id="Scope" />
+      <pane id="AndroidView" />
       <pane id="PackagesPane">
         <subPane>
           <expand>
@@ -366,13 +367,23 @@
               <item name="com" type="1f31426a:PackageElementNode" />
               <item name="aps" type="1f31426a:PackageElementNode" />
               <item name="env" type="1f31426a:PackageElementNode" />
+              <item name="entity" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="env" type="58d84e3e:PackageViewProjectNode" />
+              <item name="com" type="1f31426a:PackageElementNode" />
+              <item name="aps" type="1f31426a:PackageElementNode" />
+              <item name="env" type="1f31426a:PackageElementNode" />
               <item name="service" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="env" type="58d84e3e:PackageViewProjectNode" />
+              <item name="mapper" type="1f31426a:PackageElementNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -483,7 +494,7 @@
         </subPane>
         <option name="show-excluded-files" value="false" />
       </pane>
-      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -492,7 +503,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="SearchEverywhereHistoryKey" value="hbtypeitem&#9;PSI&#9;JAVA://com.aps.env.entity.HbTypeItem&#10;referAllForms&#9;null&#9;null&#10;referFormCtlType&#9;null&#9;null&#10;modifyOrgForm&#9;null&#9;null&#10;comcode&#9;PSI&#9;JAVA://com.aps.env.entity.ComCode&#10;comformright&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/java/com/aps/env/entity/ComFormRights.java&#10;comcodemapp&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/resources/mapper/ComCodeMapper.xml&#10;stringu&#9;PSI&#9;JAVA://com.aps.env.comm.StringUtil&#10;modifyPageShow&#9;null&#9;null&#10;compersonorg&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/resources/mapper/ComPersonOrgMapper.xml&#10;compersonmapp&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/resources/mapper/ComPersonMapper.xml&#10;comp&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/resources/mapper/ComPersonMapper.xml&#10;comperson&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/java/com/aps/env/entity/ComPerson.java&#10;compersonma&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/resources/mapper/ComPersonMapper.xml&#10;main&#9;PSI&#9;JAVA://com.aps.env.controller.ViewMainController&#10;ComPersonOrgMapper&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/resources/mapper/ComPersonOrgMapper.xml&#10;compersonor&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/resources/mapper/ComPersonOrgMapper.xml&#10;modifyPerson&#9;null&#9;null&#10;vieworgc&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/java/com/aps/env/service/ViewOrgCfgServiceImpl.java&#10;referOrg&#9;null&#9;null&#10;referMenuTree&#9;null&#9;null&#10;referPageShow&#9;null&#9;null&#10;comformmapper&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/resources/mapper/ComFormMapper.xml&#10;comformrightmapp&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/resources/mapper/ComFormRightsMapper.xml&#10;comformrightsmapp&#9;PSI&#9;JAVA://com.aps.env.dao.ComFormRightsMapper&#10;formrights&#9;PSI&#9;JAVA://com.aps.env.entity.ComFormRights&#10;comorgfor&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/resources/mapper/ComOrgFormMapper.xml&#10;comorgmapp&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/resources/mapper/ComOrgMapper.xml&#10;comorgformmapp&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/resources/mapper/ComOrgFormMapper.xml&#10;comorgform&#9;PSI&#9;JAVA://com.aps.env.entity.ComOrgForm&#10;comorgformrightsm&#9;PSI&#9;JAVA://com.aps.env.dao.ComOrgFormRightsMapper&#10;comorgformright&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/java/com/aps/env/entity/ComOrgFormRights.java&#10;comformrights&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/resources/mapper/ComFormRightsMapper.xml&#10;comformmapp&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/resources/mapper/ComFormMapper.xml&#10;comorgformrigh&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/java/com/aps/env/entity/ComOrgFormRights.java&#10;comorgmapper&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/resources/mapper/ComOrgMapper.xml&#10;comorgfo&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/resources/mapper/ComOrgFormMapper.xml&#10;comcodem&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/resources/mapper/ComCodeMapper.xml&#10;commenu&#9;PSI&#9;JAVA://com.aps.env.entity.ComMenu&#10;comorgformrightmapp&#9;PSI&#9;JAVA://com.aps.env.dao.ComOrgFormRightsMapper&#10;comOrgFormRightsMapper&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/resources/mapper/src/main/resources/ComOrgFormRightsMapper.xml&#10;PageInterceptor&#9;PSI&#9;JAVA://com.github.pagehelper.PageInterceptor&#10;PageHelper&#9;PSI&#9;JAVA://com.github.pagehelper.PageHelper&#10;SqlSessionFactoryb&#9;PSI&#9;JAVA://org.mybatis.spring.SqlSessionFactoryBean&#10;sqlsessionf&#9;PSI&#9;JAVA://org.apache.ibatis.session.SqlSessionFactory" />
+    <property name="SearchEverywhereHistoryKey" value="referCombCode&#9;null&#9;null&#10;hbtypeitem&#9;PSI&#9;JAVA://com.aps.env.entity.HbTypeItem&#10;referAllForms&#9;null&#9;null&#10;referFormCtlType&#9;null&#9;null&#10;modifyOrgForm&#9;null&#9;null&#10;comcode&#9;PSI&#9;JAVA://com.aps.env.entity.ComCode&#10;comformright&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/java/com/aps/env/entity/ComFormRights.java&#10;comcodemapp&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/resources/mapper/ComCodeMapper.xml&#10;stringu&#9;PSI&#9;JAVA://com.aps.env.comm.StringUtil&#10;modifyPageShow&#9;null&#9;null&#10;compersonorg&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/resources/mapper/ComPersonOrgMapper.xml&#10;compersonmapp&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/resources/mapper/ComPersonMapper.xml&#10;comp&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/resources/mapper/ComPersonMapper.xml&#10;comperson&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/java/com/aps/env/entity/ComPerson.java&#10;compersonma&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/resources/mapper/ComPersonMapper.xml&#10;main&#9;PSI&#9;JAVA://com.aps.env.controller.ViewMainController&#10;ComPersonOrgMapper&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/resources/mapper/ComPersonOrgMapper.xml&#10;compersonor&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/resources/mapper/ComPersonOrgMapper.xml&#10;modifyPerson&#9;null&#9;null&#10;vieworgc&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/java/com/aps/env/service/ViewOrgCfgServiceImpl.java&#10;referOrg&#9;null&#9;null&#10;referMenuTree&#9;null&#9;null&#10;referPageShow&#9;null&#9;null&#10;comformmapper&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/resources/mapper/ComFormMapper.xml&#10;comformrightmapp&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/resources/mapper/ComFormRightsMapper.xml&#10;comformrightsmapp&#9;PSI&#9;JAVA://com.aps.env.dao.ComFormRightsMapper&#10;formrights&#9;PSI&#9;JAVA://com.aps.env.entity.ComFormRights&#10;comorgfor&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/resources/mapper/ComOrgFormMapper.xml&#10;comorgmapp&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/resources/mapper/ComOrgMapper.xml&#10;comorgformmapp&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/resources/mapper/ComOrgFormMapper.xml&#10;comorgform&#9;PSI&#9;JAVA://com.aps.env.entity.ComOrgForm&#10;comorgformrightsm&#9;PSI&#9;JAVA://com.aps.env.dao.ComOrgFormRightsMapper&#10;comorgformright&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/java/com/aps/env/entity/ComOrgFormRights.java&#10;comformrights&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/resources/mapper/ComFormRightsMapper.xml&#10;comformmapp&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/resources/mapper/ComFormMapper.xml&#10;comorgformrigh&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/java/com/aps/env/entity/ComOrgFormRights.java&#10;comorgmapper&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/resources/mapper/ComOrgMapper.xml&#10;comorgfo&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/resources/mapper/ComOrgFormMapper.xml&#10;comcodem&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/resources/mapper/ComCodeMapper.xml&#10;commenu&#9;PSI&#9;JAVA://com.aps.env.entity.ComMenu&#10;comorgformrightmapp&#9;PSI&#9;JAVA://com.aps.env.dao.ComOrgFormRightsMapper&#10;comOrgFormRightsMapper&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/resources/mapper/src/main/resources/ComOrgFormRightsMapper.xml&#10;PageInterceptor&#9;PSI&#9;JAVA://com.github.pagehelper.PageInterceptor&#10;PageHelper&#9;PSI&#9;JAVA://com.github.pagehelper.PageHelper&#10;SqlSessionFactoryb&#9;PSI&#9;JAVA://org.mybatis.spring.SqlSessionFactoryBean&#10;sqlsessionf&#9;PSI&#9;JAVA://org.apache.ibatis.session.SqlSessionFactory" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -741,11 +752,12 @@
       <workItem from="1510900314131" duration="9203000" />
       <workItem from="1510990054092" duration="13488000" />
       <workItem from="1511060644022" duration="10332000" />
+      <workItem from="1511108235631" duration="4326000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="108468000" />
+    <option name="totallyTimeSpent" value="112794000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -802,51 +814,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="29" />
+      <option name="time" value="35" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/controller/ViewEntTypeCfgController.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/comm/RequestMdyPar.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="395">
-          <caret line="28" column="14" lean-forward="true" selection-start-line="28" selection-start-column="14" selection-end-line="28" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/controller/LoginController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="37" column="55" lean-forward="true" selection-start-line="37" selection-start-column="55" selection-end-line="37" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../../../../99Program/Java1.8/JDK/src.zip!/java/lang/String.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
-          <caret line="1946" column="6" lean-forward="true" selection-start-line="1946" selection-start-column="6" selection-end-line="1946" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../../../../99Program/Java1.8/JDK/src.zip!/java/util/function/BiConsumer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="52" column="9" lean-forward="false" selection-start-line="52" selection-start-column="9" selection-end-line="52" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/EcmaScript.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="132" column="0" lean-forward="false" selection-start-line="132" selection-start-column="0" selection-end-line="132" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/assets-view/comm/commDataTables.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="699">
@@ -869,14 +841,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewCodeCfgServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="84" column="51" lean-forward="false" selection-start-line="84" selection-start-column="51" selection-end-line="84" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewCodeCfgServiceImpl.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewEntTypeCfgServiceImpl.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewMenuCfgServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -913,13 +878,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/../../../../99Program/apache-maven-3.3.9/repository/org/springframework/spring-aop/4.3.12.RELEASE/spring-aop-4.3.12.RELEASE.jar!/org/springframework/aop/support/AopUtils.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="162" column="57" lean-forward="true" selection-start-line="162" selection-start-column="57" selection-end-line="162" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/system/pageshow.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="332">
@@ -932,67 +890,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="718">
           <caret line="70" column="7" lean-forward="true" selection-start-line="70" selection-start-column="7" selection-end-line="70" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/ComCodeMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="19" column="70" lean-forward="true" selection-start-line="19" selection-start-column="70" selection-end-line="19" selection-end-column="70" />
-          <folding>
-            <marker date="1510143779178" expanded="true" signature="6711:6881" ph="select from com_code" />
-            <marker date="1510143779178" expanded="true" signature="6980:7104" ph="delete from " />
-            <marker date="1510143779178" expanded="true" signature="7204:7224" ph="delete from " />
-            <marker date="1510143779178" expanded="true" signature="7401:9356" ph="insert into com_code... " />
-            <marker date="1510143779178" expanded="true" signature="16194:16223" ph="select count... com_code" />
-            <marker date="1510143779178" expanded="true" signature="21326:23656" ph="update com_c... " />
-            <marker date="1510143779178" expanded="true" signature="23864:27939" ph="update com_c... " />
-            <marker date="1510143779178" expanded="true" signature="28035:30077" ph="update com_c... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/entity/ComCode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="551">
-          <caret line="54" column="0" lean-forward="true" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/system/codecfg.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="101" column="30" lean-forward="true" selection-start-line="101" selection-start-column="30" selection-end-line="101" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/controller/ViewOrgFormCfgController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="143" column="41" lean-forward="true" selection-start-line="143" selection-start-column="41" selection-end-line="143" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewOrgFormCfgService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="452">
-          <caret line="32" column="16" lean-forward="false" selection-start-line="32" selection-start-column="16" selection-end-line="32" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewOrgFormCfgServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="556">
-          <caret line="165" column="30" lean-forward="true" selection-start-line="165" selection-start-column="30" selection-end-line="165" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/system/codecfg.jsp" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/controller/ViewMainController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="275">
@@ -1001,45 +902,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/controller/ViewFormcfgServiceController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="107" column="43" lean-forward="false" selection-start-line="107" selection-start-column="43" selection-end-line="107" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewFormCfgServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="712">
-          <caret line="274" column="1" lean-forward="true" selection-start-line="274" selection-start-column="1" selection-end-line="274" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewComCodeCfgService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="20" column="14" lean-forward="true" selection-start-line="20" selection-start-column="14" selection-end-line="20" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewComCodeCfgServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="79" column="15" lean-forward="true" selection-start-line="79" selection-start-column="15" selection-end-line="79" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewHbTypeCfgServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="28" column="69" lean-forward="false" selection-start-line="28" selection-start-column="49" selection-end-line="28" selection-end-column="69" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1072,7 +938,7 @@
         <state relative-caret-position="361">
           <caret line="19" column="37" lean-forward="false" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="37" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1087,22 +953,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/system/comcodecfg.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="177" column="54" lean-forward="false" selection-start-line="177" selection-start-column="3" selection-end-line="177" selection-end-column="54" />
-          <folding>
-            <marker date="1511102101061" expanded="true" signature="9791:9797" ph="&amp;nbsp;" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/controller/ViewHbTypeCfgController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="28" column="41" lean-forward="false" selection-start-line="28" selection-start-column="25" selection-end-line="28" selection-end-column="41" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1111,15 +967,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="361">
           <caret line="23" column="50" lean-forward="false" selection-start-line="23" selection-start-column="50" selection-end-line="23" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/generatorConfig.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="40" column="25" lean-forward="true" selection-start-line="40" selection-start-column="25" selection-end-line="40" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1143,7 +990,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/hb/hbtypecfg.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
+        <state relative-caret-position="2774">
           <caret line="146" column="4" lean-forward="false" selection-start-line="146" selection-start-column="4" selection-end-line="147" selection-end-column="0" />
           <folding>
             <marker date="1511102455482" expanded="true" signature="6435:6441" ph="&amp;nbsp;" />
@@ -1154,20 +1001,20 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewHbTypeItemCfgService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
-          <caret line="17" column="20" lean-forward="true" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
+          <caret line="17" column="20" lean-forward="false" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/comm/StringUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="775">
+        <state relative-caret-position="4864">
           <caret line="276" column="0" lean-forward="false" selection-start-line="276" selection-start-column="0" selection-end-line="276" selection-end-column="0" />
           <folding>
-            <element signature="e#7467#7468#0" expanded="true" />
-            <element signature="e#7507#7508#0" expanded="true" />
+            <element signature="e#7467#7468#0" expanded="false" />
+            <element signature="e#7507#7508#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1177,14 +1024,14 @@
         <state relative-caret-position="589">
           <caret line="31" column="77" lean-forward="false" selection-start-line="31" selection-start-column="53" selection-end-line="31" selection-end-column="77" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/controller/ViewComCodeCfgController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="470">
+        <state relative-caret-position="570">
           <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
           <folding />
         </state>
@@ -1192,17 +1039,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/controller/ViewHbTypeItemCfgController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
+        <state relative-caret-position="532">
           <caret line="28" column="45" lean-forward="false" selection-start-line="28" selection-start-column="25" selection-end-line="28" selection-end-column="45" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/controller/ViewPageShowController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="395">
+        <state relative-caret-position="627">
           <caret line="42" column="43" lean-forward="false" selection-start-line="42" selection-start-column="43" selection-end-line="42" selection-end-column="43" />
           <folding />
         </state>
@@ -1210,8 +1057,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewPageShowServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
-          <caret line="55" column="27" lean-forward="true" selection-start-line="55" selection-start-column="27" selection-end-line="55" selection-end-column="27" />
+        <state relative-caret-position="760">
+          <caret line="55" column="27" lean-forward="false" selection-start-line="55" selection-start-column="27" selection-end-line="55" selection-end-column="27" />
           <folding />
         </state>
       </provider>
@@ -1226,12 +1073,171 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/hb/hbtypeitemcfg.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="188" column="0" lean-forward="false" selection-start-line="188" selection-start-column="0" selection-end-line="189" selection-end-column="0" />
+        <state relative-caret-position="129">
+          <caret line="178" column="9" lean-forward="true" selection-start-line="178" selection-start-column="9" selection-end-line="178" selection-end-column="9" />
           <folding>
-            <element signature="n#style#0;n#select#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
             <marker date="1511107518394" expanded="true" signature="9800:9806" ph="&amp;nbsp;" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/ComCodeMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="281">
+          <caret line="127" column="2" lean-forward="false" selection-start-line="127" selection-start-column="2" selection-end-line="127" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/generatorConfig.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="20" column="47" lean-forward="true" selection-start-line="20" selection-start-column="47" selection-end-line="20" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewFormCfgServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="26" column="52" lean-forward="true" selection-start-line="26" selection-start-column="52" selection-end-line="26" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewFormCfgService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="26" column="106" lean-forward="false" selection-start-line="26" selection-start-column="106" selection-end-line="26" selection-end-column="106" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/controller/ViewFormcfgServiceController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="661">
+          <caret line="110" column="40" lean-forward="true" selection-start-line="110" selection-start-column="40" selection-end-line="110" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewComCodeCfgService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="20" column="9" lean-forward="false" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../../../99Program/apache-maven-3.3.9/repository/org/springframework/spring-aop/4.3.12.RELEASE/spring-aop-4.3.12.RELEASE.jar!/org/springframework/aop/support/AopUtils.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2667">
+          <caret line="179" column="0" lean-forward="false" selection-start-line="179" selection-start-column="0" selection-end-line="179" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/system/comcodecfg.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="817">
+          <caret line="211" column="37" lean-forward="false" selection-start-line="211" selection-start-column="29" selection-end-line="211" selection-end-column="37" />
+          <folding>
+            <marker date="1511109886163" expanded="true" signature="9788:9794" ph="&amp;nbsp;" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/comm/RequestRefPar.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/comm/JsonUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="142" column="59" lean-forward="true" selection-start-line="142" selection-start-column="59" selection-end-line="142" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/entity/ComForm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="228" column="4" lean-forward="false" selection-start-line="228" selection-start-column="4" selection-end-line="228" selection-end-column="68" />
+          <folding>
+            <element signature="e#4841#4842#0" expanded="true" />
+            <element signature="e#4869#4870#0" expanded="true" />
+            <element signature="e#5149#5150#0" expanded="true" />
+            <element signature="e#5178#5179#0" expanded="true" />
+            <element signature="e#5324#5325#0" expanded="true" />
+            <element signature="e#5354#5355#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/entity/ComCode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="420" column="0" lean-forward="true" selection-start-line="420" selection-start-column="0" selection-end-line="420" selection-end-column="0" />
+          <folding>
+            <element signature="e#1652#1653#0" expanded="true" />
+            <element signature="e#1681#1682#0" expanded="true" />
+            <element signature="e#8667#8668#0" expanded="true" />
+            <element signature="e#8695#8696#0" expanded="true" />
+            <element signature="e#9018#9019#0" expanded="true" />
+            <element signature="e#9046#9047#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewOrgFormCfgService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="19" column="22" lean-forward="true" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewOrgFormCfgServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="120" column="5" lean-forward="false" selection-start-line="120" selection-start-column="5" selection-end-line="120" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/controller/ViewOrgFormCfgController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="219">
+          <caret line="131" column="0" lean-forward="true" selection-start-line="131" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/system/pagecfg.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="246">
+          <caret line="105" column="64" lean-forward="false" selection-start-line="105" selection-start-column="19" selection-end-line="105" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/system/orgpagecfg.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="660">
+          <caret line="1448" column="4" lean-forward="false" selection-start-line="1448" selection-start-column="3" selection-end-line="1448" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewComCodeCfgServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

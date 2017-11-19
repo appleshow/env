@@ -25,6 +25,4 @@ public interface ViewFormCfgService {
     void referFormRight(HttpSession httpSession, RequestRefPar requestRefPar, ResponseData responseData);
 
     void modifyFormRight(HttpSession httpSession, RequestMdyPar requestMdyPar, ResponseData responseData);
-
-    void referFormCtlType(HttpSession httpSession, RequestRefPar requestRefPar, ResponseData responseData);
 }

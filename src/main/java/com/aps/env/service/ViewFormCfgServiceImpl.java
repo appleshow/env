@@ -254,22 +254,4 @@ public class ViewFormCfgServiceImpl implements ViewFormCfgService {
             responseData.setCode(0);
         }
     }
-
-    /**
-     * @param httpSession
-     * @param requestRefPar
-     * @param responseData
-     */
-    @Override
-    public void referFormCtlType(HttpSession httpSession, RequestRefPar requestRefPar, ResponseData responseData) {
-        List<?> comCodes;
-        List<String> codeTypes = new ArrayList<String>();
-        ComCodeExample comCodeExample = new ComCodeExample();
-
-        codeTypes.add("1");
-        comCodeExample.createCriteria().andCodeTypeIn(codeTypes);
-        comCodes = comCodeMapper.selectByExample(comCodeExample);
-
-        responseData.setData(comCodes);
-    }
 }

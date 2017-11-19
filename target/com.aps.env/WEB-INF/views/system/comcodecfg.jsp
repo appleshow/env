@@ -195,7 +195,7 @@
 
                 if (type === 'display') {
                     $.each(comCodeEnterprise, function (index, value) {
-                        if (value["codeValue"] === data) {
+                        if (value["codeId"] === data) {
                             fixData = value["codeName"];
                         }
                     });

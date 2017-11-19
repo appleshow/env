@@ -1,6 +1,7 @@
 package com.aps.env.controller;
 
 import com.aps.env.comm.*;
+import com.aps.env.service.ViewComCodeCfgService;
 import com.aps.env.service.ViewOrgFormCfgService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,6 +28,8 @@ import javax.servlet.http.HttpSession;
 public class ViewOrgFormCfgController extends ExceptionController {
     @Resource(name = "viewOrgFormCfgServiceImpl")
     private ViewOrgFormCfgService viewOrgFormCfgService;
+    @Resource(name = "viewComCodeCfgServiceImpl")
+    private ViewComCodeCfgService viewComCodeCfgService;
     private final int formId = 6;
 
     /**
@@ -124,7 +127,7 @@ public class ViewOrgFormCfgController extends ExceptionController {
         ResponseData responseData = new ResponseData();
 
         if (CommUtil.isPermissoned(httpSession, formId, "referCombCode", responseData)) {
-            viewOrgFormCfgService.referCombCode(httpSession, requestRefPar, responseData);
+            viewComCodeCfgService.refComCode(httpSession, requestRefPar, responseData);
         }
 
         return responseData;

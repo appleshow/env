@@ -1,6 +1,7 @@
 package com.aps.env.controller;
 
 import com.aps.env.comm.*;
+import com.aps.env.service.ViewComCodeCfgService;
 import com.aps.env.service.ViewFormCfgService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +25,8 @@ import javax.servlet.http.HttpSession;
 public class ViewFormcfgServiceController extends ExceptionController {
     @Resource(name = "viewFormCfgServiceImpl")
     private ViewFormCfgService viewFormCfgService;
+    @Resource(name = "viewComCodeCfgServiceImpl")
+    private ViewComCodeCfgService viewComCodeCfgService;
     private final int formId = 4;
 
     /**
@@ -105,7 +108,7 @@ public class ViewFormcfgServiceController extends ExceptionController {
         ResponseData responseData = new ResponseData();
 
         if (CommUtil.isPermissoned(httpSession, formId, "referFormCtlType", responseData)) {
-            viewFormCfgService.referFormCtlType(httpSession, requestRefPar, responseData);
+            viewComCodeCfgService.refComCode(httpSession, requestRefPar, responseData);
         }
 
         return responseData;

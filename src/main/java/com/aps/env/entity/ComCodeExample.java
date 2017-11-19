@@ -106,6 +106,66 @@ public class ComCodeExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
+        public Criteria andCodeIdIsNull() {
+            addCriterion("CODE_ID is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeIdIsNotNull() {
+            addCriterion("CODE_ID is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeIdEqualTo(Integer value) {
+            addCriterion("CODE_ID =", value, "codeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeIdNotEqualTo(Integer value) {
+            addCriterion("CODE_ID <>", value, "codeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeIdGreaterThan(Integer value) {
+            addCriterion("CODE_ID >", value, "codeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("CODE_ID >=", value, "codeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeIdLessThan(Integer value) {
+            addCriterion("CODE_ID <", value, "codeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeIdLessThanOrEqualTo(Integer value) {
+            addCriterion("CODE_ID <=", value, "codeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeIdIn(List<Integer> values) {
+            addCriterion("CODE_ID in", values, "codeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeIdNotIn(List<Integer> values) {
+            addCriterion("CODE_ID not in", values, "codeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeIdBetween(Integer value1, Integer value2) {
+            addCriterion("CODE_ID between", value1, value2, "codeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("CODE_ID not between", value1, value2, "codeId");
+            return (Criteria) this;
+        }
+
         public Criteria andCodeTypeIsNull() {
             addCriterion("CODE_TYPE is null");
             return (Criteria) this;
@@ -173,76 +233,6 @@ public class ComCodeExample {
 
         public Criteria andCodeTypeNotBetween(String value1, String value2) {
             addCriterion("CODE_TYPE not between", value1, value2, "codeType");
-            return (Criteria) this;
-        }
-
-        public Criteria andCodeValueIsNull() {
-            addCriterion("CODE_VALUE is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCodeValueIsNotNull() {
-            addCriterion("CODE_VALUE is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCodeValueEqualTo(String value) {
-            addCriterion("CODE_VALUE =", value, "codeValue");
-            return (Criteria) this;
-        }
-
-        public Criteria andCodeValueNotEqualTo(String value) {
-            addCriterion("CODE_VALUE <>", value, "codeValue");
-            return (Criteria) this;
-        }
-
-        public Criteria andCodeValueGreaterThan(String value) {
-            addCriterion("CODE_VALUE >", value, "codeValue");
-            return (Criteria) this;
-        }
-
-        public Criteria andCodeValueGreaterThanOrEqualTo(String value) {
-            addCriterion("CODE_VALUE >=", value, "codeValue");
-            return (Criteria) this;
-        }
-
-        public Criteria andCodeValueLessThan(String value) {
-            addCriterion("CODE_VALUE <", value, "codeValue");
-            return (Criteria) this;
-        }
-
-        public Criteria andCodeValueLessThanOrEqualTo(String value) {
-            addCriterion("CODE_VALUE <=", value, "codeValue");
-            return (Criteria) this;
-        }
-
-        public Criteria andCodeValueLike(String value) {
-            addCriterion("CODE_VALUE like", value, "codeValue");
-            return (Criteria) this;
-        }
-
-        public Criteria andCodeValueNotLike(String value) {
-            addCriterion("CODE_VALUE not like", value, "codeValue");
-            return (Criteria) this;
-        }
-
-        public Criteria andCodeValueIn(List<String> values) {
-            addCriterion("CODE_VALUE in", values, "codeValue");
-            return (Criteria) this;
-        }
-
-        public Criteria andCodeValueNotIn(List<String> values) {
-            addCriterion("CODE_VALUE not in", values, "codeValue");
-            return (Criteria) this;
-        }
-
-        public Criteria andCodeValueBetween(String value1, String value2) {
-            addCriterion("CODE_VALUE between", value1, value2, "codeValue");
-            return (Criteria) this;
-        }
-
-        public Criteria andCodeValueNotBetween(String value1, String value2) {
-            addCriterion("CODE_VALUE not between", value1, value2, "codeValue");
             return (Criteria) this;
         }
 

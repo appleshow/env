@@ -103,13 +103,13 @@
 
         // 取得FORM_CTL数据
         var url = "${ctx}/viewFormConfig/referFormCtlType";
-        var inf = {};
+        var inf = {codeType: '1', pageNumber: 1, pageSize: 2000,};
         $.ajax({
             async: false,
             type: "POST",
             url: url,
             cache: false,
-            data: ServerRequestPar(0, inf),
+            data: ServerRequestPar(1, inf),
             dataType: "json",
             headers: {
                 'Content-Type': 'application/json;charset=utf-8'
@@ -342,7 +342,7 @@
                 required: true,
                 editable: false,
                 panelHeight: 'auto',
-                valueField: 'codeValue',
+                valueField: 'codeId',
                 textField: 'codeName',
                 data: formctldata
             }
@@ -629,7 +629,7 @@
      */
     function fmtFormCtl(value) {
         for (var icnt = 0; icnt < formctldata.length; icnt++) {
-            if (formctldata[icnt].codeValue == value)
+            if (formctldata[icnt].codeId == value)
                 return formctldata[icnt].codeName;
         }
         return value;

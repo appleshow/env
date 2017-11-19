@@ -28,8 +28,6 @@ public interface ViewOrgFormCfgService {
 
     void referOrgFormRights(HttpSession httpSession, RequestRefPar requestRefPar, ResponseData responseData);
 
-    void referCombCode(HttpSession httpSession, RequestRefPar requestRefPar, ResponseData responseData);
-
     void modifyOrgForm(HttpSession httpSession, RequestMdyPar requestMdyPar, ResponseData responseData);
 
     void modifyOrgFormRights(HttpSession httpSession, RequestMdyPar requestMdyPar, ResponseData responseData);
