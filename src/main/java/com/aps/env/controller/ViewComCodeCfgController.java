@@ -34,15 +34,8 @@ public class ViewComCodeCfgController extends ExceptionController {
     @ResponseBody
     public ResponseData refComCode(HttpSession httpSession, @RequestBody RequestRefPar requestRefPar) {
         ResponseData responseData = new ResponseData();
-        int formId = 0;
-        String codeType = requestRefPar.getStringPar("codeType");
 
-        if (!StringUtil.isNullOrEmpty(codeType)) {
-            formId = Integer.parseInt(codeType);
-        }
-        if (CommUtil.isPermissoned(httpSession, formId, "refComCode", responseData)) {
-            viewComCodeCfgService.refComCode(httpSession, requestRefPar, responseData);
-        }
+        viewComCodeCfgService.refComCode(httpSession, requestRefPar, responseData);
 
         return responseData;
     }

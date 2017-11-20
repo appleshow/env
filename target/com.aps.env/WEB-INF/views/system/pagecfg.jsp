@@ -135,7 +135,7 @@
         // 初始化Grid列
         // grid.setHeadCol(rowindex,colid, colname, colwidth, valign,irowspan,icolspan, bsort, bfrozen, bresizable, osorter, ostyler, oedit,oformat,bprimery, bnecessary,binput, bhidden)
 
-        dgPage.setHeadCol(1, "formId", "ID", 40, "left", 0, 0, false, false, true, null, null, null, null, false, false, true, true);
+        dgPage.setHeadCol(1, "formId", "编码", 40, "left", 0, 0, false, false, true, null, null, null, null, false, false, true, false);
         dgPage.setHeadCol(1, "formName", "界面名称", 180, "left", 0, 0, false, false, true, null, null, {
             type: 'validatebox',
             options: {
@@ -145,7 +145,7 @@
         dgPage.setHeadCol(1, "prgroup", "界面组别", 60, "left", 0, 0, false, false, true, null, null, {
             type: 'validatebox'
         }, null, false, false, true, false);
-        dgPage.setHeadCol(1, "property0", "界面路径", 200, "left", 0, 0, false, false, true, null, null, {
+        dgPage.setHeadCol(1, "property0", "界面路径", 450, "left", 0, 0, false, false, true, null, null, {
             type: 'validatebox',
             options: {
                 required: true

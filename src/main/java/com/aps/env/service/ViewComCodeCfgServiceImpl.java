@@ -39,10 +39,7 @@ public class ViewComCodeCfgServiceImpl implements ViewComCodeCfgService {
 
         if (!StringUtil.isNullOrEmpty(codeType)) {
             if (codeType.indexOf(",") > 0) {
-                final List<String> codeTypes = Arrays.asList(codeType.split(","));
-                final List<String> types = new ArrayList<>();
-                codeTypes.stream().forEach(type -> types.add(type));
-                criteria.andCodeTypeIn(types);
+                criteria.andCodeTypeIn(Arrays.asList(codeType.split(",")));
             } else {
                 criteria.andCodeTypeEqualTo(codeType);
             }
@@ -50,7 +47,7 @@ public class ViewComCodeCfgServiceImpl implements ViewComCodeCfgService {
         if (!StringUtil.isNullOrEmpty(codeName)) {
             criteria.andCodeNameLike("%" + codeName + "%");
         }
-        comCodeExample.setOrderByClause("UTIME");
+        comCodeExample.setOrderByClause("CODE_TYPE,CODE_ID");
 
         PageHelper.startPage(requestRefPar.getIntegerPar("pageNumber"), requestRefPar.getIntegerPar("pageSize"));
         comCodes = comCodeMapper.selectByExample(comCodeExample);

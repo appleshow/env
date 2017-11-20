@@ -184,7 +184,9 @@
 
         tableComCode = new CommDataTables("#table-comcode", "#table-comcode-columns", ${pageId}, callError, pageShowDataUrl);
         tableComCode.serverInfo.referUrl = "${ctx}/viewComCodeConfig/refComCode";
-        tableComCode.serverInfo.referControls.push(ControlPar("real", "codeType", "${pageId}", ""));
+        if ('${pageId}' != '1') {
+            tableComCode.serverInfo.referControls.push(ControlPar("real", "codeType", "${pageId}", ""));
+        }
         tableComCode.serverInfo.referControls.push(ControlPar("text", "codeName", "", $("#codeName")));
         tableComCode.serverInfo.modifyUrl = "${ctx}/viewComCodeConfig/modifyComCode";
 

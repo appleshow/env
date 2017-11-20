@@ -2,6 +2,8 @@ package com.aps.env.controller;
 
 import com.aps.env.comm.JsonUtil;
 import com.aps.env.comm.ResponseData;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,6 +23,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Controller
 public abstract class ExceptionController {
+    private static final Logger LOG = LogManager.getLogger(ExceptionController.class);
 
     /**
      * @param request
@@ -32,6 +35,7 @@ public abstract class ExceptionController {
     public ResponseData exception(HttpServletRequest request, Exception e) {
         ResponseData responseData = new ResponseData();
 
+        LOG.error(e);
         responseData.setData(e);
 
         return responseData;

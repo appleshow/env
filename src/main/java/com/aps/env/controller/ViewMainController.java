@@ -81,25 +81,6 @@ public class ViewMainController extends ExceptionController {
             convertUrl.forEach((key, value) -> {
                 if (!key.equals("url")) {
                     modelAndView.addObject(key, value);
-                    if (key.equals("pageId")) {
-                        int pageId = Integer.parseInt(value);
-                        switch (pageId) {
-                            case 1:
-                                modelAndView.addObject("codeName", "代码名称");
-                                break;
-                            case 19:
-                                modelAndView.addObject("codeName", "企业分类名称");
-                                break;
-                            case 20:
-                                modelAndView.addObject("codeName", "设备厂商名称");
-                                break;
-                            case 21:
-                                modelAndView.addObject("codeName", "设备型号名称");
-                                break;
-                            default:
-                                break;
-                        }
-                    }
                 }
             });
 

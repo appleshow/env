@@ -229,7 +229,7 @@ function DataTablesFields(columnInfo) {
         var field = {};
 
         if (columnInfo[columnId].update === 1) {
-            field.label = '<font color="red">*</font> ' + columnInfo[columnId].name + ":";
+            field.label = '<span style="color: red;">*</span> ' + columnInfo[columnId].name + ":";
         } else {
             field.label = columnInfo[columnId].name + ":";
         }

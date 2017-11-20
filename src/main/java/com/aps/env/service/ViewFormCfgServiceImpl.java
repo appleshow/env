@@ -211,29 +211,29 @@ public class ViewFormCfgServiceImpl implements ViewFormCfgService {
 
                         break;
                     case CommUtil.MODIFY_TYPE_UPDATE:
+                        comFormRight.setUperson(personId);
+                        comFormRight.setUtime(now);
                         returnValue = comFormRightMapper.updateByPrimaryKeySelective(comFormRight);
+
                         if (returnValue > 0) {
                             ComOrgFormRights comOrgFormRights = new ComOrgFormRights();
+                            ComOrgFormRightsExample comOrgFormRightsExample = new ComOrgFormRightsExample();
 
-                            comOrgFormRights.setFormId(comFormRight.getFormId());
-                            comOrgFormRights.setRightId(comFormRight.getRightId());
                             comOrgFormRights.setRea(comFormRight.getRea());
                             comOrgFormRights.setR1(comFormRight.getR1());
                             comOrgFormRights.setR2(comFormRight.getR2());
                             comOrgFormRights.setR3(comFormRight.getR3());
                             comOrgFormRights.setUperson(comFormRight.getUperson());
                             comOrgFormRights.setUtime(comFormRight.getUtime());
-
-                            comOrgFormRightsMapper.updateByPrimaryKeySelective(comOrgFormRights);
+                            comOrgFormRightsExample.createCriteria().andFormIdEqualTo(comFormRight.getFormId()).andRightIdEqualTo(comFormRight.getRightId());
+                            comOrgFormRightsMapper.updateByExampleSelective(comOrgFormRights, comOrgFormRightsExample);
                         }
 
                         break;
                     case CommUtil.MODIFY_TYPE_DELETE:
-                        ComOrgFormRights comOrgFormRights = new ComOrgFormRights();
-
-                        comOrgFormRights.setFormId(comFormRight.getFormId());
-                        comOrgFormRights.setRightId(comFormRight.getRightId());
-                        comOrgFormRightsMapper.deleteByPrimaryKey(comOrgFormRights);
+                        ComOrgFormRightsExample comOrgFormRightsExample = new ComOrgFormRightsExample();
+                        comOrgFormRightsExample.createCriteria().andFormIdEqualTo(comFormRight.getFormId()).andRightIdEqualTo(comFormRight.getRightId());
+                        comOrgFormRightsMapper.deleteByExample(comOrgFormRightsExample);
 
                         comFormRightMapper.deleteByPrimaryKey(comFormRight);
 

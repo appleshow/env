@@ -253,22 +253,17 @@ public class StringUtil {
      * @return
      */
     public static Map<String, String> convertUrl(String url) {
-        int targetIndex = isNullOrEmpty(url) ? 0 : url.indexOf("?");
         final Map<String, String> convertResult = new HashMap<>();
+        final List<String> listPars = Arrays.asList(url.split("@"));
 
-        if (targetIndex > 0) {
-            final String parString = url.substring(targetIndex + 1);
-            final List<String> listPars = Arrays.asList(parString.split("&"));
-
-            convertResult.put("url", url.substring(0, targetIndex));
-            listPars.stream().forEach(par -> {
+        convertResult.put("url", listPars.get(0));
+        listPars.stream().forEach(par -> {
+            if (par.indexOf("=") > 0) {
                 List<String> pars = Arrays.asList(par.split("="));
-
                 convertResult.put(pars.get(0), pars.get(1));
-            });
-        } else {
-            convertResult.put("url", url);
-        }
+            }
+        });
+
 
         return convertResult;
     }
