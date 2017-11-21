@@ -21,4 +21,6 @@ public interface ViewComCodeCfgService {
     void refComCode(HttpSession httpSession, RequestRefPar requestRefPar, ResponseData responseData);
 
     void modifyComCode(HttpSession httpSession, RequestMdyPar requestMdyPar, ResponseData responseData);
+
+    void refComRegion(HttpSession httpSession, RequestRefPar requestRefPar, ResponseData responseData);
 }

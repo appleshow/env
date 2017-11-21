@@ -137,7 +137,8 @@
                             </input>
                             <span class="input-group-btn">
                                 <button class="btn btn-default"
-                                        type="button">...</button>
+                                        type="button"
+                                        onclick="openRegionWindow()">...</button>
                             </span>
                         </div>
 
@@ -375,8 +376,7 @@
         </div>
     </div>
 </div>
-</div>
-</div>
+
 <!-- 提示框 -->
 <div class="modal fade"
      role="dialog"
@@ -414,6 +414,9 @@
 <script src="${ctx}/dataTables/Bootstrap-3.3.6/js/bootstrap.min.js"></script>
 <script src="${ctx}/assets-view/comm/select2-4.0.2/js/select2.full.min.js"></script>
 
+<%@include file="../aplugin/treectrl.jsp" %>
+<%@include file="../aplugin/regionwindow.jsp" %>
+
 <script type="application/javascript">
 
     jQuery(document).ready(function () {
@@ -446,7 +449,6 @@
      */
     function initComboData() {
         $.ajax({
-            async: false,
             type: "POST",
             url: "${ctx}/viewComCodeConfig/refComCode",
             cache: false,
@@ -496,6 +498,36 @@
                 callError(-900, "操作未完成，向服务器请求失败...");
             }
         });
+    }
+
+    /**
+     *
+     */
+    function openRegionWindow() {
+        __showRegionWindow(callBackRegionSelect);
+    }
+
+    /**
+     *
+     */
+    function callBackRegionSelect(selectItems, currentTreeData) {
+        var selectItem = selectItems[0];
+
+        $("#enterpriseRegion").val(formartRegion(currentTreeData, selectItem.farRegionId) + "/" + selectItem.name + "(" + selectItem.id + ")");
+    }
+
+    /**
+     *
+     */
+    function formartRegion(regionData, farRegionId) {
+        var regionName = "";
+        for (var index = 0; index < regionData.length; index++) {
+            if (regionData[index].regionId == farRegionId) {
+                regionName = formartRegion(regionData, regionData[index].farRegionId) + "/" + regionData[index].regionName + regionName;
+                break;
+            }
+        }
+        return regionName;
     }
 
     /**

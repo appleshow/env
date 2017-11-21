@@ -62,4 +62,18 @@ public class ViewComCodeCfgController extends ExceptionController {
         return responseData;
     }
 
+    /**
+     * @param httpSession
+     * @param requestRefPar
+     * @return
+     */
+    @RequestMapping(value = "refComRegion", method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseData refComRegion(HttpSession httpSession, @RequestBody RequestRefPar requestRefPar) {
+        ResponseData responseData = new ResponseData();
+
+        viewComCodeCfgService.refComRegion(httpSession, requestRefPar, responseData);
+
+        return responseData;
+    }
 }

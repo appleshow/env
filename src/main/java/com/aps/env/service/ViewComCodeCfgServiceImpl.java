@@ -2,8 +2,11 @@ package com.aps.env.service;
 
 import com.aps.env.comm.*;
 import com.aps.env.dao.ComCodeMapper;
+import com.aps.env.dao.ComRegionMapper;
 import com.aps.env.entity.ComCode;
 import com.aps.env.entity.ComCodeExample;
+import com.aps.env.entity.ComRegion;
+import com.aps.env.entity.ComRegionExample;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
@@ -27,6 +30,8 @@ import java.util.*;
 public class ViewComCodeCfgServiceImpl implements ViewComCodeCfgService {
     @Resource
     private ComCodeMapper comCodeMapper;
+    @Resource
+    private ComRegionMapper comRegionMapper;
 
     @Override
     public void refComCode(HttpSession httpSession, RequestRefPar requestRefPar, ResponseData responseData) {
@@ -103,5 +108,20 @@ public class ViewComCodeCfgServiceImpl implements ViewComCodeCfgService {
         } else {
             responseData.setCode(0);
         }
+    }
+
+    @Override
+    public void refComRegion(HttpSession httpSession, RequestRefPar requestRefPar, ResponseData responseData) {
+        List<ComRegion> comRegions;
+        ComRegionExample comRegionExample = new ComRegionExample();
+        String farRegionId = requestRefPar.getStringPar("farRegionId");
+
+        if (!StringUtil.isNullOrEmpty(farRegionId)) {
+            comRegionExample.createCriteria().andFarRegionIdEqualTo(farRegionId);
+        }
+        comRegionExample.setOrderByClause("FAR_REGION_ID,REGION_ID");
+        comRegions = comRegionMapper.selectByExample(comRegionExample);
+
+        responseData.setData(comRegions);
     }
 }
