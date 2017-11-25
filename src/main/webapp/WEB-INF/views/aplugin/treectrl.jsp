@@ -73,7 +73,7 @@
 
                     try {
                         if (treeSelectItem && typeof (eval(treeSelectItem)) == "function") {
-                            treeSelectItem();
+                            treeSelectItem(r, this.options.dataSource);
                         }
                     } catch (e) {
                     }

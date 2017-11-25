@@ -30,6 +30,8 @@
       href="${ctx}/assets-view/comm/select2-4.0.2/css/select2.min.css"/>
 <link rel="stylesheet"
       href="${ctx}/assets-view/comm/tree/css/tree.css"/>
+<link rel="stylesheet"
+      href="${ctx}/assets-view/comm/bootstrapvalidator/css/bootstrapvalidator.min.css"/>
 <style type="text/css">
     .select2-container .select2-selection--single {
         height: 34px !important;
@@ -51,8 +53,9 @@
         <div class="panel panel-default"
              style="margin-bottom: 5px;">
             <div class="panel-heading">企业列表</div>
-            <div class="panel-body">
-                <div id="tree-node"
+            <div class="panel-body"
+                 style="height: 85%;overflow-y:scroll; ">
+                <div id="enterpriseRegion"
                      class="tree tree-folder-select tree-plus-minus tree-solid-line tree-unselectable">
                     <div class="tree-folder"
                          style="display: none;">
@@ -78,300 +81,355 @@
              style="margin-bottom: 5px;">
             <div class="panel-heading">企业信息</div>
             <div class="panel-body"
-                 style="height: 90%;overflow-y:scroll; ">
-                <div class="row"
-                     style="padding-top: 5px">
-                    <div class="col-lg-4 col-sm-4 col-xs-4"
-                         style="margin-right: 0px;padding-right: 0px">
-                        <button class="btn btn-default"
-                                type="button"
-                                style="width: 100%; text-align: right;">企业编号
-                        </button>
+                 style="height: 85%;overflow-y:scroll; ">
+                <form id="enterpriseForm"
+                      method="post">
+                    <div class="row"
+                         style="padding-top: 5px">
+                        <div class="col-lg-4 col-sm-4 col-xs-4"
+                             style="margin-right: 0px;padding-right: 0px">
+                            <button class="btn btn-default"
+                                    type="button"
+                                    style="width: 100%; text-align: right;">企业编号
+                            </button>
+                        </div>
+                        <div class="col-lg-8 col-sm-8 col-xs-8"
+                             style="margin-left: 0px;padding-left: 0px">
+                            <div class="input-group"
+                                 style="width: 100%;">
+                                <input class="form-control"
+                                       readonly
+                                       id="enterpriseId"
+                                       name="enterpriseId">
+                                </input>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-lg-8 col-sm-8 col-xs-8"
-                         style="margin-left: 0px;padding-left: 0px">
-                        <input class="form-control"
-                               style="width: 100%;"
-                               readonly
-                               id="enterpriseId"
-                               name="enterpriseId">
-                        </input>
+                    <div class="row"
+                         style="padding-top: 5px">
+                        <div class="col-lg-4 col-sm-4 col-xs-4"
+                             style="margin-right: 0px;padding-right: 0px">
+                            <button class="btn btn-default"
+                                    type="button"
+                                    style="width: 100%; text-align: right;"><span style="color: red;">* </span>企业名称
+                            </button>
+                        </div>
+                        <div class="col-lg-8 col-sm-8 col-xs-8"
+                             style="margin-left: 0px;padding-left: 0px">
+                            <div class="input-group"
+                                 style="width: 100%;">
+                                <input class="form-control"
+                                       maxlength="60"
+                                       id="enterpriseName"
+                                       name="enterpriseName">
+                                </input>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="row"
-                     style="padding-top: 5px">
-                    <div class="col-lg-4 col-sm-4 col-xs-4"
-                         style="margin-right: 0px;padding-right: 0px">
-                        <button class="btn btn-default"
-                                type="button"
-                                style="width: 100%; text-align: right;"><span style="color: red;">* </span>企业名称
-                        </button>
-                    </div>
-                    <div class="col-lg-8 col-sm-8 col-xs-8"
-                         style="margin-left: 0px;padding-left: 0px">
-                        <input class="form-control"
-                               style="width: 100%;"
-                               maxlength="60"
-                               id="enterpriseName"
-                               name="enterpriseName">
-                        </input>
-                    </div>
-                </div>
-                <div class="row"
-                     style="padding-top: 5px">
-                    <div class="col-lg-4 col-sm-4 col-xs-4"
-                         style="margin-right: 0px;padding-right: 0px">
-                        <button class="btn btn-default"
-                                type="button"
-                                style="width: 100%; text-align: right;"><span style="color: red">* </span>行政区划
-                        </button>
-                    </div>
-                    <div class="col-lg-8 col-sm-8 col-xs-8"
-                         style="margin-left: 0px;padding-left: 0px">
-                        <div class="input-group">
-                            <input class="form-control"
-                                   style="width: 100%;"
-                                   readonly
-                                   id="enterpriseRegion"
-                                   name="enterpriseRegion">
-                            </input>
-                            <span class="input-group-btn">
+                    <div class="row"
+                         style="padding-top: 5px">
+                        <div class="col-lg-4 col-sm-4 col-xs-4"
+                             style="margin-right: 0px;padding-right: 0px">
+                            <button class="btn btn-default"
+                                    type="button"
+                                    style="width: 100%; text-align: right;"><span style="color: red">* </span>行政区划
+                            </button>
+                        </div>
+                        <div class="col-lg-8 col-sm-8 col-xs-8"
+                             style="margin-left: 0px;padding-left: 0px">
+                            <div class="input-group">
+                                <input class="form-control"
+                                       style="width: 100%;"
+                                       readonly
+                                       id="enterpriseRegionDesc"
+                                       name="enterpriseRegionDesc">
+                                </input>
+                                <span class="input-group-btn">
                                 <button class="btn btn-default"
                                         type="button"
                                         onclick="openRegionWindow()">...</button>
                             </span>
+                            </div>
                         </div>
-
                     </div>
-                </div>
-                <div class="row"
-                     style="padding-top: 5px">
-                    <div class="col-lg-4 col-sm-4 col-xs-4"
-                         style="margin-right: 0px;padding-right: 0px">
-                        <button class="btn btn-default"
-                                type="button"
-                                style="width: 100%; text-align: right;"><span style="color: red">* </span>所属行业
-                        </button>
+                    <div class="row"
+                         style="padding-top: 5px">
+                        <div class="col-lg-4 col-sm-4 col-xs-4"
+                             style="margin-right: 0px;padding-right: 0px">
+                            <button class="btn btn-default"
+                                    type="button"
+                                    style="width: 100%; text-align: right;"><span style="color: red">* </span>所属行业
+                            </button>
+                        </div>
+                        <div class="col-lg-8 col-sm-8 col-xs-8"
+                             style="margin-left: 0px;padding-left: 0px">
+                            <select class="form-control"
+                                    style="width: 100%;"
+                                    id="enterpriseTrade"
+                                    name="enterpriseTrade">
+                                <option></option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="col-lg-8 col-sm-8 col-xs-8"
-                         style="margin-left: 0px;padding-left: 0px">
-                        <select class="form-control"
-                                style="width: 100%;"
-                                id="enterpriseTrade"
-                                name="enterpriseTrade">
-                            <option></option>
-                        </select>
+                    <div class="row"
+                         style="padding-top: 5px">
+                        <div class="col-lg-4 col-sm-4 col-xs-4"
+                             style="margin-right: 0px;padding-right: 0px">
+                            <button class="btn btn-default"
+                                    type="button"
+                                    style="width: 100%; text-align: right;">所属类型
+                            </button>
+                        </div>
+                        <div class="col-lg-8 col-sm-8 col-xs-8"
+                             style="margin-left: 0px;padding-left: 0px">
+                            <select class="form-control"
+                                    style="width: 100%;"
+                                    id="enterpriseType"
+                                    name="enterpriseType">
+                                <option></option>
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <div class="row"
-                     style="padding-top: 5px">
-                    <div class="col-lg-4 col-sm-4 col-xs-4"
-                         style="margin-right: 0px;padding-right: 0px">
-                        <button class="btn btn-default"
-                                type="button"
-                                style="width: 100%; text-align: right;">所属类型
-                        </button>
+                    <div class="row"
+                         style="padding-top: 5px">
+                        <div class="col-lg-4 col-sm-4 col-xs-4"
+                             style="margin-right: 0px;padding-right: 0px">
+                            <button class="btn btn-default"
+                                    type="button"
+                                    style="width: 100%; text-align: right;">危化分类
+                            </button>
+                        </div>
+                        <div class="col-lg-8 col-sm-8 col-xs-8"
+                             style="margin-left: 0px;padding-left: 0px">
+                            <select class="form-control"
+                                    style="width: 100%;"
+                                    id="enterpriseCmlLevel"
+                                    name="enterpriseCmlLevel">
+                                <option></option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="col-lg-8 col-sm-8 col-xs-8"
-                         style="margin-left: 0px;padding-left: 0px">
-                        <select class="form-control"
-                                style="width: 100%;"
-                                id="enterpriseType"
-                                name="enterpriseType">
-                            <option></option>
-                        </select>
+                    <div class="row"
+                         style="padding-top: 5px">
+                        <div class="col-lg-4 col-sm-4 col-xs-4"
+                             style="margin-right: 0px;padding-right: 0px">
+                            <button class="btn btn-default"
+                                    type="button"
+                                    style="width: 100%; text-align: right;">危化等级
+                            </button>
+                        </div>
+                        <div class="col-lg-8 col-sm-8 col-xs-8"
+                             style="margin-left: 0px;padding-left: 0px">
+                            <select class="form-control"
+                                    style="width: 100%;"
+                                    id="enterpriseCmlGrade"
+                                    name="enterpriseCmlGrade">
+                                <option></option>
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <div class="row"
-                     style="padding-top: 5px">
-                    <div class="col-lg-4 col-sm-4 col-xs-4"
-                         style="margin-right: 0px;padding-right: 0px">
-                        <button class="btn btn-default"
-                                type="button"
-                                style="width: 100%; text-align: right;">危化分类
-                        </button>
+                    <div class="row"
+                         style="padding-top: 5px">
+                        <div class="col-lg-4 col-sm-4 col-xs-4"
+                             style="margin-right: 0px;padding-right: 0px">
+                            <button class="btn btn-default"
+                                    type="button"
+                                    style="width: 100%; text-align: right;">危化存量
+                            </button>
+                        </div>
+                        <div class="col-lg-8 col-sm-8 col-xs-8"
+                             style="margin-left: 0px;padding-left: 0px">
+                            <div class="input-group">
+                                <div class="input-group-btn">
+                                    <div class="btn-group">
+                                        <button type="button"
+                                                class="btn btn-default dropdown-toggle"
+                                                data-toggle="dropdown"
+                                                aria-haspopup="true"
+                                                aria-expanded="false">
+                                            <span id="unitName">选择单位</span><span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu"
+                                            id="dropdownUnit">
+                                        </ul>
+                                    </div>
+                                </div>
+                                <input class="form-control"
+                                       maxlength="10"
+                                       id="enterpriseCmlAmount"
+                                       name="enterpriseCmlAmount">
+                                </input>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-lg-8 col-sm-8 col-xs-8"
-                         style="margin-left: 0px;padding-left: 0px">
-                        <select class="form-control"
-                                style="width: 100%;"
-                                id="enterpriseCmlLevel"
-                                name="enterpriseCmlLevel">
-                            <option></option>
-                        </select>
+                    <div class="row"
+                         style="padding-top: 5px">
+                        <div class="col-lg-4 col-sm-4 col-xs-4"
+                             style="margin-right: 0px;padding-right: 0px">
+                            <button class="btn btn-default"
+                                    type="button"
+                                    style="width: 100%; text-align: right;">企业地址
+                            </button>
+                        </div>
+                        <div class="col-lg-8 col-sm-8 col-xs-8"
+                             style="margin-left: 0px;padding-left: 0px;">
+                            <div class="input-group"
+                                 style="width: 100%;">
+                                <input class="form-control"
+                                       maxlength="100"
+                                       id="enterpriseAddress"
+                                       name="enterpriseAddress">
+                                </input>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="row"
-                     style="padding-top: 5px">
-                    <div class="col-lg-4 col-sm-4 col-xs-4"
-                         style="margin-right: 0px;padding-right: 0px">
-                        <button class="btn btn-default"
-                                type="button"
-                                style="width: 100%; text-align: right;">危化等级
-                        </button>
+                    <div class="row"
+                         style="padding-top: 5px">
+                        <div class="col-lg-4 col-sm-4 col-xs-4"
+                             style="margin-right: 0px;padding-right: 0px">
+                            <button class="btn btn-default"
+                                    type="button"
+                                    style="width: 100%; text-align: right;">法人代表
+                            </button>
+                        </div>
+                        <div class="col-lg-8 col-sm-8 col-xs-8"
+                             style="margin-left: 0px;padding-left: 0px">
+                            <div class="input-group"
+                                 style="width: 100%;">
+                                <input class="form-control"
+                                       maxlength="10"
+                                       id="enterpriseLegalPerson"
+                                       name="enterpriseLegalPerson">
+                                </input>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-lg-8 col-sm-8 col-xs-8"
-                         style="margin-left: 0px;padding-left: 0px">
-                        <select class="form-control"
-                                style="width: 100%;"
-                                id="enterpriseCmlGrade"
-                                name="enterpriseCmlGrade">
-                            <option></option>
-                        </select>
+                    <div class="row"
+                         style="padding-top: 5px">
+                        <div class="col-lg-4 col-sm-4 col-xs-4"
+                             style="margin-right: 0px;padding-right: 0px">
+                            <button class="btn btn-default"
+                                    type="button"
+                                    style="width: 100%; text-align: right;">法人联系电话
+                            </button>
+                        </div>
+                        <div class="col-lg-8 col-sm-8 col-xs-8"
+                             style="margin-left: 0px;padding-left: 0px">
+                            <div class="input-group"
+                                 style="width: 100%;">
+                                <input class="form-control"
+                                       maxlength="11"
+                                       id="enterpriseLegalPhone"
+                                       name="enterpriseLegalPhone">
+                                </input>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="row"
-                     style="padding-top: 5px">
-                    <div class="col-lg-4 col-sm-4 col-xs-4"
-                         style="margin-right: 0px;padding-right: 0px">
-                        <button class="btn btn-default"
-                                type="button"
-                                style="width: 100%; text-align: right;">危化存量
-                        </button>
+                    <div class="row"
+                         style="padding-top: 5px">
+                        <div class="col-lg-4 col-sm-4 col-xs-4"
+                             style="margin-right: 0px;padding-right: 0px">
+                            <button class="btn btn-default"
+                                    type="button"
+                                    style="width: 100%; text-align: right;">环保联系人
+                            </button>
+                        </div>
+                        <div class="col-lg-8 col-sm-8 col-xs-8"
+                             style="margin-left: 0px;padding-left: 0px">
+                            <div class="input-group"
+                                 style="width: 100%;">
+                                <input class="form-control"
+                                       maxlength="10"
+                                       id="enterpriseEnvPerson"
+                                       name="enterpriseEnvPerson">
+                                </input>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-lg-8 col-sm-8 col-xs-8"
-                         style="margin-left: 0px;padding-left: 0px">
-                        <input class="form-control"
-                               style="width: 100%;"
-                               maxlength="10"
-                               id="enterpriseCmlAmount"
-                               name="enterpriseCmlAmount">
-                        </input>
+                    <div class="row"
+                         style="padding-top: 5px">
+                        <div class="col-lg-4 col-sm-4 col-xs-4"
+                             style="margin-right: 0px;padding-right: 0px">
+                            <button class="btn btn-default"
+                                    type="button"
+                                    style="width: 100%; text-align: right;">环保联系人电话
+                            </button>
+                        </div>
+                        <div class="col-lg-8 col-sm-8 col-xs-8"
+                             style="margin-left: 0px;padding-left: 0px">
+                            <div class="input-group"
+                                 style="width: 100%;">
+                                <input class="form-control"
+                                       maxlength="11"
+                                       id="enterpriseEnvPhone"
+                                       name="enterpriseEnvPhone">
+                                </input>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="row"
-                     style="padding-top: 5px">
-                    <div class="col-lg-4 col-sm-4 col-xs-4"
-                         style="margin-right: 0px;padding-right: 0px">
-                        <button class="btn btn-default"
-                                type="button"
-                                style="width: 100%; text-align: right;">企业地址
-                        </button>
+                    <div class="row"
+                         style="padding-top: 5px">
+                        <div class="col-lg-4 col-sm-4 col-xs-4"
+                             style="margin-right: 0px;padding-right: 0px">
+                            <button class="btn btn-default"
+                                    type="button"
+                                    style="width: 100%; text-align: right;">企业网址
+                            </button>
+                        </div>
+                        <div class="col-lg-8 col-sm-8 col-xs-8"
+                             style="margin-left: 0px;padding-left: 0px">
+                            <div class="input-group"
+                                 style="width: 100%;">
+                                <input class="form-control"
+                                       maxlength="30"
+                                       id="enterpriseUrl"
+                                       name="enterpriseUrl">
+                                </input>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-lg-8 col-sm-8 col-xs-8"
-                         style="margin-left: 0px;padding-left: 0px">
-                        <input class="form-control"
-                               style="width: 100%;"
-                               maxlength="100"
-                               id="enterpriseAddress"
-                               name="enterpriseAddress">
-                        </input>
+                    <div class="row"
+                         style="padding-top: 5px">
+                        <div class="col-lg-4 col-sm-4 col-xs-4"
+                             style="margin-right: 0px;padding-right: 0px">
+                            <button class="btn btn-default"
+                                    type="button"
+                                    style="width: 100%; text-align: right;">企业备注
+                            </button>
+                        </div>
+                        <div class="col-lg-8 col-sm-8 col-xs-8"
+                             style="margin-left: 0px;padding-left: 0px">
+                            <div class="input-group"
+                                 style="width: 100%;">
+                                <input class="form-control"
+                                       maxlength="200"
+                                       id="enterpriseDesc"
+                                       name="enterpriseDesc">
+                                </input>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="row"
-                     style="padding-top: 5px">
-                    <div class="col-lg-4 col-sm-4 col-xs-4"
-                         style="margin-right: 0px;padding-right: 0px">
-                        <button class="btn btn-default"
-                                type="button"
-                                style="width: 100%; text-align: right;">法人代表
-                        </button>
-                    </div>
-                    <div class="col-lg-8 col-sm-8 col-xs-8"
-                         style="margin-left: 0px;padding-left: 0px">
-                        <input class="form-control"
-                               style="width: 100%;"
-                               maxlength="10"
-                               id="enterpriseLegalPerson"
-                               name="enterpriseLegalPerson">
-                        </input>
-                    </div>
-                </div>
-                <div class="row"
-                     style="padding-top: 5px">
-                    <div class="col-lg-4 col-sm-4 col-xs-4"
-                         style="margin-right: 0px;padding-right: 0px">
-                        <button class="btn btn-default"
-                                type="button"
-                                style="width: 100%; text-align: right;">法人联系电话
-                        </button>
-                    </div>
-                    <div class="col-lg-8 col-sm-8 col-xs-8"
-                         style="margin-left: 0px;padding-left: 0px">
-                        <input class="form-control"
-                               style="width: 100%;"
-                               maxlength="11"
-                               id="enterpriseLegalPhone"
-                               name="enterpriseLegalPhone">
-                        </input>
-                    </div>
-                </div>
-                <div class="row"
-                     style="padding-top: 5px">
-                    <div class="col-lg-4 col-sm-4 col-xs-4"
-                         style="margin-right: 0px;padding-right: 0px">
-                        <button class="btn btn-default"
-                                type="button"
-                                style="width: 100%; text-align: right;">环保联系人
-                        </button>
-                    </div>
-                    <div class="col-lg-8 col-sm-8 col-xs-8"
-                         style="margin-left: 0px;padding-left: 0px">
-                        <input class="form-control"
-                               style="width: 100%;"
-                               maxlength="10"
-                               id="enterpriseEnvPerson"
-                               name="enterpriseEnvPerson">
-                        </input>
-                    </div>
-                </div>
-                <div class="row"
-                     style="padding-top: 5px">
-                    <div class="col-lg-4 col-sm-4 col-xs-4"
-                         style="margin-right: 0px;padding-right: 0px">
-                        <button class="btn btn-default"
-                                type="button"
-                                style="width: 100%; text-align: right;">环保联系人电话
-                        </button>
-                    </div>
-                    <div class="col-lg-8 col-sm-8 col-xs-8"
-                         style="margin-left: 0px;padding-left: 0px">
-                        <input class="form-control"
-                               style="width: 100%;"
-                               maxlength="11"
-                               id="enterpriseEnvPhone"
-                               name="enterpriseEnvPhone">
-                        </input>
-                    </div>
-                </div>
-                <div class="row"
-                     style="padding-top: 5px">
-                    <div class="col-lg-4 col-sm-4 col-xs-4"
-                         style="margin-right: 0px;padding-right: 0px">
-                        <button class="btn btn-default"
-                                type="button"
-                                style="width: 100%; text-align: right;">企业网址
-                        </button>
-                    </div>
-                    <div class="col-lg-8 col-sm-8 col-xs-8"
-                         style="margin-left: 0px;padding-left: 0px">
-                        <input class="form-control"
-                               style="width: 100%;"
-                               maxlength="30"
-                               id="enterpriseUrl"
-                               name="enterpriseUrl">
-                        </input>
-                    </div>
-                </div>
-                <div class="row"
-                     style="padding-top: 5px">
-                    <div class="col-lg-4 col-sm-4 col-xs-4"
-                         style="margin-right: 0px;padding-right: 0px">
-                        <button class="btn btn-default"
-                                type="button"
-                                style="width: 100%; text-align: right;">企业备注
-                        </button>
-                    </div>
-                    <div class="col-lg-8 col-sm-8 col-xs-8"
-                         style="margin-left: 0px;padding-left: 0px">
-                        <input class="form-control"
-                               style="width: 100%;"
-                               maxlength="200"
-                               id="enterpriseDesc"
-                               name="enterpriseDesc">
-                        </input>
-                    </div>
-                </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button"
+                        class="btn btn-primary"
+                        onclick="addEnterprise()">
+                    <span class="glyphicon glyphicon-plus"
+                          aria-hidden="true"></span>&nbsp;新增
+                </button>
+                <button type="button"
+                        class="btn btn-primary"
+                        onclick="deleteEnterprise()">
+                    <span class="glyphicon glyphicon-remove"
+                          aria-hidden="true"></span>&nbsp;删除
+                </button>
+                <button type="button"
+                        class="btn btn-primary"
+                        onclick="saveEnterprise()">
+                    <span class="glyphicon glyphicon-ok"
+                          aria-hidden="true"></span>&nbsp;保存
+                </button>
             </div>
         </div>
     </div>
@@ -413,11 +471,137 @@
 <script src="${ctx}/dataTables/jQuery-2.2.0/jquery-2.2.0.min.js"></script>
 <script src="${ctx}/dataTables/Bootstrap-3.3.6/js/bootstrap.min.js"></script>
 <script src="${ctx}/assets-view/comm/select2-4.0.2/js/select2.full.min.js"></script>
+<script src="${ctx}/assets-view/comm/bootstrapvalidator/js/bootstrapvalidator.min.js"></script>
 
 <%@include file="../aplugin/treectrl.jsp" %>
 <%@include file="../aplugin/regionwindow.jsp" %>
 
 <script type="application/javascript">
+    var pagePars = {
+        modifyType: "I",
+        selectUnitId: undefined,
+        enterpriseRegion: [],
+        comCode: [],
+    };
+
+    var regionDataSource = function (options) {
+        this._data = options.data;
+        this._delay = options.delay;
+        this._dataType = 'enterpriseRegion';
+    };
+
+    regionDataSource.prototype = {
+        data: function (options, callback) {
+            setTimeout(function () {
+                    if (options.id != null) {
+                        if (options.type === "folder") {
+                            var treeData = [];
+                            var regionExist = "-";
+
+                            $.each(pagePars.enterpriseRegion, function (index, value) {
+                                var regionDesc = value.enterpriseRegionDesc;
+                                var regionTargets = regionDesc.split("(");
+                                var item = {};
+
+                                regionDesc = regionTargets[0];
+                                regionTargets = regionDesc.split("/");
+
+                                for (var regionIndex = 1; regionIndex < regionTargets.length; regionIndex++) {
+                                    if (options.id == regionTargets[regionIndex]) {
+                                        if (regionIndex + 1 == regionTargets.length) {
+                                            item.id = value.enterpriseId;
+                                            item.name = value.enterpriseName;
+                                            item.type = 'item';
+                                            item._dataType = 'enterpriseRegion';
+
+                                            treeData.push(item);
+                                        } else {
+                                            if (regionExist.indexOf(regionTargets[regionIndex + 1]) <= 0) {
+                                                regionExist += "/" + regionTargets[regionIndex + 1];
+                                                item.id = regionTargets[regionIndex + 1];
+                                                item.name = regionTargets[regionIndex + 1];
+                                                item.type = 'folder';
+
+                                                treeData.push(item);
+                                            }
+                                        }
+                                        break;
+                                    }
+                                }
+                            });
+
+                            callback({
+                                data: treeData
+                            });
+                        } else {
+
+                        }
+                    } else {
+                        $.ajax({
+                                type: "POST",
+                                url: '${ctx}/viewHbEnterpriseCfg/refEnterprise',
+                                cache: false,
+                                data: ServerRequestPar(0, {}),
+                                dataType: "json",
+                                headers: {
+                                    'Content-Type': 'application/json;charset=utf-8'
+                                },
+                                success: function (res) {
+                                    if (res.code != 0) {
+                                        pagePars.enterpriseRegion = [];
+                                        callback({
+                                            data: []
+                                        });
+                                    } else {
+                                        var regionExist = "-";
+                                        var treeData = [];
+                                        pagePars.enterpriseRegion = res.data;
+
+                                        $.each(pagePars.enterpriseRegion, function (index, value) {
+                                                var regionDesc = value.enterpriseRegionDesc;
+                                                var regionTargets = regionDesc.split("(");
+                                                var item = {};
+
+                                                regionDesc = regionTargets[0];
+                                                regionTargets = regionDesc.split("/");
+
+                                                if (regionExist.indexOf(regionTargets[1]) <= 0) {
+                                                    regionExist += "/" + regionTargets[1];
+                                                    item.id = regionTargets[1];
+                                                    item.name = regionTargets[1];
+                                                    item.type = 'folder';
+
+                                                    treeData.push(item);
+                                                }
+                                            }
+                                        );
+
+                                        callback({
+                                            data: treeData
+                                        });
+                                    }
+                                },
+                                error:
+
+                                    function (XMLHttpRequest, textStatus, errorThrown) {
+                                        callback({
+                                            data: []
+                                        });
+                                    }
+                            }
+                        )
+                        ;
+                    }
+                },
+                this._delay
+            )
+        }
+    }
+
+    var treeDataSource = new regionDataSource({
+        data: [],
+        delay: 400
+    });
 
     jQuery(document).ready(function () {
         $("#enterpriseType").select2({
@@ -441,6 +625,14 @@
             language: "zh-CN"
         });
 
+        $('#enterpriseRegion').tree({
+            cacheItems: true,
+            selectable: true,
+            multiSelect: false,
+            dataSource: treeDataSource,
+            loadingHTML: '<div class="tree-loading"><i class="fa fa-rotate-right fa-spin"></i></div>',
+        });
+
         initComboData();
     });
 
@@ -448,11 +640,71 @@
      *
      */
     function initComboData() {
+        $('#enterpriseForm').bootstrapValidator({
+            message: 'This value is not valid',
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            submitHandler: function (validator, form, submitButton) {
+                // Do nothing
+            },
+            fields: {
+                enterpriseName: {
+                    validators: {
+                        notEmpty: {
+                            message: '此项不能为空...',
+                        },
+                    },
+                },
+                enterpriseCmlAmount: {
+                    validators: {
+                        regexp: {
+                            regexp: /^([1-9][0-9]*)+(.[0-9]{1,2})?$/,
+                            message: '此项只能录入数字...',
+                        },
+                    },
+                },
+                enterpriseLegalPhone: {
+                    validators: {
+                        digits: {
+                            message: '此项只能录入数字...',
+                        },
+                        stringLength: {
+                            min: 8,
+                            max: 11,
+                            message: '此项长度必须在8到11位之间...',
+                        },
+                    },
+                },
+                enterpriseEnvPhone: {
+                    validators: {
+                        digits: {
+                            message: '此项只能录入数字...',
+                        },
+                        stringLength: {
+                            min: 8,
+                            max: 11,
+                            message: '此项长度必须在8到11位之间...',
+                        },
+                    },
+                },
+                enterpriseUrl: {
+                    validators: {
+                        uri: {
+                            message: '此项只能录入有误...',
+                        },
+                    },
+                },
+            }
+        });
+
         $.ajax({
             type: "POST",
             url: "${ctx}/viewComCodeConfig/refComCode",
             cache: false,
-            data: ServerRequestPar(1, {codeType: "19,22,24,25", pageNumber: 1, pageSize: 2000,}),
+            data: ServerRequestPar(1, {codeType: "19,22,24,25,26", pageNumber: 1, pageSize: 2000,}),
             dataType: "json",
             headers: {
                 'Content-Type': 'application/json;charset=utf-8'
@@ -465,8 +717,10 @@
                     var enterpriseType = "";
                     var enterpriseCmlLevel = "";
                     var enterpriseCmlGrade = "";
+                    var dropdownUnit = "";
 
-                    $.each(res.data, function (index, value) {
+                    pagePars.comCode = res.data;
+                    $.each(pagePars.comCode, function (index, value) {
                         if (value.codeType == "22") {
                             enterpriseTrade += "<option value='" + value.codeId + "'>" + value.codeName + "</option>";
                         }
@@ -478,6 +732,9 @@
                         }
                         if (value.codeType == "25") {
                             enterpriseCmlGrade += "<option value='" + value.codeId + "'>" + value.codeName + "</option>";
+                        }
+                        if (value.codeType == "26") {
+                            dropdownUnit += "<li><a href='#' onclick='selectUnit(\"" + value.codeId + "\",\"" + value.codeName + "\")'>" + value.codeName + "</a></li>";
                         }
                     });
                     if (enterpriseTrade != "") {
@@ -491,6 +748,9 @@
                     }
                     if (enterpriseTrade != "") {
                         $("#enterpriseCmlGrade").append(enterpriseCmlGrade);
+                    }
+                    if (dropdownUnit != "") {
+                        $("#dropdownUnit").append(dropdownUnit);
                     }
                 }
             },
@@ -513,7 +773,7 @@
     function callBackRegionSelect(selectItems, currentTreeData) {
         var selectItem = selectItems[0];
 
-        $("#enterpriseRegion").val(formartRegion(currentTreeData, selectItem.farRegionId) + "/" + selectItem.name + "(" + selectItem.id + ")");
+        $("#enterpriseRegionDesc").val(formartRegion(currentTreeData, selectItem.farRegionId) + "/" + selectItem.name + "(" + selectItem.id + ")");
     }
 
     /**
@@ -528,6 +788,128 @@
             }
         }
         return regionName;
+    }
+
+    /**
+     *
+     *
+     */
+    function addEnterprise() {
+        $(':input', '#enterpriseForm').not(':button,:submit,:reset,:hidden').val('').removeAttr('checked');
+
+        $("#enterpriseType").val(null).trigger("change");
+        $("#enterpriseTrade").val(null).trigger("change");
+        $("#enterpriseCmlLevel").val(null).trigger("change");
+        $("#enterpriseCmlGrade").val(null).trigger("change");
+
+        $("#unitName").html("选择单位");
+        pagePars.selectUnitId = undefined;
+        pagePars.modifyType = "I";
+
+        $("#enterpriseForm").data("bootstrapValidator").resetForm();
+
+    }
+
+    /**
+     *
+     *
+     */
+    function deleteEnterprise() {
+
+    }
+
+    /**
+     *
+     *
+     */
+    function saveEnterprise() {
+        $("#enterpriseForm").data("bootstrapValidator").validate();
+
+        var check = $("#enterpriseForm").data("bootstrapValidator").isValid();
+        if (check) {
+            var hbEnterprise = $("#enterpriseForm").serializeObject();
+            var hbEnterprises = [];
+
+            if (hbEnterprise.property0 == "") {
+                callError(-100, "请选择一个行政区划...！");
+                return;
+            }
+            if (hbEnterprise.enterpriseTrade == "") {
+                callError(-100, "请选择一个所属行业...！");
+                return;
+            }
+            if (hbEnterprise.enterpriseCmlAmount != "" && pagePars.selectUnitId == undefined) {
+                callError(-100, "请选择请选择危化存量单位...！");
+                return;
+            }
+
+            hbEnterprise._type = pagePars.modifyType;
+            hbEnterprise.enterpriseCmlUnit = pagePars.selectUnitId;
+            hbEnterprises.push(hbEnterprise);
+            $.ajax({
+                async: false,
+                type: "POST",
+                url: "${ctx}/viewHbEnterpriseCfg/modifyEnterprise",
+                cache: false,
+                data: ServerRequestPar(1, hbEnterprises),
+                dataType: "json",
+                headers: {
+                    'Content-Type': 'application/json;charset=utf-8'
+                },
+                success: function (res) {
+                    if (res.code != 0) {
+                        callError(-999, res.message);
+                    } else {
+                        $('#enterpriseRegion').tree("reload");
+
+                        addEnterprise();
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    callError(-888, "服务器请求异常...！")
+                }
+            });
+        } else {
+            callError(-100, "录入信息有误，请检查录入信息...！");
+        }
+    }
+
+    /**
+     *
+     */
+    function treeSelectItem(items, dataSource) {
+        if (dataSource._dataType == 'enterpriseRegion') {
+            if (items && items.length > 0) {
+                var selectItem = items[0];
+                var hbEnterprise = {};
+
+                $.each(pagePars.enterpriseRegion, function (index, enterprise) {
+                    if (selectItem.id == enterprise.enterpriseId) {
+                        hbEnterprise = enterprise;
+                    }
+                });
+
+                $("#enterpriseForm").initForm(hbEnterprise);
+                $.each(pagePars.comCode, function (index, value) {
+                    if (value.codeType == "26" && value.codeId == hbEnterprise.enterpriseCmlUnit) {
+                        $("#unitName").html(value.codeName);
+                        pagePars.selectUnitId = value.codeId;
+                    }
+                });
+
+                pagePars.modifyType = "U";
+            } else {
+                addEnterprise();
+            }
+        }
+    }
+
+    /**
+     *
+     */
+    function selectUnit(unitId, unitName) {
+        $("#unitName").html(unitName);
+        pagePars.selectUnitId = unitId;
     }
 
     /**
@@ -552,6 +934,82 @@
         $("#mwMessage").html(message);
         $("#modal-warning").modal("show");
     }
+
+    $.fn.serializeObject = function () {
+        var o = {};
+        var a = this.serializeArray();
+        $.each(a, function () {
+            if (o[this.name] !== undefined) {
+                if (!o[this.name].push) {
+                    o[this.name] = [o[this.name]];
+                }
+                o[this.name].push(this.value || '');
+            } else {
+                o[this.name] = this.value || '';
+            }
+        });
+        return o;
+    };
+
+    (function ($) {
+        $.fn.extend({
+            initForm: function (options) {
+                //默认参数
+                var defaults = {
+                    jsonValue: options,
+                    isDebug: false,   //是否需要调试，这个用于开发阶段，发布阶段请将设置为false，默认为false,true将会把name value打印出来
+                }
+                //设置参数
+                var setting = defaults;
+                var form = this;
+                jsonValue = setting.jsonValue;
+                //如果传入的json字符串，将转为json对象
+                if ($.type(setting.jsonValue) === "string") {
+                    jsonValue = $.parseJSON(jsonValue);
+                }
+                //如果传入的json对象为空，则不做任何操作
+                if (!$.isEmptyObject(jsonValue)) {
+                    var debugInfo = "";
+                    $.each(jsonValue, function (key, value) {
+                        //是否开启调试，开启将会把name value打印出来
+                        if (setting.isDebug) {
+                            console.log("name:" + key + "; value:" + value);
+                            debugInfo += "name:" + key + "; value:" + value + " || ";
+                        }
+                        var formField = form.find("[name='" + key + "']");
+                        if ($.type(formField[0]) === "undefined") {
+                            if (setting.isDebug) {
+                                //没找到指定name的表单
+                                console.log("can not find name:[" + key + "] in form!!!");
+                            }
+                        } else {
+                            var fieldTagName = formField[0].tagName.toLowerCase();
+                            if (fieldTagName == "input") {
+                                if (formField.attr("type") == "radio") {
+                                    $("input:radio[name='" + key + "'][value='" + value + "']").attr("checked", "checked");
+                                } else {
+                                    formField.val(value);
+                                }
+                            } else if (fieldTagName == "select") {
+                                //do something special
+                                formField.val(value).trigger("change");
+                            } else if (fieldTagName == "textarea") {
+                                //do something special
+                                formField.val(value);
+                            } else {
+                                formField.val(value);
+                            }
+
+                        }
+                    })
+                    if (setting.isDebug) {
+                        console.log(debugInfo);
+                    }
+                }
+                return form;    //返回对象，提供链式操作
+            }
+        });
+    })(jQuery)
 </script>
 </body>
 </html>
