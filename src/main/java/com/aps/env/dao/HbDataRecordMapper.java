@@ -10,7 +10,7 @@ public interface HbDataRecordMapper {
 
     int deleteByExample(HbDataRecordExample example);
 
-    int deleteByPrimaryKey(String guid);
+    int deleteByPrimaryKey(String recordGuid);
 
     int insert(HbDataRecord record);
 
@@ -18,7 +18,7 @@ public interface HbDataRecordMapper {
 
     List<HbDataRecord> selectByExample(HbDataRecordExample example);
 
-    HbDataRecord selectByPrimaryKey(String guid);
+    HbDataRecord selectByPrimaryKey(String recordGuid);
 
     int updateByExampleSelective(@Param("record") HbDataRecord record, @Param("example") HbDataRecordExample example);
 

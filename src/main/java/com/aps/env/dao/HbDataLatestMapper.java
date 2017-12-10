@@ -2,7 +2,6 @@ package com.aps.env.dao;
 
 import com.aps.env.entity.HbDataLatest;
 import com.aps.env.entity.HbDataLatestExample;
-import com.aps.env.entity.HbDataLatestKey;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -11,7 +10,7 @@ public interface HbDataLatestMapper {
 
     int deleteByExample(HbDataLatestExample example);
 
-    int deleteByPrimaryKey(HbDataLatestKey key);
+    int deleteByPrimaryKey(String dataGuid);
 
     int insert(HbDataLatest record);
 
@@ -19,7 +18,7 @@ public interface HbDataLatestMapper {
 
     List<HbDataLatest> selectByExample(HbDataLatestExample example);
 
-    HbDataLatest selectByPrimaryKey(HbDataLatestKey key);
+    HbDataLatest selectByPrimaryKey(String dataGuid);
 
     int updateByExampleSelective(@Param("record") HbDataLatest record, @Param("example") HbDataLatestExample example);
 

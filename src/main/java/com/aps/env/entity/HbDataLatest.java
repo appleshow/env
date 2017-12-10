@@ -1,17 +1,24 @@
 package com.aps.env.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import org.springframework.format.annotation.DateTimeFormat;
-
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class HbDataLatest extends HbDataLatestKey {
-    private Integer dataIndex;
+public class HbDataLatest {
+    private String dataGuid;
 
-    private Integer recordId;
+    private String nodeMn;
+
+    private String dataType;
+
+    private Date dataTime;
 
     private String nodeData;
+
+    private String nodeTable;
+
+    private String recordGuid;
+
+    private Integer prstatus;
 
     private Integer prflag;
 
@@ -19,7 +26,7 @@ public class HbDataLatest extends HbDataLatestKey {
 
     private String prtype;
 
-    private Integer property0;
+    private String property0;
 
     private String property1;
 
@@ -53,40 +60,50 @@ public class HbDataLatest extends HbDataLatestKey {
 
     private String prexp;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date itime;
-
-    private String ishift;
-
-    private String igroup;
 
     private Integer iperson;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date utime;
-
-    private String ushift;
-
-    private String ugroup;
 
     private Integer uperson;
 
-    private String ufrom;
+    private Integer deleteFlag;
 
-    public Integer getDataIndex() {
-        return dataIndex;
+    private Date dtime;
+
+    private Integer dperson;
+
+    public String getDataGuid() {
+        return dataGuid;
     }
 
-    public void setDataIndex(Integer dataIndex) {
-        this.dataIndex = dataIndex;
+    public void setDataGuid(String dataGuid) {
+        this.dataGuid = dataGuid == null ? null : dataGuid.trim();
     }
 
-    public Integer getRecordId() {
-        return recordId;
+    public String getNodeMn() {
+        return nodeMn;
     }
 
-    public void setRecordId(Integer recordId) {
-        this.recordId = recordId;
+    public void setNodeMn(String nodeMn) {
+        this.nodeMn = nodeMn == null ? null : nodeMn.trim();
+    }
+
+    public String getDataType() {
+        return dataType;
+    }
+
+    public void setDataType(String dataType) {
+        this.dataType = dataType == null ? null : dataType.trim();
+    }
+
+    public Date getDataTime() {
+        return dataTime;
+    }
+
+    public void setDataTime(Date dataTime) {
+        this.dataTime = dataTime;
     }
 
     public String getNodeData() {
@@ -95,6 +112,30 @@ public class HbDataLatest extends HbDataLatestKey {
 
     public void setNodeData(String nodeData) {
         this.nodeData = nodeData == null ? null : nodeData.trim();
+    }
+
+    public String getNodeTable() {
+        return nodeTable;
+    }
+
+    public void setNodeTable(String nodeTable) {
+        this.nodeTable = nodeTable == null ? null : nodeTable.trim();
+    }
+
+    public String getRecordGuid() {
+        return recordGuid;
+    }
+
+    public void setRecordGuid(String recordGuid) {
+        this.recordGuid = recordGuid == null ? null : recordGuid.trim();
+    }
+
+    public Integer getPrstatus() {
+        return prstatus;
+    }
+
+    public void setPrstatus(Integer prstatus) {
+        this.prstatus = prstatus;
     }
 
     public Integer getPrflag() {
@@ -121,12 +162,12 @@ public class HbDataLatest extends HbDataLatestKey {
         this.prtype = prtype == null ? null : prtype.trim();
     }
 
-    public Integer getProperty0() {
+    public String getProperty0() {
         return property0;
     }
 
-    public void setProperty0(Integer property0) {
-        this.property0 = property0;
+    public void setProperty0(String property0) {
+        this.property0 = property0 == null ? null : property0.trim();
     }
 
     public String getProperty1() {
@@ -257,29 +298,12 @@ public class HbDataLatest extends HbDataLatestKey {
         this.prexp = prexp == null ? null : prexp.trim();
     }
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     public Date getItime() {
         return itime;
     }
 
     public void setItime(Date itime) {
         this.itime = itime;
-    }
-
-    public String getIshift() {
-        return ishift;
-    }
-
-    public void setIshift(String ishift) {
-        this.ishift = ishift == null ? null : ishift.trim();
-    }
-
-    public String getIgroup() {
-        return igroup;
-    }
-
-    public void setIgroup(String igroup) {
-        this.igroup = igroup == null ? null : igroup.trim();
     }
 
     public Integer getIperson() {
@@ -290,29 +314,12 @@ public class HbDataLatest extends HbDataLatestKey {
         this.iperson = iperson;
     }
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     public Date getUtime() {
         return utime;
     }
 
     public void setUtime(Date utime) {
         this.utime = utime;
-    }
-
-    public String getUshift() {
-        return ushift;
-    }
-
-    public void setUshift(String ushift) {
-        this.ushift = ushift == null ? null : ushift.trim();
-    }
-
-    public String getUgroup() {
-        return ugroup;
-    }
-
-    public void setUgroup(String ugroup) {
-        this.ugroup = ugroup == null ? null : ugroup.trim();
     }
 
     public Integer getUperson() {
@@ -323,11 +330,27 @@ public class HbDataLatest extends HbDataLatestKey {
         this.uperson = uperson;
     }
 
-    public String getUfrom() {
-        return ufrom;
+    public Integer getDeleteFlag() {
+        return deleteFlag;
     }
 
-    public void setUfrom(String ufrom) {
-        this.ufrom = ufrom == null ? null : ufrom.trim();
+    public void setDeleteFlag(Integer deleteFlag) {
+        this.deleteFlag = deleteFlag;
+    }
+
+    public Date getDtime() {
+        return dtime;
+    }
+
+    public void setDtime(Date dtime) {
+        this.dtime = dtime;
+    }
+
+    public Integer getDperson() {
+        return dperson;
+    }
+
+    public void setDperson(Integer dperson) {
+        this.dperson = dperson;
     }
 }

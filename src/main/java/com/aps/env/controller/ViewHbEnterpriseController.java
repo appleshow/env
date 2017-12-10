@@ -39,7 +39,7 @@ public class ViewHbEnterpriseController {
      */
     @RequestMapping(value = "refEnterprise", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseData referHbType(HttpSession httpSession, @RequestBody RequestRefPar requestRefPar) {
+    public ResponseData refEnterprise(HttpSession httpSession, @RequestBody RequestRefPar requestRefPar) {
         ResponseData responseData = new ResponseData();
 
         if (CommUtil.isPermissoned(httpSession, formId, "refEnterprise", responseData)) {
@@ -56,7 +56,7 @@ public class ViewHbEnterpriseController {
      */
     @RequestMapping(value = "modifyEnterprise", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseData modifyHbType(HttpSession httpSession, @RequestBody RequestMdyPar requestMdyPar) {
+    public ResponseData modifyEnterprise(HttpSession httpSession, @RequestBody RequestMdyPar requestMdyPar) {
         ResponseData responseData = new ResponseData();
 
         if (CommUtil.isPermissoned(httpSession, formId, "modifyEnterprise", responseData)) {

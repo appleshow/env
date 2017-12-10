@@ -69,7 +69,8 @@
 <script type="application/javascript">
     var __regionDataSource = function (options) {
         this._data = options.data;
-        this._delay = options.delay
+        this._delay = options.delay;
+        this._dataType = 'enterpriseWindow';
     };
     var __regionWindowPar = {
         loaded: false,

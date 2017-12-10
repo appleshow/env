@@ -943,13 +943,11 @@
      */
     function refreshPage() {
         if (pageurl != "undefined" && pageurl != "") {
-            var localUrl = "viewMainshowPage?url=" + pageurl;
-            if ("index.html" == localUrl) {
-                location.href = localUrl;
-            } else {
-                $obj("childePage").src = localUrl;
-                $obj("childeName").innerHTML = " <span class='" + pageicon + "' aria-hidden='true'></span> " + pagename;
-            }
+            var localUrl = "${ctx}/viewMain/showPage?url=" + pageurl;
+
+            $obj("childePage").src = localUrl;
+            $obj("childeName").innerHTML = " <span class='" + pageicon + "' aria-hidden='true'></span> " + pagename;
+
         }
     }
 

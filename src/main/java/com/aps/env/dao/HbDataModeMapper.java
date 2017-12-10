@@ -10,7 +10,7 @@ public interface HbDataModeMapper {
 
     int deleteByExample(HbDataModeExample example);
 
-    int deleteByPrimaryKey(String guid);
+    int deleteByPrimaryKey(String dataGuid);
 
     int insert(HbDataMode record);
 
@@ -18,7 +18,7 @@ public interface HbDataModeMapper {
 
     List<HbDataMode> selectByExample(HbDataModeExample example);
 
-    HbDataMode selectByPrimaryKey(String guid);
+    HbDataMode selectByPrimaryKey(String dataGuid);
 
     int updateByExampleSelective(@Param("record") HbDataMode record, @Param("example") HbDataModeExample example);
 
@@ -27,4 +27,7 @@ public interface HbDataModeMapper {
     int updateByPrimaryKeySelective(HbDataMode record);
 
     int updateByPrimaryKey(HbDataMode record);
+
+    //----------- additional ---------------
+    int createTable(HbDataMode record);
 }

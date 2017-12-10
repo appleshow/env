@@ -9,7 +9,7 @@
          pageEncoding="UTF-8"
          language="java" %>
 <html>
-<title>站点管理</title>
+<title>企业信息</title>
 <meta name="description"
       content="Dashboard"/>
 <meta name="viewport"
@@ -54,7 +54,7 @@
              style="margin-bottom: 5px;">
             <div class="panel-heading">企业列表</div>
             <div class="panel-body"
-                 style="height: 85%;overflow-y:scroll; ">
+                 style="height: 92%;overflow-y:scroll; ">
                 <div id="enterpriseRegion"
                      class="tree tree-folder-select tree-plus-minus tree-solid-line tree-unselectable">
                     <div class="tree-folder"
@@ -79,7 +79,7 @@
     <div class="col-lg-4 col-sm-4 col-xs-12">
         <div class="panel panel-default"
              style="margin-bottom: 5px;">
-            <div class="panel-heading">企业信息</div>
+            <div class="panel-heading">企业详情</div>
             <div class="panel-body"
                  style="height: 85%;overflow-y:scroll; ">
                 <form id="enterpriseForm"
@@ -496,12 +496,13 @@
                     if (options.id != null) {
                         if (options.type === "folder") {
                             var treeData = [];
-                            var regionExist = "-";
+                            var subRegions = [];
+                            var subRegionName = "";
+                            var subRegionIndex = -1, subRegionCount = 0;
 
                             $.each(pagePars.enterpriseRegion, function (index, value) {
                                 var regionDesc = value.enterpriseRegionDesc;
                                 var regionTargets = regionDesc.split("(");
-                                var item = {};
 
                                 regionDesc = regionTargets[0];
                                 regionTargets = regionDesc.split("/");
@@ -509,6 +510,7 @@
                                 for (var regionIndex = 1; regionIndex < regionTargets.length; regionIndex++) {
                                     if (options.id == regionTargets[regionIndex]) {
                                         if (regionIndex + 1 == regionTargets.length) {
+                                            var item = {};
                                             item.id = value.enterpriseId;
                                             item.name = value.enterpriseName;
                                             item.type = 'item';
@@ -516,13 +518,14 @@
 
                                             treeData.push(item);
                                         } else {
-                                            if (regionExist.indexOf(regionTargets[regionIndex + 1]) <= 0) {
-                                                regionExist += "/" + regionTargets[regionIndex + 1];
-                                                item.id = regionTargets[regionIndex + 1];
-                                                item.name = regionTargets[regionIndex + 1];
-                                                item.type = 'folder';
-
-                                                treeData.push(item);
+                                            if (subRegionName != regionTargets[regionIndex + 1]) {
+                                                subRegionName = regionTargets[regionIndex + 1];
+                                                subRegionIndex++;
+                                                subRegionCount = 1;
+                                                subRegions.push({regionName: regionTargets[regionIndex + 1], regionCount: subRegionCount,});
+                                            } else {
+                                                subRegionCount++;
+                                                subRegions[subRegionIndex].regionCount = subRegionCount;
                                             }
                                         }
                                         break;
@@ -530,6 +533,15 @@
                                 }
                             });
 
+                            $.each(subRegions, function (index, value) {
+                                var item = {};
+
+                                item.id = value.regionName;
+                                item.name = value.regionName + " - [" + value.regionCount + "]";
+                                item.type = 'folder';
+
+                                treeData.push(item);
+                            });
                             callback({
                                 data: treeData
                             });
@@ -553,28 +565,38 @@
                                             data: []
                                         });
                                     } else {
-                                        var regionExist = "-";
                                         var treeData = [];
+                                        var regions = [];
+                                        var regionName = "";
+                                        var regionIndex = -1, regionCount = 0;
                                         pagePars.enterpriseRegion = res.data;
 
                                         $.each(pagePars.enterpriseRegion, function (index, value) {
-                                                var regionDesc = value.enterpriseRegionDesc;
-                                                var regionTargets = regionDesc.split("(");
-                                                var item = {};
+                                            var regionDesc = value.enterpriseRegionDesc;
+                                            var regionTargets = regionDesc.split("(");
 
-                                                regionDesc = regionTargets[0];
-                                                regionTargets = regionDesc.split("/");
+                                            regionDesc = regionTargets[0];
+                                            regionTargets = regionDesc.split("/");
 
-                                                if (regionExist.indexOf(regionTargets[1]) <= 0) {
-                                                    regionExist += "/" + regionTargets[1];
-                                                    item.id = regionTargets[1];
-                                                    item.name = regionTargets[1];
-                                                    item.type = 'folder';
-
-                                                    treeData.push(item);
-                                                }
+                                            if (regionName != regionTargets[1]) {
+                                                regionName = regionTargets[1];
+                                                regionIndex++;
+                                                regionCount = 1;
+                                                regions.push({regionName: regionName, regionCount: regionCount,});
+                                            } else {
+                                                regionCount++;
+                                                regions[regionIndex].regionCount = regionCount;
                                             }
-                                        );
+                                        });
+                                        $.each(regions, function (index, value) {
+                                            var item = {};
+
+                                            item.id = value.regionName;
+                                            item.name = value.regionName + " - [" + value.regionCount + "]";
+                                            item.type = 'folder';
+
+                                            treeData.push(item);
+                                        });
 
                                         callback({
                                             data: treeData
@@ -597,11 +619,6 @@
             )
         }
     }
-
-    var treeDataSource = new regionDataSource({
-        data: [],
-        delay: 400
-    });
 
     jQuery(document).ready(function () {
         $("#enterpriseType").select2({
@@ -629,7 +646,10 @@
             cacheItems: true,
             selectable: true,
             multiSelect: false,
-            dataSource: treeDataSource,
+            dataSource: new regionDataSource({
+                data: [],
+                delay: 400
+            }),
             loadingHTML: '<div class="tree-loading"><i class="fa fa-rotate-right fa-spin"></i></div>',
         });
 
@@ -860,9 +880,7 @@
                     if (res.code != 0) {
                         callError(-999, res.message);
                     } else {
-                        $('#enterpriseRegion').tree("reload");
-
-                        addEnterprise();
+                        parent.refreshPage();
                     }
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {

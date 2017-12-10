@@ -39,7 +39,7 @@
             <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
         <!-- ***配置表信息 -->
-        <table schema="" tableName="hb_enterprise"
+        <table schema="" tableName="hb_data_latest"
                enableInsert="true"
                enableSelectByPrimaryKey="true" enableUpdateByPrimaryKey="true"
                enableDeleteByPrimaryKey="true" enableSelectByExample="true"

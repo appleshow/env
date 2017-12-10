@@ -1,15 +1,14 @@
 package com.aps.env.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import org.springframework.format.annotation.DateTimeFormat;
-
 import java.math.BigDecimal;
 import java.util.Date;
 
 public class HbDataRecord {
-    private String guid;
+    private String recordGuid;
 
     private String recordData;
+
+    private Integer prstatus;
 
     private Integer prflag;
 
@@ -51,32 +50,26 @@ public class HbDataRecord {
 
     private String prexp;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date itime;
-
-    private String ishift;
-
-    private String igroup;
 
     private Integer iperson;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date utime;
-
-    private String ushift;
-
-    private String ugroup;
 
     private Integer uperson;
 
-    private String ufrom;
+    private Integer deleteFlag;
 
-    public String getGuid() {
-        return guid;
+    private Date dtime;
+
+    private Integer dperson;
+
+    public String getRecordGuid() {
+        return recordGuid;
     }
 
-    public void setGuid(String guid) {
-        this.guid = guid == null ? null : guid.trim();
+    public void setRecordGuid(String recordGuid) {
+        this.recordGuid = recordGuid == null ? null : recordGuid.trim();
     }
 
     public String getRecordData() {
@@ -85,6 +78,14 @@ public class HbDataRecord {
 
     public void setRecordData(String recordData) {
         this.recordData = recordData == null ? null : recordData.trim();
+    }
+
+    public Integer getPrstatus() {
+        return prstatus;
+    }
+
+    public void setPrstatus(Integer prstatus) {
+        this.prstatus = prstatus;
     }
 
     public Integer getPrflag() {
@@ -247,29 +248,12 @@ public class HbDataRecord {
         this.prexp = prexp == null ? null : prexp.trim();
     }
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     public Date getItime() {
         return itime;
     }
 
     public void setItime(Date itime) {
         this.itime = itime;
-    }
-
-    public String getIshift() {
-        return ishift;
-    }
-
-    public void setIshift(String ishift) {
-        this.ishift = ishift == null ? null : ishift.trim();
-    }
-
-    public String getIgroup() {
-        return igroup;
-    }
-
-    public void setIgroup(String igroup) {
-        this.igroup = igroup == null ? null : igroup.trim();
     }
 
     public Integer getIperson() {
@@ -280,29 +264,12 @@ public class HbDataRecord {
         this.iperson = iperson;
     }
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     public Date getUtime() {
         return utime;
     }
 
     public void setUtime(Date utime) {
         this.utime = utime;
-    }
-
-    public String getUshift() {
-        return ushift;
-    }
-
-    public void setUshift(String ushift) {
-        this.ushift = ushift == null ? null : ushift.trim();
-    }
-
-    public String getUgroup() {
-        return ugroup;
-    }
-
-    public void setUgroup(String ugroup) {
-        this.ugroup = ugroup == null ? null : ugroup.trim();
     }
 
     public Integer getUperson() {
@@ -313,11 +280,27 @@ public class HbDataRecord {
         this.uperson = uperson;
     }
 
-    public String getUfrom() {
-        return ufrom;
+    public Integer getDeleteFlag() {
+        return deleteFlag;
     }
 
-    public void setUfrom(String ufrom) {
-        this.ufrom = ufrom == null ? null : ufrom.trim();
+    public void setDeleteFlag(Integer deleteFlag) {
+        this.deleteFlag = deleteFlag;
+    }
+
+    public Date getDtime() {
+        return dtime;
+    }
+
+    public void setDtime(Date dtime) {
+        this.dtime = dtime;
+    }
+
+    public Integer getDperson() {
+        return dperson;
+    }
+
+    public void setDperson(Integer dperson) {
+        this.dperson = dperson;
     }
 }

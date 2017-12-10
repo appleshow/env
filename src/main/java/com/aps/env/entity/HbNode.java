@@ -1,23 +1,30 @@
 package com.aps.env.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import org.springframework.format.annotation.DateTimeFormat;
-
 import java.math.BigDecimal;
 import java.util.Date;
 
 public class HbNode {
     private Integer nodeId;
 
-    private Integer typeId;
+    private String nodeMn;
 
     private String nodeName;
-
-    private String nodeMn;
 
     private String nodeAtr;
 
     private String nodeItem;
+
+    private String nodeLongitude;
+
+    private String nodeLatitude;
+
+    private Integer nodeOfflineTarget;
+
+    private String nodeDesc;
+
+    private Integer typeId;
+
+    private Integer enterpriseId;
 
     private Integer prflag;
 
@@ -59,25 +66,24 @@ public class HbNode {
 
     private String prexp;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date itime;
-
-    private String ishift;
-
-    private String igroup;
 
     private Integer iperson;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date utime;
-
-    private String ushift;
-
-    private String ugroup;
 
     private Integer uperson;
 
-    private String ufrom;
+    private Integer deleteFlag;
+
+    private Date dtime;
+
+    private Integer dperson;
+
+    /**
+     * Association HbEnterprise
+     */
+    private HbEnterprise hbEnterprise;
 
     public Integer getNodeId() {
         return nodeId;
@@ -87,12 +93,12 @@ public class HbNode {
         this.nodeId = nodeId;
     }
 
-    public Integer getTypeId() {
-        return typeId;
+    public String getNodeMn() {
+        return nodeMn;
     }
 
-    public void setTypeId(Integer typeId) {
-        this.typeId = typeId;
+    public void setNodeMn(String nodeMn) {
+        this.nodeMn = nodeMn == null ? null : nodeMn.trim();
     }
 
     public String getNodeName() {
@@ -101,14 +107,6 @@ public class HbNode {
 
     public void setNodeName(String nodeName) {
         this.nodeName = nodeName == null ? null : nodeName.trim();
-    }
-
-    public String getNodeMn() {
-        return nodeMn;
-    }
-
-    public void setNodeMn(String nodeMn) {
-        this.nodeMn = nodeMn == null ? null : nodeMn.trim();
     }
 
     public String getNodeAtr() {
@@ -125,6 +123,54 @@ public class HbNode {
 
     public void setNodeItem(String nodeItem) {
         this.nodeItem = nodeItem == null ? null : nodeItem.trim();
+    }
+
+    public String getNodeLongitude() {
+        return nodeLongitude;
+    }
+
+    public void setNodeLongitude(String nodeLongitude) {
+        this.nodeLongitude = nodeLongitude == null ? null : nodeLongitude.trim();
+    }
+
+    public String getNodeLatitude() {
+        return nodeLatitude;
+    }
+
+    public void setNodeLatitude(String nodeLatitude) {
+        this.nodeLatitude = nodeLatitude == null ? null : nodeLatitude.trim();
+    }
+
+    public Integer getNodeOfflineTarget() {
+        return nodeOfflineTarget;
+    }
+
+    public void setNodeOfflineTarget(Integer nodeOfflineTarget) {
+        this.nodeOfflineTarget = nodeOfflineTarget;
+    }
+
+    public String getNodeDesc() {
+        return nodeDesc;
+    }
+
+    public void setNodeDesc(String nodeDesc) {
+        this.nodeDesc = nodeDesc == null ? null : nodeDesc.trim();
+    }
+
+    public Integer getTypeId() {
+        return typeId;
+    }
+
+    public void setTypeId(Integer typeId) {
+        this.typeId = typeId;
+    }
+
+    public Integer getEnterpriseId() {
+        return enterpriseId;
+    }
+
+    public void setEnterpriseId(Integer enterpriseId) {
+        this.enterpriseId = enterpriseId;
     }
 
     public Integer getPrflag() {
@@ -287,29 +333,12 @@ public class HbNode {
         this.prexp = prexp == null ? null : prexp.trim();
     }
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     public Date getItime() {
         return itime;
     }
 
     public void setItime(Date itime) {
         this.itime = itime;
-    }
-
-    public String getIshift() {
-        return ishift;
-    }
-
-    public void setIshift(String ishift) {
-        this.ishift = ishift == null ? null : ishift.trim();
-    }
-
-    public String getIgroup() {
-        return igroup;
-    }
-
-    public void setIgroup(String igroup) {
-        this.igroup = igroup == null ? null : igroup.trim();
     }
 
     public Integer getIperson() {
@@ -320,29 +349,12 @@ public class HbNode {
         this.iperson = iperson;
     }
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     public Date getUtime() {
         return utime;
     }
 
     public void setUtime(Date utime) {
         this.utime = utime;
-    }
-
-    public String getUshift() {
-        return ushift;
-    }
-
-    public void setUshift(String ushift) {
-        this.ushift = ushift == null ? null : ushift.trim();
-    }
-
-    public String getUgroup() {
-        return ugroup;
-    }
-
-    public void setUgroup(String ugroup) {
-        this.ugroup = ugroup == null ? null : ugroup.trim();
     }
 
     public Integer getUperson() {
@@ -353,11 +365,27 @@ public class HbNode {
         this.uperson = uperson;
     }
 
-    public String getUfrom() {
-        return ufrom;
+    public Integer getDeleteFlag() {
+        return deleteFlag;
     }
 
-    public void setUfrom(String ufrom) {
-        this.ufrom = ufrom == null ? null : ufrom.trim();
+    public void setDeleteFlag(Integer deleteFlag) {
+        this.deleteFlag = deleteFlag;
+    }
+
+    public Date getDtime() {
+        return dtime;
+    }
+
+    public void setDtime(Date dtime) {
+        this.dtime = dtime;
+    }
+
+    public Integer getDperson() {
+        return dperson;
+    }
+
+    public void setDperson(Integer dperson) {
+        this.dperson = dperson;
     }
 }
