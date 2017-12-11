@@ -40,6 +40,53 @@
     <result column="DELETE_FLAG" property="deleteFlag" jdbcType="INTEGER" />
     <result column="DTIME" property="dtime" jdbcType="DATE" />
     <result column="DPERSON" property="dperson" jdbcType="INTEGER" />
+    <association property="hbEnterprise" resultMap="hbEnterpriseMap" columnPrefix="hbenterprise_"/>
+  </resultMap>
+  <resultMap id="hbEnterpriseMap" type="com.aps.env.entity.HbEnterprise" >
+    <id column="ENTERPRISE_ID" property="enterpriseId" jdbcType="INTEGER" />
+    <result column="ENTERPRISE_NAME" property="enterpriseName" jdbcType="VARCHAR" />
+    <result column="ENTERPRISE_REGION" property="enterpriseRegion" jdbcType="VARCHAR" />
+    <result column="ENTERPRISE_REGION_DESC" property="enterpriseRegionDesc" jdbcType="VARCHAR" />
+    <result column="ENTERPRISE_TYPE" property="enterpriseType" jdbcType="INTEGER" />
+    <result column="ENTERPRISE_TRADE" property="enterpriseTrade" jdbcType="INTEGER" />
+    <result column="ENTERPRISE_ADDRESS" property="enterpriseAddress" jdbcType="VARCHAR" />
+    <result column="ENTERPRISE_LEGAL_PERSON" property="enterpriseLegalPerson" jdbcType="VARCHAR" />
+    <result column="ENTERPRISE_LEGAL_PHONE" property="enterpriseLegalPhone" jdbcType="VARCHAR" />
+    <result column="ENTERPRISE_ENV_PERSON" property="enterpriseEnvPerson" jdbcType="VARCHAR" />
+    <result column="ENTERPRISE_ENV_PHONE" property="enterpriseEnvPhone" jdbcType="VARCHAR" />
+    <result column="ENTERPRISE_CML_LEVEL" property="enterpriseCmlLevel" jdbcType="VARCHAR" />
+    <result column="ENTERPRISE_CML_GRADE" property="enterpriseCmlGrade" jdbcType="VARCHAR" />
+    <result column="ENTERPRISE_CML_AMOUNT" property="enterpriseCmlAmount" jdbcType="DECIMAL" />
+    <result column="ENTERPRISE_CML_UNIT" property="enterpriseCmlUnit" jdbcType="INTEGER" />
+    <result column="ENTERPRISE_URL" property="enterpriseUrl" jdbcType="VARCHAR" />
+    <result column="ENTERPRISE_DESC" property="enterpriseDesc" jdbcType="VARCHAR" />
+    <result column="PRFLAG" property="prflag" jdbcType="INTEGER" />
+    <result column="PRGROUP" property="prgroup" jdbcType="VARCHAR" />
+    <result column="PRTYPE" property="prtype" jdbcType="VARCHAR" />
+    <result column="PROPERTY0" property="property0" jdbcType="VARCHAR" />
+    <result column="PROPERTY1" property="property1" jdbcType="VARCHAR" />
+    <result column="PROPERTY2" property="property2" jdbcType="VARCHAR" />
+    <result column="PROPERTY3" property="property3" jdbcType="VARCHAR" />
+    <result column="PROPERTY4" property="property4" jdbcType="VARCHAR" />
+    <result column="PROPERTY5" property="property5" jdbcType="VARCHAR" />
+    <result column="PROPERTY6" property="property6" jdbcType="VARCHAR" />
+    <result column="PROPERTY7" property="property7" jdbcType="VARCHAR" />
+    <result column="PROPERTY8" property="property8" jdbcType="VARCHAR" />
+    <result column="PROPERTY9" property="property9" jdbcType="VARCHAR" />
+    <result column="PROPERTY10" property="property10" jdbcType="DECIMAL" />
+    <result column="PROPERTY11" property="property11" jdbcType="DECIMAL" />
+    <result column="PROPERTY12" property="property12" jdbcType="DECIMAL" />
+    <result column="PROPERTY13" property="property13" jdbcType="DECIMAL" />
+    <result column="PROPERTY14" property="property14" jdbcType="DECIMAL" />
+    <result column="PRINF" property="prinf" jdbcType="VARCHAR" />
+    <result column="PREXP" property="prexp" jdbcType="VARCHAR" />
+    <result column="ITIME" property="itime" jdbcType="TIMESTAMP" />
+    <result column="IPERSON" property="iperson" jdbcType="INTEGER" />
+    <result column="UTIME" property="utime" jdbcType="TIMESTAMP" />
+    <result column="UPERSON" property="uperson" jdbcType="INTEGER" />
+    <result column="DELETE_FLAG" property="deleteFlag" jdbcType="INTEGER" />
+    <result column="DTIME" property="dtime" jdbcType="DATE" />
+    <result column="DPERSON" property="dperson" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -125,6 +172,20 @@
     <include refid="Base_Column_List" />
     from hb_node
     where NODE_ID = #{nodeId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAssociation" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    SELECT
+	n.*,
+	e.ENTERPRISE_NAME AS hbenterprise_ENTERPRISE_NAME,
+	e.ENTERPRISE_ID AS hbenterprise_ENTERPRISE_ID,
+	e.ENTERPRISE_REGION_DESC AS hbenterprise_ENTERPRISE_REGION_DESC
+    FROM
+	hb_enterprise e
+    LEFT JOIN hb_node n ON e.ENTERPRISE_ID = n.ENTERPRISE_ID
+    AND n.DELETE_FLAG = 0
+    ORDER BY
+	e.ENTERPRISE_REGION,
+	n.ENTERPRISE_ID
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from hb_node

@@ -204,6 +204,44 @@
                              style="margin-right: 0px;padding-right: 0px">
                             <button class="btn btn-default"
                                     type="button"
+                                    style="width: 100%; text-align: right;"><span style="color: red">* </span>设备厂商
+                            </button>
+                        </div>
+                        <div class="col-lg-8 col-sm-8 col-xs-8"
+                             style="margin-left: 0px;padding-left: 0px">
+                            <select class="form-control"
+                                    style="width: 100%;"
+                                    id="property10"
+                                    name="property10">
+                                <option></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row"
+                         style="padding-top: 5px">
+                        <div class="col-lg-4 col-sm-4 col-xs-4"
+                             style="margin-right: 0px;padding-right: 0px">
+                            <button class="btn btn-default"
+                                    type="button"
+                                    style="width: 100%; text-align: right;"><span style="color: red">* </span>设备型号
+                            </button>
+                        </div>
+                        <div class="col-lg-8 col-sm-8 col-xs-8"
+                             style="margin-left: 0px;padding-left: 0px">
+                            <select class="form-control"
+                                    style="width: 100%;"
+                                    id="property11"
+                                    name="property11">
+                                <option></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row"
+                         style="padding-top: 5px">
+                        <div class="col-lg-4 col-sm-4 col-xs-4"
+                             style="margin-right: 0px;padding-right: 0px">
+                            <button class="btn btn-default"
+                                    type="button"
                                     style="width: 100%; text-align: right;"><span style="color: red;">* </span>坐标经度
                             </button>
                         </div>
@@ -352,6 +390,8 @@
 <script type="application/javascript">
     var pagePars = {
         modifyType: "I",
+        enterpriseRegion: [],
+        comCode: [],
     };
 
     var regionDataSource = function (options) {
@@ -360,69 +400,130 @@
         this._dataType = 'enterpriseNode';
     };
 
-    /*
+
     regionDataSource.prototype = {
         data: function (options, callback) {
             setTimeout(function () {
                     if (options.id != null) {
                         if (options.type === "folder") {
-                            var treeData = [];
-                            var subRegions = [];
-                            var subRegionName = "";
-                            var subRegionIndex = -1, subRegionCount = 0;
+                            if (options.id == "所有") {
+                                var treeData = [];
 
-                            $.each(pagePars.enterpriseRegion, function (index, value) {
-                                var regionDesc = value.enterpriseRegionDesc;
-                                var regionTargets = regionDesc.split("(");
+                                $.each(pagePars.enterpriseRegion, function (indexNode, node) {
+                                    if (node.nodeId && node.nodeId != "") {
+                                        var item = {};
 
-                                regionDesc = regionTargets[0];
-                                regionTargets = regionDesc.split("/");
+                                        item.id = node.nodeId;
+                                        item.name = node.nodeName;
+                                        item.type = 'item';
+                                        item.isEnterprise = false;
 
-                                for (var regionIndex = 1; regionIndex < regionTargets.length; regionIndex++) {
-                                    if (options.id == regionTargets[regionIndex]) {
-                                        if (regionIndex + 1 == regionTargets.length) {
+                                        treeData.push(item);
+                                    }
+                                });
+
+                                callback({
+                                    data: treeData
+                                });
+                            } else {
+                                if (options.isEnterprise) {
+                                    var treeData = [];
+
+                                    $.each(pagePars.enterpriseRegion, function (indexNode, node) {
+                                        if (options.id == node.enterpriseId) {
                                             var item = {};
-                                            item.id = value.enterpriseId;
-                                            item.name = value.enterpriseName;
+
+                                            item.id = node.nodeId;
+                                            item.name = node.nodeName;
                                             item.type = 'item';
-                                            item._dataType = 'enterpriseRegion';
+                                            item.isEnterprise = false;
 
                                             treeData.push(item);
-                                        } else {
-                                            if (subRegionName != regionTargets[regionIndex + 1]) {
-                                                subRegionName = regionTargets[regionIndex + 1];
-                                                subRegionIndex++;
-                                                subRegionCount = 1;
-                                                subRegions.push({regionName: regionTargets[regionIndex + 1], regionCount: subRegionCount,});
-                                            } else {
-                                                subRegionCount++;
-                                                subRegions[subRegionIndex].regionCount = subRegionCount;
+                                        }
+                                    });
+
+                                    callback({
+                                        data: treeData
+                                    });
+                                } else {
+                                    var treeData = [];
+                                    var subRegions = [];
+                                    var subRegionName = "";
+                                    var subRegionIndex = -1, subRegionCount = 0;
+                                    var enterpriseId = 0;
+
+                                    $.each(pagePars.enterpriseRegion, function (index, value) {
+                                        var regionDesc = value.hbEnterprise.enterpriseRegionDesc;
+                                        var regionTargets = regionDesc.split("(");
+
+                                        regionDesc = regionTargets[0];
+                                        regionTargets = regionDesc.split("/");
+
+                                        for (var regionIndex = 1; regionIndex < regionTargets.length; regionIndex++) {
+                                            if (options.id == regionTargets[regionIndex]) {
+                                                if (regionIndex + 1 == regionTargets.length) {
+                                                    if (enterpriseId != value.hbEnterprise.enterpriseId) {
+                                                        var item = {};
+                                                        var nodeCount = 0;
+
+                                                        enterpriseId = value.hbEnterprise.enterpriseId;
+                                                        item.id = value.hbEnterprise.enterpriseId;
+                                                        item.name = value.hbEnterprise.enterpriseName;
+                                                        item.type = 'folder';
+                                                        item.isEnterprise = true;
+
+                                                        $.each(pagePars.enterpriseRegion, function (indexNode, node) {
+                                                            if (node.enterpriseId == value.enterpriseId && value.nodeId && value.nodeId != "") {
+                                                                nodeCount++;
+                                                            }
+                                                        });
+                                                        item.name = item.name + " - [" + nodeCount + "]";
+                                                        treeData.push(item);
+                                                    }
+                                                } else {
+                                                    if (subRegionName != regionTargets[regionIndex + 1]) {
+                                                        subRegionName = regionTargets[regionIndex + 1];
+                                                        subRegionIndex++;
+                                                        if (value.nodeId && value.nodeId != "") {
+                                                            subRegionCount = 1;
+                                                        } else {
+                                                            subRegionCount = 0;
+                                                        }
+                                                        subRegions.push({regionName: regionTargets[regionIndex + 1], regionCount: subRegionCount,});
+                                                    } else {
+                                                        if (value.nodeId && value.nodeId != "") {
+                                                            subRegionCount++;
+                                                            subRegions[subRegionIndex].regionCount = subRegionCount;
+                                                        }
+                                                    }
+                                                }
+                                                break;
                                             }
                                         }
-                                        break;
-                                    }
+                                    });
+
+                                    $.each(subRegions, function (index, value) {
+                                        var item = {};
+
+                                        item.id = value.regionName;
+                                        item.name = value.regionName + " - [" + value.regionCount + "]";
+                                        item.type = 'folder';
+                                        item.isEnterprise = false;
+
+                                        treeData.push(item);
+                                    });
+                                    callback({
+                                        data: treeData
+                                    });
                                 }
-                            });
-
-                            $.each(subRegions, function (index, value) {
-                                var item = {};
-
-                                item.id = value.regionName;
-                                item.name = value.regionName + " - [" + value.regionCount + "]";
-                                item.type = 'folder';
-
-                                treeData.push(item);
-                            });
-                            callback({
-                                data: treeData
-                            });
+                            }
                         } else {
 
                         }
                     } else {
                         $.ajax({
                                 type: "POST",
-                                url: '${ctx}/viewHbEnterpriseCfg/refEnterprise',
+                                url: '${ctx}/viewHbEnterpriseNodeCfg/refEnterpriseNode',
                                 cache: false,
                                 data: ServerRequestPar(0, {}),
                                 dataType: "json",
@@ -440,10 +541,18 @@
                                         var regions = [];
                                         var regionName = "";
                                         var regionIndex = -1, regionCount = 0;
+                                        var allCount = 0;
                                         pagePars.enterpriseRegion = res.data;
 
                                         $.each(pagePars.enterpriseRegion, function (index, value) {
-                                            var regionDesc = value.enterpriseRegionDesc;
+                                            if (value.nodeId && value.nodeId != "") {
+                                                allCount++;
+                                            }
+                                        });
+                                        treeData.push({id: "所有", name: "所有 - [" + allCount + "]", type: "folder", isEnterprise: false,});
+
+                                        $.each(pagePars.enterpriseRegion, function (index, value) {
+                                            var regionDesc = value.hbEnterprise.enterpriseRegionDesc;
                                             var regionTargets = regionDesc.split("(");
 
                                             regionDesc = regionTargets[0];
@@ -452,11 +561,17 @@
                                             if (regionName != regionTargets[1]) {
                                                 regionName = regionTargets[1];
                                                 regionIndex++;
-                                                regionCount = 1;
+                                                if (value.nodeId && value.nodeId != "") {
+                                                    regionCount = 1;
+                                                } else {
+                                                    regionCount = 0;
+                                                }
                                                 regions.push({regionName: regionName, regionCount: regionCount,});
                                             } else {
-                                                regionCount++;
-                                                regions[regionIndex].regionCount = regionCount;
+                                                if (value.nodeId && value.nodeId != "") {
+                                                    regionCount++;
+                                                    regions[regionIndex].regionCount = regionCount;
+                                                }
                                             }
                                         });
                                         $.each(regions, function (index, value) {
@@ -465,6 +580,7 @@
                                             item.id = value.regionName;
                                             item.name = value.regionName + " - [" + value.regionCount + "]";
                                             item.type = 'folder';
+                                            item.isEnterprise = false;
 
                                             treeData.push(item);
                                         });
@@ -490,26 +606,54 @@
             )
         }
     };
-*/
+
     jQuery(document).ready(function () {
         $("#typeId").select2({
             placeholder: "选择一个站点分类",
             allowClear: true,
-            language: "zh-CN"
+            language: "zh-CN",
+        });
+        $("#property10").select2({
+            placeholder: "选择一个设备厂商",
+            allowClear: true,
+            language: "zh-CN",
+        });
+        $("#property11").select2({
+            placeholder: "选择一个设备型号",
+            allowClear: true,
+            language: "zh-CN",
         });
 
-        /*
-                $('#enterpriseRegion').tree({
-                    cacheItems: true,
-                    selectable: true,
-                    multiSelect: false,
-                    dataSource: new regionDataSource({
-                        data: [],
-                        delay: 400
-                    }),
-                    loadingHTML: '<div class="tree-loading"><i class="fa fa-rotate-right fa-spin"></i></div>',
+        $("#property10").on("change", function (e) {
+            if ($("#property10").val() == "") {
+                $("#property11").val(null).trigger("change");
+            } else {
+                var marking = "";
+
+                $("#property11").html("");
+                $.each(pagePars.comCode, function (index, value) {
+                    if (value.codeType == "21" && value.property0 == $("#property10").val()) {
+                        marking += "<option value='" + value.codeId + "'>" + value.codeName + "</option>";
+                    }
                 });
-        */
+                if (marking != "") {
+                    $("#property11").append(marking);
+                    $("#property11").val(null).trigger("change");
+                }
+            }
+        });
+
+        $('#enterpriseRegion').tree({
+            cacheItems: true,
+            selectable: true,
+            multiSelect: false,
+            dataSource: new regionDataSource({
+                data: [],
+                delay: 400
+            }),
+            loadingHTML: '<div class="tree-loading"><i class="fa fa-rotate-right fa-spin"></i></div>',
+        });
+
         initComboData();
     });
 
@@ -605,6 +749,37 @@
                 callError(-900, "操作未完成，向服务器请求失败...");
             }
         });
+
+        $.ajax({
+            type: "POST",
+            url: "${ctx}/viewComCodeConfig/refComCode",
+            cache: false,
+            data: ServerRequestPar(1, {codeType: "20,21", pageNumber: 1, pageSize: 2000,}),
+            dataType: "json",
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            success: function (res) {
+                if (res.code != 0) {
+                    callError(res.code, res.message);
+                } else {
+                    var manufacturer = "";
+
+                    pagePars.comCode = res.data;
+                    $.each(pagePars.comCode, function (index, value) {
+                        if (value.codeType == "20") {
+                            manufacturer += "<option value='" + value.codeId + "'>" + value.codeName + "</option>";
+                        }
+                    });
+                    if (manufacturer != "") {
+                        $("#property10").append(manufacturer);
+                    }
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                callError(-900, "操作未完成，向服务器请求失败...");
+            }
+        });
     }
 
     /**
@@ -632,6 +807,9 @@
         $(':input', '#enterpriseNodeForm').not(':button,:submit,:reset,:hidden').val('').removeAttr('checked');
 
         $("#typeId").val(null).trigger("change");
+        $("#property10").val(null).trigger("change");
+        $("#property11").val(null).trigger("change");
+        $("#property11").html("");
         pagePars.modifyType = "I";
 
         $("#enterpriseNodeForm").data("bootstrapValidator").resetForm();
@@ -663,6 +841,14 @@
             }
             if (hbEnterpriseNode.enterpriseId == "") {
                 callError(-100, "请选择站点所属企业...！");
+                return;
+            }
+            if (hbEnterpriseNode.property10 == "") {
+                callError(-100, "请选择设备厂商...！");
+                return;
+            }
+            if (!hbEnterpriseNode.hasOwnProperty("property11") || hbEnterpriseNode.property11 == "") {
+                callError(-100, "请选择设设备型号...！");
                 return;
             }
             hbEnterpriseNode._type = pagePars.modifyType;
@@ -704,25 +890,21 @@
         if (dataSource._dataType == 'enterpriseNode') {
             if (items && items.length > 0) {
                 var selectItem = items[0];
-                var hbEnterprise = {};
+                var hbEnterpriseNode = {};
 
-                $.each(pagePars.enterpriseRegion, function (index, enterprise) {
-                    if (selectItem.id == enterprise.enterpriseId) {
-                        hbEnterprise = enterprise;
+                $.each(pagePars.enterpriseRegion, function (index, node) {
+                    if (selectItem.id == node.nodeId) {
+                        hbEnterpriseNode = node;
+                        hbEnterpriseNode.property0 = hbEnterpriseNode.nodeName;
+                        hbEnterpriseNode.property1 = hbEnterpriseNode.hbEnterprise.enterpriseName;
                     }
                 });
 
-                $("#enterpriseNodeForm").initForm(hbEnterprise);
-                $.each(pagePars.comCode, function (index, value) {
-                    if (value.codeType == "26" && value.codeId == hbEnterprise.enterpriseCmlUnit) {
-                        $("#unitName").html(value.codeName);
-                        pagePars.selectUnitId = value.codeId;
-                    }
-                });
+                $("#enterpriseNodeForm").initForm(hbEnterpriseNode);
 
                 pagePars.modifyType = "U";
             } else {
-                addEnterprise();
+                addEnterpriseNode();
             }
         }
     }

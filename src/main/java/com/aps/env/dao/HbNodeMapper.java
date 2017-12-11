@@ -27,4 +27,7 @@ public interface HbNodeMapper {
     int updateByPrimaryKeySelective(HbNode record);
 
     int updateByPrimaryKey(HbNode record);
+
+    //----------- additional ---------------
+    List<HbNode> selectAssociation(HbNode record);
 }

@@ -195,9 +195,9 @@
             tableComCode.columns["property0"].render = function (data, type, row) {
                 var fixData = data;
 
-                if (type === 'display') {
+                if (type == 'display') {
                     $.each(comCodeEnterprise, function (index, value) {
-                        if (value["codeId"] === data) {
+                        if (value["codeId"] == data) {
                             fixData = value["codeName"];
                         }
                     });
@@ -209,7 +209,7 @@
         // *********************************
         // ***** Add information to Field *****
         if ('${pageId}' == '21') {
-            tableComCode.fields["property0"].options = TransToOptions(comCodeEnterprise, "codeValue", "codeName");
+            tableComCode.fields["property0"].options = TransToOptions(comCodeEnterprise, "codeId", "codeName");
         }
         tableComCode.fields["codeType"].options = [{
             label: '${pageId}',

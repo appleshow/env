@@ -495,56 +495,71 @@
             setTimeout(function () {
                     if (options.id != null) {
                         if (options.type === "folder") {
-                            var treeData = [];
-                            var subRegions = [];
-                            var subRegionName = "";
-                            var subRegionIndex = -1, subRegionCount = 0;
+                            if (options.id == "所有") {
+                                var treeData = [];
 
-                            $.each(pagePars.enterpriseRegion, function (index, value) {
-                                var regionDesc = value.enterpriseRegionDesc;
-                                var regionTargets = regionDesc.split("(");
+                                $.each(pagePars.enterpriseRegion, function (index, value) {
+                                    var item = {};
+                                    item.id = value.enterpriseId;
+                                    item.name = value.enterpriseName;
+                                    item.type = 'item';
 
-                                regionDesc = regionTargets[0];
-                                regionTargets = regionDesc.split("/");
+                                    treeData.push(item);
+                                });
+                                callback({
+                                    data: treeData
+                                });
+                            }else{
+                                var treeData = [];
+                                var subRegions = [];
+                                var subRegionName = "";
+                                var subRegionIndex = -1, subRegionCount = 0;
 
-                                for (var regionIndex = 1; regionIndex < regionTargets.length; regionIndex++) {
-                                    if (options.id == regionTargets[regionIndex]) {
-                                        if (regionIndex + 1 == regionTargets.length) {
-                                            var item = {};
-                                            item.id = value.enterpriseId;
-                                            item.name = value.enterpriseName;
-                                            item.type = 'item';
-                                            item._dataType = 'enterpriseRegion';
+                                $.each(pagePars.enterpriseRegion, function (index, value) {
+                                    var regionDesc = value.enterpriseRegionDesc;
+                                    var regionTargets = regionDesc.split("(");
 
-                                            treeData.push(item);
-                                        } else {
-                                            if (subRegionName != regionTargets[regionIndex + 1]) {
-                                                subRegionName = regionTargets[regionIndex + 1];
-                                                subRegionIndex++;
-                                                subRegionCount = 1;
-                                                subRegions.push({regionName: regionTargets[regionIndex + 1], regionCount: subRegionCount,});
+                                    regionDesc = regionTargets[0];
+                                    regionTargets = regionDesc.split("/");
+
+                                    for (var regionIndex = 1; regionIndex < regionTargets.length; regionIndex++) {
+                                        if (options.id == regionTargets[regionIndex]) {
+                                            if (regionIndex + 1 == regionTargets.length) {
+                                                var item = {};
+                                                item.id = value.enterpriseId;
+                                                item.name = value.enterpriseName;
+                                                item.type = 'item';
+
+                                                treeData.push(item);
                                             } else {
-                                                subRegionCount++;
-                                                subRegions[subRegionIndex].regionCount = subRegionCount;
+                                                if (subRegionName != regionTargets[regionIndex + 1]) {
+                                                    subRegionName = regionTargets[regionIndex + 1];
+                                                    subRegionIndex++;
+                                                    subRegionCount = 1;
+                                                    subRegions.push({regionName: regionTargets[regionIndex + 1], regionCount: subRegionCount,});
+                                                } else {
+                                                    subRegionCount++;
+                                                    subRegions[subRegionIndex].regionCount = subRegionCount;
+                                                }
                                             }
+                                            break;
                                         }
-                                        break;
                                     }
-                                }
-                            });
+                                });
 
-                            $.each(subRegions, function (index, value) {
-                                var item = {};
+                                $.each(subRegions, function (index, value) {
+                                    var item = {};
 
-                                item.id = value.regionName;
-                                item.name = value.regionName + " - [" + value.regionCount + "]";
-                                item.type = 'folder';
+                                    item.id = value.regionName;
+                                    item.name = value.regionName + " - [" + value.regionCount + "]";
+                                    item.type = 'folder';
 
-                                treeData.push(item);
-                            });
-                            callback({
-                                data: treeData
-                            });
+                                    treeData.push(item);
+                                });
+                                callback({
+                                    data: treeData
+                                });
+                            }
                         } else {
 
                         }
@@ -570,6 +585,8 @@
                                         var regionName = "";
                                         var regionIndex = -1, regionCount = 0;
                                         pagePars.enterpriseRegion = res.data;
+
+                                        treeData.push({id: "所有", name: "所有 - [" + res.data.length + "]", type: "folder",});
 
                                         $.each(pagePars.enterpriseRegion, function (index, value) {
                                             var regionDesc = value.enterpriseRegionDesc;

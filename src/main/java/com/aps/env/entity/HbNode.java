@@ -388,4 +388,12 @@ public class HbNode {
     public void setDperson(Integer dperson) {
         this.dperson = dperson;
     }
+
+    public HbEnterprise getHbEnterprise() {
+        return hbEnterprise;
+    }
+
+    public void setHbEnterprise(HbEnterprise hbEnterprise) {
+        this.hbEnterprise = hbEnterprise;
+    }
 }

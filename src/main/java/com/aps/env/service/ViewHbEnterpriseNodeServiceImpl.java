@@ -93,7 +93,9 @@ public class ViewHbEnterpriseNodeServiceImpl implements ViewHbEnterpriseNodeServ
 
     @Override
     public void refEnterpriseNode(HttpSession httpSession, RequestRefPar requestRefPar, ResponseData responseData) {
+        HbNode hbNode = new HbNode();
 
+        responseData.setData(hbNodeMapper.selectAssociation(hbNode));
     }
 
     @Override
