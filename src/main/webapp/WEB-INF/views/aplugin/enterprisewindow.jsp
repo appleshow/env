@@ -58,7 +58,7 @@
                 </button>
                 <button type="button"
                         class="btn btn-primary"
-                        onclick="__EnerpriseSelected()">
+                        onclick="__enerpriseSelected()">
                     <span class="glyphicon glyphicon-ok"
                           aria-hidden="true"></span>&nbsp;确定
                 </button>
@@ -67,72 +67,87 @@
     </div>
 </div>
 <script type="application/javascript">
-    var __EnerpriseDataSource = function (options) {
+    var __enterpriseDataSource = function (options) {
         this._data = options.data;
         this._delay = options.delay;
         this._dataType = 'enterpriseWindow';
     };
-    var __EnerpriseWindowPar = {
+    var __enterpriseWindowPar = {
         loaded: false,
         EnerpriseWindowCallBack: undefined,
         currentTreeData: [],
     };
 
-    __EnerpriseDataSource.prototype = {
+    __enterpriseDataSource.prototype = {
         data: function (options, callback) {
             setTimeout(function () {
                     if (options.id != null) {
                         if (options.type === "folder") {
-                            var treeData = [];
-                            var subRegions = [];
-                            var subRegionName = "";
-                            var subRegionIndex = -1, subRegionCount = 0;
+                            if (options.id == "所有") {
+                                var treeData = [];
 
-                            $.each(pagePars.enterpriseRegion, function (index, value) {
-                                var regionDesc = value.enterpriseRegionDesc;
-                                var regionTargets = regionDesc.split("(");
+                                $.each(__enterpriseWindowPar.currentTreeData, function (index, value) {
+                                    var item = {};
+                                    item.id = value.enterpriseId;
+                                    item.name = value.enterpriseName;
+                                    item.type = 'item';
 
-                                regionDesc = regionTargets[0];
-                                regionTargets = regionDesc.split("/");
+                                    treeData.push(item);
+                                });
+                                callback({
+                                    data: treeData
+                                });
+                            } else {
+                                var treeData = [];
+                                var subRegions = [];
+                                var subRegionName = "";
+                                var subRegionIndex = -1, subRegionCount = 0;
 
-                                for (var regionIndex = 1; regionIndex < regionTargets.length; regionIndex++) {
-                                    if (options.id == regionTargets[regionIndex]) {
-                                        if (regionIndex + 1 == regionTargets.length) {
-                                            var item = {};
-                                            item.id = value.enterpriseId;
-                                            item.name = value.enterpriseName;
-                                            item.type = 'item';
-                                            item._dataType = 'enterpriseRegion';
+                                $.each(__enterpriseWindowPar.currentTreeData, function (index, value) {
+                                    var regionDesc = value.enterpriseRegionDesc;
+                                    var regionTargets = regionDesc.split("(");
 
-                                            treeData.push(item);
-                                        } else {
-                                            if (subRegionName != regionTargets[regionIndex + 1]) {
-                                                subRegionName = regionTargets[regionIndex + 1];
-                                                subRegionIndex++;
-                                                subRegionCount = 1;
-                                                subRegions.push({regionName: regionTargets[regionIndex + 1], regionCount: subRegionCount,});
+                                    regionDesc = regionTargets[0];
+                                    regionTargets = regionDesc.split("/");
+
+                                    for (var regionIndex = 1; regionIndex < regionTargets.length; regionIndex++) {
+                                        if (options.id == regionTargets[regionIndex]) {
+                                            if (regionIndex + 1 == regionTargets.length) {
+                                                var item = {};
+                                                item.id = value.enterpriseId;
+                                                item.name = value.enterpriseName;
+                                                item.type = 'item';
+
+                                                treeData.push(item);
                                             } else {
-                                                subRegionCount++;
-                                                subRegions[subRegionIndex].regionCount = subRegionCount;
+                                                if (subRegionName != regionTargets[regionIndex + 1]) {
+                                                    subRegionName = regionTargets[regionIndex + 1];
+                                                    subRegionIndex++;
+                                                    subRegionCount = 1;
+                                                    subRegions.push({regionName: regionTargets[regionIndex + 1], regionCount: subRegionCount,});
+                                                } else {
+                                                    subRegionCount++;
+                                                    subRegions[subRegionIndex].regionCount = subRegionCount;
+                                                }
                                             }
+                                            break;
                                         }
-                                        break;
                                     }
-                                }
-                            });
+                                });
 
-                            $.each(subRegions, function (index, value) {
-                                var item = {};
+                                $.each(subRegions, function (index, value) {
+                                    var item = {};
 
-                                item.id = value.regionName;
-                                item.name = value.regionName + " - [" + value.regionCount + "]";
-                                item.type = 'folder';
+                                    item.id = value.regionName;
+                                    item.name = value.regionName + " - [" + value.regionCount + "]";
+                                    item.type = 'folder';
 
-                                treeData.push(item);
-                            });
-                            callback({
-                                data: treeData
-                            });
+                                    treeData.push(item);
+                                });
+                                callback({
+                                    data: treeData
+                                });
+                            }
                         } else {
 
                         }
@@ -148,7 +163,7 @@
                                 },
                                 success: function (res) {
                                     if (res.code != 0) {
-                                        pagePars.enterpriseRegion = [];
+                                        __enterpriseWindowPar.currentTreeData = [];
                                         callback({
                                             data: []
                                         });
@@ -157,9 +172,10 @@
                                         var regions = [];
                                         var regionName = "";
                                         var regionIndex = -1, regionCount = 0;
-                                        pagePars.enterpriseRegion = res.data;
 
-                                        $.each(pagePars.enterpriseRegion, function (index, value) {
+                                        __enterpriseWindowPar.currentTreeData = res.data;
+                                        treeData.push({id: "所有", name: "所有 - [" + res.data.length + "]", type: "folder",});
+                                        $.each(__enterpriseWindowPar.currentTreeData, function (index, value) {
                                             var regionDesc = value.enterpriseRegionDesc;
                                             var regionTargets = regionDesc.split("(");
 
@@ -205,9 +221,9 @@
                 }, this._delay
             )
         }
-    }
+    };
 
-    var __treeDataSource = new __EnerpriseDataSource({
+    var __treeEnterpriseDataSource = new __enterpriseDataSource({
         data: [],
         delay: 400
     });
@@ -226,7 +242,7 @@
             cacheItems: true,
             selectable: true,
             multiSelect: false,
-            dataSource: __treeDataSource,
+            dataSource: __treeEnterpriseDataSource,
             loadingHTML: '<div class="tree-loading"><i class="fa fa-rotate-right fa-spin"></i></div>',
         });
     }
@@ -234,11 +250,11 @@
     /**
      *
      */
-    function __EnerpriseSelected() {
+    function __enerpriseSelected() {
         var selectItems = $('#__treeEnerprise').tree('selectedItems');
 
-        if (selectItems && selectItems.length > 0 && __EnerpriseWindowPar.EnerpriseWindowCallBack != undefined) {
-            __EnerpriseWindowPar.EnerpriseWindowCallBack(selectItems, __EnerpriseWindowPar.currentTreeData);
+        if (selectItems && selectItems.length > 0 && __enterpriseWindowPar.EnerpriseWindowCallBack != undefined) {
+            __enterpriseWindowPar.EnerpriseWindowCallBack(selectItems, __enterpriseWindowPar.currentTreeData);
             $('#__windowEnerprise').modal('hide');
         } else {
             $("#__windowEnerpriseTitle").html("<span style='color: red'>请选择一个行企业...</span>");
@@ -250,16 +266,16 @@
      * @private
      */
     function __showEnerpriseWindow(callBackFunction) {
-        if (!__EnerpriseWindowPar.loaded) {
+        if (!__enterpriseWindowPar.loaded) {
             __initEnerpriseWidinow();
 
             try {
                 if (callBackFunction && typeof (eval(callBackFunction)) == "function") {
-                    __EnerpriseWindowPar.EnerpriseWindowCallBack = callBackFunction;
+                    __enterpriseWindowPar.EnerpriseWindowCallBack = callBackFunction;
                 }
             } catch (e) {
             }
-            __EnerpriseWindowPar.loaded = true;
+            __enterpriseWindowPar.loaded = true;
         }
         $("#__windowEnerpriseTitle").html("企业选择");
         $('#__windowEnerprise').modal('show');

@@ -1,5 +1,7 @@
 package com.aps.env.entity;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.math.BigDecimal;
 
 /**
@@ -13,7 +15,10 @@ import java.math.BigDecimal;
  *
  * @author appleshow
  */
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class HbTypeItemNode {
+    private Integer nodeId;
+
     private String itemId;
 
     private String itemName;
@@ -41,6 +46,14 @@ public class HbTypeItemNode {
     private int itemAlarm;
 
     private int itemShowMain;
+
+    public Integer getNodeId() {
+        return nodeId;
+    }
+
+    public void setNodeId(Integer nodeId) {
+        this.nodeId = nodeId;
+    }
 
     public String getItemId() {
         return itemId;

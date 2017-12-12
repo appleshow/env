@@ -53,8 +53,6 @@ public class ResponseData {
             setCode(-1);
             setMessage("无法找到对应的资料...!!");
         } else {
-            setCode(0);
-            setRowCount(listData.size());
             setData(listData);
         }
     }

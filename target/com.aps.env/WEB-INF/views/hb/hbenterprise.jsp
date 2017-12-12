@@ -584,8 +584,8 @@
                                         var regions = [];
                                         var regionName = "";
                                         var regionIndex = -1, regionCount = 0;
-                                        pagePars.enterpriseRegion = res.data;
 
+                                        pagePars.enterpriseRegion = res.data;
                                         treeData.push({id: "所有", name: "所有 - [" + res.data.length + "]", type: "folder",});
 
                                         $.each(pagePars.enterpriseRegion, function (index, value) {
@@ -635,7 +635,7 @@
                 this._delay
             )
         }
-    }
+    };
 
     jQuery(document).ready(function () {
         $("#enterpriseType").select2({

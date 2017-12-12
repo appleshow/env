@@ -542,8 +542,8 @@
                                         var regionName = "";
                                         var regionIndex = -1, regionCount = 0;
                                         var allCount = 0;
-                                        pagePars.enterpriseRegion = res.data;
 
+                                        pagePars.enterpriseRegion = res.data;
                                         $.each(pagePars.enterpriseRegion, function (index, value) {
                                             if (value.nodeId && value.nodeId != "") {
                                                 allCount++;

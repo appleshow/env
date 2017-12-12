@@ -179,9 +179,9 @@
                 }, this._delay
             )
         }
-    }
+    };
 
-    var __treeDataSource = new __regionDataSource({
+    var __treeRegionDataSource = new __regionDataSource({
         data: [],
         delay: 400
     });
@@ -200,7 +200,7 @@
             cacheItems: true,
             selectable: true,
             multiSelect: false,
-            dataSource: __treeDataSource,
+            dataSource: __treeRegionDataSource,
             loadingHTML: '<div class="tree-loading"><i class="fa fa-rotate-right fa-spin"></i></div>',
         });
     }

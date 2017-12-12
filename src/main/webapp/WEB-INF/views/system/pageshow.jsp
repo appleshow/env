@@ -11,7 +11,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>类别管理</title>
+    <title>界面配置</title>
     <meta name="description"
           content="Dashboard"/>
     <meta name="viewport"

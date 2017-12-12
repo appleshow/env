@@ -10,10 +10,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * <dl>
@@ -105,6 +102,7 @@ public class ViewHbEnterpriseNodeServiceImpl implements ViewHbEnterpriseNodeServ
         String type;
         Date now = new Date();
         Map<String, String> rowData;
+        final Map<String, Object> nodeItemMap = new HashMap<>();
         HbNode hbNode;
 
         for (int row = 0; row < requestMdyPar.getParCount(); row++) {
@@ -118,7 +116,6 @@ public class ViewHbEnterpriseNodeServiceImpl implements ViewHbEnterpriseNodeServ
                         final HbTypeItemExample hbTypeItemExample = new HbTypeItemExample();
                         hbTypeItemExample.createCriteria().andTypeIdEqualTo(hbNode.getTypeId());
                         final List<HbTypeItem> hbTypeItems = hbTypeItemMapper.selectByExample(hbTypeItemExample);
-                        final List<HbTypeItemNode> hbTypeItemNodes = new ArrayList<>();
                         hbTypeItems.stream().forEach(item -> {
                             if (1 == item.getPrflag()) {
                                 HbTypeItemNode hbTypeItemNode = new HbTypeItemNode();
@@ -136,11 +133,11 @@ public class ViewHbEnterpriseNodeServiceImpl implements ViewHbEnterpriseNodeServ
                                 hbTypeItemNode.setItemSelect(0);
                                 hbTypeItemNode.setItemAlarm(0);
                                 hbTypeItemNode.setItemShowMain(1);
-                                hbTypeItemNodes.add(hbTypeItemNode);
+                                nodeItemMap.put(hbTypeItemNode.getItemId(), hbTypeItemNode);
                             }
                         });
 
-                        hbNode.setNodeItem(JsonUtil.writeValueAsString(hbTypeItemNodes));
+                        hbNode.setNodeItem(JsonUtil.writeValueAsString(nodeItemMap));
                         hbNode.setDeleteFlag(CommUtil.AVAILABLE);
                         hbNode.setItime(now);
                         hbNode.setIperson(personId);
