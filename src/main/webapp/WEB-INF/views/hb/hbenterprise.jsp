@@ -426,6 +426,7 @@
                 </button>
                 <button type="button"
                         class="btn btn-primary"
+                        id = "btnSaveEnterprise"
                         onclick="saveEnterprise()">
                     <span class="glyphicon glyphicon-ok"
                           aria-hidden="true"></span>&nbsp;保存
@@ -860,6 +861,7 @@
      *
      */
     function saveEnterprise() {
+        $("#btnSaveEnterprise").attr('disabled',true);
         $("#enterpriseForm").data("bootstrapValidator").validate();
 
         var check = $("#enterpriseForm").data("bootstrapValidator").isValid();
@@ -868,14 +870,17 @@
             var hbEnterprises = [];
 
             if (hbEnterprise.property0 == "") {
+                $("#btnSaveEnterprise").attr('disabled',false);
                 callError(-100, "请选择一个行政区划...！");
                 return;
             }
             if (hbEnterprise.enterpriseTrade == "") {
+                $("#btnSaveEnterprise").attr('disabled',false);
                 callError(-100, "请选择一个所属行业...！");
                 return;
             }
             if (hbEnterprise.enterpriseCmlAmount != "" && pagePars.selectUnitId == undefined) {
+                $("#btnSaveEnterprise").attr('disabled',false);
                 callError(-100, "请选择请选择危化存量单位...！");
                 return;
             }
@@ -894,6 +899,7 @@
                     'Content-Type': 'application/json;charset=utf-8'
                 },
                 success: function (res) {
+                    $("#btnSaveEnterprise").attr('disabled',false);
                     if (res.code != 0) {
                         callError(-999, res.message);
                     } else {
@@ -901,10 +907,12 @@
                     }
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    $("#btnSaveEnterprise").attr('disabled',false);
                     callError(-888, "服务器请求异常...！")
                 }
             });
         } else {
+            $("#btnSaveEnterprise").attr('disabled',false);
             callError(-100, "录入信息有误，请检查录入信息...！");
         }
     }
@@ -914,6 +922,7 @@
      */
     function treeSelectItem(items, dataSource) {
         if (dataSource._dataType == 'enterpriseRegion') {
+            addEnterprise();
             if (items && items.length > 0) {
                 var selectItem = items[0];
                 var hbEnterprise = {};
@@ -933,8 +942,6 @@
                 });
 
                 pagePars.modifyType = "U";
-            } else {
-                addEnterprise();
             }
         }
     }

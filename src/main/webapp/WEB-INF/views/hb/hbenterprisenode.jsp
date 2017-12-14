@@ -211,8 +211,8 @@
                              style="margin-left: 0px;padding-left: 0px">
                             <select class="form-control"
                                     style="width: 100%;"
-                                    id="property10"
-                                    name="property10">
+                                    id="property8"
+                                    name="property8">
                                 <option></option>
                             </select>
                         </div>
@@ -230,8 +230,8 @@
                              style="margin-left: 0px;padding-left: 0px">
                             <select class="form-control"
                                     style="width: 100%;"
-                                    id="property11"
-                                    name="property11">
+                                    id="property9"
+                                    name="property9">
                                 <option></option>
                             </select>
                         </div>
@@ -337,6 +337,7 @@
                 </button>
                 <button type="button"
                         class="btn btn-primary"
+                        id="btnSaveEnterpriseNode"
                         onclick="saveEnterpriseNode()">
                     <span class="glyphicon glyphicon-ok"
                           aria-hidden="true"></span>&nbsp;保存
@@ -613,32 +614,32 @@
             allowClear: true,
             language: "zh-CN",
         });
-        $("#property10").select2({
+        $("#property8").select2({
             placeholder: "选择一个设备厂商",
             allowClear: true,
             language: "zh-CN",
         });
-        $("#property11").select2({
+        $("#property9").select2({
             placeholder: "选择一个设备型号",
             allowClear: true,
             language: "zh-CN",
         });
 
-        $("#property10").on("change", function (e) {
-            if ($("#property10").val() == "") {
-                $("#property11").val(null).trigger("change");
+        $("#property8").on("change", function (e) {
+            if ($("#property8").val() == "") {
+                $("#property9").val(null).trigger("change");
             } else {
                 var marking = "";
 
-                $("#property11").html("");
+                $("#property9").html("");
                 $.each(pagePars.comCode, function (index, value) {
-                    if (value.codeType == "21" && value.property0 == $("#property10").val()) {
+                    if (value.codeType == "21" && value.property0 == $("#property8").val()) {
                         marking += "<option value='" + value.codeId + "'>" + value.codeName + "</option>";
                     }
                 });
                 if (marking != "") {
-                    $("#property11").append(marking);
-                    $("#property11").val(null).trigger("change");
+                    $("#property9").append(marking);
+                    $("#property9").val(null).trigger("change");
                 }
             }
         });
@@ -772,7 +773,7 @@
                         }
                     });
                     if (manufacturer != "") {
-                        $("#property10").append(manufacturer);
+                        $("#property8").append(manufacturer);
                     }
                 }
             },
@@ -807,9 +808,9 @@
         $(':input', '#enterpriseNodeForm').not(':button,:submit,:reset,:hidden').val('').removeAttr('checked');
 
         $("#typeId").val(null).trigger("change");
-        $("#property10").val(null).trigger("change");
-        $("#property11").val(null).trigger("change");
-        $("#property11").html("");
+        $("#property8").val(null).trigger("change");
+        $("#property9").val(null).trigger("change");
+        $("#property9").html("");
         pagePars.modifyType = "I";
 
         $("#enterpriseNodeForm").data("bootstrapValidator").resetForm();
@@ -828,6 +829,7 @@
      *
      */
     function saveEnterpriseNode() {
+        $("#btnSaveEnterpriseNode").attr('disabled', true);
         $("#enterpriseNodeForm").data("bootstrapValidator").validate();
 
         var check = $("#enterpriseNodeForm").data("bootstrapValidator").isValid();
@@ -836,18 +838,22 @@
             var hbEnterpriseNodes = [];
 
             if (hbEnterpriseNode.typeId == "") {
+                $("#btnSaveEnterpriseNode").attr('disabled', false);
                 callError(-100, "请选择一个站点类型...！");
                 return;
             }
             if (hbEnterpriseNode.enterpriseId == "") {
+                $("#btnSaveEnterpriseNode").attr('disabled', false);
                 callError(-100, "请选择站点所属企业...！");
                 return;
             }
-            if (hbEnterpriseNode.property10 == "") {
+            if (hbEnterpriseNode.property8 == "") {
+                $("#btnSaveEnterpriseNode").attr('disabled', false);
                 callError(-100, "请选择设备厂商...！");
                 return;
             }
-            if (!hbEnterpriseNode.hasOwnProperty("property11") || hbEnterpriseNode.property11 == "") {
+            if (!hbEnterpriseNode.hasOwnProperty("property9") || hbEnterpriseNode.property9 == "") {
+                $("#btnSaveEnterpriseNode").attr('disabled', false);
                 callError(-100, "请选择设设备型号...！");
                 return;
             }
@@ -868,6 +874,7 @@
                     'Content-Type': 'application/json;charset=utf-8'
                 },
                 success: function (res) {
+                    $("#btnSaveEnterpriseNode").attr('disabled', false);
                     if (res.code != 0) {
                         callError(-999, res.message);
                     } else {
@@ -875,10 +882,12 @@
                     }
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    $("#btnSaveEnterpriseNode").attr('disabled', false);
                     callError(-888, "服务器请求异常...！")
                 }
             });
         } else {
+            $("#btnSaveEnterpriseNode").attr('disabled', false);
             callError(-100, "录入信息有误，请检查录入信息...！");
         }
     }
@@ -888,6 +897,7 @@
      */
     function treeSelectItem(items, dataSource) {
         if (dataSource._dataType == 'enterpriseNode') {
+            addEnterpriseNode();
             if (items && items.length > 0) {
                 var selectItem = items[0];
                 var hbEnterpriseNode = {};
@@ -903,8 +913,6 @@
                 $("#enterpriseNodeForm").initForm(hbEnterpriseNode);
 
                 pagePars.modifyType = "U";
-            } else {
-                addEnterpriseNode();
             }
         }
     }

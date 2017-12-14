@@ -1,10 +1,7 @@
 package com.aps.env.service;
 
 import com.aps.env.comm.*;
-import com.aps.env.dao.HbDataModeMapper;
-import com.aps.env.dao.HbNodeMapper;
-import com.aps.env.dao.HbTypeItemMapper;
-import com.aps.env.dao.HbTypeMapper;
+import com.aps.env.dao.*;
 import com.aps.env.entity.*;
 import org.springframework.stereotype.Service;
 
@@ -33,6 +30,8 @@ public class ViewHbEnterpriseNodeServiceImpl implements ViewHbEnterpriseNodeServ
     private HbDataModeMapper hbDataModeMapper;
     @Resource
     private HbTypeItemMapper hbTypeItemMapper;
+    @Resource
+    private HbDataLatestMapper hbDataLatestMapper;
 
     private final String CREATE_TABLE_SQL = "CREATE TABLE `#` (\n" +
             "  `DATA_GUID` varchar(50) NOT NULL,\n" +
@@ -104,6 +103,8 @@ public class ViewHbEnterpriseNodeServiceImpl implements ViewHbEnterpriseNodeServ
         Map<String, String> rowData;
         final Map<String, Object> nodeItemMap = new HashMap<>();
         HbNode hbNode;
+        HbDataLatest hbDataLatest;
+        HbNodeExample hbNodeExample;
 
         for (int row = 0; row < requestMdyPar.getParCount(); row++) {
             rowData = requestMdyPar.getInPar().get(row);
@@ -113,6 +114,14 @@ public class ViewHbEnterpriseNodeServiceImpl implements ViewHbEnterpriseNodeServ
                 personId = requestMdyPar.getPersonId(httpSession, now, rowData);
                 switch (type) {
                     case CommUtil.MODIFY_TYPE_INSERT:
+                        hbNodeExample = new HbNodeExample();
+                        hbNodeExample.createCriteria().andNodeMnEqualTo(hbNode.getNodeMn());
+                        if (hbNodeMapper.selectByExample(hbNodeExample).size() > 0) {
+                            responseData.setCode(-108);
+                            responseData.setMessage("站点MN号已存在，请重新录入！");
+                            return;
+                        }
+
                         final HbTypeItemExample hbTypeItemExample = new HbTypeItemExample();
                         hbTypeItemExample.createCriteria().andTypeIdEqualTo(hbNode.getTypeId());
                         final List<HbTypeItem> hbTypeItems = hbTypeItemMapper.selectByExample(hbTypeItemExample);
@@ -145,6 +154,19 @@ public class ViewHbEnterpriseNodeServiceImpl implements ViewHbEnterpriseNodeServ
                         hbNode.setUperson(personId);
                         hbNodeMapper.insertSelective(hbNode);
 
+                        hbDataLatest = new HbDataLatest();
+                        for (int index = 0; index < CommUtil.MAX_LATEST_DATA; index++) {
+                            hbDataLatest.setDataGuid(UUID.randomUUID().toString());
+                            hbDataLatest.setNodeMn(String.valueOf(hbNode.getNodeId()));
+                            hbDataLatest.setDataTime(now);
+                            hbDataLatest.setItime(now);
+                            hbDataLatest.setIperson(personId);
+                            hbDataLatest.setUtime(now);
+                            hbDataLatest.setUperson(personId);
+
+                            hbDataLatestMapper.insertSelective(hbDataLatest);
+                        }
+
                         String sql;
                         String nodeIdStr = String.valueOf(hbNode.getNodeId());
                         HbDataMode hbDataMode = new HbDataMode();
@@ -158,9 +180,18 @@ public class ViewHbEnterpriseNodeServiceImpl implements ViewHbEnterpriseNodeServ
                         hbDataModeMapper.createTable(hbDataMode);
                         break;
                     case CommUtil.MODIFY_TYPE_UPDATE:
+                        hbNodeExample = new HbNodeExample();
+                        hbNodeExample.createCriteria().andNodeMnEqualTo(hbNode.getNodeMn()).andNodeIdNotEqualTo(hbNode.getNodeId());
+                        if (hbNodeMapper.selectByExample(hbNodeExample).size() > 0) {
+                            responseData.setCode(-108);
+                            responseData.setMessage("站点MN号已存在，请重新录入！");
+                            return;
+                        }
+
                         hbNode.setUtime(now);
                         hbNode.setUperson(personId);
                         hbNodeMapper.updateByPrimaryKeySelective(hbNode);
+
                         break;
                     case CommUtil.MODIFY_TYPE_DELETE:
                         hbNode.setDeleteFlag(CommUtil.DELETE);

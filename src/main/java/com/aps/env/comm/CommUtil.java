@@ -42,6 +42,7 @@ public class CommUtil {
     public final static String HB_DATA_RTD212 = "-Rtd";
     public final static String HB_DATA_AVG212 = "-Avg";
 
+    public final static int MAX_LATEST_DATA = 30;
     public final static Integer AVAILABLE = 0;
     public final static Integer DELETE = 1;
 

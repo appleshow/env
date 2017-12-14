@@ -40,9 +40,10 @@ public class ViewHbNodeItemServiceImpl implements ViewHbNodeItemService {
         if (nodeId == null) {
             responseData.setData(hbTypeItemNodes);
         } else {
-            final HbTypeItemExample hbTypeItemExample = new HbTypeItemExample();
-            final List<HbTypeItem> hbTypeItems = hbTypeItemMapper.selectByExample(hbTypeItemExample);
             final HbNode hbNode = hbNodeMapper.selectByPrimaryKey(nodeId);
+            final HbTypeItemExample hbTypeItemExample = new HbTypeItemExample();
+            hbTypeItemExample.createCriteria().andTypeIdEqualTo(hbNode.getTypeId());
+            final List<HbTypeItem> hbTypeItems = hbTypeItemMapper.selectByExample(hbTypeItemExample);
 
             hbTypeItems.stream().forEach(item -> {
                 HbTypeItemNode hbTypeItemNode = new HbTypeItemNode();
