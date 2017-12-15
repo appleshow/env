@@ -27,4 +27,7 @@ public interface ComOrgMapper {
     int updateByPrimaryKeySelective(ComOrg record);
 
     int updateByPrimaryKey(ComOrg record);
+
+    //----------- additional ---------------
+    List<ComOrg> selectByFarOrgId(ComOrg record);
 }

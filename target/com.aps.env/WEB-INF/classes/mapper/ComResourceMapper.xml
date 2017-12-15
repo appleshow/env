@@ -130,6 +130,23 @@
     from com_resource
     where RESOURCE_ID = #{resourceId,jdbcType=INTEGER}
   </select>
+  <select id="selectByOrg" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    SELECT
+    r.RESOURCE_ID,
+    r.RESOURCE_TYPE_E,
+    n.NODE_ID AS RESOURCE_TYPE_F,
+    n.NODE_NAME AS PROPERTY1,
+    t.TYPE_NAME AS PROPERTY2,
+    e.ENTERPRISE_NAME AS PROPERTY3,
+    r.PRFLAG
+    FROM
+    hb_node n
+    LEFT JOIN com_resource r ON n.NODE_ID = r.RESOURCE_TYPE_F and r.RESOURCE_TYPE_E = #{orgId,jdbcType=INTEGER}
+    AND r.RESOURCE_TYPE_A = 'NODE'
+    LEFT JOIN hb_type t ON t.TYPE_ID = n.TYPE_ID
+    LEFT JOIN hb_enterprise e ON e.ENTERPRISE_ID = n.ENTERPRISE_ID
+    ORDER  BY n.ENTERPRISE_ID,n.TYPE_ID
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from com_resource
     where RESOURCE_ID = #{resourceId,jdbcType=INTEGER}

@@ -90,8 +90,14 @@ public class ViewHbEnterpriseNodeServiceImpl implements ViewHbEnterpriseNodeServ
     @Override
     public void refEnterpriseNode(HttpSession httpSession, RequestRefPar requestRefPar, ResponseData responseData) {
         HbNode hbNode = new HbNode();
+        String selectByPerson = requestRefPar.getStringPar("byPerson");
 
-        responseData.setData(hbNodeMapper.selectAssociation(hbNode));
+        if (!StringUtil.isNullOrEmpty(selectByPerson) && "1".equals(selectByPerson)) {
+            hbNode.setIperson((int) httpSession.getAttribute(CommUtil.SESSION_PERSON_ID));
+            responseData.setData(hbNodeMapper.selectAssociationByPerson(hbNode));
+        } else {
+            responseData.setData(hbNodeMapper.selectAssociation(hbNode));
+        }
     }
 
     @Override
@@ -157,7 +163,7 @@ public class ViewHbEnterpriseNodeServiceImpl implements ViewHbEnterpriseNodeServ
                         hbDataLatest = new HbDataLatest();
                         for (int index = 0; index < CommUtil.MAX_LATEST_DATA; index++) {
                             hbDataLatest.setDataGuid(UUID.randomUUID().toString());
-                            hbDataLatest.setNodeMn(String.valueOf(hbNode.getNodeId()));
+                            hbDataLatest.setNodeId(hbNode.getNodeId());
                             hbDataLatest.setDataTime(now);
                             hbDataLatest.setItime(now);
                             hbDataLatest.setIperson(personId);

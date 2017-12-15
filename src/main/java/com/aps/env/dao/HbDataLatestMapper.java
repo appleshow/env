@@ -27,4 +27,7 @@ public interface HbDataLatestMapper {
     int updateByPrimaryKeySelective(HbDataLatest record);
 
     int updateByPrimaryKey(HbDataLatest record);
+
+    //----------- additional ---------------
+    List<HbDataLatest> selectByPerson(HbDataLatest record);
 }

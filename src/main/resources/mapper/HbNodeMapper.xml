@@ -207,21 +207,6 @@
     from hb_node
     where NODE_ID = #{nodeId,jdbcType=INTEGER}
   </select>
-  <select id="selectAssociation" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    SELECT
-	   n.*,
-       t.TYPE_NAME AS hbtype_TYPE_NAME,
-       e.ENTERPRISE_NAME AS hbenterprise_ENTERPRISE_NAME,
-	   e.ENTERPRISE_ID AS hbenterprise_ENTERPRISE_ID,
-	   e.ENTERPRISE_REGION_DESC AS hbenterprise_ENTERPRISE_REGION_DESC
-    FROM
-	   hb_enterprise e
-    LEFT JOIN hb_node n ON e.ENTERPRISE_ID = n.ENTERPRISE_ID AND n.DELETE_FLAG = 0
-    LEFT JOIN hb_type t ON t.TYPE_ID = n.TYPE_ID
-    ORDER BY
-	   e.ENTERPRISE_REGION,
-	   n.ENTERPRISE_ID
-  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from hb_node
     where NODE_ID = #{nodeId,jdbcType=INTEGER}
@@ -825,4 +810,83 @@
       DPERSON = #{dperson,jdbcType=INTEGER}
     where NODE_ID = #{nodeId,jdbcType=INTEGER}
   </update>
+  <!-- additional -->
+  <select id="selectAssociation" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    SELECT
+    n.*,
+    t.TYPE_NAME AS hbtype_TYPE_NAME,
+    e.ENTERPRISE_NAME AS hbenterprise_ENTERPRISE_NAME,
+    e.ENTERPRISE_ID AS hbenterprise_ENTERPRISE_ID,
+    e.ENTERPRISE_REGION_DESC AS hbenterprise_ENTERPRISE_REGION_DESC
+    FROM
+    hb_enterprise e
+    LEFT JOIN hb_node n ON e.ENTERPRISE_ID = n.ENTERPRISE_ID AND n.DELETE_FLAG = 0
+    LEFT JOIN hb_type t ON t.TYPE_ID = n.TYPE_ID
+    ORDER BY
+    e.ENTERPRISE_REGION,
+    n.ENTERPRISE_ID
+  </select>
+  <select id="selectByPerson" resultMap="BaseResultMap" parameterType="com.aps.env.entity.HbNode">
+    SELECT
+    node.*
+    FROM
+    hb_node node
+    INNER JOIN (
+    SELECT DISTINCT
+    resource.RESOURCE_TYPE_F AS NODE_ID
+    FROM
+    com_resource resource
+    INNER JOIN com_person_org org ON resource.PRFLAG = 1
+    AND resource.RESOURCE_TYPE_E = org.org_id
+    AND org.PERSON_ID =  #{iperson,jdbcType=INTEGER}
+    AND org.PRFLAG = 1
+    ) person ON node.NODE_ID = person.NODE_ID
+    <if test="enterpriseId != null">AND node.ENTERPRISE_ID = #{enterpriseId,jdbcType=INTEGER}
+    </if>
+    <if test="nodeId != null"> AND node.NODE_ID = #{nodeId,jdbcType=INTEGER}
+    </if>
+    <if test="typeId != null"> AND node.TYPE_ID = #{typeId,jdbcType=INTEGER}
+    </if>
+    <if test="nodeMn != null"> AND node.NODE_MN = #{nodeMn,jdbcType=VARCHAR}
+    </if>
+    <if test="nodeName != null"> AND node.NODE_NAME like CONCAT('%',#{nodeName,jdbcType=VARCHAR},'%')
+    </if>
+    ORDER BY node.TYPE_ID, node.NODE_ID
+  </select>
+  <select id="selectAssociationByPerson" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    SELECT
+	n.*, t.TYPE_NAME AS hbtype_TYPE_NAME,
+	e.ENTERPRISE_NAME AS hbenterprise_ENTERPRISE_NAME,
+	e.ENTERPRISE_ID AS hbenterprise_ENTERPRISE_ID,
+	e.ENTERPRISE_REGION_DESC AS hbenterprise_ENTERPRISE_REGION_DESC
+FROM
+	(
+		SELECT
+			enterprise.*
+		FROM
+			hb_enterprise enterprise
+		INNER JOIN (
+			SELECT DISTINCT
+				node.ENTERPRISE_ID
+			FROM
+				hb_node node
+			INNER JOIN (
+				SELECT DISTINCT
+					resource.RESOURCE_TYPE_F AS NODE_ID
+				FROM
+					com_resource resource
+				INNER JOIN com_person_org org ON resource.PRFLAG = 1
+				AND resource.RESOURCE_TYPE_E = org.org_id
+				AND org.PERSON_ID =  #{iperson,jdbcType=INTEGER}
+				AND org.PRFLAG = 1
+			) person ON node.NODE_ID = person.NODE_ID
+		) personnode ON enterprise.ENTERPRISE_ID = personnode.ENTERPRISE_ID
+	) e
+LEFT JOIN hb_node n ON e.ENTERPRISE_ID = n.ENTERPRISE_ID
+AND n.DELETE_FLAG = 0
+LEFT JOIN hb_type t ON t.TYPE_ID = n.TYPE_ID
+ORDER BY
+	e.ENTERPRISE_REGION,
+	n.ENTERPRISE_ID
+  </select>
 </mapper>

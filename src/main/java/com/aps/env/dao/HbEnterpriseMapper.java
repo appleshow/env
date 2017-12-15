@@ -2,7 +2,9 @@ package com.aps.env.dao;
 
 import com.aps.env.entity.HbEnterprise;
 import com.aps.env.entity.HbEnterpriseExample;
+
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface HbEnterpriseMapper {
@@ -27,4 +29,7 @@ public interface HbEnterpriseMapper {
     int updateByPrimaryKeySelective(HbEnterprise record);
 
     int updateByPrimaryKey(HbEnterprise record);
+
+    //----------- additional ---------------
+    List<HbEnterprise> selectByPerson(HbEnterprise record);
 }

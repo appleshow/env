@@ -2,7 +2,9 @@ package com.aps.env.dao;
 
 import com.aps.env.entity.ComResource;
 import com.aps.env.entity.ComResourceExample;
+
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface ComResourceMapper {
@@ -27,4 +29,7 @@ public interface ComResourceMapper {
     int updateByPrimaryKeySelective(ComResource record);
 
     int updateByPrimaryKey(ComResource record);
+
+    //----------- additional ---------------
+    List<ComResource> selectByOrg(Integer orgId);
 }

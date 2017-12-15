@@ -587,7 +587,7 @@
                                         var regionIndex = -1, regionCount = 0;
 
                                         pagePars.enterpriseRegion = res.data;
-                                        treeData.push({id: "所有", name: "所有 - [" + res.data.length + "]", type: "folder",});
+                                        treeData.push({id: "所有", name: "<b>所有企业</b> - [" + res.data.length + "]", type: "folder",});
 
                                         $.each(pagePars.enterpriseRegion, function (index, value) {
                                             var regionDesc = value.enterpriseRegionDesc;

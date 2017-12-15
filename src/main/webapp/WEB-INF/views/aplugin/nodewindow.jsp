@@ -226,7 +226,7 @@
                                                 allCount++;
                                             }
                                         });
-                                        treeData.push({id: "所有", name: "所有 - [" + allCount + "]", type: "folder", isEnterprise: false,});
+                                        treeData.push({id: "所有", name: "<b>所有站点</b> - [" + allCount + "]", type: "folder", isEnterprise: false,});
 
                                         $.each(__nodeWindowPar.currentTreeData, function (index, value) {
                                             var regionDesc = value.hbEnterprise.enterpriseRegionDesc;

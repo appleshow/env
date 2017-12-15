@@ -1,6 +1,8 @@
 package com.aps.env.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -9,10 +11,11 @@ import java.util.Date;
 public class HbDataLatest {
     private String dataGuid;
 
-    private String nodeMn;
+    private Integer nodeId;
 
     private String dataType;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date dataTime;
 
     private String nodeData;
@@ -63,16 +66,19 @@ public class HbDataLatest {
 
     private String prexp;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date itime;
 
     private Integer iperson;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date utime;
 
     private Integer uperson;
 
     private Integer deleteFlag;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date dtime;
 
     private Integer dperson;
@@ -85,12 +91,12 @@ public class HbDataLatest {
         this.dataGuid = dataGuid == null ? null : dataGuid.trim();
     }
 
-    public String getNodeMn() {
-        return nodeMn;
+    public Integer getNodeId() {
+        return nodeId;
     }
 
-    public void setNodeMn(String nodeMn) {
-        this.nodeMn = nodeMn == null ? null : nodeMn.trim();
+    public void setNodeId(Integer nodeId) {
+        this.nodeId = nodeId;
     }
 
     public String getDataType() {
@@ -101,6 +107,7 @@ public class HbDataLatest {
         this.dataType = dataType == null ? null : dataType.trim();
     }
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     public Date getDataTime() {
         return dataTime;
     }
@@ -301,6 +308,7 @@ public class HbDataLatest {
         this.prexp = prexp == null ? null : prexp.trim();
     }
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     public Date getItime() {
         return itime;
     }
@@ -317,6 +325,7 @@ public class HbDataLatest {
         this.iperson = iperson;
     }
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     public Date getUtime() {
         return utime;
     }
@@ -341,6 +350,7 @@ public class HbDataLatest {
         this.deleteFlag = deleteFlag;
     }
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     public Date getDtime() {
         return dtime;
     }

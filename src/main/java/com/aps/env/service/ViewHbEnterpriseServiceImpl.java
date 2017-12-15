@@ -34,20 +34,27 @@ public class ViewHbEnterpriseServiceImpl implements ViewHbEnterpriseService {
         Integer enterpriseId = requestRefPar.getIntegerPar("enterpriseId");
         String enterpriseName = requestRefPar.getStringPar("enterpriseName");
         String enterpriseRegion = requestRefPar.getStringPar("enterpriseRegion");
+        String selectByPerson = requestRefPar.getStringPar("byPerson");
 
-        if (enterpriseId != null) {
-            criteria.andEnterpriseIdEqualTo(enterpriseId);
-        }
-        if (!StringUtil.isNullOrEmpty(enterpriseName)) {
-            criteria.andEnterpriseNameLike("%" + enterpriseName + "%");
-        }
-        if (!StringUtil.isNullOrEmpty(enterpriseRegion)) {
-            criteria.andEnterpriseRegionEqualTo(enterpriseRegion);
-        }
+        if (!StringUtil.isNullOrEmpty(selectByPerson) && "1".equals(selectByPerson)) {
+            HbEnterprise hbEnterprise = new HbEnterprise();
+            hbEnterprise.setIperson((int) httpSession.getAttribute(CommUtil.SESSION_PERSON_ID));
+            responseData.setData(hbEnterpriseMapper.selectByPerson(hbEnterprise));
+        } else {
+            if (enterpriseId != null) {
+                criteria.andEnterpriseIdEqualTo(enterpriseId);
+            }
+            if (!StringUtil.isNullOrEmpty(enterpriseName)) {
+                criteria.andEnterpriseNameLike("%" + enterpriseName + "%");
+            }
+            if (!StringUtil.isNullOrEmpty(enterpriseRegion)) {
+                criteria.andEnterpriseRegionEqualTo(enterpriseRegion);
+            }
 
-        criteria.andDeleteFlagEqualTo(CommUtil.AVAILABLE);
-        hbEnterpriseExample.setOrderByClause("ENTERPRISE_REGION");
-        responseData.setData(hbEnterpriseMapper.selectByExample(hbEnterpriseExample));
+            criteria.andDeleteFlagEqualTo(CommUtil.AVAILABLE);
+            hbEnterpriseExample.setOrderByClause("ENTERPRISE_REGION");
+            responseData.setData(hbEnterpriseMapper.selectByExample(hbEnterpriseExample));
+        }
     }
 
     @Override

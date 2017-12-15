@@ -2,7 +2,9 @@ package com.aps.env.dao;
 
 import com.aps.env.entity.HbNode;
 import com.aps.env.entity.HbNodeExample;
+
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface HbNodeMapper {
@@ -30,4 +32,8 @@ public interface HbNodeMapper {
 
     //----------- additional ---------------
     List<HbNode> selectAssociation(HbNode record);
+
+    List<HbNode> selectByPerson(HbNode record);
+
+    List<HbNode> selectAssociationByPerson(HbNode record);
 }

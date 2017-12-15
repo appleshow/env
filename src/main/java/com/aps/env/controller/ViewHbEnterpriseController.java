@@ -27,7 +27,7 @@ import javax.servlet.http.HttpSession;
  */
 @Controller
 @RequestMapping(value = "viewHbEnterpriseCfg")
-public class ViewHbEnterpriseController {
+public class ViewHbEnterpriseController extends ExceptionController {
     @Resource(name = "viewHbEnterpriseServiceImpl")
     private ViewHbEnterpriseService viewHbEnterpriseService;
     private final int formId = 23;

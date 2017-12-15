@@ -112,6 +112,14 @@
     from com_org
     where ORG_ID = #{orgId,jdbcType=INTEGER}
   </select>
+  <select id="selectByFarOrgId" resultMap="BaseResultMap" parameterType="com.aps.env.entity.ComOrg">
+    SELECT ORG_ID, ORG_NAME, ( SELECT count(org_id) FROM com_org WHERE FAR_ORG_ID = a.ORG_ID ) PRGROUP FROM com_org a
+    <where>
+      <if test="farOrgId != null"> FAR_ORG_ID = #{farOrgId,jdbcType=INTEGER}
+      </if>
+    </where>
+    order by PRFLAG
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from com_org
     where ORG_ID = #{orgId,jdbcType=INTEGER}

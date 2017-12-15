@@ -27,7 +27,7 @@ import javax.servlet.http.HttpSession;
  */
 @Controller
 @RequestMapping(value = "viewHbEnterpriseNodeCfg")
-public class ViewHbEnterpriseNodeController {
+public class ViewHbEnterpriseNodeController extends ExceptionController {
     @Resource(name = "viewHbEnterpriseNodeServiceImpl")
     private ViewHbEnterpriseNodeService viewHbEnterpriseNodeService;
 

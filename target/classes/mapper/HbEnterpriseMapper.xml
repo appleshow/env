@@ -829,4 +829,28 @@
       DPERSON = #{dperson,jdbcType=INTEGER}
     where ENTERPRISE_ID = #{enterpriseId,jdbcType=INTEGER}
   </update>
+  <!-- additional -->
+  <select id="selectByPerson" resultMap="BaseResultMap" parameterType="com.aps.env.entity.HbEnterprise" >
+    SELECT
+	enterprise.*
+    FROM
+	hb_enterprise enterprise
+    INNER JOIN (
+	SELECT DISTINCT
+		node.ENTERPRISE_ID
+	FROM
+		hb_node node
+	INNER JOIN (
+		SELECT DISTINCT
+			resource.RESOURCE_TYPE_F AS NODE_ID
+		FROM
+			com_resource resource
+		INNER JOIN com_person_org org ON resource.PRFLAG = 1
+		AND resource.RESOURCE_TYPE_E = org.org_id
+		AND org.PERSON_ID =  #{iperson,jdbcType=INTEGER}
+		AND org.PRFLAG = 1
+	) person ON node.NODE_ID = person.NODE_ID
+) personnode ON enterprise.ENTERPRISE_ID = personnode.ENTERPRISE_ID
+    ORDER BY enterprise.ENTERPRISE_REGION
+  </select>
 </mapper>

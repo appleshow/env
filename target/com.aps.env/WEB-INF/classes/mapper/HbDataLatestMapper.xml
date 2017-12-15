@@ -3,7 +3,7 @@
 <mapper namespace="com.aps.env.dao.HbDataLatestMapper" >
   <resultMap id="BaseResultMap" type="com.aps.env.entity.HbDataLatest" >
     <id column="DATA_GUID" property="dataGuid" jdbcType="VARCHAR" />
-    <result column="NODE_MN" property="nodeMn" jdbcType="VARCHAR" />
+    <result column="NODE_ID" property="nodeId" jdbcType="INTEGER" />
     <result column="DATA_TYPE" property="dataType" jdbcType="VARCHAR" />
     <result column="DATA_TIME" property="dataTime" jdbcType="TIMESTAMP" />
     <result column="NODE_DATA" property="nodeData" jdbcType="VARCHAR" />
@@ -97,7 +97,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    DATA_GUID, NODE_MN, DATA_TYPE, DATA_TIME, NODE_DATA, NODE_TABLE, RECORD_GUID, PRSTATUS, 
+    DATA_GUID, NODE_ID, DATA_TYPE, DATA_TIME, NODE_DATA, NODE_TABLE, RECORD_GUID, PRSTATUS, 
     PRFLAG, PRGROUP, PRTYPE, PROPERTY0, PROPERTY1, PROPERTY2, PROPERTY3, PROPERTY4, PROPERTY5, 
     PROPERTY6, PROPERTY7, PROPERTY8, PROPERTY9, PROPERTY10, PROPERTY11, PROPERTY12, PROPERTY13, 
     PROPERTY14, PRINF, PREXP, ITIME, IPERSON, UTIME, UPERSON, DELETE_FLAG, DTIME, DPERSON
@@ -122,6 +122,27 @@
     from hb_data_latest
     where DATA_GUID = #{dataGuid,jdbcType=VARCHAR}
   </select>
+  <select id="selectByPerson" resultMap="BaseResultMap" parameterType="com.aps.env.entity.HbDataLatest">
+    SELECT latest.*
+    FROM   hb_data_latest latest
+    INNER JOIN (SELECT
+    node.NODE_ID
+    FROM
+    hb_node node
+    INNER JOIN (
+    SELECT DISTINCT
+    resource.RESOURCE_TYPE_F AS NODE_ID
+    FROM
+    com_resource resource
+    INNER JOIN com_person_org org ON resource.PRFLAG = 1
+    AND resource.RESOURCE_TYPE_E = org.org_id
+    AND org.PERSON_ID =  #{iperson,jdbcType=INTEGER}
+    AND org.PRFLAG = 1
+    ) person ON node.NODE_ID = person.NODE_ID
+    <if test="prflag != null">AND node.ENTERPRISE_ID = #{prflag,jdbcType=INTEGER}
+    </if>) personnode on latest.NODE_ID = personnode.NODE_ID
+    ORDER BY latest.NODE_ID,latest.DATA_TIME
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from hb_data_latest
     where DATA_GUID = #{dataGuid,jdbcType=VARCHAR}
@@ -133,7 +154,7 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.aps.env.entity.HbDataLatest" >
-    insert into hb_data_latest (DATA_GUID, NODE_MN, DATA_TYPE, 
+    insert into hb_data_latest (DATA_GUID, NODE_ID, DATA_TYPE, 
       DATA_TIME, NODE_DATA, NODE_TABLE, 
       RECORD_GUID, PRSTATUS, PRFLAG, 
       PRGROUP, PRTYPE, PROPERTY0, 
@@ -145,7 +166,7 @@
       PREXP, ITIME, IPERSON, 
       UTIME, UPERSON, DELETE_FLAG, 
       DTIME, DPERSON)
-    values (#{dataGuid,jdbcType=VARCHAR}, #{nodeMn,jdbcType=VARCHAR}, #{dataType,jdbcType=VARCHAR}, 
+    values (#{dataGuid,jdbcType=VARCHAR}, #{nodeId,jdbcType=INTEGER}, #{dataType,jdbcType=VARCHAR}, 
       #{dataTime,jdbcType=TIMESTAMP}, #{nodeData,jdbcType=VARCHAR}, #{nodeTable,jdbcType=VARCHAR}, 
       #{recordGuid,jdbcType=VARCHAR}, #{prstatus,jdbcType=INTEGER}, #{prflag,jdbcType=INTEGER}, 
       #{prgroup,jdbcType=VARCHAR}, #{prtype,jdbcType=VARCHAR}, #{property0,jdbcType=VARCHAR}, 
@@ -164,8 +185,8 @@
       <if test="dataGuid != null" >
         DATA_GUID,
       </if>
-      <if test="nodeMn != null" >
-        NODE_MN,
+      <if test="nodeId != null" >
+        NODE_ID,
       </if>
       <if test="dataType != null" >
         DATA_TYPE,
@@ -271,8 +292,8 @@
       <if test="dataGuid != null" >
         #{dataGuid,jdbcType=VARCHAR},
       </if>
-      <if test="nodeMn != null" >
-        #{nodeMn,jdbcType=VARCHAR},
+      <if test="nodeId != null" >
+        #{nodeId,jdbcType=INTEGER},
       </if>
       <if test="dataType != null" >
         #{dataType,jdbcType=VARCHAR},
@@ -387,8 +408,8 @@
       <if test="record.dataGuid != null" >
         DATA_GUID = #{record.dataGuid,jdbcType=VARCHAR},
       </if>
-      <if test="record.nodeMn != null" >
-        NODE_MN = #{record.nodeMn,jdbcType=VARCHAR},
+      <if test="record.nodeId != null" >
+        NODE_ID = #{record.nodeId,jdbcType=INTEGER},
       </if>
       <if test="record.dataType != null" >
         DATA_TYPE = #{record.dataType,jdbcType=VARCHAR},
@@ -497,7 +518,7 @@
   <update id="updateByExample" parameterType="map" >
     update hb_data_latest
     set DATA_GUID = #{record.dataGuid,jdbcType=VARCHAR},
-      NODE_MN = #{record.nodeMn,jdbcType=VARCHAR},
+      NODE_ID = #{record.nodeId,jdbcType=INTEGER},
       DATA_TYPE = #{record.dataType,jdbcType=VARCHAR},
       DATA_TIME = #{record.dataTime,jdbcType=TIMESTAMP},
       NODE_DATA = #{record.nodeData,jdbcType=VARCHAR},
@@ -538,8 +559,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.aps.env.entity.HbDataLatest" >
     update hb_data_latest
     <set >
-      <if test="nodeMn != null" >
-        NODE_MN = #{nodeMn,jdbcType=VARCHAR},
+      <if test="nodeId != null" >
+        NODE_ID = #{nodeId,jdbcType=INTEGER},
       </if>
       <if test="dataType != null" >
         DATA_TYPE = #{dataType,jdbcType=VARCHAR},
@@ -645,7 +666,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.aps.env.entity.HbDataLatest" >
     update hb_data_latest
-    set NODE_MN = #{nodeMn,jdbcType=VARCHAR},
+    set NODE_ID = #{nodeId,jdbcType=INTEGER},
       DATA_TYPE = #{dataType,jdbcType=VARCHAR},
       DATA_TIME = #{dataTime,jdbcType=TIMESTAMP},
       NODE_DATA = #{nodeData,jdbcType=VARCHAR},
