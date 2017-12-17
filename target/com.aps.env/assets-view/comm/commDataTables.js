@@ -280,7 +280,7 @@ function CommDataTables(tableName, columnHeadName, column, callError, url) {
         pageLength: 50
     };
     this.scrollY = 80;
-    this.scrollX = false;
+    this.scrollX = true;
     this.buttons = "RNEDP";
     if (!isNaN(column)) {
         this.columnsInfo = DataTablesColumnInfo(column, columnHeadName, callError, url);

@@ -26,6 +26,7 @@ public class ContextPathFilter implements Filter {
         String contextPath = ((HttpServletRequest) servletRequest).getContextPath();
 
         servletRequest.setAttribute(CommUtil.CONTEXT_PATH, contextPath);
+        servletRequest.setAttribute(CommUtil.NIO_SERVER, System.getenv("NIO_SERVER"));
         filterChain.doFilter(servletRequest, servletResponse);
     }
 

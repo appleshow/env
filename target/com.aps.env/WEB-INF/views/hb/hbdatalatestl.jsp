@@ -29,19 +29,6 @@
 <link rel="stylesheet"
       href="${ctx}/assets-view/comm/tree/css/tree.css"/>
 <style type="text/css">
-    .select2-container .select2-selection--single {
-        height: 34px !important;
-        line-height: 34px;
-    }
-
-    .select2-container--default .select2-selection--single .select2-selection__rendered {
-        line-height: 34px;
-    }
-
-    .select2-container--default .select2-selection--single .select2-selection__arrow {
-        height: 34px;
-    }
-
     .box {
         position: absolute;
         overflow: auto;
@@ -155,12 +142,11 @@
 <script src="${ctx}/assets-view/comm/highcharts/js/exporting.js"></script>
 
 <%@include file="../aplugin/treectrl.jsp" %>
-<%@include file="../aplugin/regionwindow.jsp" %>
 
 <script type="application/javascript">
     var pagePars = {
         colors: [
-            "#2b908f", "#90ee7e", "#f45b5b", "#7798BF", "#aaeeee", "#ff0066", "#eeaaee", "#55BF3B", "#DF5353", "#7798BF", , "#514F78", "#42A07B", "#9B5E4A", "#72727F", "#1F949A", "#82914E", "#86777F",
+            "#2b908f", "#90ee7e", "#f45b5b", "#7798BF", "#aaeeee", "#ff0066", "#eeaaee", "#55BF3B", "#DF5353", "#7798BF", "#514F78", "#42A07B", "#9B5E4A", "#72727F", "#1F949A", "#82914E", "#86777F",
             "#42A07B", "#DDDF0D", "#55BF3B", "#DF5353", "#7798BF", "#aaeeee", "#ff0066", "#eeaaee", "#55BF3B", "#DF5353", "#7798BF", "#aaeeee"
         ],
         enterpriseRegion: [],

@@ -56,89 +56,78 @@
     </style>
 </head>
 <body>
-<div class="row"
-     style="margin-right: 0px; margin-bottom: 0px;">
-    <div class="col-lg-12 col-sm-12 col-xs-12">
-        <div class="widget flat radius-bordered">
-            <div class="widget-body">
-                <div class="row">
-                    <div class="col-lg-1 col-sm-1 col-xs-4"
-                         style="margin-right: 0px;padding-right: 0px">
-                        <button class="btn btn-default"
-                                type="button"
-                                style="width: 100%; text-align: right;">站点名称
-                        </button>
-                    </div>
-                    <div class="col-lg-2 col-sm-2 col-xs-8"
-                         style="margin-left: 0px;padding-left: 0px">
-                        <div class="input-group">
-                            <input class="form-control"
-                                   style="width: 100%; display: none;"
-                                   readonly
-                                   id="nodeId"
-                                   name="nodeId">
-                            </input>
-                            <input class="form-control"
-                                   style="width: 100%;"
-                                   readonly
-                                   id="nodeName"
-                                   name="nodeName">
-                            </input>
-                            <span class="input-group-btn">
-                                <button class="btn btn-default"
-                                        type="button"
-                                        onclick="openNodeWindow()">...</button>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="col-lg-1 col-sm-1 col-xs-4"
-                         style="margin-right: 0px;padding-right: 0px">
-                        <button class="btn btn-default"
-                                type="button"
-                                style="width: 100%; text-align: right;">站点类型
-                        </button>
-                    </div>
-                    <div class="col-lg-2 col-sm-2 col-xs-8"
-                         style="margin-left: 0px;padding-left: 0px">
-                        <div class="input-group"
-                             style="width: 100%;">
-                            <input class="form-control"
-                                   readonly
-                                   id="typeName"
-                                   name="typeName">
-                            </input>
-                        </div>
-                    </div>
-                    <div class="col-lg-1 col-sm-1 col-xs-4"
-                         style="margin-right: 0px;padding-right: 0px">
-                        <button class="btn btn-default"
-                                type="button"
-                                style="width: 100%; text-align: right;">所属企业
-                        </button>
-                    </div>
-                    <div class="col-lg-2 col-sm-2 col-xs-8"
-                         style="margin-left: 0px;padding-left: 0px">
-                        <div class="input-group"
-                             style="width: 100%;">
-                            <input class="form-control"
-                                   readonly
-                                   id="enterpriseName"
-                                   name="enterpriseName">
-                            </input>
-                        </div>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <form class="form-inline">
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-btn">
+                         <button class="btn btn-default"
+                                 type="button">站点名称</button>
+                    </span>
+                    <input class="form-control"
+                           style="width: 180px; display: none;"
+                           readonly
+                           id="nodeId"
+                           name="nodeId">
+                    </input>
+                    <input class="form-control"
+                           style="width: 250px;"
+                           readonly
+                           id="showNodeName"
+                           name="showNodeName">
+                    </input>
+                    <span class="input-group-btn">
+                <button class="btn btn-default"
+                        type="button"
+                        onclick="openNodeWindow()">...</button>
+            </span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-btn">
+                         <button class="btn btn-default"
+                                 type="button">站点类型</button>
+                    </span>
+                    <div class="input-group"
+                         style="width: 200px">
+                        <input class="form-control"
+                               readonly
+                               id="typeName"
+                               name="typeName">
+                        </input>
                     </div>
                 </div>
-                <table id="tableNodeItem"
-                       class="table table-striped table-bordered display responsive nowrap"
-                       cellspacing="0"
-                       width="100%">
-                    <thead>
-                    <tr id="tableNodeItemColums">
-                    </tr>
-                    </thead>
-                </table>
             </div>
-        </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-btn">
+                         <button class="btn btn-default"
+                                 type="button">所属企业</button>
+                    </span>
+                    <div class="input-group"
+                         style="width: 250px;">
+                        <input class="form-control"
+                               readonly
+                               id="enterpriseName"
+                               name="enterpriseName">
+                        </input>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="panel-body">
+        <table id="tableNodeItem"
+               class="table table-striped table-bordered display responsive nowrap"
+               cellspacing="0"
+               width="100%">
+            <thead>
+            <tr id="tableNodeItemColums">
+            </tr>
+            </thead>
+        </table>
     </div>
 </div>
 <div class="modal fade"
@@ -247,7 +236,7 @@
             ],
             pageLength: -1
         };
-        tableNodeItem.scrollY = 75;
+        tableNodeItem.scrollY = 72;
         tableNodeItem.buttons = "EP";
 
         // ***** Add information to Column *****
@@ -274,7 +263,7 @@
         var selectItem = selectItems[0];
 
         $("#nodeId").val(selectItem.id);
-        $("#nodeName").val(selectItem.name);
+        $("#showNodeName").val(selectItem.name);
 
         $.each(currentTreeData, function (index, item) {
             if (item.nodeId && item.nodeId == $("#nodeId").val()) {

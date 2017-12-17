@@ -63,9 +63,8 @@
     </style>
 </head>
 <body>
-<div class="row"
-     style="margin-right: 0px; margin-bottom: 0px;">
-    <div class="col-lg-4 col-sm-4 col-xs-12">
+<div class="panel panel-default">
+    <div class="panel-heading">
         <div class="form-group"
              style="margin-bottom: 6px;">
             <div class="controls">
@@ -82,10 +81,7 @@
             </div>
         </div>
     </div>
-</div>
-<div class="row"
-     style="margin-right: 0px; margin-bottom: 0px;">
-    <div class="col-lg-12 col-sm-12 col-xs-12">
+    <div class="panel-body">
         <table id="table-typeitem"
                class="table table-striped table-bordered display responsive nowrap"
                cellspacing="0"
@@ -196,6 +192,7 @@
         tableTypeItem.serverInfo.referControls.push(ControlPar("text", "typeId", "", $("#typeId")));
         tableTypeItem.serverInfo.modifyUrl = "${ctx}/viewHbTypeItemConfig/modifyHbTypeItem";
 
+        tableTypeItem.scrollY = 72;
         // ***** Add information to Column *****
         tableTypeItem.columns["typeId"].render = function (data, type, row) {
             var fixData = data;

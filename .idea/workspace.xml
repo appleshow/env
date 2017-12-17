@@ -18,81 +18,60 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="hbdatalatestl.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/hb/hbdatalatestl.jsp">
+      <file leaf-file-name="hbdatacontrastm.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/hb/hbdatacontrastm.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2219">
-              <caret line="552" column="44" lean-forward="true" selection-start-line="552" selection-start-column="44" selection-end-line="552" selection-end-column="44" />
-              <folding>
-                <marker date="1513357437589" expanded="true" signature="24321:24327" ph="&amp;nbsp;" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="hbdatalatestg.jsp" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/hb/hbdatalatestg.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="518">
-              <caret line="93" column="66" lean-forward="true" selection-start-line="93" selection-start-column="66" selection-end-line="93" selection-end-column="66" />
+            <state relative-caret-position="817">
+              <caret line="738" column="54" lean-forward="false" selection-start-line="738" selection-start-column="54" selection-end-line="738" selection-end-column="54" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="e#7381#18925#0#HTML" expanded="false" />
-                <marker date="1513359526534" expanded="true" signature="20213:20219" ph="&amp;nbsp;" />
+                <element signature="e#6379#6386#1#HTML" expanded="true" />
+                <element signature="e#7393#7400#1#HTML" expanded="true" />
+                <element signature="e#10120#22114#0#HTML" expanded="false" />
+                <marker date="1513533080426" expanded="true" signature="33886:33900" ph="..." />
+                <marker date="1513533080426" expanded="true" signature="36125:36131" ph="&amp;nbsp;" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="hbtypecfg.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/hb/hbtypecfg.jsp">
+      <file leaf-file-name="hbdatacontrasth.jsp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/hb/hbdatacontrasth.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1577">
-              <caret line="40" column="0" lean-forward="true" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+            <state relative-caret-position="153">
+              <caret line="721" column="13" lean-forward="true" selection-start-line="721" selection-start-column="13" selection-end-line="721" selection-end-column="13" />
               <folding>
-                <marker date="1511102455482" expanded="true" signature="6435:6441" ph="&amp;nbsp;" />
+                <marker date="1513533538191" expanded="true" signature="33888:33902" ph="..." />
+                <marker date="1513533538191" expanded="true" signature="36245:36251" ph="&amp;nbsp;" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="hbtypeitemcfg.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/hb/hbtypeitemcfg.jsp">
+      <file leaf-file-name="ViewHbContrastController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/controller/ViewHbContrastController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2071">
-              <caret line="66" column="52" lean-forward="true" selection-start-line="66" selection-start-column="52" selection-end-line="66" selection-end-column="52" />
+            <state relative-caret-position="438">
+              <caret line="34" column="25" lean-forward="true" selection-start-line="34" selection-start-column="25" selection-end-line="34" selection-end-column="25" />
               <folding>
-                <marker date="1511107518394" expanded="true" signature="9800:9806" ph="&amp;nbsp;" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="hbnodecfg.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/hb/hbnodecfg.jsp">
+      <file leaf-file-name="commDataTables.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/assets-view/comm/commDataTables.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="731">
-              <caret line="249" column="35" lean-forward="true" selection-start-line="239" selection-start-column="7" selection-end-line="249" selection-end-column="35" />
+            <state relative-caret-position="8878">
+              <caret line="479" column="27" lean-forward="true" selection-start-line="479" selection-start-column="27" selection-end-line="479" selection-end-column="27" />
               <folding>
-                <marker date="1513096883502" expanded="true" signature="11809:11815" ph="&amp;nbsp;" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="hbnodeaccess.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/hb/hbnodeaccess.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="467">
-              <caret line="323" column="61" lean-forward="true" selection-start-line="323" selection-start-column="61" selection-end-line="323" selection-end-column="61" />
-              <folding>
-                <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <marker date="1513359056058" expanded="true" signature="13433:13439" ph="&amp;nbsp;" />
+                <marker date="1513532119081" expanded="true" signature="2218:2245" ph="..." />
+                <marker date="1513532119081" expanded="true" signature="2452:2479" ph="..." />
+                <marker date="1513532119081" expanded="true" signature="2682:2709" ph="..." />
+                <marker date="1513532119081" expanded="true" signature="2916:2943" ph="..." />
+                <marker date="1513532119081" expanded="true" signature="3148:3175" ph="..." />
+                <marker date="1513532119081" expanded="true" signature="7298:7309" ph="..." />
               </folding>
             </state>
           </provider>
@@ -113,52 +92,38 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>select</find>
-      <find>referControls</find>
-      <find>selectTypeId</find>
-      <find>selectNodeId</find>
-      <find>nodeId</find>
-      <find>btnSaveEnterprise</find>
-      <find>property11</find>
-      <find>./</find>
-      <find>HBNodeAccess</find>
-      <find>viewHbNodeAccessCfg.</find>
-      <find>viewHbNodeAccessCfg</find>
-      <find>val</find>
-      <find>val(</find>
-      <find>selectNodes</find>
-      <find>&quot;org&quot;</find>
-      <find>colors</find>
-      <find>nodeType</find>
-      <find>nodeTypeItem</find>
-      <find>hbDataCurController.</find>
-      <find>nodeDataCur</find>
-      <find>hbDataCurController</find>
-      <find>nodeInfo</find>
-      <find>typeId</find>
+      <find>__initNodeWidinow</find>
+      <find>__pagePars.nodeLines</find>
+      <find>value.nodeMn</find>
       <find>nodeLines</find>
-      <find>treeData</find>
-      <find>nodeMn</find>
-      <find>#</find>
-      <find>typeName</find>
-      <find>orgId</find>
-      <find>pagePar</find>
+      <find>ex</find>
+      <find>pagePars.selectNode</find>
+      <find>$.ex</find>
+      <find>lineCurBox</find>
+      <find>selectNodeChanged</find>
+      <find>tabledataCurM</find>
+      <find>tbdataCurM</find>
+      <find>createColumnInfoM</find>
+      <find>url</find>
+      <find>.jpg</find>
+      <find>./</find>
+      <find>HB_NODE_STATUS</find>
+      <find>dataLine</find>
+      <find>size</find>
+      <find>refChart</find>
+      <find>dateTimeEnd</find>
+      <find>HBDataContrast</find>
+      <find>combTypeData</find>
+      <find>combTypeItemData</find>
+      <find>combNodeData</find>
+      <find>odeData</find>
+      <find>nodeName</find>
+      <find>tbdataCurR</find>
+      <find>tabledataCurR</find>
+      <find>tableR</find>
+      <find>createtableRHis</find>
     </findStrings>
     <replaceStrings>
-      <replace>${ctx}/viewOrgFormConfig/</replace>
-      <replace>${ctx}/viewFormConfig/</replace>
-      <replace>${ctx}/viewPageShow/</replace>
-      <replace>&quot;${ctx}/viewPageShow/</replace>
-      <replace>enttype</replace>
-      <replace>tableComCode</replace>
-      <replace>comcode</replace>
-      <replace>__windowRegionTitle</replace>
-      <replace>__windowRegion</replace>
-      <replace>__regionWindowPar</replace>
-      <replace>Enerprise</replace>
-      <replace>EnerpriseNode</replace>
-      <replace>enterpriseNodeForm</replace>
-      <replace>Node</replace>
       <replace>__enterpriseWindowPar</replace>
       <replace>__enerpriseSelected</replace>
       <replace>__treeEnterpriseDataSource</replace>
@@ -169,12 +134,26 @@
       <replace>pagePar</replace>
       <replace>viewHbNodeAccessCfg</replace>
       <replace>viewHbNodeAccessCfg/</replace>
-      <replace>${ctx}/</replace>
       <replace>${ctx}/viewHbNodeAccessCfg</replace>
       <replace>${ctx}/hbDataCurController/</replace>
       <replace>viewHbDataLLine</replace>
+      <replace>enterpriseNode</replace>
+      <replace>nodePersonWindow</replace>
+      <replace>__initNodePersonWidinow</replace>
+      <replace>__pagePars.nodeLines</replace>
       <replace>pagePars.nodeLines</replace>
+      <replace>node.nodeId</replace>
+      <replace>pagePars.tabledataCurM</replace>
+      <replace>tableDataCurM</replace>
+      <replace>createColumnInfo</replace>
+      <replace>${ctx}/</replace>
+      <replace>lineData</replace>
       <replace>pagePars</replace>
+      <replace>showNodeName</replace>
+      <replace>tbdataCur</replace>
+      <replace>tabledataCur</replace>
+      <replace>tableDiv</replace>
+      <replace>createtableHis</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -188,57 +167,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/entity/ComPersonFav.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/entity/ComPersonMsg.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/entity/ComPersonOrg.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/entity/ComRegion.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/entity/ComResource.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/entity/HbDataRecord.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/entity/HbEnterprise.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/entity/HbType.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/entity/HbDataMode.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/system/pageshow.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/aplugin/regionwindow.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/entity/HbNode.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewHbNodeItemService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/controller/ViewHbNodeItemController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/comm/ResponseData.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/entity/HbTypeItem.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/entity/HbTypeItemNode.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/hb/hbnodecfg.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/comm/CommUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewHbNodeItemServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/hb/hbdatalatest.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewHbNodeAccessService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/controller/ViewHbEnterpriseNodeController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/controller/ViewHbEnterpriseController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/controller/ViewHbNodeAccessController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/dao/ComOrgMapper.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/mapper/ComOrgMapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewHbDataLLineService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/controller/ViewHbDataLLineController.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/dataSource-dev.xml" />
-        <option value="$PROJECT_DIR$/src/main/resources/dataSource-pro.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/dao/ComResourceMapper.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/mapper/ComResourceMapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewHbNodeAccessServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/dao/HbDataLatestMapper.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewHbDataLLineServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/entity/HbDataLatest.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/hb/hbenterprise.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/hb/hbenterprisenode.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/aplugin/enterprisewindow.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/aplugin/nodewindow.jsp" />
-        <option value="$PROJECT_DIR$/src/main/resources/mapper/HbDataLatestMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/aps/env/dao/HbEnterpriseMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewHbEnterpriseServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/mapper/HbEnterpriseMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/aps/env/dao/HbNodeMapper.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/mapper/HbNodeMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewHbEnterpriseNodeServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/hb/hbdatalatestl.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/hb/hbnodeaccess.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/hb/hbenterprisenode.jsp" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapper/HbDataLatestMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapper/HbEnterpriseMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewHbDataLGridServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/controller/ViewHbDataLGridController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewHbDataLGridService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewHbDataLLineServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewHbDataLLineService.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/aplugin/nodepersonwindow.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/aplugin/nodewindow.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/hb/hbdatalatestl.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/controller/ViewHbEnterpriseNodeController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewHbDataHisService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/controller/ViewHbDataHisController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/entity/HbDataModeExample.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapper/HbDataModeMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/entity/HbDataMode.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewHbDataHisServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/main.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/assets-view/comm/comm.js" />
+        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewHbNodeStatusService.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapper/HbNodeMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/entity/HbTypeItemException.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/controller/ViewHbNodeStatusController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewHbNodeStatusServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/comm/CommUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/comm/ContextPathFilter.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/dataSource-dev.xml" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/hb/hbdatahistroyl.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/hb/hbdatahistroygh.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/hb/hbdatahistroygm.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/hb/hbnodstatus.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/hb/hbtypeitemcfg.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/hb/hbtypecfg.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/system/comcodecfg.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/system/pageshow.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/hb/hbdatalatestg.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewHbContrastService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewHbContrastServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/hb/hbnodecfg.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/assets-view/comm/commDataTables.js" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/hb/hbdatacontrast.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/hb/hbdatacontrastm.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/com/aps/env/controller/ViewHbContrastController.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/hb/hbdatacontrasth.jsp" />
       </list>
     </option>
   </component>
@@ -316,6 +295,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="PackagesPane">
         <subPane>
           <expand>
@@ -327,9 +307,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="AndroidView" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -398,17 +375,6 @@
               <item name="env" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="aps" type="462c0819:PsiDirectoryNode" />
-              <item name="env" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="env" type="b2602c69:ProjectViewProjectNode" />
-              <item name="env" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -443,12 +409,44 @@
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
               <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="aplugin" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="env" type="b2602c69:ProjectViewProjectNode" />
+              <item name="env" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="hb" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="env" type="b2602c69:ProjectViewProjectNode" />
+              <item name="env" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="hbnode" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="env" type="b2602c69:ProjectViewProjectNode" />
+              <item name="env" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="system" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="AndroidView" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -457,7 +455,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="SearchEverywhereHistoryKey" value="hben&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/java/com/aps/env/dao/HbEnterpriseMapper.java&#10;hbenterprisemapp&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/resources/mapper/HbEnterpriseMapper.xml&#10;hbenterpris&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/java/com/aps/env/dao/HbEnterpriseMapper.java&#10;hbnodemapp&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/resources/mapper/HbNodeMapper.xml&#10;hbnodemap&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/java/com/aps/env/dao/HbNodeMapper.java&#10;hbenterprisem&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/resources/mapper/HbEnterpriseMapper.xml&#10;hbenterpri&#9;PSI&#9;JAVA://com.aps.env.entity.HbEnterpriseExample&#10;hbenterprise&#9;PSI&#9;JAVA://com.aps.env.dao.HbEnterpriseMapper&#10;hbdatala&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/resources/mapper/HbDataLatestMapper.xml&#10;hbnodem&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/resources/mapper/HbNodeMapper.xml&#10;viewHbEnterpriseCfg/refEnterprise&#9;null&#9;null&#10;como&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/java/com/aps/env/entity/ComOrg.java&#10;hbdatalat&#9;PSI&#9;JAVA://com.aps.env.entity.HbDataLatest&#10;hbdatalatest&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/resources/mapper/HbDataLatestMapper.xml&#10;hbnodeac&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/webapp/WEB-INF/views/hb/hbnodeaccess.jsp&#10;viewhbnodea&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/java/com/aps/env/service/ViewHbNodeAccessServiceImpl.java&#10;comre&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/resources/mapper/ComResourceMapper.xml&#10;hbdatal&#9;PSI&#9;JAVA://com.aps.env.entity.HbDataLatest&#10;comor&#9;PSI&#9;JAVA://com.aps.env.entity.ComOrg&#10;hbdatalates&#9;PSI&#9;JAVA://com.aps.env.dao.HbDataLatestMapper&#10;datalatestm&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/resources/mapper/HbDataLatestMapper.xml&#10;hbnodema&#9;PSI&#9;JAVA://com.aps.env.dao.HbNodeMapper&#10;comorgm&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/resources/mapper/ComOrgMapper.xml&#10;comformr&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/java/com/aps/env/dao/ComFormRightsMapper.java&#10;comreso&#9;PSI&#9;JAVA://com.aps.env.dao.ComResourceMapper&#10;comresource&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/resources/mapper/ComResourceMapper.xml&#10;comformrigh&#9;PSI&#9;JAVA://com.aps.env.dao.ComFormRightsMapper&#10;comorgmap&#9;PSI&#9;JAVA://com.aps.env.dao.ComOrgMapper&#10;commut&#9;PSI&#9;JAVA://com.aps.env.comm.CommUtil&#10;viewHbNodeItemCfg/referHbTypeItem&#9;null&#9;null&#10;hbnode&#9;PSI&#9;JAVA://com.aps.env.entity.HbNode&#10;hbtype&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/java/com/aps/env/entity/HbTypeItem.java&#10;jsonu&#9;PSI&#9;JAVA://com.aps.env.comm.JsonUtil&#10;hbtypemap&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/resources/mapper/HbTypeMapper.xml&#10;hbtypenode&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/java/com/aps/env/entity/HbTypeItemNode.java&#10;hbtypeitem&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/java/com/aps/env/entity/HbTypeItemNode.java&#10;hbdatamode&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/resources/mapper/HbDataModeMapper.xml&#10;hbnod&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/java/com/aps/env/entity/HbNode.java&#10;hbenterp&#9;PSI&#9;JAVA://com.aps.env.entity.HbEnterprise&#10;hbe&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/webapp/WEB-INF/views/hb/hbenterprise.jsp&#10;comregion&#9;PSI&#9;JAVA://com.aps.env.entity.ComRegion&#10;showPage&#9;null&#9;null&#10;referCombCode&#9;null&#9;null&#10;referAllForms&#9;null&#9;null&#10;referFormCtlType&#9;null&#9;null&#10;modifyOrgForm&#9;null&#9;null&#10;comcode&#9;PSI&#9;JAVA://com.aps.env.entity.ComCode&#10;comformright&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/java/com/aps/env/entity/ComFormRights.java&#10;comcodemapp&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/resources/mapper/ComCodeMapper.xml&#10;stringu&#9;PSI&#9;JAVA://com.aps.env.comm.StringUtil" />
+    <property name="SearchEverywhereHistoryKey" value="hbtypite&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/java/com/aps/env/entity/HbTypeItemNode.java&#10;showpage&#9;null&#9;null&#10;hb&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/resources/mapper/HbNodeMapper.xml&#10;hbnodemapp&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/resources/mapper/HbNodeMapper.xml&#10;hbtypeitemn&#9;PSI&#9;JAVA://com.aps.env.entity.HbTypeItemNode&#10;hbdatamode&#9;PSI&#9;JAVA://com.aps.env.entity.HbDataMode&#10;hbdatamodema&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/resources/mapper/HbDataModeMapper.xml&#10;hbenterprisema&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/resources/mapper/HbEnterpriseMapper.xml&#10;hbdatalatestmapp&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/resources/mapper/HbDataLatestMapper.xml&#10;hben&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/java/com/aps/env/dao/HbEnterpriseMapper.java&#10;hbenterprisemapp&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/resources/mapper/HbEnterpriseMapper.xml&#10;hbenterpris&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/java/com/aps/env/dao/HbEnterpriseMapper.java&#10;hbnodemap&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/java/com/aps/env/dao/HbNodeMapper.java&#10;hbenterprisem&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/resources/mapper/HbEnterpriseMapper.xml&#10;hbenterpri&#9;PSI&#9;JAVA://com.aps.env.entity.HbEnterpriseExample&#10;hbenterprise&#9;PSI&#9;JAVA://com.aps.env.dao.HbEnterpriseMapper&#10;hbdatala&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/resources/mapper/HbDataLatestMapper.xml&#10;hbnodem&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/resources/mapper/HbNodeMapper.xml&#10;viewHbEnterpriseCfg/refEnterprise&#9;null&#9;null&#10;como&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/java/com/aps/env/entity/ComOrg.java&#10;hbdatalat&#9;PSI&#9;JAVA://com.aps.env.entity.HbDataLatest&#10;hbdatalatest&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/resources/mapper/HbDataLatestMapper.xml&#10;hbnodeac&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/webapp/WEB-INF/views/hb/hbnodeaccess.jsp&#10;viewhbnodea&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/java/com/aps/env/service/ViewHbNodeAccessServiceImpl.java&#10;comre&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/resources/mapper/ComResourceMapper.xml&#10;hbdatal&#9;PSI&#9;JAVA://com.aps.env.entity.HbDataLatest&#10;comor&#9;PSI&#9;JAVA://com.aps.env.entity.ComOrg&#10;hbdatalates&#9;PSI&#9;JAVA://com.aps.env.dao.HbDataLatestMapper&#10;datalatestm&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/resources/mapper/HbDataLatestMapper.xml&#10;hbnodema&#9;PSI&#9;JAVA://com.aps.env.dao.HbNodeMapper&#10;comorgm&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/resources/mapper/ComOrgMapper.xml&#10;comformr&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/java/com/aps/env/dao/ComFormRightsMapper.java&#10;comreso&#9;PSI&#9;JAVA://com.aps.env.dao.ComResourceMapper&#10;comresource&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/resources/mapper/ComResourceMapper.xml&#10;comformrigh&#9;PSI&#9;JAVA://com.aps.env.dao.ComFormRightsMapper&#10;comorgmap&#9;PSI&#9;JAVA://com.aps.env.dao.ComOrgMapper&#10;commut&#9;PSI&#9;JAVA://com.aps.env.comm.CommUtil&#10;viewHbNodeItemCfg/referHbTypeItem&#9;null&#9;null&#10;hbnode&#9;PSI&#9;JAVA://com.aps.env.entity.HbNode&#10;hbtype&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/java/com/aps/env/entity/HbTypeItem.java&#10;jsonu&#9;PSI&#9;JAVA://com.aps.env.comm.JsonUtil&#10;hbtypemap&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/resources/mapper/HbTypeMapper.xml&#10;hbtypenode&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/java/com/aps/env/entity/HbTypeItemNode.java&#10;hbtypeitem&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/java/com/aps/env/entity/HbTypeItemNode.java&#10;hbnod&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/java/com/aps/env/entity/HbNode.java&#10;hbenterp&#9;PSI&#9;JAVA://com.aps.env.entity.HbEnterprise&#10;hbe&#9;FILE&#9;file://C:/01Kevin/03Work/Myself/GitHub/env/src/main/webapp/WEB-INF/views/hb/hbenterprise.jsp&#10;comregion&#9;PSI&#9;JAVA://com.aps.env.entity.ComRegion&#10;showPage&#9;null&#9;null&#10;referCombCode&#9;null&#9;null" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -468,11 +466,12 @@
       <recent name="C:\01Kevin\03Work\Myself\GitHub\env\src\main\java\com\aps\env\entity" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.aps.env.service" />
       <recent name="com.aps.env.entity.base" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\01Kevin\03Work\Myself\GitHub\env\src\main\webapp\assets-view\comm\bootstrapvalidator\js" />
       <recent name="C:\01Kevin\03Work\Myself\GitHub\env\src\main\webapp\WEB-INF\views\hb" />
+      <recent name="C:\01Kevin\03Work\Myself\GitHub\env\src\main\webapp\assets-view\comm\bootstrapvalidator\js" />
       <recent name="C:\01Kevin\03Work\Myself\GitHub\env\src\main\resources\mapper" />
       <recent name="C:\01Kevin\03Work\Myself\GitHub\env\src\main\webapp\WEB-INF\views" />
       <recent name="C:\01Kevin\03Work\Myself\GitHub\env\src\main\webapp\WEB-INF" />
@@ -653,6 +652,11 @@
           <option name="VALUE" value="dev" />
           <option name="IS_PREDEFINED" value="false" />
         </EnvironmentVariables>
+        <EnvironmentVariables>
+          <option name="NAME" value="NIO_SERVER" />
+          <option name="VALUE" value="localhost:8087" />
+          <option name="IS_PREDEFINED" value="false" />
+        </EnvironmentVariables>
       </ConfigurationWrapper>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
         <option name="USE_ENV_VARIABLES" value="true" />
@@ -728,11 +732,16 @@
       <workItem from="1513216256381" duration="6962000" />
       <workItem from="1513303922834" duration="1771000" />
       <workItem from="1513307832252" duration="38194000" />
+      <workItem from="1513388273406" duration="39421000" />
+      <workItem from="1513474448821" duration="2270000" />
+      <workItem from="1513482453151" duration="11529000" />
+      <workItem from="1513499538827" duration="5324000" />
+      <workItem from="1513508904592" duration="20085000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="294596000" />
+    <option name="totallyTimeSpent" value="373225000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -764,12 +773,13 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32826087" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32826087" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.25266525" sideWeight="0.5" order="5" side_tool="false" content_ui="combo" x="725" y="59" width="469" height="921" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.2675906" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32826087" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -778,7 +788,6 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="combo" />
       <window_info id="Dynamic Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32826087" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -823,527 +832,475 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="51" />
+      <option name="time" value="55" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/assets-view/hb/hbnodeaccess.js">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/aplugin/nodewindow.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="27" column="30" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="285" selection-end-column="1" />
+        <state relative-caret-position="1953">
+          <caret line="319" column="72" lean-forward="false" selection-start-line="319" selection-start-column="72" selection-end-line="319" selection-end-column="72" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/controller/ViewHbEnterpriseNodeController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/aplugin/nodepersonwindow.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="29" column="71" lean-forward="false" selection-start-line="29" selection-start-column="71" selection-end-line="29" selection-end-column="71" />
+        <state relative-caret-position="290">
+          <caret line="313" column="13" lean-forward="false" selection-start-line="313" selection-start-column="13" selection-end-line="313" selection-end-column="13" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewHbDataLGridService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="19" column="106" lean-forward="true" selection-start-line="19" selection-start-column="3" selection-end-line="19" selection-end-column="106" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewHbDataHisService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="19" column="37" lean-forward="false" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/controller/ViewFormcfgServiceController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+        <state relative-caret-position="707">
+          <caret line="46" column="5" lean-forward="true" selection-start-line="31" selection-start-column="3" selection-end-line="46" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/controller/ViewComCodeCfgController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/entity/HbDataModeExample.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+        <state relative-caret-position="76">
+          <caret line="8" column="32" lean-forward="true" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/HbDataModeMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="395">
+          <caret line="110" column="9" lean-forward="false" selection-start-line="110" selection-start-column="9" selection-end-line="110" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/controller/ViewHbEnterpriseNodeController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="678">
+          <caret line="49" column="5" lean-forward="true" selection-start-line="34" selection-start-column="3" selection-end-line="49" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/controller/ViewHbTypeItemCfgController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/controller/ViewHbEnterpriseController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+        <state relative-caret-position="157">
+          <caret line="32" column="34" lean-forward="true" selection-start-line="32" selection-start-column="34" selection-end-line="32" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/controller/ViewMainController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/entity/HbDataMode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="-1733">
+          <caret line="109" column="68" lean-forward="false" selection-start-line="109" selection-start-column="68" selection-end-line="109" selection-end-column="68" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/controller/ViewHbNodeItemController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/controller/ViewHbDataHisController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="950">
-          <caret line="62" column="0" lean-forward="false" selection-start-line="62" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/controller/ViewHbNodeAccessController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="532">
-          <caret line="28" column="44" lean-forward="false" selection-start-line="28" selection-start-column="25" selection-end-line="28" selection-end-column="44" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/entity/ComFormRights.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/dao/ComOrgMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="532">
-          <caret line="31" column="33" lean-forward="false" selection-start-line="31" selection-start-column="17" selection-end-line="31" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewHbNodeAccessService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="19" column="40" lean-forward="false" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="40" />
+        <state relative-caret-position="723">
+          <caret line="43" column="39" lean-forward="false" selection-start-line="43" selection-start-column="39" selection-end-line="43" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/dao/ComFormRightsMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="31" column="4" lean-forward="false" selection-start-line="31" selection-start-column="4" selection-end-line="31" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/entity/ComResource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="43" column="28" lean-forward="false" selection-start-line="43" selection-start-column="19" selection-end-line="43" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../../../../99Program/apache-maven-3.3.9/repository/org/springframework/spring-aop/4.3.12.RELEASE/spring-aop-4.3.12.RELEASE.jar!/org/springframework/aop/support/AopUtils.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="729">
-          <caret line="179" column="0" lean-forward="false" selection-start-line="179" selection-start-column="0" selection-end-line="179" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/ComOrgMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="120" column="19" lean-forward="true" selection-start-line="120" selection-start-column="19" selection-end-line="120" selection-end-column="19" />
-          <folding>
-            <marker date="1513319318863" expanded="true" signature="5241:5351" ph="select from com_org" />
-            <marker date="1513319318863" expanded="true" signature="5469:5716" ph="SELECT ORG_I... com_org" />
-            <marker date="1513319318863" expanded="true" signature="5496:5557" ph="SELECT count... com_org" />
-            <marker date="1513319318863" expanded="true" signature="5803:5867" ph="delete from " />
-            <marker date="1513319318863" expanded="true" signature="5966:5985" ph="delete from " />
-            <marker date="1513319318863" expanded="true" signature="6161:7306" ph="insert into com_org... " />
-            <marker date="1513319318863" expanded="true" signature="11556:11584" ph="select count... com_org" />
-            <marker date="1513319318863" expanded="true" signature="14791:16171" ph="update com_o... " />
-            <marker date="1513319318863" expanded="true" signature="16378:18832" ph="update com_o... " />
-            <marker date="1513319318863" expanded="true" signature="18927:20128" ph="update com_o... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/assets-view/comm/commDataTables.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="12" column="1" lean-forward="true" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
-          <folding>
-            <marker date="1511196093224" expanded="true" signature="2218:2245" ph="..." />
-            <marker date="1511196093224" expanded="true" signature="2452:2479" ph="..." />
-            <marker date="1511196093224" expanded="true" signature="2682:2709" ph="..." />
-            <marker date="1511196093224" expanded="true" signature="2916:2943" ph="..." />
-            <marker date="1511196093224" expanded="true" signature="3148:3175" ph="..." />
-            <marker date="1511196093224" expanded="true" signature="7298:7309" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewHbDataLLineService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="8" column="7" lean-forward="true" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/assets-view/hb/hbdatacur.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="589">
-          <caret line="31" column="22" lean-forward="true" selection-start-line="31" selection-start-column="22" selection-end-line="31" selection-end-column="22" />
-          <folding>
-            <marker date="1499847659676" expanded="true" signature="10211:10227" ph="..." />
-            <marker date="1499847659676" expanded="true" signature="10486:10500" ph="..." />
-            <marker date="1499847659676" expanded="true" signature="12307:12313" ph="&amp;nbsp;" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/dataSource-pro.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="11" column="48" lean-forward="true" selection-start-line="11" selection-start-column="48" selection-end-line="11" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/dataSource-dev.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="17" column="131" lean-forward="false" selection-start-line="17" selection-start-column="124" selection-end-line="17" selection-end-column="131" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/dao/ComResourceMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="24" lean-forward="true" selection-start-line="0" selection-start-column="24" selection-end-line="0" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewHbNodeAccessServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="333">
-          <caret line="95" column="43" lean-forward="true" selection-start-line="95" selection-start-column="43" selection-end-line="95" selection-end-column="43" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <caret line="95" column="43" lean-forward="true" selection-start-line="93" selection-start-column="7" selection-end-line="95" selection-end-column="43" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/ComResourceMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="139" column="35" lean-forward="true" selection-start-line="139" selection-start-column="35" selection-end-line="139" selection-end-column="35" />
-          <folding>
-            <marker date="1513341926693" expanded="true" signature="6753:6878" ph="select from com_resource" />
-            <marker date="1513341926693" expanded="true" signature="6984:7461" ph="SELECT r.RES... hb_node" />
-            <marker date="1513341926693" expanded="true" signature="6984:7501" ph="SELECT r.RES... hb_node" />
-            <marker date="1513341926693" expanded="true" signature="7588:7667" ph="delete from " />
-            <marker date="1513341926693" expanded="true" signature="7771:7795" ph="delete from " />
-            <marker date="1513341926693" expanded="true" signature="7976:9951" ph="insert into com_resource... " />
-            <marker date="1513341926693" expanded="true" signature="16797:16830" ph="select count... com_resource" />
-            <marker date="1513341926693" expanded="true" signature="21935:24285" ph="update com_r... " />
-            <marker date="1513341926693" expanded="true" signature="24497:28634" ph="update com_r... " />
-            <marker date="1513341926693" expanded="true" signature="28734:30800" ph="update com_r... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/generatorConfig.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/assets-view/comm/comm.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <caret line="0" column="20" lean-forward="false" selection-start-line="0" selection-start-column="20" selection-end-line="0" selection-end-column="20" />
           <folding />
         </state>
       </provider>
-      <provider editor-type-id="com.intellij.jsf.yfilesGraph.editor.FacesNavigationFileEditorProvider">
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/main.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="338">
+          <caret line="1028" column="5" lean-forward="true" selection-start-line="1028" selection-start-column="5" selection-end-line="1028" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/assets-view/login/img/backgrounds/1.jpg">
+      <provider selected="true" editor-type-id="images">
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/generatorConfig.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/index.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="31" column="73" lean-forward="false" selection-start-line="31" selection-start-column="73" selection-end-line="31" selection-end-column="73" />
+        <state relative-caret-position="103">
+          <caret line="179" column="10" lean-forward="true" selection-start-line="179" selection-start-column="10" selection-end-line="179" selection-end-column="10" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/dao/HbDataLatestMapper.java">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/assets-view/hb/hbnodstatus.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="28" column="48" lean-forward="true" selection-start-line="7" selection-start-column="37" selection-end-line="28" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/hb/hbenterprise.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
-          <caret line="589" column="77" lean-forward="false" selection-start-line="589" selection-start-column="77" selection-end-line="589" selection-end-column="77" />
-          <folding>
-            <marker date="1513349122699" expanded="true" signature="42569:42575" ph="&amp;nbsp;" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/aplugin/nodewindow.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="228" column="83" lean-forward="false" selection-start-line="228" selection-start-column="83" selection-end-line="228" selection-end-column="83" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/aplugin/enterprisewindow.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="608">
-          <caret line="176" column="82" lean-forward="false" selection-start-line="176" selection-start-column="82" selection-end-line="176" selection-end-column="82" />
-          <folding>
-            <marker date="1513349276605" expanded="true" signature="11849:11859" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/aplugin/regionwindow.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/entity/ComOrg.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="129">
-          <caret line="208" column="4" lean-forward="false" selection-start-line="208" selection-start-column="4" selection-end-line="208" selection-end-column="68" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/entity/HbDataLatestExample.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="99" column="26" lean-forward="true" selection-start-line="99" selection-start-column="26" selection-end-line="99" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/entity/HbDataLatest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="346" column="5" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="368" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/entity/HbEnterpriseExample.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/HbDataLatestMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="131" column="16" lean-forward="true" selection-start-line="131" selection-start-column="16" selection-end-line="131" selection-end-column="16" />
-          <folding>
-            <marker date="1513353524858" expanded="true" signature="6083:6206" ph="select from hb_data_latest" />
-            <marker date="1513353524858" expanded="true" signature="6328:6903" ph="SELECT lates... hb_data_latest" />
-            <marker date="1513353524858" expanded="true" signature="6328:6922" ph="SELECT lates... hb_data_latest" />
-            <marker date="1513353524858" expanded="true" signature="6328:6967" ph="SELECT lates... hb_data_latest" />
-            <marker date="1513353524858" expanded="true" signature="6464:6733" ph="SELECT DISTI... com_resource" />
-            <marker date="1513353524858" expanded="true" signature="6922:6967" ph="SELECT lates... hb_data_latest" />
-            <marker date="1513353524858" expanded="true" signature="7053:7130" ph="delete from " />
-            <marker date="1513353524858" expanded="true" signature="7235:7261" ph="delete from " />
-            <marker date="1513353524858" expanded="true" signature="7443:9047" ph="insert into hb_data_latest... " />
-            <marker date="1513353524858" expanded="true" signature="14776:14811" ph="select count... hb_data_latest" />
-            <marker date="1513353524858" expanded="true" signature="19095:21018" ph="update hb_da... " />
-            <marker date="1513353524858" expanded="true" signature="21231:24633" ph="update hb_da... " />
-            <marker date="1513353524858" expanded="true" signature="24734:26415" ph="update hb_da... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/controller/ViewHbEnterpriseController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="404">
-          <caret line="45" column="42" lean-forward="false" selection-start-line="45" selection-start-column="42" selection-end-line="45" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/dao/HbNodeMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="445">
-          <caret line="37" column="42" lean-forward="false" selection-start-line="37" selection-start-column="17" selection-end-line="37" selection-end-column="42" />
-          <folding />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="25" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/HbNodeMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="879" column="64" lean-forward="false" selection-start-line="879" selection-start-column="64" selection-end-line="879" selection-end-column="64" />
-          <folding>
-            <marker date="1513356004970" expanded="true" signature="12408:12519" ph="select from hb_node" />
-            <marker date="1513356004970" expanded="true" signature="12606:12672" ph="delete from " />
-            <marker date="1513356004970" expanded="true" signature="12771:12790" ph="delete from " />
-            <marker date="1513356004970" expanded="true" signature="13011:14773" ph="insert into hb_node... " />
-            <marker date="1513356004970" expanded="true" signature="21043:21071" ph="select count... hb_node" />
-            <marker date="1513356004970" expanded="true" signature="25726:27835" ph="update hb_no... " />
-            <marker date="1513356004970" expanded="true" signature="28042:31775" ph="update hb_no... " />
-            <marker date="1513356004970" expanded="true" signature="31870:33716" ph="update hb_no... " />
-            <marker date="1513356004970" expanded="true" signature="33850:34295" ph="SELECT n.*, hb_enterprise" />
-            <marker date="1513356004970" expanded="true" signature="34411:35308" ph="SELECT node.... hb_node" />
-            <marker date="1513356004970" expanded="true" signature="34476:34745" ph="SELECT DISTI... com_resource" />
-            <marker date="1513356004970" expanded="true" signature="35428:36372" ph="SELECT n.*, *" />
-            <marker date="1513356004970" expanded="true" signature="35649:36195" ph="SELECT enter... hb_enterprise" />
-            <marker date="1513356004970" expanded="true" signature="35725:36125" ph="SELECT DISTI... hb_node" />
-            <marker date="1513356004970" expanded="true" signature="35809:36080" ph="SELECT DISTI... com_resource" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/HbEnterpriseMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="828" column="43" lean-forward="true" selection-start-line="828" selection-start-column="43" selection-end-line="828" selection-end-column="43" />
-          <folding>
-            <marker date="1513354701627" expanded="true" signature="7316:7446" ph="select from hb_enterprise" />
-            <marker date="1513354701627" expanded="true" signature="7533:7617" ph="delete from " />
-            <marker date="1513354701627" expanded="true" signature="7722:7747" ph="delete from " />
-            <marker date="1513354701627" expanded="true" signature="7929:10275" ph="insert into hb_enterprise... " />
-            <marker date="1513354701627" expanded="true" signature="17980:18014" ph="select count... hb_enterprise" />
-            <marker date="1513354701627" expanded="true" signature="23757:26478" ph="update hb_en... " />
-            <marker date="1513354701627" expanded="true" signature="26691:31422" ph="update hb_en... " />
-            <marker date="1513354701627" expanded="true" signature="31523:33939" ph="update hb_en... " />
-            <marker date="1513354701627" expanded="true" signature="34084:34642" ph="SELECT enter... hb_enterprise" />
-            <marker date="1513354701627" expanded="true" signature="34158:34532" ph="SELECT DISTI... hb_node" />
-            <marker date="1513354701627" expanded="true" signature="34232:34489" ph="SELECT DISTI... com_resource" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/dao/HbEnterpriseMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="22" column="58" lean-forward="true" selection-start-line="22" selection-start-column="58" selection-end-line="22" selection-end-column="58" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/controller/ViewHbDataLLineController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="389">
-          <caret line="55" column="44" lean-forward="false" selection-start-line="55" selection-start-column="29" selection-end-line="55" selection-end-column="44" />
-          <folding />
+        <state relative-caret-position="435">
+          <caret line="871" column="37" lean-forward="true" selection-start-line="871" selection-start-column="37" selection-end-line="871" selection-end-column="37" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewHbDataLLineServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="45" column="0" lean-forward="true" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+        <state relative-caret-position="509">
+          <caret line="47" column="25" lean-forward="true" selection-start-line="47" selection-start-column="25" selection-end-line="47" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewHbNodeStatusService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="18" column="40" lean-forward="false" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="40" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewHbEnterpriseServiceImpl.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/controller/ViewHbNodeItemController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="317">
-          <caret line="40" column="96" lean-forward="true" selection-start-line="40" selection-start-column="12" selection-end-line="40" selection-end-column="96" />
+        <state relative-caret-position="194">
+          <caret line="24" column="2" lean-forward="true" selection-start-line="24" selection-start-column="2" selection-end-line="24" selection-end-column="2" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewHbEnterpriseNodeServiceImpl.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/entity/HbTypeItemException.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="81" column="29" lean-forward="true" selection-start-line="81" selection-start-column="29" selection-end-line="81" selection-end-column="29" />
+        <state relative-caret-position="399">
+          <caret line="21" column="25" lean-forward="false" selection-start-line="21" selection-start-column="25" selection-end-line="21" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/hb/hbenterprisenode.jsp">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/controller/ViewHbNodeStatusController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="733" column="14" lean-forward="true" selection-start-line="733" selection-start-column="14" selection-end-line="733" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/hb/hbdatalatestl.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2219">
-          <caret line="552" column="44" lean-forward="true" selection-start-line="552" selection-start-column="44" selection-end-line="552" selection-end-column="44" />
+        <state relative-caret-position="218">
+          <caret line="23" column="2" lean-forward="false" selection-start-line="23" selection-start-column="2" selection-end-line="23" selection-end-column="2" />
           <folding>
-            <marker date="1513357437589" expanded="true" signature="24321:24327" ph="&amp;nbsp;" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/hb/hbnodeaccess.jsp">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/comm/ContextPathFilter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="467">
-          <caret line="323" column="61" lean-forward="true" selection-start-line="323" selection-start-column="61" selection-end-line="323" selection-end-column="61" />
+        <state relative-caret-position="342">
+          <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/dataSource-dev.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="3" column="68" lean-forward="true" selection-start-line="3" selection-start-column="68" selection-end-line="3" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/controller/ViewMainController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="513">
+          <caret line="41" column="61" lean-forward="false" selection-start-line="41" selection-start-column="61" selection-end-line="41" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/comm/CommUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="137">
+          <caret line="25" column="56" lean-forward="false" selection-start-line="25" selection-start-column="56" selection-end-line="25" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/dataTables/DataTables-1.10.11/js/jquery.dataTables.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="8" column="190" lean-forward="false" selection-start-line="8" selection-start-column="186" selection-end-line="8" selection-end-column="190" />
           <folding>
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1513359056058" expanded="true" signature="13433:13439" ph="&amp;nbsp;" />
+            <element signature="n#!!doc" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewHbNodeStatusServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="140" column="33" lean-forward="false" selection-start-line="140" selection-start-column="25" selection-end-line="140" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/hb/hbdatahistroyl.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="44" column="0" lean-forward="false" selection-start-line="44" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+          <folding>
+            <marker date="1513521785277" expanded="true" signature="17051:17057" ph="&amp;nbsp;" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/hb/hbnodstatus.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="71" column="49" lean-forward="true" selection-start-line="71" selection-start-column="49" selection-end-line="71" selection-end-column="49" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1513521986136" expanded="true" signature="12358:12372" ph="..." />
+            <marker date="1513521986136" expanded="true" signature="12740:12754" ph="..." />
+            <marker date="1513521986136" expanded="true" signature="13057:13071" ph="..." />
+            <marker date="1513521986136" expanded="true" signature="13997:14008" ph="..." />
+            <marker date="1513521986136" expanded="true" signature="13997:14013" ph="..." />
+            <marker date="1513521986136" expanded="true" signature="14485:14491" ph="&amp;nbsp;" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/hb/hbtypecfg.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1577">
-          <caret line="40" column="0" lean-forward="true" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+        <state relative-caret-position="2470">
+          <caret line="145" column="54" lean-forward="true" selection-start-line="145" selection-start-column="54" selection-end-line="145" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/system/pagecfg.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="30" column="55" lean-forward="false" selection-start-line="30" selection-start-column="55" selection-end-line="30" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/system/pageshow.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="608">
+          <caret line="200" column="35" lean-forward="true" selection-start-line="200" selection-start-column="35" selection-end-line="200" selection-end-column="35" />
           <folding>
-            <marker date="1511102455482" expanded="true" signature="6435:6441" ph="&amp;nbsp;" />
+            <marker date="1513522868633" expanded="true" signature="12439:12445" ph="&amp;nbsp;" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/system/comcodecfg.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="186" column="48" lean-forward="true" selection-start-line="186" selection-start-column="48" selection-end-line="186" selection-end-column="48" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1513522739433" expanded="true" signature="9338:9344" ph="&amp;nbsp;" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/hb/hbtypeitemcfg.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2071">
-          <caret line="66" column="52" lean-forward="true" selection-start-line="66" selection-start-column="52" selection-end-line="66" selection-end-column="52" />
+        <state relative-caret-position="951">
+          <caret line="83" column="28" lean-forward="true" selection-start-line="83" selection-start-column="3" selection-end-line="83" selection-end-column="28" />
           <folding>
-            <marker date="1511107518394" expanded="true" signature="9800:9806" ph="&amp;nbsp;" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#select#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
+            <marker date="1513522367142" expanded="true" signature="9690:9696" ph="&amp;nbsp;" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/hb/hbnodecfg.jsp">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/hb/hbnodeaccess.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="731">
-          <caret line="249" column="35" lean-forward="true" selection-start-line="239" selection-start-column="7" selection-end-line="249" selection-end-column="35" />
-          <folding>
-            <marker date="1513096883502" expanded="true" signature="11809:11815" ph="&amp;nbsp;" />
-          </folding>
+        <state relative-caret-position="722">
+          <caret line="89" column="35" lean-forward="true" selection-start-line="89" selection-start-column="35" selection-end-line="89" selection-end-column="35" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/hb/hbdatalatestg.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="518">
-          <caret line="93" column="66" lean-forward="true" selection-start-line="93" selection-start-column="66" selection-end-line="93" selection-end-column="66" />
+        <state relative-caret-position="575">
+          <caret line="470" column="100" lean-forward="false" selection-start-line="470" selection-start-column="100" selection-end-line="470" selection-end-column="100" />
+          <folding>
+            <marker date="1513526875477" expanded="true" signature="22457:22471" ph="..." />
+            <marker date="1513526875477" expanded="true" signature="22801:22815" ph="..." />
+            <marker date="1513526875477" expanded="true" signature="23148:23162" ph="..." />
+            <marker date="1513526875477" expanded="true" signature="23456:23470" ph="..." />
+            <marker date="1513526875477" expanded="true" signature="23764:23778" ph="..." />
+            <marker date="1513526875477" expanded="true" signature="24096:24110" ph="..." />
+            <marker date="1513526875477" expanded="true" signature="25586:25592" ph="&amp;nbsp;" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewHbContrastService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="19" column="38" lean-forward="false" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewHbDataHisServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4">
+          <caret line="26" column="42" lean-forward="true" selection-start-line="26" selection-start-column="42" selection-end-line="26" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../../../99Program/apache-maven-3.3.9/repository/org/springframework/spring-aop/4.3.12.RELEASE/spring-aop-4.3.12.RELEASE.jar!/org/springframework/aop/support/AopUtils.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="179" column="0" lean-forward="false" selection-start-line="179" selection-start-column="0" selection-end-line="179" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/service/ViewHbContrastServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="205">
+          <caret line="41" column="0" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/entity/HbTypeItemNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="532">
+          <caret line="45" column="25" lean-forward="false" selection-start-line="45" selection-start-column="16" selection-end-line="45" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/hb/hbnodecfg.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="259" column="29" lean-forward="true" selection-start-line="259" selection-start-column="29" selection-end-line="259" selection-end-column="29" />
+          <folding>
+            <marker date="1513530703596" expanded="true" signature="10672:10678" ph="&amp;nbsp;" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/hb/hbdatahistroygh.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1368">
+          <caret line="0" column="4" lean-forward="true" selection-start-line="0" selection-start-column="4" selection-end-line="0" selection-end-column="4" />
+          <folding>
+            <marker date="1513521919453" expanded="true" signature="16586:16600" ph="..." />
+            <marker date="1513521919453" expanded="true" signature="19130:19136" ph="&amp;nbsp;" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/hb/hbdatahistroygm.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="74" column="44" lean-forward="true" selection-start-line="74" selection-start-column="44" selection-end-line="74" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/hb/hbdatalatestl.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="66" column="56" lean-forward="false" selection-start-line="66" selection-start-column="17" selection-end-line="66" selection-end-column="56" />
           <folding>
             <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="e#7381#18925#0#HTML" expanded="false" />
-            <marker date="1513359526534" expanded="true" signature="20213:20219" ph="&amp;nbsp;" />
+            <marker date="1513414642878" expanded="true" signature="23911:23917" ph="&amp;nbsp;" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/assets-view/comm/commDataTables.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8878">
+          <caret line="479" column="27" lean-forward="true" selection-start-line="479" selection-start-column="27" selection-end-line="479" selection-end-column="27" />
+          <folding>
+            <marker date="1513532119081" expanded="true" signature="2218:2245" ph="..." />
+            <marker date="1513532119081" expanded="true" signature="2452:2479" ph="..." />
+            <marker date="1513532119081" expanded="true" signature="2682:2709" ph="..." />
+            <marker date="1513532119081" expanded="true" signature="2916:2943" ph="..." />
+            <marker date="1513532119081" expanded="true" signature="3148:3175" ph="..." />
+            <marker date="1513532119081" expanded="true" signature="7298:7309" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/hb/hbdatacontrastm.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="817">
+          <caret line="738" column="54" lean-forward="false" selection-start-line="738" selection-start-column="54" selection-end-line="738" selection-end-column="54" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="e#6379#6386#1#HTML" expanded="true" />
+            <element signature="e#7393#7400#1#HTML" expanded="true" />
+            <element signature="e#10120#22114#0#HTML" expanded="false" />
+            <marker date="1513533080426" expanded="true" signature="33886:33900" ph="..." />
+            <marker date="1513533080426" expanded="true" signature="36125:36131" ph="&amp;nbsp;" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/aps/env/controller/ViewHbContrastController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="438">
+          <caret line="34" column="25" lean-forward="true" selection-start-line="34" selection-start-column="25" selection-end-line="34" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/hb/hbdatacontrasth.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="721" column="13" lean-forward="true" selection-start-line="721" selection-start-column="13" selection-end-line="721" selection-end-column="13" />
+          <folding>
+            <marker date="1513533538191" expanded="true" signature="33888:33902" ph="..." />
+            <marker date="1513533538191" expanded="true" signature="36245:36251" ph="&amp;nbsp;" />
           </folding>
         </state>
       </provider>

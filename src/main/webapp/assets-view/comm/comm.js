@@ -1,4 +1,4 @@
-﻿var sSysName = "XXXXXXX系统";
+﻿var sSysName = "系统提示";
 
 /**
  * AJAX请求XMLHttp

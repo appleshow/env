@@ -107,6 +107,7 @@ public class HbDataMode {
         this.dataType = dataType == null ? null : dataType.trim();
     }
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     public Date getDataTime() {
         return dataTime;
     }

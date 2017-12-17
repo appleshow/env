@@ -67,43 +67,36 @@
     </style>
 </head>
 <body>
-<div class="row"
-     style="margin-right: 0px; margin-bottom: 0px;">
-    <div class="col-lg-12 col-sm-12 col-xs-12">
-        <div class="widget flat radius-bordered">
-            <div class="widget-body">
-                <div class="row">
-                    <div class="col-lg-4 col-sm-4 col-xs-12">
-                        <div class="form-group"
-                             style="margin-bottom: 6px;">
-                            <div class="controls">
-                                <div class="input-group">
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="form-group"
+             style="margin-bottom: 6px;">
+            <div class="controls">
+                <div class="input-group">
                                     <span class="input-group-btn">
                                         <button class="btn btn-default"
                                                 type="button">界面名称
                                         </button>
                                     </span>
-                                    <select class="form-control"
-                                            style="width: 200px;"
-                                            id="pageId">
-                                        <option></option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <select class="form-control"
+                            style="width: 200px;"
+                            id="pageId">
+                        <option></option>
+                    </select>
                 </div>
-                <table id="table-pageshow"
-                       class="table table-striped table-bordered display responsive nowrap"
-                       cellspacing="0"
-                       width="100%">
-                    <thead>
-                    <tr id="table-pageshow-columns">
-                    </tr>
-                    </thead>
-                </table>
             </div>
         </div>
+    </div>
+    <div class="panel-body">
+        <table id="table-pageshow"
+               class="table table-striped table-bordered display responsive nowrap"
+               cellspacing="0"
+               width="100%">
+            <thead>
+            <tr id="table-pageshow-columns">
+            </tr>
+            </thead>
+        </table>
     </div>
 </div>
 <div class="modal fade"
@@ -205,7 +198,7 @@
         tablePageShow.serverInfo.referUrl = "${ctx}/viewPageShow/referPageShow";
         tablePageShow.serverInfo.referControls.push(ControlPar("text", "pageId", "", $("#pageId")));
         tablePageShow.serverInfo.modifyUrl = "${ctx}/viewPageShow/modifyPageShow";
-
+        tablePageShow.scrollY = 72;
         // ***** Add information to Column *****
         tablePageShow.columns["pageId"].render = function (data, type, row) {
             var fixData = data;

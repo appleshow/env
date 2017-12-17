@@ -46,9 +46,8 @@
     </style>
 </head>
 <body>
-<div class="row"
-     style="margin-right: 0px; margin-bottom: 0px;">
-    <div class="col-lg-12 col-sm-12 col-xs-12">
+<div class="panel panel-default">
+    <div class="panel-body">
         <table id="table-type"
                class="table table-striped table-bordered display responsive nowrap"
                cellspacing="0"
@@ -150,7 +149,7 @@
         tableType = new CommDataTables("#table-type", "#table-type-columns", ${pageId}, callError, pageShowDataUrl);
         tableType.serverInfo.referUrl = "${ctx}/viewHbTypeConfig/referHbType";
         tableType.serverInfo.modifyUrl = "${ctx}/viewHbTypeConfig/modifyHbType";
-
+        tableType.scrollY = 72;
         // ***** Add information to Column *****
         // *********************************
         // ***** Add information to Field *****

@@ -55,7 +55,7 @@
             <div class="panel-heading">站点列表</div>
             <div class="panel-body"
                  style="height: 92%;overflow-y:scroll; ">
-                <div id="enterpriseRegion"
+                <div id="enterpriseNode"
                      class="tree tree-folder-select tree-plus-minus tree-solid-line tree-unselectable">
                     <div class="tree-folder"
                          style="display: none;">
@@ -391,7 +391,7 @@
 <script type="application/javascript">
     var pagePars = {
         modifyType: "I",
-        enterpriseRegion: [],
+        enterpriseNode: [],
         comCode: [],
     };
 
@@ -410,7 +410,7 @@
                             if (options.id == "所有") {
                                 var treeData = [];
 
-                                $.each(pagePars.enterpriseRegion, function (indexNode, node) {
+                                $.each(pagePars.enterpriseNode, function (indexNode, node) {
                                     if (node.nodeId && node.nodeId != "") {
                                         var item = {};
 
@@ -430,7 +430,7 @@
                                 if (options.isEnterprise) {
                                     var treeData = [];
 
-                                    $.each(pagePars.enterpriseRegion, function (indexNode, node) {
+                                    $.each(pagePars.enterpriseNode, function (indexNode, node) {
                                         if (options.id == node.enterpriseId) {
                                             var item = {};
 
@@ -453,7 +453,7 @@
                                     var subRegionIndex = -1, subRegionCount = 0;
                                     var enterpriseId = 0;
 
-                                    $.each(pagePars.enterpriseRegion, function (index, value) {
+                                    $.each(pagePars.enterpriseNode, function (index, value) {
                                         var regionDesc = value.hbEnterprise.enterpriseRegionDesc;
                                         var regionTargets = regionDesc.split("(");
 
@@ -473,7 +473,7 @@
                                                         item.type = 'folder';
                                                         item.isEnterprise = true;
 
-                                                        $.each(pagePars.enterpriseRegion, function (indexNode, node) {
+                                                        $.each(pagePars.enterpriseNode, function (indexNode, node) {
                                                             if (node.enterpriseId == value.enterpriseId && value.nodeId && value.nodeId != "") {
                                                                 nodeCount++;
                                                             }
@@ -533,7 +533,7 @@
                                 },
                                 success: function (res) {
                                     if (res.code != 0) {
-                                        pagePars.enterpriseRegion = [];
+                                        pagePars.enterpriseNode = [];
                                         callback({
                                             data: []
                                         });
@@ -544,15 +544,15 @@
                                         var regionIndex = -1, regionCount = 0;
                                         var allCount = 0;
 
-                                        pagePars.enterpriseRegion = res.data;
-                                        $.each(pagePars.enterpriseRegion, function (index, value) {
+                                        pagePars.enterpriseNode = res.data;
+                                        $.each(pagePars.enterpriseNode, function (index, value) {
                                             if (value.nodeId && value.nodeId != "") {
                                                 allCount++;
                                             }
                                         });
                                         treeData.push({id: "所有", name: "<b>所有站点</b> - [" + allCount + "]", type: "folder", isEnterprise: false,});
 
-                                        $.each(pagePars.enterpriseRegion, function (index, value) {
+                                        $.each(pagePars.enterpriseNode, function (index, value) {
                                             var regionDesc = value.hbEnterprise.enterpriseRegionDesc;
                                             var regionTargets = regionDesc.split("(");
 
@@ -644,7 +644,7 @@
             }
         });
 
-        $('#enterpriseRegion').tree({
+        $('#enterpriseNode').tree({
             cacheItems: true,
             selectable: true,
             multiSelect: false,
@@ -902,7 +902,7 @@
                 var selectItem = items[0];
                 var hbEnterpriseNode = {};
 
-                $.each(pagePars.enterpriseRegion, function (index, node) {
+                $.each(pagePars.enterpriseNode, function (index, node) {
                     if (selectItem.id == node.nodeId) {
                         hbEnterpriseNode = node;
                         hbEnterpriseNode.property0 = hbEnterpriseNode.nodeName;

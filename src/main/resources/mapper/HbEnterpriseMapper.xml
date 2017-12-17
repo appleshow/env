@@ -849,8 +849,8 @@
 		AND resource.RESOURCE_TYPE_E = org.org_id
 		AND org.PERSON_ID =  #{iperson,jdbcType=INTEGER}
 		AND org.PRFLAG = 1
-	) person ON node.NODE_ID = person.NODE_ID
-) personnode ON enterprise.ENTERPRISE_ID = personnode.ENTERPRISE_ID
+	) person ON node.NODE_ID = person.NODE_ID  AND node.DELETE_FLAG = 0
+) personnode ON enterprise.ENTERPRISE_ID = personnode.ENTERPRISE_ID AND enterprise.DELETE_FLAG = 0
     ORDER BY enterprise.ENTERPRISE_REGION
   </select>
 </mapper>

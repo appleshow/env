@@ -197,10 +197,10 @@
              id="sidebar">
             <!-- Page Sidebar Header-->
             <div class="sidebar-header-wrapper">
-                <input type="text"
-                       class="searchinput"/>
-                <i class="searchicon fa fa-search"></i>
-                <div class="searchhelper">检索页面</div>
+                <!--  <input type="text"
+                         class="searchinput"/>
+                  <i class="searchicon fa fa-search"></i>
+                  <div class="searchhelper">检索页面</div> -->
             </div>
             <!-- /Page Sidebar Header -->
             <!-- Sidebar Menu -->
@@ -433,7 +433,7 @@
         // 加载菜单
         $.ajax({
             type: "POST",
-            url: "viewMain/personMenu",
+            url: "${ctx}/viewMain/personMenu",
             cache: false,
             dataType: "json",
             headers: {
@@ -452,7 +452,10 @@
                     menus = res.data;
                     for (var index = 0; index < menus.length; index++) {
                         if (menus[index].farMenuId == 0) {
-                            inner += getChildMenu(index, menus);
+                            var innerTemp = getChildMenu(index, menus);
+                            if (innerTemp.indexOf("menu-dropdown") > 0) {
+                                inner += innerTemp;
+                            }
                         }
                     }
                 }
@@ -987,7 +990,7 @@
             return;
         }
 
-        var url = "viewMainupdatePersonPSW";
+        var url = "${ctx}/viewMainupdatePersonPSW";
         var inf = [
             {
                 pswo: $.md5($("#pwo").val()),

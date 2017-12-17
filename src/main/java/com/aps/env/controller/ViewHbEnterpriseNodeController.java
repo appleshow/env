@@ -30,7 +30,6 @@ import javax.servlet.http.HttpSession;
 public class ViewHbEnterpriseNodeController extends ExceptionController {
     @Resource(name = "viewHbEnterpriseNodeServiceImpl")
     private ViewHbEnterpriseNodeService viewHbEnterpriseNodeService;
-
     private int formId = 27;
 
     /**

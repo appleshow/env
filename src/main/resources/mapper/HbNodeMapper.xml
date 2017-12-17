@@ -820,7 +820,7 @@
     e.ENTERPRISE_REGION_DESC AS hbenterprise_ENTERPRISE_REGION_DESC
     FROM
     hb_enterprise e
-    LEFT JOIN hb_node n ON e.ENTERPRISE_ID = n.ENTERPRISE_ID AND n.DELETE_FLAG = 0
+    LEFT JOIN hb_node n ON e.ENTERPRISE_ID = n.ENTERPRISE_ID AND n.DELETE_FLAG = 0 AND e.DELETE_FLAG = 0
     LEFT JOIN hb_type t ON t.TYPE_ID = n.TYPE_ID
     ORDER BY
     e.ENTERPRISE_REGION,
@@ -840,7 +840,7 @@
     AND resource.RESOURCE_TYPE_E = org.org_id
     AND org.PERSON_ID =  #{iperson,jdbcType=INTEGER}
     AND org.PRFLAG = 1
-    ) person ON node.NODE_ID = person.NODE_ID
+    ) person ON node.NODE_ID = person.NODE_ID  AND node.DELETE_FLAG = 0
     <if test="enterpriseId != null">AND node.ENTERPRISE_ID = #{enterpriseId,jdbcType=INTEGER}
     </if>
     <if test="nodeId != null"> AND node.NODE_ID = #{nodeId,jdbcType=INTEGER}
@@ -861,32 +861,26 @@
 	e.ENTERPRISE_REGION_DESC AS hbenterprise_ENTERPRISE_REGION_DESC
 FROM
 	(
-		SELECT
-			enterprise.*
+		SELECT DISTINCT
+			node.*
 		FROM
-			hb_enterprise enterprise
+			hb_node node
 		INNER JOIN (
 			SELECT DISTINCT
-				node.ENTERPRISE_ID
+				resource.RESOURCE_TYPE_F AS NODE_ID
 			FROM
-				hb_node node
-			INNER JOIN (
-				SELECT DISTINCT
-					resource.RESOURCE_TYPE_F AS NODE_ID
-				FROM
-					com_resource resource
-				INNER JOIN com_person_org org ON resource.PRFLAG = 1
-				AND resource.RESOURCE_TYPE_E = org.org_id
-				AND org.PERSON_ID =  #{iperson,jdbcType=INTEGER}
-				AND org.PRFLAG = 1
-			) person ON node.NODE_ID = person.NODE_ID
-		) personnode ON enterprise.ENTERPRISE_ID = personnode.ENTERPRISE_ID
-	) e
-LEFT JOIN hb_node n ON e.ENTERPRISE_ID = n.ENTERPRISE_ID
-AND n.DELETE_FLAG = 0
-LEFT JOIN hb_type t ON t.TYPE_ID = n.TYPE_ID
+				com_resource resource
+			INNER JOIN com_person_org org ON resource.PRFLAG = 1
+			AND resource.RESOURCE_TYPE_E = org.org_id
+			AND org.PERSON_ID =  #{iperson,jdbcType=INTEGER}
+			AND org.PRFLAG = 1
+		) person ON node.NODE_ID = person.NODE_ID AND node.DELETE_FLAG = 0
+	) n
+INNER JOIN hb_enterprise e ON e.ENTERPRISE_ID = n.ENTERPRISE_ID AND e.DELETE_FLAG = 0
+INNER JOIN hb_type t ON t.TYPE_ID = n.TYPE_ID
 ORDER BY
 	e.ENTERPRISE_REGION,
-	n.ENTERPRISE_ID
+	n.ENTERPRISE_ID,
+	n.TYPE_ID
   </select>
 </mapper>

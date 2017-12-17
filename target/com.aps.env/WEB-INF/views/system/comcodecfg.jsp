@@ -52,42 +52,35 @@
     </style>
 </head>
 <body>
-<div class="row"
-     style="margin-right: 0px; margin-bottom: 0px;">
-    <div class="col-lg-12 col-sm-12 col-xs-12">
-        <div class="widget flat radius-bordered">
-            <div class="widget-body">
-                <div class="row">
-                    <div class="col-lg-4 col-sm-4 col-xs-12">
-                        <div class="form-group"
-                             style="margin-bottom: 6px;">
-                            <div class="controls">
-                                <div class="input-group">
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="form-group"
+             style="margin-bottom: 6px;">
+            <div class="controls">
+                <div class="input-group">
                                     <span class="input-group-btn">
                                         <button class="btn btn-default"
                                                 type="button">${codeName}
                                         </button>
                                     </span>
-                                    <input class="form-control"
-                                           style="width: 200px;"
-                                           id="codeName">
-                                    </input>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <input class="form-control"
+                           style="width: 200px;"
+                           id="codeName">
+                    </input>
                 </div>
-                <table id="table-comcode"
-                       class="table table-striped table-bordered display responsive nowrap"
-                       cellspacing="0"
-                       width="100%">
-                    <thead>
-                    <tr id="table-comcode-columns">
-                    </tr>
-                    </thead>
-                </table>
             </div>
         </div>
+    </div>
+    <div class="panel-body">
+        <table id="table-comcode"
+               class="table table-striped table-bordered display responsive nowrap"
+               cellspacing="0"
+               width="100%">
+            <thead>
+            <tr id="table-comcode-columns">
+            </tr>
+            </thead>
+        </table>
     </div>
 </div>
 <div class="modal fade"
@@ -190,6 +183,7 @@
         tableComCode.serverInfo.referControls.push(ControlPar("text", "codeName", "", $("#codeName")));
         tableComCode.serverInfo.modifyUrl = "${ctx}/viewComCodeConfig/modifyComCode";
 
+        tableComCode.scrollY = 72;
         // ***** Add information to Column *****
         if ('${pageId}' == '21') {
             tableComCode.columns["property0"].render = function (data, type, row) {

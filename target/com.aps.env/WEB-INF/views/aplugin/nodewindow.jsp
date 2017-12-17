@@ -317,7 +317,7 @@
             __nodeWindowPar.nodeWindowCallBack(selectItems, __nodeWindowPar.currentTreeData);
             $('#__windowNode').modal('hide');
         } else {
-            $("#__windowNodeTitle").html("<span style='color: red'>请选择一个行站点...</span>");
+            $("#__windowNodeTitle").html("<span style='color: red'>请选择一个站点...</span>");
         }
     }
 

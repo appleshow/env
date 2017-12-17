@@ -33,8 +33,6 @@
       href="${ctx}/dataTables/Select-1.1.2/css/select.bootstrap.min.css"/>
 <link rel="stylesheet"
       href="${ctx}/dataTables/Editor-1.5.5/css/editor.bootstrap.min.css"/>
-<link rel="stylesheet"
-      href="${ctx}/datetimePicker/css/bootstrap-datetimepicker.min.css"/>
 <!--  -->
 <link rel="stylesheet"
       href="${ctx}/assets-view/comm/color.css"/>
@@ -61,7 +59,7 @@
             <div class="panel-heading">站点列表</div>
             <div class="panel-body"
                  style="height: 92%;overflow-y:scroll; ">
-                <div id="enterpriseRegion"
+                <div id="enterpriseNode"
                      class="tree tree-folder-select tree-plus-minus tree-solid-line tree-unselectable">
                     <div class="tree-folder"
                          style="display: none;">
@@ -85,7 +83,9 @@
     <div class="col-lg-9 col-sm-9 col-xs-12">
         <div class="panel panel-default"
              style="margin-bottom: 5px;">
-            <div class="panel-heading">站点实时数据</div>
+            <div class="panel-heading"
+                 id="dataGridTitle">实时数据
+            </div>
             <div class="panel-body"
                  style="height: 92%; ">
                 <div class="row"
@@ -172,7 +172,8 @@
     var pagePars = {
         firstLoad: true,
         tbNodeData: undefined,
-        enterpriseRegion: [],
+        selectNodeId: undefined,
+        enterpriseNode: [],
     };
     var pageShowDataUrl = "${ctx}/comm/referPageShow";
 
@@ -191,7 +192,7 @@
                             if (options.id == "所有") {
                                 var treeData = [];
 
-                                $.each(pagePars.enterpriseRegion, function (indexNode, node) {
+                                $.each(pagePars.enterpriseNode, function (indexNode, node) {
                                     if (node.nodeId && node.nodeId != "") {
                                         var item = {};
 
@@ -211,7 +212,7 @@
                                 if (options.isEnterprise) {
                                     var treeData = [];
 
-                                    $.each(pagePars.enterpriseRegion, function (indexNode, node) {
+                                    $.each(pagePars.enterpriseNode, function (indexNode, node) {
                                         if (options.id == node.enterpriseId) {
                                             var item = {};
 
@@ -234,7 +235,7 @@
                                     var subRegionIndex = -1, subRegionCount = 0;
                                     var enterpriseId = 0;
 
-                                    $.each(pagePars.enterpriseRegion, function (index, value) {
+                                    $.each(pagePars.enterpriseNode, function (index, value) {
                                         var regionDesc = value.hbEnterprise.enterpriseRegionDesc;
                                         var regionTargets = regionDesc.split("(");
 
@@ -254,7 +255,7 @@
                                                         item.type = 'folder';
                                                         item.isEnterprise = true;
 
-                                                        $.each(pagePars.enterpriseRegion, function (indexNode, node) {
+                                                        $.each(pagePars.enterpriseNode, function (indexNode, node) {
                                                             if (node.enterpriseId == value.enterpriseId && value.nodeId && value.nodeId != "") {
                                                                 nodeCount++;
                                                             }
@@ -314,7 +315,7 @@
                                 },
                                 success: function (res) {
                                     if (res.code != 0) {
-                                        pagePars.enterpriseRegion = [];
+                                        pagePars.enterpriseNode = [];
                                         callback({
                                             data: []
                                         });
@@ -325,15 +326,21 @@
                                         var regionIndex = -1, regionCount = 0;
                                         var allCount = 0;
 
-                                        pagePars.enterpriseRegion = res.data;
-                                        $.each(pagePars.enterpriseRegion, function (index, value) {
+                                        pagePars.enterpriseNode = res.data;
+                                        $.each(pagePars.enterpriseNode, function (index, value) {
                                             if (value.nodeId && value.nodeId != "") {
                                                 allCount++;
+                                                if (value.hasOwnProperty("nodeItem")) {
+                                                    value.nodeItem = $.parseJSON(value.nodeItem);
+                                                    for (var item in value.nodeItem) {
+                                                        value.nodeItem[item] = $.parseJSON(value.nodeItem[item]);
+                                                    }
+                                                }
                                             }
                                         });
                                         treeData.push({id: "所有", name: "<b>所有站点</b> - [" + allCount + "]", type: "folder", isEnterprise: false,});
 
-                                        $.each(pagePars.enterpriseRegion, function (index, value) {
+                                        $.each(pagePars.enterpriseNode, function (index, value) {
                                             var regionDesc = value.hbEnterprise.enterpriseRegionDesc;
                                             var regionTargets = regionDesc.split("(");
 
@@ -380,8 +387,7 @@
                                         });
                                     }
                             }
-                        )
-                        ;
+                        );
                     }
                 },
                 this._delay
@@ -390,7 +396,7 @@
     };
 
     jQuery(document).ready(function () {
-        $('#enterpriseRegion').tree({
+        $('#enterpriseNode').tree({
             cacheItems: true,
             selectable: true,
             multiSelect: false,
@@ -414,8 +420,96 @@
             pageLength: -1
         };
 
-        pagePars.tbNodeData.create();
+        pagePars.tbNodeData.create(null, dataTableAjax);
     });
+
+    /**
+     *
+     */
+    function dataTableAjax(data, callback, settings) {
+        var tableData = {
+            draw: settings.iDraw,
+            recordsTotal: 0,
+            recordsFiltered: 0,
+            data: []
+        };
+
+        if (pagePars.selectNodeId != undefined) {
+            var nodeArray = $.extend(true, [], pagePars.enterpriseNode);
+
+            $.each(nodeArray, function (index, node) {
+                if (node.nodeId == pagePars.selectNodeId && node.hasOwnProperty("nodeItem")) {
+                    $.ajax({
+                            type: "POST",
+                            url: '${ctx}/viewHbDataLGrid/refHbDataLatest',
+                            cache: false,
+                            data: ServerRequestPar(1, {nodeId: node.nodeId,}),
+                            dataType: "json",
+                            headers: {
+                                'Content-Type': 'application/json;charset=utf-8'
+                            },
+                            success: function (res) {
+                                if (res.code != 0) {
+                                    callback(tableData);
+                                } else {
+                                    var nodeData = $.parseJSON(res.data[0].nodeData);
+                                    var rowId = 0;
+                                    var nodeItem = node.nodeItem;
+
+                                    for (var item in nodeItem) {
+                                        var dataLine = nodeItem[item];
+                                        var itemValue = nodeData.hasOwnProperty(item) ? nodeData[item] : undefined;
+                                        var alarm = false;
+
+                                        rowId++;
+                                        dataLine.DT_RowId = "_" + rowId;
+                                        dataLine.itemValue = itemValue;
+                                        dataLine.dataTime = itemValue ? res.data[0].dataTime : "";
+
+                                        if (itemValue != undefined) {
+                                            if (parseFloat(dataLine.itemVmin) > parseFloat(itemValue)) {
+                                                dataLine.itemVmin = '<kbd style="background:red">' + dataLine.itemVmin + '</kbd>';
+                                                alarm = true;
+                                            }
+                                            if (parseFloat(dataLine.itemVmax) < parseFloat(itemValue)) {
+                                                dataLine.itemVmax = '<kbd style="background:red">' + dataLine.itemVmax + '</kbd>';
+                                                alarm = true;
+                                            }
+
+                                            if (parseFloat(dataLine.itemVala3) < parseFloat(itemValue)) {
+                                                dataLine.itemVala3 = '<kbd style="background:red">' + dataLine.itemVala3 + '</kbd>';
+                                                alarm = true;
+                                            } else if (parseFloat(dataLine.itemVala2) < parseFloat(itemValue)) {
+                                                dataLine.itemVala2 = '<kbd style="background:red">' + dataLine.itemVala2 + '</kbd>';
+                                                alarm = true;
+                                            } else if (parseFloat(dataLine.itemVala1) < parseFloat(itemValue)) {
+                                                dataLine.itemVala1 = '<kbd style="background:red">' + dataLine.itemVala1 + '</kbd>';
+                                                alarm = true;
+                                            }
+                                        }
+                                        if (alarm) {
+                                            dataLine.itemValue = '<kbd style="background:red">' + dataLine.itemValue + '</kbd>';
+                                        }
+
+                                        tableData.data.push(dataLine);
+                                        tableData.recordsTotal++;
+                                        tableData.recordsFiltered++;
+                                    }
+
+                                    callback(tableData);
+                                }
+                            },
+                            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                callback(tableData);
+                            }
+                        }
+                    );
+                }
+            });
+        } else {
+            callback(tableData);
+        }
+    }
 
     /**
      *
@@ -423,9 +517,14 @@
     function treeSelectItem(items, dataSource) {
         if (dataSource._dataType == 'enterpriseNode') {
             if (items && items.length > 0) {
-                var selectItem = items[0];
-
+                pagePars.selectNodeId = items[0].id;
+                $("#dataGridTitle").html(items[0].name + " - 实时数据");
+            } else {
+                pagePars.selectNodeId = undefined;
+                $("#dataGridTitle").html("实时数据");
             }
+
+            pagePars.tbNodeData.table.ajax.reload(null, false);
         }
     }
 

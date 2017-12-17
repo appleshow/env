@@ -9,7 +9,7 @@
          language="java" %>
 <html>
 <head>
-    <title>站点参数对比</title>
+    <title>分钟数据对比</title>
     <meta name="description"
           content="Dashboard"/>
     <meta name="viewport"
@@ -41,8 +41,6 @@
     <link rel="stylesheet"
           href="${ctx}/assets/css/font-awesome.min.css"/>
     <link rel="stylesheet"
-          href="${ctx}/assets-view/comm/select2-4.0.2/css/select2.min.css"/>
-    <link rel="stylesheet"
           href="${ctx}/assets-view/comm/tree/css/tree.css"/>
     <style type="text/css">
         .table > tbody > tr > td, .table > tbody > tr > th {
@@ -53,29 +51,16 @@
         .table-bordered > thead > tr > td, .table-bordered > thead > tr > th {
             border: 1px solid black;
         }
-
-        .select2-container .select2-selection--single {
-            height: 34px !important;
-            line-height: 34px;
-        }
-
-        .select2-container--default .select2-selection--single .select2-selection__rendered {
-            line-height: 34px;
-        }
-
-        .select2-container--default .select2-selection--single .select2-selection__arrow {
-            height: 34px;
-        }
     </style>
 </head>
 <body>
 <div class="row"
      style="margin-right: 0px; margin-bottom: 0px;">
-    <div class="col-lg-2 col-sm-2 col-xs-12">
-        <div class="panel panel-default"
-             style="margin-bottom: 5px;">
+    <div class="col-lg-3 col-sm-3 col-xs-12">
+        <div class="panel panel-default">
             <div class="panel-heading">站点列表</div>
-            <div class="panel-body">
+            <div class="panel-body"
+                 style="height: 92%;overflow-y:scroll; ">
                 <div id="tree-node"
                      class="tree tree-plus-minus tree-solid-line">
                     <div class="tree-folder"
@@ -97,11 +82,10 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-10 col-sm-10 col-xs-12">
+    <div class="col-lg-9 col-sm-9 col-xs-12">
         <div class="panel panel-default"
              style="margin-bottom: 5px;">
-            <div class="panel-heading">站点参数</div>
-            <div class="panel-body">
+            <div class="panel-heading">
                 <form class="form-inline">
                     <div class="form-group">
                         <div class="input-group">
@@ -127,111 +111,27 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group"
-                         id="refChart">
+                    <div class="form-group">
                         <div class="input-group">
                             <button type="button"
                                     class="btn btn-primary"
                                     onclick="refData(true)">
                                 <span class="glyphicon glyphicon-search"
-                                      aria-hidden="true"></span> 查 询
+                                      aria-hidden="true"></span> &nbsp;&nbsp;查询&nbsp;&nbsp;
                             </button>
                         </div>
                     </div>
                 </form>
-                <br/>
-                <div class="row"
-                     style="margin-right: 0px; margin-bottom: 0px;">
-                    <div class="col-lg-12 col-sm-12 col-xs-12">
-                        <div>
-                            <ul class="nav nav-tabs"
-                                role="tablist"
-                                id="mainTabs">
-                                <li role="presentation"
-                                    class="active">
-                                    <a href="#dataCurR"
-                                       aria-controls="dataCurR"
-                                       role="tab"
-                                       data-toggle="tab">
-                                        <span class="glyphicon glyphicon-list-alt"
-                                              aria-hidden="true">
-                                        </span> 历史监测数据 - 实时</a>
-                                </li>
-                                <li role="presentation">
-                                    <a href="#dataCurM"
-                                       aria-controls="dataCurM"
-                                       role="tab"
-                                       data-toggle="tab">
-                                        <span class="glyphicon glyphicon-list-alt"
-                                              aria-hidden="true">
-                                        </span> 历史监测数据 - 分钟</a>
-                                </li>
-                                <li role="presentation">
-                                    <a href="#dataCurH"
-                                       aria-controls="dataCurH"
-                                       role="tab"
-                                       data-toggle="tab">
-                                        <span class="glyphicon glyphicon-list-alt"
-                                              aria-hidden="true">
-                                        </span> 历史监测数据 - 小时</a>
-                                </li>
-                            </ul>
-                            <div class="tab-content">
-                                <div role="tabpanel"
-                                     class="tab-pane active"
-                                     id="dataCurR">
-                                    <div class="row"
-                                         style="margin-right: 0px; margin-bottom: 0px;">
-                                        <div class="col-lg-12 col-sm-12 col-xs-12"
-                                             id="tableR">
-                                            <table id="tbdataCurR"
-                                                   class="table table-striped table-bordered display responsive nowrap"
-                                                   cellspacing="0"
-                                                   width="100%">
-                                                <thead id="tbdataCurRHC">
-                                                </thead>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div role="tabpanel"
-                                     class="tab-pane active"
-                                     id="dataCurM">
-                                    <div class="row"
-                                         style="margin-right: 0px; margin-bottom: 0px;">
-                                        <div class="col-lg-12 col-sm-12 col-xs-12"
-                                             id="tableM">
-                                            <table id="tbdataCurM"
-                                                   class="table table-striped table-bordered display responsive nowrap"
-                                                   cellspacing="0"
-                                                   width="100%">
-                                                <thead id="tbdataCurMHC">
-                                                </thead>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div role="tabpanel"
-                                     class="tab-pane"
-                                     id="dataCurH">
-                                    <div class="row"
-                                         style="margin-right: 0px; margin-bottom: 0px;">
-                                        <div class="col-lg-12 col-sm-12 col-xs-12"
-                                             id="tableH">
-                                            <table id="tbdataCurH"
-                                                   class="table table-striped table-bordered display responsive nowrap"
-                                                   cellspacing="0"
-                                                   width="100%">
-                                                <thead id="tbdataCurHHC">
-                                                </thead>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            </div>
+            <div class="panel-body"
+                 id="tableDiv">
+                <table id="tbdataCur"
+                       class="table table-striped table-bordered display responsive nowrap"
+                       cellspacing="0"
+                       width="100%">
+                    <thead id="tbdataCurHC">
+                    </thead>
+                </table>
             </div>
         </div>
     </div>
@@ -319,165 +219,243 @@
 <script src="${ctx}/dataTables/Buttons-1.1.2/js/buttons.print.min.js"></script>
 <!--  -->
 <script src="${ctx}/assets-view/comm/commDataTables.js"></script>
-<script src="${ctx}/assets-view/comm/select2-4.0.2/js/select2.full.min.js"></script>
-<script src="${ctx}/assets-view/hb/hbdatacontrast-tree.js"></script>
-<script src="${ctx}/assets-view/hb/hbdatacontrast.js"></script>
+
+<%@include file="../aplugin/treectrl.jsp" %>
 
 <script type="application/javascript">
     /**
      * 当前页面全局变量
      */
-    var HBDataContrast = {
-        // 当前Tab页
-        selectTab: "#dataCurR",
-        tabledataCurR: undefined,
-        tabledataCurM: undefined,
-        tabledataCurH: undefined,
-        // 是否需要重新生成实时数据表格
-        gridChangedR: true,
-        // 是否需要重新生成分钟数据表格
-        gridChangedM: true,
-        // 是否需要重新生成小时数据表格
-        gridChangedH: true,
-        combTypeData: [],
-        combTypeItemData: [],
-        combNodeData: [],
+    var pagePars = {
+        tabledataCur: undefined,
+        // 是否需要重新数据表格
+        gridChanged: true,
+        enterpriseNode: [],
         // 重置表格状态
         resetGridStatus: function () {
-            this.gridChangedR = true;
-            this.gridChangedM = true;
-            this.gridChangedH = true;
+            this.gridChanged = true;
         },
     }
     var DataSourceTree = function (options) {
         this._data = options.data;
-        this._delay = options.delay
+        this._delay = options.delay;
+        this._dataType = 'enterpriseNode';
     };
+
     DataSourceTree.prototype = {
         data: function (options, callback) {
             setTimeout(function () {
-                var url = "hbDataContrastController.referHbType", treeId = "";
-
-                if (options.id != null) {
-                    if (options.type === "folder") {
-                        url = "hbDataContrastController.referHbNode";
-                        treeId = options.id.replace("type", "");
-
-                        $.ajax({
-                            async: false,
-                            type: "POST",
-                            url: url,
-                            cache: false,
-                            data: ServerRequestPar(1, {
-                                typeId: treeId
-                            }),
-                            dataType: "json",
-                            headers: {
-                                'Content-Type': 'application/json;charset=utf-8'
-                            },
-                            success: function (res) {
-                                if (res.code != 0) {
-                                    callback({
-                                        data: []
-                                    });
-                                } else {
-                                    var treeData = [];
-
-                                    $.each(res.data, function (index, value) {
-                                        var nodeItem = value["nodeItem"];
-
-                                        if (!( typeof ( nodeItem ) === "undefined" || nodeItem === null )) {
-                                            res.data[index]["nodeItem"] = $.parseJSON(nodeItem);
-                                        }
-                                    });
-
-                                    $.merge(HBDataContrast.combNodeData, res.data);
-                                    $.each(res.data, function (index, value) {
-                                        var item = {};
-
-                                        item.id = "node" + value.nodeId;
-                                        item.name = value.nodeName;
-                                        item.type = 'item';
-                                        item.typeId = value.typeId;
-                                        item.nodeId = value.nodeId;
-
-                                        treeData.push(item);
-                                    });
-
-                                    callback({
-                                        data: treeData
-                                    });
-
-                                }
-                            },
-                            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                                callback({
-                                    data: []
-                                });
-                            }
-                        });
-
-                    } else {
-
-                    }
-                } else {
-                    url = "hbDataContrastController.referHbType";
-
-                    $.ajax({
-                        async: false,
-                        type: "POST",
-                        url: url,
-                        cache: false,
-                        data: ServerRequestPar(0, {}),
-                        dataType: "json",
-                        headers: {
-                            'Content-Type': 'application/json;charset=utf-8'
-                        },
-                        success: function (res) {
-                            if (res.code != 0) {
-                                callback({
-                                    data: []
-                                });
-                            } else {
+                    if (options.id != null) {
+                        if (options.type === "folder") {
+                            if (options.id == "所有") {
                                 var treeData = [];
 
-                                HBDataContrast.combTypeData = res.data;
-                                if (!( typeof ( res.subJoinJson ) === "undefined" || res.subJoinJson === null )) {
-                                    if (!( typeof ( res.subJoinJson["typeItems"] ) === "undefined" || res.subJoinJson["typeItems"] === null )) {
-                                        HBDataContrast.combTypeItemData = res.subJoinJson["typeItems"];
+                                $.each(pagePars.enterpriseNode, function (indexNode, node) {
+                                    if (node.nodeId && node.nodeId != "") {
+                                        var item = {};
+
+                                        item.id = node.nodeId;
+                                        item.name = node.nodeName;
+                                        item.type = 'item';
+                                        item.isEnterprise = false;
+
+                                        treeData.push(item);
                                     }
-                                }
-                                $.each(res.data, function (index, value) {
-                                    var item = {};
-
-                                    item.id = "type" + value.typeId;
-                                    item.name = value.typeName;
-                                    item.type = 'folder';
-
-                                    treeData.push(item);
                                 });
 
                                 callback({
                                     data: treeData
                                 });
+                            } else {
+                                if (options.isEnterprise) {
+                                    var treeData = [];
 
+                                    $.each(pagePars.enterpriseNode, function (indexNode, node) {
+                                        if (options.id == node.enterpriseId) {
+                                            var item = {};
+
+                                            item.id = node.nodeId;
+                                            item.name = node.nodeName;
+                                            item.type = 'item';
+                                            item.isEnterprise = false;
+
+                                            treeData.push(item);
+                                        }
+                                    });
+
+                                    callback({
+                                        data: treeData
+                                    });
+                                } else {
+                                    var treeData = [];
+                                    var subRegions = [];
+                                    var subRegionName = "";
+                                    var subRegionIndex = -1, subRegionCount = 0;
+                                    var enterpriseId = 0;
+
+                                    $.each(pagePars.enterpriseNode, function (index, value) {
+                                        var regionDesc = value.hbEnterprise.enterpriseRegionDesc;
+                                        var regionTargets = regionDesc.split("(");
+
+                                        regionDesc = regionTargets[0];
+                                        regionTargets = regionDesc.split("/");
+
+                                        for (var regionIndex = 1; regionIndex < regionTargets.length; regionIndex++) {
+                                            if (options.id == regionTargets[regionIndex]) {
+                                                if (regionIndex + 1 == regionTargets.length) {
+                                                    if (enterpriseId != value.hbEnterprise.enterpriseId) {
+                                                        var item = {};
+                                                        var nodeCount = 0;
+
+                                                        enterpriseId = value.hbEnterprise.enterpriseId;
+                                                        item.id = value.hbEnterprise.enterpriseId;
+                                                        item.name = value.hbEnterprise.enterpriseName;
+                                                        item.type = 'folder';
+                                                        item.isEnterprise = true;
+
+                                                        $.each(pagePars.enterpriseNode, function (indexNode, node) {
+                                                            if (node.enterpriseId == value.enterpriseId && value.nodeId && value.nodeId != "") {
+                                                                nodeCount++;
+                                                            }
+                                                        });
+                                                        item.name = item.name + " - [" + nodeCount + "]";
+                                                        treeData.push(item);
+                                                    }
+                                                } else {
+                                                    if (subRegionName != regionTargets[regionIndex + 1]) {
+                                                        subRegionName = regionTargets[regionIndex + 1];
+                                                        subRegionIndex++;
+                                                        if (value.nodeId && value.nodeId != "") {
+                                                            subRegionCount = 1;
+                                                        } else {
+                                                            subRegionCount = 0;
+                                                        }
+                                                        subRegions.push({regionName: regionTargets[regionIndex + 1], regionCount: subRegionCount,});
+                                                    } else {
+                                                        if (value.nodeId && value.nodeId != "") {
+                                                            subRegionCount++;
+                                                            subRegions[subRegionIndex].regionCount = subRegionCount;
+                                                        }
+                                                    }
+                                                }
+                                                break;
+                                            }
+                                        }
+                                    });
+
+                                    $.each(subRegions, function (index, value) {
+                                        var item = {};
+
+                                        item.id = value.regionName;
+                                        item.name = value.regionName + " - [" + value.regionCount + "]";
+                                        item.type = 'folder';
+                                        item.isEnterprise = false;
+
+                                        treeData.push(item);
+                                    });
+                                    callback({
+                                        data: treeData
+                                    });
+                                }
                             }
-                        },
-                        error: function (XMLHttpRequest, textStatus, errorThrown) {
-                            callback({
-                                data: []
-                            });
-                        }
-                    });
-                }
+                        } else {
 
-            }, this._delay)
+                        }
+                    } else {
+                        $.ajax({
+                                type: "POST",
+                                url: '${ctx}/viewHbEnterpriseNodeCfg/refEnterpriseNode',
+                                cache: false,
+                                data: ServerRequestPar(1, {byPerson: "1",}),
+                                dataType: "json",
+                                headers: {
+                                    'Content-Type': 'application/json;charset=utf-8'
+                                },
+                                success: function (res) {
+                                    if (res.code != 0) {
+                                        pagePars.enterpriseNode = [];
+                                        callback({
+                                            data: []
+                                        });
+                                    } else {
+                                        var treeData = [];
+                                        var regions = [];
+                                        var regionName = "";
+                                        var regionIndex = -1, regionCount = 0;
+                                        var allCount = 0;
+
+                                        pagePars.enterpriseNode = res.data;
+                                        $.each(pagePars.enterpriseNode, function (index, value) {
+                                            if (value.nodeId && value.nodeId != "") {
+                                                allCount++;
+                                                if (value.hasOwnProperty("nodeItem")) {
+                                                    value.nodeItem = $.parseJSON(value.nodeItem);
+                                                    for (var item in value.nodeItem) {
+                                                        value.nodeItem[item] = $.parseJSON(value.nodeItem[item]);
+                                                    }
+                                                }
+                                            }
+                                        });
+                                        treeData.push({id: "所有", name: "<b>所有站点</b> - [" + allCount + "]", type: "folder", isEnterprise: false,});
+
+                                        $.each(pagePars.enterpriseNode, function (index, value) {
+                                            var regionDesc = value.hbEnterprise.enterpriseRegionDesc;
+                                            var regionTargets = regionDesc.split("(");
+
+                                            regionDesc = regionTargets[0];
+                                            regionTargets = regionDesc.split("/");
+
+                                            if (regionName != regionTargets[1]) {
+                                                regionName = regionTargets[1];
+                                                regionIndex++;
+                                                if (value.nodeId && value.nodeId != "") {
+                                                    regionCount = 1;
+                                                } else {
+                                                    regionCount = 0;
+                                                }
+                                                regions.push({regionName: regionName, regionCount: regionCount,});
+                                            } else {
+                                                if (value.nodeId && value.nodeId != "") {
+                                                    regionCount++;
+                                                    regions[regionIndex].regionCount = regionCount;
+                                                }
+                                            }
+                                        });
+                                        $.each(regions, function (index, value) {
+                                            var item = {};
+
+                                            item.id = value.regionName;
+                                            item.name = value.regionName + " - [" + value.regionCount + "]";
+                                            item.type = 'folder';
+                                            item.isEnterprise = false;
+
+                                            treeData.push(item);
+                                        });
+
+                                        callback({
+                                            data: treeData
+                                        });
+                                    }
+                                },
+                                error:
+
+                                    function (XMLHttpRequest, textStatus, errorThrown) {
+                                        callback({
+                                            data: []
+                                        });
+                                    }
+                            }
+                        );
+                    }
+                },
+                this._delay
+            )
         }
     };
 
     var treeDataNode = new DataSourceTree({
         data: [],
-        delay: 400
+        delay: 400,
     });
 
     jQuery(document).ready(function () {
@@ -498,13 +476,6 @@
         $("#dateTimeEnd").on("dp.change", function (e) {
             $('#dateTimeStr').data("DateTimePicker").maxDate(e.date);
         });
-        // ******************** ==== ********************
-
-        // ******** Tab选择事件 ********
-        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-            HBDataContrast.selectTab = e.target.hash;
-        });
-        // ******************** ==== ********************
 
         // ******** 开始初始化站点列表 ********
         $('#tree-node').tree({
@@ -520,66 +491,42 @@
     /*******************************************************************************************************************************************************************************************************
      * 查询数据
      ******************************************************************************************************************************************************************************************************/
-    function refData(click) {
+    function refData() {
         var selectNodes = $('#tree-node').tree('selectedItems');
         if (selectNodes.length == 0) {
-            if (HBDataContrast.selectTab === "#dataCurR") {
-                $("#tableR").empty();
-            } else if (HBDataContrast.selectTab === "#dataCurM") {
-                $("#tableM").empty();
-            } else if (HBDataContrast.selectTab === "#dataCurH") {
-                $("#tableH").empty();
-            }
+            $("#tableDiv").empty();
 
-            if (click) {
-                callError(100, "请先选择一个站点...!!");
-            }
+            callError(100, "请先选择一个站点...!!");
             return;
         }
-        if (HBDataContrast.selectTab === "#dataCurR") {
-            if (HBDataContrast.gridChangedR) {
-                HBDataContrast.gridChangedR = false;
-                createtableRHis(selectNodes);
-            } else {
-                HBDataContrast.tabledataCurR.table.ajax.reload(null, false);
-            }
-        } else if (HBDataContrast.selectTab === "#dataCurM") {
-            if (HBDataContrast.gridChangedM) {
-                HBDataContrast.gridChangedM = false;
-                createtableMHis(selectNodes);
-            } else {
-                HBDataContrast.tabledataCurM.table.ajax.reload(null, false);
-            }
-        } else if (HBDataContrast.selectTab === "#dataCurH") {
-            var momentStr = moment($('#dateStr').val());
-            var momentEnd = moment($('#dateEnd').val());
-            var timeLength = momentEnd.diff(momentStr, 'days') + 1;
+        var momentStr = moment($('#dateStr').val());
+        var momentEnd = moment($('#dateEnd').val());
+        var timeLength = momentEnd.diff(momentStr, 'days') + 1;
 
-            if (timeLength > 31) {
-                callError(100, "时间区间最大为【31天】，当前查询区间为：" + timeLength + "天...!!");
-                return;
-            }
-            if (HBDataContrast.gridChangedH) {
-                HBDataContrast.gridChangedH = false;
-                createTableHHis(selectNodes);
-            } else {
-                HBDataContrast.tabledataCurH.table.ajax.reload(null, false);
-            }
+        if (timeLength > 7) {
+            callError(100, "时间区间最大为【7天】，当前查询区间为：" + timeLength + "天...!!");
+            return;
+        }
+        if (pagePars.gridChanged) {
+            pagePars.gridChanged = false;
+            createtableHis(selectNodes);
+        } else {
+            pagePars.tabledataCur.table.ajax.reload(null, false);
         }
     }
 
     /*******************************************************************************************************************************************************************************************************
      * 生成表格 - 实时数据
      ******************************************************************************************************************************************************************************************************/
-    function createtableRHis(selectNodes) {
-        $("#tableR").empty();
-        $("#tableR").html(' <table id="tbdataCurR" class="table table-striped table-bordered display responsive nowrap" cellspacing="0" width="100%"> <thead id="tbdataCurRHC"></thead></table>');
+    function createtableHis(selectNodes) {
+        $("#tableDiv").empty();
+        $("#tableDiv").html(' <table id="tbdataCur" class="table table-striped table-bordered display nowrap" cellspacing="0" width="100%"> <thead id="tbdataCurHC"></thead></table>');
 
-        HBDataContrast.tabledataCurR = new CommDataTables("#tbdataCurR", "#tbdataCurRHC", createColumnInfo(selectNodes, "#tbdataCurRHC"), callError);
-        HBDataContrast.tabledataCurR.scrollY = 65;
-        HBDataContrast.tabledataCurR.buttons = "P";
+        pagePars.tabledataCur = new CommDataTables("#tbdataCur", "#tbdataCurHC", createColumnInfo(selectNodes, "#tbdataCurHC"), callError);
+        pagePars.tabledataCur.scrollY = 72;
+        pagePars.tabledataCur.buttons = "P";
         var nodeCount = selectNodes.length;
-        HBDataContrast.tabledataCurR.lengthInfo = {
+        pagePars.tabledataCur.lengthInfo = {
             lengthMenu: [[10 * nodeCount, 20 * nodeCount, 30 * nodeCount], [10 * nodeCount + "条", 20 * nodeCount + "条", 30 * nodeCount + "条"]],
             pageLength: 10 * nodeCount
         };
@@ -588,54 +535,7 @@
         // ***** Add information to Field *****
         // *********************************
 
-        HBDataContrast.tabledataCurR.create(null, dataTableAjax);
-    }
-
-    /*******************************************************************************************************************************************************************************************************
-     * 生成表格 - 分钟数据
-     ******************************************************************************************************************************************************************************************************/
-    function createtableMHis(selectNodes) {
-        $("#tableM").empty();
-        $("#tableM").html(' <table id="tbdataCurM" class="table table-striped table-bordered display responsive nowrap" cellspacing="0" width="100%"> <thead id="tbdataCurMHC"></thead></table>');
-
-        HBDataContrast.tabledataCurM = new CommDataTables("#tbdataCurM", "#tbdataCurMHC", createColumnInfo(selectNodes, "#tbdataCurMHC"), callError);
-        HBDataContrast.tabledataCurM.scrollY = 65;
-        HBDataContrast.tabledataCurM.buttons = "P";
-        var nodeCount = selectNodes.length;
-        HBDataContrast.tabledataCurM.lengthInfo = {
-            lengthMenu: [[10 * nodeCount, 20 * nodeCount, 30 * nodeCount], [10 * nodeCount + "条", 20 * nodeCount + "条", 30 * nodeCount + "条"]],
-            pageLength: 10 * nodeCount
-        };
-        // ***** Add information to Column *****
-        // *********************************
-        // ***** Add information to Field *****
-        // *********************************
-
-        HBDataContrast.tabledataCurM.create(null, dataTableAjax);
-    }
-
-    /*******************************************************************************************************************************************************************************************************
-     * 生成表格 - 小时数据
-     ******************************************************************************************************************************************************************************************************/
-    function createTableHHis(selectNodes) {
-        $("#tableH").empty();
-        $("#tableH").html(' <table id="tbdataCurH" class="table table-striped table-bordered display responsive nowrap" cellspacing="0" width="100%"> <thead id="tbdataCurHHC"></thead></table>');
-
-        HBDataContrast.tabledataCurH = new CommDataTables("#tbdataCurH", "#tbdataCurHHC", createColumnInfo(selectNodes, "#tbdataCurHHC"), callError);
-        HBDataContrast.tabledataCurH.scrollY = 65;
-        HBDataContrast.tabledataCurH.buttons = "P";
-        var nodeCount = selectNodes.length;
-        HBDataContrast.tabledataCurH.lengthInfo = {
-            lengthMenu: [[10 * nodeCount, 20 * nodeCount, 30 * nodeCount], [10 * nodeCount + "条", 20 * nodeCount + "条", 30 * nodeCount + "条"]],
-            pageLength: 10 * nodeCount
-        };
-
-        // ***** Add information to Column *****
-        // *********************************
-        // ***** Add information to Field *****
-        // *********************************
-
-        HBDataContrast.tabledataCurH.create(null, dataTableAjax);
+        pagePars.tabledataCur.create(null, dataTableAjax);
     }
 
     /*******************************************************************************************************************************************************************************************************
@@ -673,23 +573,18 @@
         };
         innerHtml += "<th>监测时间</th>";
 
-        $.each(HBDataContrast.combNodeData, function (indexNode, nodeData) {
+        $.each(pagePars.enterpriseNode, function (indexNode, nodeData) {
             var select = false;
             $.each(selectNodes, function (indexSelect, selectNode) {
-                if (nodeData.nodeId == selectNode.nodeId) {
+                if (nodeData.nodeId == selectNode.id) {
                     select = true;
                 }
             });
             if (select && nodeData.hasOwnProperty("nodeItem")) {
                 for (var par in nodeData.nodeItem) {
-                    if (nodeData.nodeItem[par].select == 1 && parLine.indexOf("-" + par + "-") <= 0) {
-                        var parName = "";
+                    if (nodeData.nodeItem[par].itemSelect == 1 && parLine.indexOf("-" + par + "-") <= 0) {
+                        var parName = nodeData.nodeItem[par].itemName;
                         var columnInfo = {};
-                        $.each(HBDataContrast.combTypeItemData, function (indexParName, parData) {
-                            if (parData.typeId == nodeData.typeId && parData.itemId == par) {
-                                parName = parData.itemName;
-                            }
-                        });
 
                         columnInfo.name = par;
                         columnInfo.primary = 0;
@@ -725,35 +620,29 @@
             recordsFiltered: 0,
             data: []
         };
-        var dataType = "2011";
-        if (HBDataContrast.selectTab === "#dataCurR") {
-            dataType = "2011";
-        } else if (HBDataContrast.selectTab === "#dataCurM") {
-            dataType = "2051";
-        } else if (HBDataContrast.selectTab === "#dataCurH") {
-            dataType = "2061";
-        }
+        var dataType = "2051";
+
         var nodeIds = "", nodeMns = "";
         var selectNodes = $('#tree-node').tree('selectedItems');
         $.each(selectNodes, function (index, selectNode) {
             var nodeMn = "";
-            $.each(HBDataContrast.combNodeData, function (indexInfo, nodeInfo) {
-                if (nodeInfo.nodeId == selectNode.nodeId) {
+            $.each(pagePars.enterpriseNode, function (indexInfo, nodeInfo) {
+                if (nodeInfo.nodeId == selectNode.id) {
                     nodeMn = nodeInfo.nodeMn;
                 }
             });
             if (nodeIds == "") {
-                nodeIds = selectNode.nodeId;
+                nodeIds = selectNode.id;
                 nodeMns = nodeMn;
             } else {
-                nodeIds += ";" + selectNode.nodeId;
+                nodeIds += ";" + selectNode.id;
                 nodeMns += ";" + nodeMn;
             }
         });
         $.ajax({
             async: false,
             type: "POST",
-            url: "hbDataContrastController.refHbData",
+            url: "${ctx}/viewHbContrast/refHbData",
             cache: false,
             data: ServerRequestPar(1, {
                 nodeId: nodeIds,
@@ -770,6 +659,7 @@
             },
             success: function (res) {
                 if (res.code != 0) {
+                    callback(tableData);
                     callError(res.code, res.message);
                 } else {
                     tableData.recordsTotal = res.totalCount;
@@ -779,16 +669,35 @@
                         if (dataHis.hasOwnProperty("nodeData")) {
                             var lineData = $.parseJSON(dataHis.nodeData);
 
-                            $.each(HBDataContrast.combNodeData, function (index, node) {
+                            $.each(pagePars.enterpriseNode, function (index, node) {
                                 if (node.nodeMn == dataHis.nodeMn && node.hasOwnProperty("nodeItem")) {
+                                    var nodeItem = node.nodeItem;
+
                                     lineData.nodeName = node.nodeName;
-                                    for (var item in node.nodeItem) {
-                                        if (node.nodeItem[item].select == 1) {
+                                    for (var item in nodeItem) {
+                                        if (node.nodeItem[item].itemSelect == 1) {
                                             if (lineData.hasOwnProperty(item) && lineData[item] != "") {
-                                                if (node.nodeItem[item].itemVmin != "" && parseFloat(node.nodeItem[item].itemVmin) > parseFloat(lineData[item])) {
-                                                    lineData["_" + item] = '<kbd style="background:green" title="参数下限: ' + node.nodeItem[item].itemVmin + '">' + lineData[item] + '</kbd>';
-                                                } else if (node.nodeItem[item].itemVmax != "" && parseFloat(node.nodeItem[item].itemVmax) < parseFloat(lineData[item])) {
-                                                    lineData["_" + item] = '<kbd style="background:red" title="参数上限: ' + node.nodeItem[item].itemVmax + '">' + lineData[item] + '</kbd>';
+                                                if (node.nodeItem[item].itemAlarm == 1) {
+                                                    var showValue = "";
+
+                                                    if (nodeItem[item].itemVmin != "" && parseFloat(nodeItem[item].itemVmin) > parseFloat(lineData[item])) {
+                                                        showValue = "<span class='badge' title='参数下限: " + nodeItem[item].itemVmin + "'><small>下</small></span>";
+                                                    } else if (nodeItem[item].itemVmax != "" && parseFloat(nodeItem[item].itemVmax) < parseFloat(lineData[item])) {
+                                                        showValue = "<span class='badge' title='参数上限: " + nodeItem[item].itemVmax + "'><small>上</small></span>";
+                                                    }
+                                                    if (nodeItem[item].itemVala3 != "" && parseFloat(lineData[item]) > parseFloat(nodeItem[item].itemVala3)) {
+                                                        showValue += "<span class='badge' title='三级阀值: " + nodeItem[item].itemVala3 + "'><small>三</small></span>";
+                                                    } else if (nodeItem[item].itemVala2 != "" && parseFloat(lineData[item]) > parseFloat(nodeItem[item].itemVala2)) {
+                                                        showValue += "<span class='badge' title='二级阀值: " + nodeItem[item].itemVala2 + "'><small>二</small></span>";
+                                                    } else if (nodeItem[item].itemVala1 != "" && parseFloat(lineData[item]) > parseFloat(nodeItem[item].itemVala1)) {
+                                                        showValue += "<span class='badge' title='一级阀值: " + nodeItem[item].itemVala1 + "'><small>一</small></span>";
+                                                    }
+
+                                                    if (showValue != "") {
+                                                        lineData["_" + item] = showValue + '<kbd style="background:red">' + lineData[item] + '</kbd>';
+                                                    } else {
+                                                        lineData["_" + item] = lineData[item];
+                                                    }
                                                 } else {
                                                     lineData["_" + item] = lineData[item];
                                                 }
@@ -812,6 +721,25 @@
                 callback(tableData);
             }
         });
+    }
+
+    /**
+     *
+     */
+    function treeSelectItem(items, dataSource) {
+        if (dataSource._dataType == 'enterpriseNode') {
+            var nodeName = "";
+            $.each(items, function (index, item) {
+                if (nodeName == "") {
+                    nodeName = item.name;
+                } else {
+                    nodeName += "、" + item.name;
+                }
+            });
+            document.title = "分钟数据对比[" + nodeName + "]";
+            pagePars.resetGridStatus();
+            refData();
+        }
     }
 
     /*******************************************************************************************************************************************************************************************************

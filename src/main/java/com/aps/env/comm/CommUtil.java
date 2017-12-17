@@ -23,6 +23,7 @@ import java.util.List;
  */
 public class CommUtil {
     public final static String CONTEXT_PATH = "ctx";
+    public final static String NIO_SERVER = "nioServer";
     public final static String LOCK_WORD = "jmzfc369";
     public final static String LOADED = "loaded";
     public final static String SESSION_VERIFICATION = "verification";
@@ -85,8 +86,8 @@ public class CommUtil {
      * @return: boolean
      */
     public static boolean isPermissoned(HttpSession httpSession, int formId, String action, ResponseData responseData) {
+        boolean isPermissioined;
         int permissionedCount = 0;
-        boolean isPermissioined = false;
         Object sessionPermissions = httpSession.getAttribute(SESSION_USER_PERMISSIONS);
 
         if (null == httpSession.getAttribute(SESSION_PERSON_ID)) {
@@ -94,37 +95,43 @@ public class CommUtil {
             responseData.setMessage("未登录，您无法访问此功能！");
 
             isPermissioined = false;
-        } else if (null == sessionPermissions) {
-            responseData.setCode(-202);
-            responseData.setMessage("权限不足，您无法访问此功能！");
-
-            isPermissioined = false;
         } else {
-            @SuppressWarnings("unchecked")
-            List<ComOrgFormRights> personPermissions = (List<ComOrgFormRights>) sessionPermissions;
+            if (0 == formId) {
+                isPermissioined = true;
+            } else {
+                if (null == sessionPermissions) {
+                    responseData.setCode(-202);
+                    responseData.setMessage("权限不足，您无法访问此功能！");
 
-            for (ComOrgFormRights orgFormRights : personPermissions) {
-                if (orgFormRights.getFormId() == formId && orgFormRights.getRightId().equals(action)) {
-                    if (1 == CommUtil.nvl(orgFormRights.getRea())) {
-                        isPermissioined = false;
-                        responseData.setCode(-203);
-                        responseData.setMessage("功能已被锁定，您无法访问此功能！");
-                        return isPermissioined;
+                    isPermissioined = false;
+                } else {
+                    @SuppressWarnings("unchecked")
+                    List<ComOrgFormRights> personPermissions = (List<ComOrgFormRights>) sessionPermissions;
+
+                    for (ComOrgFormRights orgFormRights : personPermissions) {
+                        if (orgFormRights.getFormId() == formId && orgFormRights.getRightId().equals(action)) {
+                            if (1 == CommUtil.nvl(orgFormRights.getRea())) {
+                                isPermissioined = false;
+                                responseData.setCode(-203);
+                                responseData.setMessage("功能已被锁定，您无法访问此功能！");
+                                return isPermissioined;
+                            }
+                            permissionedCount += CommUtil.nvl(orgFormRights.getRel());
+                        }
                     }
-                    permissionedCount += CommUtil.nvl(orgFormRights.getRel());
+
+                    if (0 == permissionedCount) {
+                        responseData.setCode(-204);
+                        responseData.setMessage("权限不足，您无法访问此功能！");
+
+                        isPermissioined = false;
+                    } else {
+                        isPermissioined = true;
+                    }
+
                 }
             }
-
-            if (0 == permissionedCount) {
-                responseData.setCode(-204);
-                responseData.setMessage("权限不足，您无法访问此功能！");
-
-                isPermissioined = false;
-            } else {
-                isPermissioined = true;
-            }
         }
-
         return isPermissioined;
     }
 
@@ -139,6 +146,7 @@ public class CommUtil {
      * @param: @return
      * @return: int
      */
+
     public static int nvl(Integer value, int defaule) {
         return null == value ? defaule : value;
     }

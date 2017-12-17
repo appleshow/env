@@ -108,7 +108,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from hb_data_mode
+    from ${dataTbale}
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
