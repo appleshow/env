@@ -105,29 +105,7 @@ public class ViewHbNodeStatusServiceImpl implements ViewHbNodeStatusService {
                         HbTypeItemNode hbTypeItemNode = hbTypeItemException.getHbTypeItemNode();
                         float itemValue = Float.valueOf(nodeDataMap.get(itemId));
 
-                        if (null != hbTypeItemNode.getItemVmin()) {
-                            if (Float.valueOf(hbTypeItemNode.getItemVmin().toString()) > itemValue) {
-                                hbTypeItemException.increaseValueMinCount();
-                            }
-                        }
-                        if (null != hbTypeItemNode.getItemVmax()) {
-                            if (Float.valueOf(hbTypeItemNode.getItemVmax().toString()) < itemValue) {
-                                hbTypeItemException.increaseValueMaxCount();
-                            }
-                        }
-                        if (null != hbTypeItemNode.getItemVala3()) {
-                            if (Float.valueOf(hbTypeItemNode.getItemVala3().toString()) < itemValue) {
-                                hbTypeItemException.increaseValueAla3Count();
-                            }
-                        } else if (null != hbTypeItemNode.getItemVala2()) {
-                            if (Float.valueOf(hbTypeItemNode.getItemVala2().toString()) < itemValue) {
-                                hbTypeItemException.increaseValueAla2Count();
-                            }
-                        } else if (null != hbTypeItemNode.getItemVala1()) {
-                            if (Float.valueOf(hbTypeItemNode.getItemVala1().toString()) < itemValue) {
-                                hbTypeItemException.increaseValueAla1Count();
-                            }
-                        }
+                        HbTypeItemException.checkItemValue(hbTypeItemException, hbTypeItemNode, itemValue);
                     }
                 });
             } catch (Exception e) {

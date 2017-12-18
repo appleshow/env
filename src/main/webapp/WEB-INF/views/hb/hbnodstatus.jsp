@@ -93,7 +93,7 @@
     </div>
     <div class="panel-body">
         <table id="table-nodestatus"
-               class="table table-striped table-bordered display responsive nowrap"
+               class="table table-striped table-bordered display nowrap"
                cellspacing="0"
                width="100%">
             <thead>
@@ -296,7 +296,11 @@
                                     }
                                 }
 
-                                exceptionParString += ' <kbd style="background:red" title="' + titleInfo + '">' + exceptionPar.hbTypeItemNode.itemName + '</kbd>';
+                                if (exceptionPar.hbTypeItemNode.itemAlarm == 1) {
+                                    exceptionParString += ' <kbd style="background:red" title="' + titleInfo + '">' + exceptionPar.hbTypeItemNode.itemName + '</kbd>';
+                                } else {
+                                    exceptionParString += ' <kbd style="background:green" title="' + titleInfo + '">' + exceptionPar.hbTypeItemNode.itemName + '</kbd>';
+                                }
                                 //exceptionParString += ' <button type="button" class="btn btn-sm btn-danger" title="' + titleInfo + '">' + exceptionPar.hbTypeItemNode.itemName + '</button>'
                             });
 

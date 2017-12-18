@@ -61,6 +61,7 @@ public class ViewOrgFormCfgServiceImpl implements ViewOrgFormCfgService {
         List<?> comForms;
         ComFormExample comFormExample = new ComFormExample();
 
+        comFormExample.setOrderByClause("PRGROUP");
         comForms = comFormMapper.selectByExample(comFormExample);
         responseData.setData(comForms);
     }

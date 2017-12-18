@@ -9,7 +9,7 @@
          language="java" %>
 <html>
 <head>
-    <title>站点参比</title>
+    <title>小时数据对比</title>
     <meta name="description"
           content="Dashboard"/>
     <meta name="viewport"
@@ -61,7 +61,7 @@
             <div class="panel-heading">站点列表</div>
             <div class="panel-body"
                  style="height: 92%;overflow-y:scroll; ">
-                <div id="tree-node"
+                <div id="treeNode"
                      class="tree tree-plus-minus tree-solid-line">
                     <div class="tree-folder"
                          style="display: none;">
@@ -123,94 +123,15 @@
                     </div>
                 </form>
             </div>
-            <div class="panel-body">
-                <div>
-                    <ul class="nav nav-tabs"
-                        role="tablist"
-                        id="mainTabs">
-                        <li role="presentation"
-                            class="active">
-                            <a href="#dataCurR"
-                               aria-controls="dataCurR"
-                               role="tab"
-                               data-toggle="tab">
-                                        <span class="glyphicon glyphicon-list-alt"
-                                              aria-hidden="true">
-                                        </span> 历史监测数据 - 实时</a>
-                        </li>
-                        <li role="presentation">
-                            <a href="#dataCurM"
-                               aria-controls="dataCurM"
-                               role="tab"
-                               data-toggle="tab">
-                                        <span class="glyphicon glyphicon-list-alt"
-                                              aria-hidden="true">
-                                        </span> 历史监测数据 - 分钟</a>
-                        </li>
-                        <li role="presentation">
-                            <a href="#dataCurH"
-                               aria-controls="dataCurH"
-                               role="tab"
-                               data-toggle="tab">
-                                        <span class="glyphicon glyphicon-list-alt"
-                                              aria-hidden="true">
-                                        </span> 历史监测数据 - 小时</a>
-                        </li>
-                    </ul>
-                    <div class="tab-content">
-                        <div role="tabpanel"
-                             class="tab-pane active"
-                             id="dataCurR">
-                            <div class="row"
-                                 style="margin-right: 0px; margin-bottom: 0px;">
-                                <div class="col-lg-12 col-sm-12 col-xs-12"
-                                     id="tableR">
-                                    <table id="tbdataCurR"
-                                           class="table table-striped table-bordered display responsive nowrap"
-                                           cellspacing="0"
-                                           width="100%">
-                                        <thead id="tbdataCurRHC">
-                                        </thead>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        <div role="tabpanel"
-                             class="tab-pane active"
-                             id="dataCurM">
-                            <div class="row"
-                                 style="margin-right: 0px; margin-bottom: 0px;">
-                                <div class="col-lg-12 col-sm-12 col-xs-12"
-                                     id="tableM">
-                                    <table id="tbdataCurM"
-                                           class="table table-striped table-bordered display responsive nowrap"
-                                           cellspacing="0"
-                                           width="100%">
-                                        <thead id="tbdataCurMHC">
-                                        </thead>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        <div role="tabpanel"
-                             class="tab-pane"
-                             id="dataCurH">
-                            <div class="row"
-                                 style="margin-right: 0px; margin-bottom: 0px;">
-                                <div class="col-lg-12 col-sm-12 col-xs-12"
-                                     id="tableH">
-                                    <table id="tbdataCurH"
-                                           class="table table-striped table-bordered display responsive nowrap"
-                                           cellspacing="0"
-                                           width="100%">
-                                        <thead id="tbdataCurHHC">
-                                        </thead>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="panel-body"
+                 id="tableDiv">
+                <table id="tbdataCur"
+                       class="table table-striped table-bordered display responsive nowrap"
+                       cellspacing="0"
+                       width="100%">
+                    <thead id="tbdataCurHC">
+                    </thead>
+                </table>
             </div>
         </div>
     </div>
@@ -306,26 +227,13 @@
      * 当前页面全局变量
      */
     var pagePars = {
-        // 当前Tab页
-        selectTab: "#dataCurR",
-        tabledataCurR: undefined,
-        tabledataCurM: undefined,
-        tabledataCurH: undefined,
-        // 是否需要重新生成实时数据表格
-        gridChangedR: true,
-        // 是否需要重新生成分钟数据表格
-        gridChangedM: true,
-        // 是否需要重新生成小时数据表格
-        gridChangedH: true,
+        tabledataCur: undefined,
+        // 是否需要重新数据表格
+        gridChanged: true,
         enterpriseNode: [],
-        combTypeData: [],
-        combTypeItemData: [],
-        combNodeData: [],
         // 重置表格状态
         resetGridStatus: function () {
-            this.gridChangedR = true;
-            this.gridChangedM = true;
-            this.gridChangedH = true;
+            this.gridChanged = true;
         },
     }
     var DataSourceTree = function (options) {
@@ -568,16 +476,9 @@
         $("#dateTimeEnd").on("dp.change", function (e) {
             $('#dateTimeStr').data("DateTimePicker").maxDate(e.date);
         });
-        // ******************** ==== ********************
-
-        // ******** Tab选择事件 ********
-        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-            pagePars.selectTab = e.target.hash;
-        });
-        // ******************** ==== ********************
 
         // ******** 开始初始化站点列表 ********
-        $('#tree-node').tree({
+        $('#treeNode').tree({
             cacheItems: true,
             selectable: true,
             multiSelect: true,
@@ -591,79 +492,41 @@
      * 查询数据
      ******************************************************************************************************************************************************************************************************/
     function refData() {
-        var selectNodes = $('#tree-node').tree('selectedItems');
+        var selectNodes = $('#treeNode').tree('selectedItems');
         if (selectNodes.length == 0) {
-            if (pagePars.selectTab === "#dataCurR") {
-                $("#tableR").empty();
-            } else if (pagePars.selectTab === "#dataCurM") {
-                $("#tableM").empty();
-            } else if (pagePars.selectTab === "#dataCurH") {
-                $("#tableH").empty();
-            }
+            $("#tableDiv").empty();
 
             callError(100, "请先选择一个站点...!!");
             return;
         }
-        if (pagePars.selectTab === "#dataCurR") {
-            var momentStr = moment($('#dateStr').val());
-            var momentEnd = moment($('#dateEnd').val());
-            var timeLength = momentEnd.diff(momentStr, 'days') + 1;
+        var momentStr = moment($('#dateStr').val());
+        var momentEnd = moment($('#dateEnd').val());
+        var timeLength = momentEnd.diff(momentStr, 'days') + 1;
 
-            if (timeLength > 3) {
-                callError(100, "时间区间最大为【3天】，当前查询区间为：" + timeLength + "天...!!");
-                return;
-            }
-            if (pagePars.gridChangedR) {
-                pagePars.gridChangedR = false;
-                createtableRHis(selectNodes);
-            } else {
-                pagePars.tabledataCurR.table.ajax.reload(null, false);
-            }
-        } else if (pagePars.selectTab === "#dataCurM") {
-            var momentStr = moment($('#dateStr').val());
-            var momentEnd = moment($('#dateEnd').val());
-            var timeLength = momentEnd.diff(momentStr, 'days') + 1;
-
-            if (timeLength > 7) {
-                callError(100, "时间区间最大为【7天】，当前查询区间为：" + timeLength + "天...!!");
-                return;
-            }
-            if (pagePars.gridChangedM) {
-                pagePars.gridChangedM = false;
-                createtableMHis(selectNodes);
-            } else {
-                pagePars.tabledataCurM.table.ajax.reload(null, false);
-            }
-        } else if (pagePars.selectTab === "#dataCurH") {
-            var momentStr = moment($('#dateStr').val());
-            var momentEnd = moment($('#dateEnd').val());
-            var timeLength = momentEnd.diff(momentStr, 'days') + 1;
-
-            if (timeLength > 31) {
-                callError(100, "时间区间最大为【31天】，当前查询区间为：" + timeLength + "天...!!");
-                return;
-            }
-            if (pagePars.gridChangedH) {
-                pagePars.gridChangedH = false;
-                createTableHHis(selectNodes);
-            } else {
-                pagePars.tabledataCurH.table.ajax.reload(null, false);
-            }
+        if (timeLength > 31) {
+            callError(100, "时间区间最大为【31天】，当前查询区间为：" + timeLength + "天...!!");
+            return;
+        }
+        if (pagePars.gridChanged) {
+            pagePars.gridChanged = false;
+            createtableHis(selectNodes);
+        } else {
+            pagePars.tabledataCur.table.ajax.reload(null, false);
         }
     }
 
     /*******************************************************************************************************************************************************************************************************
      * 生成表格 - 实时数据
      ******************************************************************************************************************************************************************************************************/
-    function createtableRHis(selectNodes) {
-        $("#tableR").empty();
-        $("#tableR").html(' <table id="tbdataCurR" class="table table-striped table-bordered display responsive nowrap" cellspacing="0" width="100%"> <thead id="tbdataCurRHC"></thead></table>');
+    function createtableHis(selectNodes) {
+        $("#tableDiv").empty();
+        $("#tableDiv").html(' <table id="tbdataCur" class="table table-striped table-bordered display nowrap" cellspacing="0" width="100%"> <thead id="tbdataCurHC"></thead></table>');
 
-        pagePars.tabledataCurR = new CommDataTables("#tbdataCurR", "#tbdataCurRHC", createColumnInfo(selectNodes, "#tbdataCurRHC"), callError);
-        pagePars.tabledataCurR.scrollY = 65;
-        pagePars.tabledataCurR.buttons = "P";
+        pagePars.tabledataCur = new CommDataTables("#tbdataCur", "#tbdataCurHC", createColumnInfo(selectNodes, "#tbdataCurHC"), callError);
+        pagePars.tabledataCur.scrollY = 72;
+        pagePars.tabledataCur.buttons = "P";
         var nodeCount = selectNodes.length;
-        pagePars.tabledataCurR.lengthInfo = {
+        pagePars.tabledataCur.lengthInfo = {
             lengthMenu: [[10 * nodeCount, 20 * nodeCount, 30 * nodeCount], [10 * nodeCount + "条", 20 * nodeCount + "条", 30 * nodeCount + "条"]],
             pageLength: 10 * nodeCount
         };
@@ -672,54 +535,7 @@
         // ***** Add information to Field *****
         // *********************************
 
-        pagePars.tabledataCurR.create(null, dataTableAjax);
-    }
-
-    /*******************************************************************************************************************************************************************************************************
-     * 生成表格 - 分钟数据
-     ******************************************************************************************************************************************************************************************************/
-    function createtableMHis(selectNodes) {
-        $("#tableM").empty();
-        $("#tableM").html(' <table id="tbdataCurM" class="table table-striped table-bordered display responsive nowrap" cellspacing="0" width="100%"> <thead id="tbdataCurMHC"></thead></table>');
-
-        pagePars.tabledataCurM = new CommDataTables("#tbdataCurM", "#tbdataCurMHC", createColumnInfo(selectNodes, "#tbdataCurMHC"), callError);
-        pagePars.tabledataCurM.scrollY = 65;
-        pagePars.tabledataCurM.buttons = "P";
-        var nodeCount = selectNodes.length;
-        pagePars.tabledataCurM.lengthInfo = {
-            lengthMenu: [[10 * nodeCount, 20 * nodeCount, 30 * nodeCount], [10 * nodeCount + "条", 20 * nodeCount + "条", 30 * nodeCount + "条"]],
-            pageLength: 10 * nodeCount
-        };
-        // ***** Add information to Column *****
-        // *********************************
-        // ***** Add information to Field *****
-        // *********************************
-
-        pagePars.tabledataCurM.create(null, dataTableAjax);
-    }
-
-    /*******************************************************************************************************************************************************************************************************
-     * 生成表格 - 小时数据
-     ******************************************************************************************************************************************************************************************************/
-    function createTableHHis(selectNodes) {
-        $("#tableH").empty();
-        $("#tableH").html(' <table id="tbdataCurH" class="table table-striped table-bordered display responsive nowrap" cellspacing="0" width="100%"> <thead id="tbdataCurHHC"></thead></table>');
-
-        pagePars.tabledataCurH = new CommDataTables("#tbdataCurH", "#tbdataCurHHC", createColumnInfo(selectNodes, "#tbdataCurHHC"), callError);
-        pagePars.tabledataCurH.scrollY = 65;
-        pagePars.tabledataCurH.buttons = "P";
-        var nodeCount = selectNodes.length;
-        pagePars.tabledataCurH.lengthInfo = {
-            lengthMenu: [[10 * nodeCount, 20 * nodeCount, 30 * nodeCount], [10 * nodeCount + "条", 20 * nodeCount + "条", 30 * nodeCount + "条"]],
-            pageLength: 10 * nodeCount
-        };
-
-        // ***** Add information to Column *****
-        // *********************************
-        // ***** Add information to Field *****
-        // *********************************
-
-        pagePars.tabledataCurH.create(null, dataTableAjax);
+        pagePars.tabledataCur.create(null, dataTableAjax);
     }
 
     /*******************************************************************************************************************************************************************************************************
@@ -804,16 +620,10 @@
             recordsFiltered: 0,
             data: []
         };
-        var dataType = "2011";
-        if (pagePars.selectTab === "#dataCurR") {
-            dataType = "2011";
-        } else if (pagePars.selectTab === "#dataCurM") {
-            dataType = "2051";
-        } else if (pagePars.selectTab === "#dataCurH") {
-            dataType = "2061";
-        }
+        var dataType = "2061";
+
         var nodeIds = "", nodeMns = "";
-        var selectNodes = $('#tree-node').tree('selectedItems');
+        var selectNodes = $('#treeNode').tree('selectedItems');
         $.each(selectNodes, function (index, selectNode) {
             var nodeMn = "";
             $.each(pagePars.enterpriseNode, function (indexInfo, nodeInfo) {
@@ -918,8 +728,19 @@
      */
     function treeSelectItem(items, dataSource) {
         if (dataSource._dataType == 'enterpriseNode') {
-            pagePars.resetGridStatus();
-            refData();
+            if (dataSource._dataType == 'enterpriseNode') {
+                var nodeName = "";
+                $.each(items, function (index, item) {
+                    if (nodeName == "") {
+                        nodeName = item.name;
+                    } else {
+                        nodeName += "、" + item.name;
+                    }
+                });
+                document.title = "小时数据对比[" + nodeName + "]";
+                pagePars.resetGridStatus();
+                refData();
+            }
         }
     }
 

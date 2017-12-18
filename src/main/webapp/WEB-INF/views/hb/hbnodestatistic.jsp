@@ -9,7 +9,7 @@
          language="java" %>
 <html>
 <head>
-    <title>小时数据对比</title>
+    <title>分钟数据统计</title>
     <meta name="description"
           content="Dashboard"/>
     <meta name="viewport"
@@ -61,7 +61,19 @@
             <div class="panel-heading">站点列表</div>
             <div class="panel-body"
                  style="height: 92%;overflow-y:scroll; ">
-                <div id="tree-node"
+                <input class="form-control"
+                       style="width: 180px; display: none;"
+                       readonly
+                       id="nodeId"
+                       name="nodeId">
+                </input>
+                <input class="form-control"
+                       style="width: 180px; display: none;"
+                       readonly
+                       id="dataType"
+                       name="dataType">
+                </input>
+                <div id="treeNode"
                      class="tree tree-plus-minus tree-solid-line">
                     <div class="tree-folder"
                          style="display: none;">
@@ -115,7 +127,7 @@
                         <div class="input-group">
                             <button type="button"
                                     class="btn btn-primary"
-                                    onclick="refData(true)">
+                                    onclick="refData()">
                                 <span class="glyphicon glyphicon-search"
                                       aria-hidden="true"></span> &nbsp;&nbsp;查询&nbsp;&nbsp;
                             </button>
@@ -126,10 +138,11 @@
             <div class="panel-body"
                  id="tableDiv">
                 <table id="tbdataCur"
-                       class="table table-striped table-bordered display responsive nowrap"
+                       class="table table-striped table-bordered display nowrap"
                        cellspacing="0"
                        width="100%">
-                    <thead id="tbdataCurHC">
+                    <thead>
+                    <tr id="tbdataCurHC"></tr>
                     </thead>
                 </table>
             </div>
@@ -227,15 +240,15 @@
      * 当前页面全局变量
      */
     var pagePars = {
-        tabledataCur: undefined,
+        firstLoad: true,
+        tableDataCur: undefined,
         // 是否需要重新数据表格
-        gridChanged: true,
         enterpriseNode: [],
-        // 重置表格状态
-        resetGridStatus: function () {
-            this.gridChanged = true;
-        },
-    }
+        pageTitle: '分钟数据统计',
+        maxDateLen: 31,
+    };
+    var pageShowDataUrl = "${ctx}/comm/referPageShow";
+
     var DataSourceTree = function (options) {
         this._data = options.data;
         this._delay = options.delay;
@@ -478,24 +491,43 @@
         });
 
         // ******** 开始初始化站点列表 ********
-        $('#tree-node').tree({
+        $('#treeNode').tree({
             cacheItems: true,
             selectable: true,
-            multiSelect: true,
+            multiSelect: false,
             dataSource: treeDataNode,
             loadingHTML: '<div class="tree-loading"><i class="fa fa-rotate-right fa-spin"></i></div>',
         });
-        // ******************** ==== ********************
+
+        $("#dataType").val("2011");
+        if ("${dataType}" == "m") {
+            pagePars.pageTitle = "分钟数据统计";
+            pagePars.maxDateLen = "31";
+            $("#dataType").val("2051");
+        } else if ("${dataType}" == "h") {
+            pagePars.pageTitle = "小时数据统计";
+            pagePars.maxDateLen = "31";
+            $("#dataType").val("2061");
+        }
+
+        pagePars.tableDataCur = new CommDataTables("#tbdataCur", "#tbdataCurHC", ${pageId}, callError, pageShowDataUrl);
+        pagePars.tableDataCur.serverInfo.referUrl = "${ctx}/viewHbNodeStatistic/refHbData";
+        pagePars.tableDataCur.serverInfo.referControls.push(ControlPar("text", "nodeId", "", $("#nodeId")));
+        pagePars.tableDataCur.serverInfo.referControls.push(ControlPar("text", "dataType", "", $("#dataType")));
+        pagePars.tableDataCur.serverInfo.referControls.push(ControlPar("text", "dateStr", "", $("#dateStr")));
+        pagePars.tableDataCur.serverInfo.referControls.push(ControlPar("text", "dateEnd", "", $("#dateEnd")));
+        pagePars.tableDataCur.buttons = "P";
+        pagePars.tableDataCur.scrollY = 72;
+        pagePars.tableDataCur.create();
+
     })
 
-    /*******************************************************************************************************************************************************************************************************
-     * 查询数据
-     ******************************************************************************************************************************************************************************************************/
+    /**
+     *
+     */
     function refData() {
-        var selectNodes = $('#tree-node').tree('selectedItems');
+        var selectNodes = $('#treeNode').tree('selectedItems');
         if (selectNodes.length == 0) {
-            $("#tableDiv").empty();
-
             callError(100, "请先选择一个站点...!!");
             return;
         }
@@ -503,224 +535,12 @@
         var momentEnd = moment($('#dateEnd').val());
         var timeLength = momentEnd.diff(momentStr, 'days') + 1;
 
-        if (timeLength > 31) {
-            callError(100, "时间区间最大为【31天】，当前查询区间为：" + timeLength + "天...!!");
+        if (timeLength > pagePars.maxDateLen) {
+            callError(100, "时间区间最大为【" + pagePars.maxDateLen + "天】，当前查询区间为：" + timeLength + "天...!!");
             return;
         }
-        if (pagePars.gridChanged) {
-            pagePars.gridChanged = false;
-            createtableHis(selectNodes);
-        } else {
-            pagePars.tabledataCur.table.ajax.reload(null, false);
-        }
-    }
 
-    /*******************************************************************************************************************************************************************************************************
-     * 生成表格 - 实时数据
-     ******************************************************************************************************************************************************************************************************/
-    function createtableHis(selectNodes) {
-        $("#tableDiv").empty();
-        $("#tableDiv").html(' <table id="tbdataCur" class="table table-striped table-bordered display nowrap" cellspacing="0" width="100%"> <thead id="tbdataCurHC"></thead></table>');
-
-        pagePars.tabledataCur = new CommDataTables("#tbdataCur", "#tbdataCurHC", createColumnInfo(selectNodes, "#tbdataCurHC"), callError);
-        pagePars.tabledataCur.scrollY = 72;
-        pagePars.tabledataCur.buttons = "P";
-        var nodeCount = selectNodes.length;
-        pagePars.tabledataCur.lengthInfo = {
-            lengthMenu: [[10 * nodeCount, 20 * nodeCount, 30 * nodeCount], [10 * nodeCount + "条", 20 * nodeCount + "条", 30 * nodeCount + "条"]],
-            pageLength: 10 * nodeCount
-        };
-        // ***** Add information to Column *****
-        // *********************************
-        // ***** Add information to Field *****
-        // *********************************
-
-        pagePars.tabledataCur.create(null, dataTableAjax);
-    }
-
-    /*******************************************************************************************************************************************************************************************************
-     * 动态生成表格列信息
-     ******************************************************************************************************************************************************************************************************/
-    function createColumnInfo(selectNodes, headColumn) {
-        var tableColumnInfo = {};
-        var innerHtml = "", parLine = "  ";
-
-        innerHtml = "<tr>";
-        tableColumnInfo.nodeName = {
-            name: "站点名称",
-            primary: 0,
-            update: 0,
-            edit: 0,
-            type: "text",
-            lock: 0,
-            sort: 0,
-            hide: 0,
-            align: 0,
-            prtype: "T"
-        };
-        innerHtml += "<th>站点名称</th>";
-        tableColumnInfo.dataTime = {
-            name: "监测时间",
-            primary: 0,
-            update: 0,
-            edit: 0,
-            type: "text",
-            lock: 0,
-            sort: 1,
-            hide: 0,
-            align: 0,
-            prtype: "T"
-        };
-        innerHtml += "<th>监测时间</th>";
-
-        $.each(pagePars.enterpriseNode, function (indexNode, nodeData) {
-            var select = false;
-            $.each(selectNodes, function (indexSelect, selectNode) {
-                if (nodeData.nodeId == selectNode.id) {
-                    select = true;
-                }
-            });
-            if (select && nodeData.hasOwnProperty("nodeItem")) {
-                for (var par in nodeData.nodeItem) {
-                    if (nodeData.nodeItem[par].itemSelect == 1 && parLine.indexOf("-" + par + "-") <= 0) {
-                        var parName = nodeData.nodeItem[par].itemName;
-                        var columnInfo = {};
-
-                        columnInfo.name = par;
-                        columnInfo.primary = 0;
-                        columnInfo.update = 0;
-                        columnInfo.edit = 0;
-                        columnInfo.type = "text";
-                        columnInfo.lock = 0;
-                        columnInfo.sort = 0;
-                        columnInfo.hide = 0;
-                        columnInfo.align = 2;
-                        columnInfo.prtype = "T";
-
-                        tableColumnInfo["_" + par] = columnInfo;
-                        innerHtml += "<th>" + parName + " (<small>" + nodeData.nodeItem[par].itemUnit + "</small>)</th>";
-                        parLine += "-" + par + "-";
-                    }
-                }
-            }
-        });
-        innerHtml += "</tr>";
-        $(headColumn).html(innerHtml);
-
-        return tableColumnInfo;
-    }
-
-    /*******************************************************************************************************************************************************************************************************
-     * 向服务器请求数据
-     ******************************************************************************************************************************************************************************************************/
-    function dataTableAjax(data, callback, settings) {
-        var tableData = {
-            draw: settings.iDraw,
-            recordsTotal: 0,
-            recordsFiltered: 0,
-            data: []
-        };
-        var dataType = "2061";
-
-        var nodeIds = "", nodeMns = "";
-        var selectNodes = $('#tree-node').tree('selectedItems');
-        $.each(selectNodes, function (index, selectNode) {
-            var nodeMn = "";
-            $.each(pagePars.enterpriseNode, function (indexInfo, nodeInfo) {
-                if (nodeInfo.nodeId == selectNode.id) {
-                    nodeMn = nodeInfo.nodeMn;
-                }
-            });
-            if (nodeIds == "") {
-                nodeIds = selectNode.id;
-                nodeMns = nodeMn;
-            } else {
-                nodeIds += ";" + selectNode.id;
-                nodeMns += ";" + nodeMn;
-            }
-        });
-        $.ajax({
-            async: false,
-            type: "POST",
-            url: "${ctx}/viewHbContrast/refHbData",
-            cache: false,
-            data: ServerRequestPar(1, {
-                nodeId: nodeIds,
-                nodeMn: nodeMns,
-                dataType: dataType,
-                dateStr: $('#dateStr').val(),
-                dateEnd: $('#dateEnd').val(),
-                pageNumber: data.length == -1 ? 0 : data.start / data.length + 1,
-                pageSize: data.length == -1 ? 0 : data.length
-            }),
-            dataType: "json",
-            headers: {
-                'Content-Type': 'application/json;charset=utf-8'
-            },
-            success: function (res) {
-                if (res.code != 0) {
-                    callback(tableData);
-                    callError(res.code, res.message);
-                } else {
-                    tableData.recordsTotal = res.totalCount;
-                    tableData.recordsFiltered = res.totalCount;
-
-                    $.each(res.data, function (index, dataHis) {
-                        if (dataHis.hasOwnProperty("nodeData")) {
-                            var lineData = $.parseJSON(dataHis.nodeData);
-
-                            $.each(pagePars.enterpriseNode, function (index, node) {
-                                if (node.nodeMn == dataHis.nodeMn && node.hasOwnProperty("nodeItem")) {
-                                    var nodeItem = node.nodeItem;
-
-                                    lineData.nodeName = node.nodeName;
-                                    for (var item in nodeItem) {
-                                        if (node.nodeItem[item].itemSelect == 1) {
-                                            if (lineData.hasOwnProperty(item) && lineData[item] != "") {
-                                                if (node.nodeItem[item].itemAlarm == 1) {
-                                                    var showValue = "";
-
-                                                    if (nodeItem[item].itemVmin != "" && parseFloat(nodeItem[item].itemVmin) > parseFloat(lineData[item])) {
-                                                        showValue = "<span class='badge' title='参数下限: " + nodeItem[item].itemVmin + "'><small>下</small></span>";
-                                                    } else if (nodeItem[item].itemVmax != "" && parseFloat(nodeItem[item].itemVmax) < parseFloat(lineData[item])) {
-                                                        showValue = "<span class='badge' title='参数上限: " + nodeItem[item].itemVmax + "'><small>上</small></span>";
-                                                    }
-                                                    if (nodeItem[item].itemVala3 != "" && parseFloat(lineData[item]) > parseFloat(nodeItem[item].itemVala3)) {
-                                                        showValue += "<span class='badge' title='三级阀值: " + nodeItem[item].itemVala3 + "'><small>三</small></span>";
-                                                    } else if (nodeItem[item].itemVala2 != "" && parseFloat(lineData[item]) > parseFloat(nodeItem[item].itemVala2)) {
-                                                        showValue += "<span class='badge' title='二级阀值: " + nodeItem[item].itemVala2 + "'><small>二</small></span>";
-                                                    } else if (nodeItem[item].itemVala1 != "" && parseFloat(lineData[item]) > parseFloat(nodeItem[item].itemVala1)) {
-                                                        showValue += "<span class='badge' title='一级阀值: " + nodeItem[item].itemVala1 + "'><small>一</small></span>";
-                                                    }
-
-                                                    if (showValue != "") {
-                                                        lineData["_" + item] = showValue + '<kbd style="background:red">' + lineData[item] + '</kbd>';
-                                                    } else {
-                                                        lineData["_" + item] = lineData[item];
-                                                    }
-                                                } else {
-                                                    lineData["_" + item] = lineData[item];
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            });
-
-                            lineData.DT_RowId = "_" + index;
-                            lineData.dataTime = dataHis.dataTime;
-
-                            tableData.data.push(lineData);
-                        }
-                    });
-                }
-                callback(tableData);
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                callError(-900, "操作未完成，向服务器请求失败...");
-                callback(tableData);
-            }
-        });
+        pagePars.tableDataCur.table.ajax.reload(null, false);
     }
 
     /**
@@ -728,19 +548,13 @@
      */
     function treeSelectItem(items, dataSource) {
         if (dataSource._dataType == 'enterpriseNode') {
-            if (dataSource._dataType == 'enterpriseNode') {
-                var nodeName = "";
-                $.each(items, function (index, item) {
-                    if (nodeName == "") {
-                        nodeName = item.name;
-                    } else {
-                        nodeName += "、" + item.name;
-                    }
-                });
-                document.title = "小时数据对比[" + nodeName + "]";
-                pagePars.resetGridStatus();
-                refData();
+            if (items.length > 0) {
+                $("#nodeId").val(items[0].id);
+                document.title = pagePars.pageTitle + " - " + items[0].name;
+            } else {
+                $("#nodeId").val("");
             }
+            refData();
         }
     }
 
@@ -748,9 +562,13 @@
      * 错误提示框
      ******************************************************************************************************************************************************************************************************/
     function callError(code, message) {
-        $("#mwTitle").html('<span class="glyphicon glyphicon-bullhorn" aria-hidden="true">&nbsp;警告</span>');
-        $("#mwMessage").html(message);
-        $("#modal-warning").modal("show");
+        if (!pagePars.firstLoad) {
+            $("#mwTitle").html('<span class="glyphicon glyphicon-bullhorn" aria-hidden="true">&nbsp;警告</span>');
+            $("#mwMessage").html(message);
+            $("#modal-warning").modal("show");
+        } else {
+            pagePars.firstLoad = false;
+        }
     }
 
     /*******************************************************************************************************************************************************************************************************

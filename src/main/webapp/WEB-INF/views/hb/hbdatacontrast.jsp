@@ -9,7 +9,7 @@
          language="java" %>
 <html>
 <head>
-    <title>分钟数据对比</title>
+    <title>实时数据对比</title>
     <meta name="description"
           content="Dashboard"/>
     <meta name="viewport"
@@ -61,7 +61,7 @@
             <div class="panel-heading">站点列表</div>
             <div class="panel-body"
                  style="height: 92%;overflow-y:scroll; ">
-                <div id="tree-node"
+                <div id="treeNode"
                      class="tree tree-plus-minus tree-solid-line">
                     <div class="tree-folder"
                          style="display: none;">
@@ -126,7 +126,7 @@
             <div class="panel-body"
                  id="tableDiv">
                 <table id="tbdataCur"
-                       class="table table-striped table-bordered display responsive nowrap"
+                       class="table table-striped table-bordered display nowrap"
                        cellspacing="0"
                        width="100%">
                     <thead id="tbdataCurHC">
@@ -231,6 +231,9 @@
         // 是否需要重新数据表格
         gridChanged: true,
         enterpriseNode: [],
+        pageTitle: '实时数据对比',
+        maxDateLen: 3,
+        dataType: '2011',
         // 重置表格状态
         resetGridStatus: function () {
             this.gridChanged = true;
@@ -478,21 +481,30 @@
         });
 
         // ******** 开始初始化站点列表 ********
-        $('#tree-node').tree({
+        $('#treeNode').tree({
             cacheItems: true,
             selectable: true,
             multiSelect: true,
             dataSource: treeDataNode,
             loadingHTML: '<div class="tree-loading"><i class="fa fa-rotate-right fa-spin"></i></div>',
         });
-        // ******************** ==== ********************
+
+        if ("${dataType}" == "m") {
+            pagePars.pageTitle = "分钟数据对比";
+            pagePars.maxDateLen = "7";
+            pagePars.dataType = "2051";
+        } else if ("${dataType}" == "h") {
+            pagePars.pageTitle = "小时数据对比";
+            pagePars.maxDateLen = "31";
+            pagePars.dataType = "2061";
+        }
     })
 
     /*******************************************************************************************************************************************************************************************************
      * 查询数据
      ******************************************************************************************************************************************************************************************************/
     function refData() {
-        var selectNodes = $('#tree-node').tree('selectedItems');
+        var selectNodes = $('#treeNode').tree('selectedItems');
         if (selectNodes.length == 0) {
             $("#tableDiv").empty();
 
@@ -503,8 +515,8 @@
         var momentEnd = moment($('#dateEnd').val());
         var timeLength = momentEnd.diff(momentStr, 'days') + 1;
 
-        if (timeLength > 7) {
-            callError(100, "时间区间最大为【7天】，当前查询区间为：" + timeLength + "天...!!");
+        if (timeLength > pagePars.maxDateLen) {
+            callError(100, "时间区间最大为【" + page.maxDateLen + "天】，当前查询区间为：" + timeLength + "天...!!");
             return;
         }
         if (pagePars.gridChanged) {
@@ -620,10 +632,9 @@
             recordsFiltered: 0,
             data: []
         };
-        var dataType = "2051";
-
         var nodeIds = "", nodeMns = "";
-        var selectNodes = $('#tree-node').tree('selectedItems');
+        var selectNodes = $('#treeNode').tree('selectedItems');
+
         $.each(selectNodes, function (index, selectNode) {
             var nodeMn = "";
             $.each(pagePars.enterpriseNode, function (indexInfo, nodeInfo) {
@@ -647,7 +658,7 @@
             data: ServerRequestPar(1, {
                 nodeId: nodeIds,
                 nodeMn: nodeMns,
-                dataType: dataType,
+                dataType: pagePars.dataType,
                 dateStr: $('#dateStr').val(),
                 dateEnd: $('#dateEnd').val(),
                 pageNumber: data.length == -1 ? 0 : data.start / data.length + 1,
@@ -677,26 +688,33 @@
                                     for (var item in nodeItem) {
                                         if (node.nodeItem[item].itemSelect == 1) {
                                             if (lineData.hasOwnProperty(item) && lineData[item] != "") {
-                                                if (node.nodeItem[item].itemAlarm == 1) {
-                                                    var showValue = "";
+                                                var showValue = "";
+                                                var showTitle = "";
 
-                                                    if (nodeItem[item].itemVmin != "" && parseFloat(nodeItem[item].itemVmin) > parseFloat(lineData[item])) {
-                                                        showValue = "<span class='badge' title='参数下限: " + nodeItem[item].itemVmin + "'><small>下</small></span>";
-                                                    } else if (nodeItem[item].itemVmax != "" && parseFloat(nodeItem[item].itemVmax) < parseFloat(lineData[item])) {
-                                                        showValue = "<span class='badge' title='参数上限: " + nodeItem[item].itemVmax + "'><small>上</small></span>";
-                                                    }
-                                                    if (nodeItem[item].itemVala3 != "" && parseFloat(lineData[item]) > parseFloat(nodeItem[item].itemVala3)) {
-                                                        showValue += "<span class='badge' title='三级阀值: " + nodeItem[item].itemVala3 + "'><small>三</small></span>";
-                                                    } else if (nodeItem[item].itemVala2 != "" && parseFloat(lineData[item]) > parseFloat(nodeItem[item].itemVala2)) {
-                                                        showValue += "<span class='badge' title='二级阀值: " + nodeItem[item].itemVala2 + "'><small>二</small></span>";
-                                                    } else if (nodeItem[item].itemVala1 != "" && parseFloat(lineData[item]) > parseFloat(nodeItem[item].itemVala1)) {
-                                                        showValue += "<span class='badge' title='一级阀值: " + nodeItem[item].itemVala1 + "'><small>一</small></span>";
-                                                    }
+                                                if (nodeItem[item].itemVmin != "" && parseFloat(nodeItem[item].itemVmin) > parseFloat(lineData[item])) {
+                                                    showValue = "<span class='badge' title='参数下限: " + nodeItem[item].itemVmin + "'><small>下</small></span>";
+                                                    showTitle += '参数下限: ' + nodeItem[item].itemVmin;
+                                                } else if (nodeItem[item].itemVmax != "" && parseFloat(nodeItem[item].itemVmax) < parseFloat(lineData[item])) {
+                                                    showValue = "<span class='badge' title='参数上限: " + nodeItem[item].itemVmax + "'><small>上</small></span>";
+                                                    showTitle += ' 参数上限: ' + nodeItem[item].itemVmax;
+                                                }
+                                                if (nodeItem[item].itemVala3 != "" && parseFloat(lineData[item]) > parseFloat(nodeItem[item].itemVala3)) {
+                                                    showValue += "<span class='badge' title='三级阀值: " + nodeItem[item].itemVala3 + "'><small>三</small></span>";
+                                                    showTitle += ' 三级阀值: ' + nodeItem[item].itemVala3;
+                                                } else if (nodeItem[item].itemVala2 != "" && parseFloat(lineData[item]) > parseFloat(nodeItem[item].itemVala2)) {
+                                                    showValue += "<span class='badge' title='二级阀值: " + nodeItem[item].itemVala2 + "'><small>二</small></span>";
+                                                    showTitle += ' 二级阀值: ' + nodeItem[item].itemVala2;
+                                                } else if (nodeItem[item].itemVala1 != "" && parseFloat(lineData[item]) > parseFloat(nodeItem[item].itemVala1)) {
+                                                    showValue += "<span class='badge' title='一级阀值: " + nodeItem[item].itemVala1 + "'><small>一</small></span>";
+                                                    showTitle += ' 一级阀值: ' + nodeItem[item].itemVala1;
+                                                }
 
-                                                    if (showValue != "") {
+                                                if (showValue != "") {
+                                                    if (nodeItem[item].itemAlarm == 1) {
                                                         lineData["_" + item] = showValue + '<kbd style="background:red">' + lineData[item] + '</kbd>';
-                                                    } else {
-                                                        lineData["_" + item] = lineData[item];
+                                                    }
+                                                    else {
+                                                        lineData["_" + item] = '<kbd style="background:green" title="' + showTitle + '">' + lineData[item] + '</kbd>';
                                                     }
                                                 } else {
                                                     lineData["_" + item] = lineData[item];
@@ -736,7 +754,7 @@
                     nodeName += "、" + item.name;
                 }
             });
-            document.title = "分钟数据对比[" + nodeName + "]";
+            document.title = pagePars.pageTitle + " - " + nodeName;
             pagePars.resetGridStatus();
             refData();
         }

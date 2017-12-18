@@ -457,43 +457,49 @@
                                     var nodeItem = node.nodeItem;
 
                                     for (var item in nodeItem) {
-                                        var dataLine = nodeItem[item];
-                                        var itemValue = nodeData.hasOwnProperty(item) ? nodeData[item] : undefined;
-                                        var alarm = false;
+                                        if (nodeItem[item].itemSelect == 1) {
+                                            var dataLine = nodeItem[item];
+                                            var itemValue = nodeData.hasOwnProperty(item) ? nodeData[item] : undefined;
+                                            var alarm = false;
 
-                                        rowId++;
-                                        dataLine.DT_RowId = "_" + rowId;
-                                        dataLine.itemValue = itemValue;
-                                        dataLine.dataTime = itemValue ? res.data[0].dataTime : "";
+                                            rowId++;
+                                            dataLine.DT_RowId = "_" + rowId;
+                                            dataLine.itemValue = itemValue;
+                                            dataLine.dataTime = itemValue ? res.data[0].dataTime : "";
 
-                                        if (itemValue != undefined) {
-                                            if (parseFloat(dataLine.itemVmin) > parseFloat(itemValue)) {
-                                                dataLine.itemVmin = '<kbd style="background:red">' + dataLine.itemVmin + '</kbd>';
-                                                alarm = true;
+                                            if (itemValue != undefined) {
+                                                if (parseFloat(dataLine.itemVmin) > parseFloat(itemValue)) {
+                                                    dataLine.itemVmin = '<kbd style="background:red">' + dataLine.itemVmin + '</kbd>';
+                                                    alarm = true;
+                                                }
+                                                if (parseFloat(dataLine.itemVmax) < parseFloat(itemValue)) {
+                                                    dataLine.itemVmax = '<kbd style="background:red">' + dataLine.itemVmax + '</kbd>';
+                                                    alarm = true;
+                                                }
+
+                                                if (parseFloat(dataLine.itemVala3) < parseFloat(itemValue)) {
+                                                    dataLine.itemVala3 = '<kbd style="background:red">' + dataLine.itemVala3 + '</kbd>';
+                                                    alarm = true;
+                                                } else if (parseFloat(dataLine.itemVala2) < parseFloat(itemValue)) {
+                                                    dataLine.itemVala2 = '<kbd style="background:red">' + dataLine.itemVala2 + '</kbd>';
+                                                    alarm = true;
+                                                } else if (parseFloat(dataLine.itemVala1) < parseFloat(itemValue)) {
+                                                    dataLine.itemVala1 = '<kbd style="background:red">' + dataLine.itemVala1 + '</kbd>';
+                                                    alarm = true;
+                                                }
                                             }
-                                            if (parseFloat(dataLine.itemVmax) < parseFloat(itemValue)) {
-                                                dataLine.itemVmax = '<kbd style="background:red">' + dataLine.itemVmax + '</kbd>';
-                                                alarm = true;
+                                            if (alarm) {
+                                                if (nodeItem[item].itemAlarm == 1) {
+                                                    dataLine.itemValue = '<kbd style="background:red">' + dataLine.itemValue + '</kbd>';
+                                                } else {
+                                                    dataLine.itemValue = '<kbd style="background:green">' + dataLine.itemValue + '</kbd>';
+                                                }
                                             }
 
-                                            if (parseFloat(dataLine.itemVala3) < parseFloat(itemValue)) {
-                                                dataLine.itemVala3 = '<kbd style="background:red">' + dataLine.itemVala3 + '</kbd>';
-                                                alarm = true;
-                                            } else if (parseFloat(dataLine.itemVala2) < parseFloat(itemValue)) {
-                                                dataLine.itemVala2 = '<kbd style="background:red">' + dataLine.itemVala2 + '</kbd>';
-                                                alarm = true;
-                                            } else if (parseFloat(dataLine.itemVala1) < parseFloat(itemValue)) {
-                                                dataLine.itemVala1 = '<kbd style="background:red">' + dataLine.itemVala1 + '</kbd>';
-                                                alarm = true;
-                                            }
+                                            tableData.data.push(dataLine);
+                                            tableData.recordsTotal++;
+                                            tableData.recordsFiltered++;
                                         }
-                                        if (alarm) {
-                                            dataLine.itemValue = '<kbd style="background:red">' + dataLine.itemValue + '</kbd>';
-                                        }
-
-                                        tableData.data.push(dataLine);
-                                        tableData.recordsTotal++;
-                                        tableData.recordsFiltered++;
                                     }
 
                                     callback(tableData);
