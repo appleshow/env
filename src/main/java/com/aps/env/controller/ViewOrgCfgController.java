@@ -1,7 +1,7 @@
 package com.aps.env.controller;
 
 import com.aps.env.comm.*;
-import com.aps.env.service.ViewOrgCfgService;
+import com.aps.env.service.OrgCfgService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,8 +25,8 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequestMapping(value = "viewOrgConfig")
 public class ViewOrgCfgController extends ExceptionController {
-    @Resource(name = "viewOrgCfgServiceImpl")
-    private ViewOrgCfgService viewOrgCfgService;
+    @Resource(name = "orgCfgServiceImpl")
+    private OrgCfgService viewOrgCfgService;
     private final int formId = 2;
 
     /**

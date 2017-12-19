@@ -4,7 +4,7 @@ import com.aps.env.comm.CommUtil;
 import com.aps.env.comm.RequestMdyPar;
 import com.aps.env.comm.RequestRefPar;
 import com.aps.env.comm.ResponseData;
-import com.aps.env.service.ViewHbEnterpriseService;
+import com.aps.env.service.HbEnterpriseService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,8 +28,8 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequestMapping(value = "viewHbEnterpriseCfg")
 public class ViewHbEnterpriseController extends ExceptionController {
-    @Resource(name = "viewHbEnterpriseServiceImpl")
-    private ViewHbEnterpriseService viewHbEnterpriseService;
+    @Resource(name = "hbEnterpriseServiceImpl")
+    private HbEnterpriseService viewHbEnterpriseService;
     private final int formId = 23;
 
     /**

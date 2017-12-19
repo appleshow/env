@@ -4,7 +4,7 @@ import com.aps.env.comm.CommUtil;
 import com.aps.env.comm.RequestMdyPar;
 import com.aps.env.comm.RequestRefPar;
 import com.aps.env.comm.ResponseData;
-import com.aps.env.service.ViewHbTypeItemCfgService;
+import com.aps.env.service.HbTypeItemCfgService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,8 +28,8 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequestMapping(value = "viewHbTypeItemConfig")
 public class ViewHbTypeItemCfgController extends ExceptionController {
-    @Resource(name = "viewHbTypeItemCfgServiceImpl")
-    private ViewHbTypeItemCfgService viewHbTypeItemCfgService;
+    @Resource(name = "hbTypeItemCfgServiceImpl")
+    private HbTypeItemCfgService viewHbTypeItemCfgService;
     private final int formId = 11;
 
     /**

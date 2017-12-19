@@ -1,7 +1,7 @@
 package com.aps.env.controller;
 
 import com.aps.env.comm.*;
-import com.aps.env.service.ViewComCodeCfgService;
+import com.aps.env.service.ComCodeCfgService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,8 +22,8 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequestMapping(value = "viewComCodeConfig")
 public class ViewComCodeCfgController extends ExceptionController {
-    @Resource(name = "viewComCodeCfgServiceImpl")
-    private ViewComCodeCfgService viewComCodeCfgService;
+    @Resource(name = "comCodeCfgServiceImpl")
+    private ComCodeCfgService viewComCodeCfgService;
 
     /**
      * @param httpSession

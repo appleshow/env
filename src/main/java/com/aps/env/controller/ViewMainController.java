@@ -4,16 +4,13 @@ import com.aps.env.comm.CommUtil;
 import com.aps.env.comm.RequestMdyPar;
 import com.aps.env.comm.ResponseData;
 import com.aps.env.comm.StringUtil;
-import com.aps.env.service.ViewMainService;
+import com.aps.env.service.MainService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -30,8 +27,8 @@ import java.util.Map;
 @Controller
 @RequestMapping(value = "viewMain")
 public class ViewMainController extends ExceptionController {
-    @Resource(name = "viewMainServiceImpl")
-    private ViewMainService viewMainService;
+    @Resource(name = "mainServiceImpl")
+    private MainService viewMainService;
 
     /**
      * @param httpSession

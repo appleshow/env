@@ -18,11 +18,11 @@
                   value="jdbc:mysql://192.168.0.105:3306/env?useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=GMT%2B8&amp;useSSL=false&amp;nullNamePatternMatchesAll=true"/>
         <property name="user" value="admin"/>
         <property name="password" value="soaring"/>
-        <property name="initialPoolSize" value="1"/>
-        <property name="minPoolSize" value="5"/>
-        <property name="maxPoolSize" value="20"/>
-        <property name="acquireIncrement" value="5"/>
-        <property name="maxIdleTime" value="10"/>
-        <property name="maxStatements" value="0"/>
+        <property name="maxPoolSize" value="30" />
+        <property name="minPoolSize" value="10" />
+        <property name="maxIdleTime" value="1800" />
+        <property name="maxStatements" value="0" />
+        <property name="initialPoolSize" value="10" />
+        <property name="idleConnectionTestPeriod" value="1800" />
     </bean>
 </beans>

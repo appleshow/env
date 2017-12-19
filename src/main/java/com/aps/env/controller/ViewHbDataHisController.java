@@ -1,10 +1,9 @@
 package com.aps.env.controller;
 
 import com.aps.env.comm.CommUtil;
-import com.aps.env.comm.JsonUtil;
 import com.aps.env.comm.RequestRefPar;
 import com.aps.env.comm.ResponseData;
-import com.aps.env.service.ViewHbDataHisService;
+import com.aps.env.service.HbDataHisService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,8 +25,8 @@ import java.text.ParseException;
 @Controller
 @RequestMapping(value = "viewHbDataHis")
 public class ViewHbDataHisController extends ExceptionController {
-    @Resource(name = "viewHbDataHisServiceImpl")
-    private ViewHbDataHisService viewHbDataHisService;
+    @Resource(name = "hbDataHisServiceImpl")
+    private HbDataHisService viewHbDataHisService;
 
     /**
      * @param httpSession

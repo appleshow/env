@@ -1,8 +1,8 @@
 package com.aps.env.controller;
 
 import com.aps.env.comm.*;
-import com.aps.env.service.ViewComCodeCfgService;
-import com.aps.env.service.ViewOrgFormCfgService;
+import com.aps.env.service.ComCodeCfgService;
+import com.aps.env.service.OrgFormCfgService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,10 +26,10 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequestMapping(value = "viewOrgFormConfig")
 public class ViewOrgFormCfgController extends ExceptionController {
-    @Resource(name = "viewOrgFormCfgServiceImpl")
-    private ViewOrgFormCfgService viewOrgFormCfgService;
-    @Resource(name = "viewComCodeCfgServiceImpl")
-    private ViewComCodeCfgService viewComCodeCfgService;
+    @Resource(name = "orgFormCfgServiceImpl")
+    private OrgFormCfgService viewOrgFormCfgService;
+    @Resource(name = "comCodeCfgServiceImpl")
+    private ComCodeCfgService viewComCodeCfgService;
     private final int formId = 6;
 
     /**

@@ -3,7 +3,7 @@ package com.aps.env.controller;
 import com.aps.env.comm.CommUtil;
 import com.aps.env.comm.RequestRefPar;
 import com.aps.env.comm.ResponseData;
-import com.aps.env.service.ViewHbNodeStatisticService;
+import com.aps.env.service.HbNodeStatisticService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,8 +28,8 @@ import java.text.ParseException;
 @Controller
 @RequestMapping(value = "viewHbNodeStatistic")
 public class ViewHbNodeStatisticController extends ExceptionController {
-    @Resource(name = "viewHbNodeStatisticServiceImpl")
-    private ViewHbNodeStatisticService viewHbNodeStatisticService;
+    @Resource(name = "hbNodeStatisticServiceImpl")
+    private HbNodeStatisticService viewHbNodeStatisticService;
 
     /**
      * @param httpSession

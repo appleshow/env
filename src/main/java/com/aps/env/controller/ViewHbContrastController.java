@@ -3,7 +3,7 @@ package com.aps.env.controller;
 import com.aps.env.comm.CommUtil;
 import com.aps.env.comm.RequestRefPar;
 import com.aps.env.comm.ResponseData;
-import com.aps.env.service.ViewHbContrastService;
+import com.aps.env.service.HbContrastService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,8 +28,8 @@ import java.text.ParseException;
 @Controller
 @RequestMapping(value = "viewHbContrast")
 public class ViewHbContrastController extends ExceptionController {
-    @Resource(name = "viewHbContrastServiceImpl")
-    private ViewHbContrastService viewHbContrastService;
+    @Resource(name = "hbContrastServiceImpl")
+    private HbContrastService viewHbContrastService;
 
     /**
      * @param httpSession

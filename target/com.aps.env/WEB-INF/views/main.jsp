@@ -367,7 +367,7 @@
 <script src="${ctx}/assets/js/md5.js"></script>
 <script>
     var UNDEFINED = undefined;
-    var pageid = "8", pageurl = "hb/hbnodemap.html", pagename = "站点分布概览", pageicon = "fa fa-map-marker";
+    var pageid = "8", pageurl = "${ctx}map/hbnodeallocation", pagename = "站点分布", pageicon = "fa fa-star";
 
     /* Sets Themed Colors Based on Themes */
 

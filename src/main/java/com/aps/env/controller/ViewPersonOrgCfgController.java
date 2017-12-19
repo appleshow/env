@@ -1,9 +1,9 @@
 package com.aps.env.controller;
 
 import com.aps.env.comm.*;
-import com.aps.env.service.ViewOrgCfgService;
-import com.aps.env.service.ViewPersonCfgService;
-import com.aps.env.service.ViewPersonOrgCfgService;
+import com.aps.env.service.OrgCfgService;
+import com.aps.env.service.PersonCfgService;
+import com.aps.env.service.PersonOrgCfgService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,12 +24,12 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequestMapping(value = "viewPersonOrgConfig")
 public class ViewPersonOrgCfgController extends ExceptionController {
-    @Resource(name = "viewOrgCfgServiceImpl")
-    private ViewOrgCfgService viewOrgCfgService;
-    @Resource(name = "viewPersonCfgServiceImpl")
-    private ViewPersonCfgService viewPersonCfgService;
-    @Resource(name = "viewPersonOrgCfgServiceImpl")
-    private ViewPersonOrgCfgService viewPersonOrgCfgService;
+    @Resource(name = "orgCfgServiceImpl")
+    private OrgCfgService viewOrgCfgService;
+    @Resource(name = "personCfgServiceImpl")
+    private PersonCfgService viewPersonCfgService;
+    @Resource(name = "personOrgCfgServiceImpl")
+    private PersonOrgCfgService viewPersonOrgCfgService;
     private final int formId = 7;
 
     /**

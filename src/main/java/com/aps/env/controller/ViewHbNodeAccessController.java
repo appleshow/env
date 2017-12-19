@@ -4,7 +4,7 @@ import com.aps.env.comm.CommUtil;
 import com.aps.env.comm.RequestMdyPar;
 import com.aps.env.comm.RequestRefPar;
 import com.aps.env.comm.ResponseData;
-import com.aps.env.service.ViewHbNodeAccessService;
+import com.aps.env.service.HbNodeAccessService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,8 +28,8 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequestMapping(value = "viewHbNodeAccessCfg")
 public class ViewHbNodeAccessController extends ExceptionController {
-    @Resource(name = "viewHbNodeAccessServiceImpl")
-    private ViewHbNodeAccessService viewHbNodeAccessService;
+    @Resource(name = "hbNodeAccessServiceImpl")
+    private HbNodeAccessService viewHbNodeAccessService;
     private final int formId = 18;
 
     /**

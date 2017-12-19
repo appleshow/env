@@ -1,7 +1,7 @@
 package com.aps.env.controller;
 
 import com.aps.env.comm.*;
-import com.aps.env.service.ViewMenuCfgService;
+import com.aps.env.service.MenuCfgService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,8 +22,8 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequestMapping(value = "viewMenuConfig")
 public class ViewMenuCfgController extends ExceptionController {
-    @Resource(name = "viewMenuCfgServiceImpl")
-    private ViewMenuCfgService viewMenuCfgService;
+    @Resource(name = "menuCfgServiceImpl")
+    private MenuCfgService viewMenuCfgService;
     private final int formId = 5;
 
     /**

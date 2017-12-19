@@ -3,7 +3,7 @@ package com.aps.env.controller;
 import com.aps.env.comm.CommUtil;
 import com.aps.env.comm.RequestRefPar;
 import com.aps.env.comm.ResponseData;
-import com.aps.env.service.ViewHbDataLLineService;
+import com.aps.env.service.HbDataLLineService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,8 +27,8 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequestMapping(value = "viewHbDataLLine")
 public class ViewHbDataLLineController extends ExceptionController {
-    @Resource(name = "viewHbDataLLineServiceImpl")
-    private ViewHbDataLLineService viewHbDataLLineService;
+    @Resource(name = "hbDataLLineServiceImpl")
+    private HbDataLLineService viewHbDataLLineService;
     private final int formId = 13;
 
     /**

@@ -1,7 +1,7 @@
 package com.aps.env.controller;
 
 import com.aps.env.comm.*;
-import com.aps.env.service.ViewPageShowService;
+import com.aps.env.service.PageShowService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,8 +25,8 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequestMapping(value = "viewPageShow")
 public class ViewPageShowController extends ExceptionController {
-    @Resource(name = "viewPageShowServiceImpl")
-    private ViewPageShowService viewPageShowService;
+    @Resource(name = "pageShowServiceImpl")
+    private PageShowService viewPageShowService;
     private int formId = 9;
 
     /**

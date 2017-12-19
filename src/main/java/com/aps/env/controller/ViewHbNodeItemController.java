@@ -4,7 +4,7 @@ import com.aps.env.comm.CommUtil;
 import com.aps.env.comm.RequestMdyPar;
 import com.aps.env.comm.RequestRefPar;
 import com.aps.env.comm.ResponseData;
-import com.aps.env.service.ViewHbNodeItemService;
+import com.aps.env.service.HbNodeItemService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,8 +28,8 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequestMapping(value = "viewHbNodeItemCfg")
 public class ViewHbNodeItemController {
-    @Resource(name = "viewHbNodeItemServiceImpl")
-    private ViewHbNodeItemService viewHbNodeItemService;
+    @Resource(name = "hbNodeItemServiceImpl")
+    private HbNodeItemService viewHbNodeItemService;
     private int formId = 12;
 
     /**

@@ -177,14 +177,14 @@
     };
     var pageShowDataUrl = "${ctx}/comm/referPageShow";
 
-    var regionDataSource = function (options) {
+    var nodeDataSource = function (options) {
         this._data = options.data;
         this._delay = options.delay;
         this._dataType = 'enterpriseNode';
     };
 
 
-    regionDataSource.prototype = {
+    nodeDataSource.prototype = {
         data: function (options, callback) {
             setTimeout(function () {
                     if (options.id != null) {
@@ -400,7 +400,7 @@
             cacheItems: true,
             selectable: true,
             multiSelect: false,
-            dataSource: new regionDataSource({
+            dataSource: new nodeDataSource({
                 data: [],
                 delay: 400
             }),

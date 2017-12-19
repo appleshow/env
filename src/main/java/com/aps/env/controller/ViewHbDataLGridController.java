@@ -3,7 +3,7 @@ package com.aps.env.controller;
 import com.aps.env.comm.CommUtil;
 import com.aps.env.comm.RequestRefPar;
 import com.aps.env.comm.ResponseData;
-import com.aps.env.service.ViewHbDataLGridService;
+import com.aps.env.service.HbDataLGridService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,8 +27,8 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequestMapping(value = "viewHbDataLGrid")
 public class ViewHbDataLGridController extends ExceptionController {
-    @Resource(name = "viewHbDataLGridServiceImpl")
-    private ViewHbDataLGridService viewHbDataLGridService;
+    @Resource(name = "hbDataLGridServiceImpl")
+    private HbDataLGridService viewHbDataLGridService;
     private final int formId = 28;
 
     /**

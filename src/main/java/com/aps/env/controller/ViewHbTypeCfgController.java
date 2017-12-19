@@ -4,7 +4,7 @@ import com.aps.env.comm.CommUtil;
 import com.aps.env.comm.RequestMdyPar;
 import com.aps.env.comm.RequestRefPar;
 import com.aps.env.comm.ResponseData;
-import com.aps.env.service.ViewHbTypeCfgService;
+import com.aps.env.service.HbTypeCfgService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,8 +28,8 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequestMapping(value = "viewHbTypeConfig")
 public class ViewHbTypeCfgController {
-    @Resource(name = "viewHbTypeCfgServiceImpl")
-    private ViewHbTypeCfgService viewHbTypeCfgService;
+    @Resource(name = "hbTypeCfgServiceImpl")
+    private HbTypeCfgService viewHbTypeCfgService;
     private final int formId = 10;
 
     /**

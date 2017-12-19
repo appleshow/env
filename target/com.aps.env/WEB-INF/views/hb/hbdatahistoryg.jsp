@@ -131,8 +131,6 @@
         </div>
     </div>
 </div>
-
-
 <div class="modal fade"
      role="dialog"
      aria-labelledby="msTitle"
@@ -412,7 +410,6 @@
 
                             for (var item in nodeItem) {
                                 if (nodeItem[item].itemSelect == 1) {
-                                    var item = item;
                                     if (lineData.hasOwnProperty(item) && lineData[item] != "") {
                                         var showValue = "";
                                         var showTitle = "";
@@ -480,7 +477,7 @@
         var timeLength = momentEnd.diff(momentStr, 'days') + 1;
 
         if (timeLength > pagePars.maxDateLen) {
-            callError(100, "时间区间最大为【" + page.maxDateLen + "天】，当前查询区间为：" + timeLength + "天...!!");
+            callError(100, "时间区间最大为【" + pagePars.maxDateLen + "天】，当前查询区间为：" + timeLength + "天...!!");
             return;
         }
         document.title = pagePars.pageTitle + " - " + pagePars.selectNode.nodeName;

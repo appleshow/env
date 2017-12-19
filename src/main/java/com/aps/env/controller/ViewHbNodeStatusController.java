@@ -3,7 +3,7 @@ package com.aps.env.controller;
 import com.aps.env.comm.CommUtil;
 import com.aps.env.comm.RequestRefPar;
 import com.aps.env.comm.ResponseData;
-import com.aps.env.service.ViewHbNodeStatusService;
+import com.aps.env.service.HbNodeStatusService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,8 +27,8 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequestMapping(value = "viewHbNodeStatus")
 public class ViewHbNodeStatusController extends ExceptionController {
-    @Resource(name = "viewHbNodeStatusServiceImpl")
-    private ViewHbNodeStatusService viewHbNodeStatusService;
+    @Resource(name = "hbNodeStatusServiceImpl")
+    private HbNodeStatusService viewHbNodeStatusService;
     private final int formId = 16;
 
     /**
