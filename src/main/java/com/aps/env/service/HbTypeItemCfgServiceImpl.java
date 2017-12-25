@@ -56,7 +56,6 @@ public class HbTypeItemCfgServiceImpl implements HbTypeItemCfgService {
      */
     @Override
     public void referHbTypeItem(HttpSession httpSession, RequestRefPar requestRefPar, ResponseData responseData) {
-        HbTypeItem hbTypeItem = new HbTypeItem();
         List<HbTypeItem> hbTypeItems;
         PageInfo<HbTypeItem> pageInfo;
         Integer typeId = requestRefPar.getIntegerPar("typeId");

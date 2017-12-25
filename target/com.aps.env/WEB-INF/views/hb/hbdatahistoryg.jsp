@@ -332,7 +332,7 @@
                 var nodePar = $.parseJSON(pagePars.selectNode.nodeItem[item]);
 
                 pagePars.selectNode.nodeItem[item] = nodePar;
-                if (nodePar.itemSelect == 1) {
+                if (nodePar.itemMonitor == 1 && nodePar.itemSelect == 1) {
                     var columnInfo = {};
 
                     columnInfo.name = nodePar.itemName;
@@ -348,7 +348,7 @@
 
                     tableColumnInfo["_" + nodePar.itemId] = columnInfo;
 
-                    innerHtml += "<th>" + nodePar.itemName + " (<small>" + nodePar.itemUnit + "</small>)</th>";
+                    innerHtml += "<th>" + nodePar.itemName + ( nodePar.itemUnit ? " (<small>" + nodePar.itemUnit + "</small>)" : "" ) + "</th>";
                 }
             }
 
@@ -409,7 +409,7 @@
                             var nodeItem = pagePars.selectNode.nodeItem;
 
                             for (var item in nodeItem) {
-                                if (nodeItem[item].itemSelect == 1) {
+                                if (nodeItem[item].itemMonitor == 1 && nodeItem[item].itemSelect == 1) {
                                     if (lineData.hasOwnProperty(item) && lineData[item] != "") {
                                         var showValue = "";
                                         var showTitle = "";

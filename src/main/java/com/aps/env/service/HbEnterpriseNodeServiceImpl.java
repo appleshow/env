@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.math.BigDecimal;
 import java.util.*;
 
 /**
@@ -32,6 +33,8 @@ public class HbEnterpriseNodeServiceImpl implements HbEnterpriseNodeService {
     private HbTypeItemMapper hbTypeItemMapper;
     @Resource
     private HbDataLatestMapper hbDataLatestMapper;
+    @Resource
+    private ComResourceMapper comResourceMapper;
 
     private final String CREATE_TABLE_SQL = "CREATE TABLE `#` (\n" +
             "  `DATA_GUID` varchar(50) NOT NULL,\n" +
@@ -145,9 +148,10 @@ public class HbEnterpriseNodeServiceImpl implements HbEnterpriseNodeService {
                                 hbTypeItemNode.setItemVala2(item.getItemVala2());
                                 hbTypeItemNode.setItemVala3(item.getItemVala3());
                                 hbTypeItemNode.setItemConvertFormat(item.getItemConvertFormat());
-                                hbTypeItemNode.setItemSelect(0);
+                                hbTypeItemNode.setItemSelect(1);
+                                hbTypeItemNode.setItemMonitor(null == item.getProperty10() ? 0 : Integer.parseInt(item.getProperty10().toString()));
                                 hbTypeItemNode.setItemAlarm(0);
-                                hbTypeItemNode.setItemShowMain(1);
+                                hbTypeItemNode.setItemShowMain(0);
                                 nodeItemMap.put(hbTypeItemNode.getItemId(), hbTypeItemNode);
                             }
                         });
@@ -200,8 +204,11 @@ public class HbEnterpriseNodeServiceImpl implements HbEnterpriseNodeService {
 
                         break;
                     case CommUtil.MODIFY_TYPE_DELETE:
-                        hbNode.setDeleteFlag(CommUtil.DELETE);
-                        hbNodeMapper.updateByPrimaryKeySelective(hbNode);
+                        ComResourceExample comResourceExample = new ComResourceExample();
+                        comResourceExample.createCriteria().andResourceTypeFEqualTo(hbNode.getNodeId()).andResourceTypeAEqualTo("NODE");
+                        comResourceMapper.deleteByExample(comResourceExample);
+
+                        hbNodeMapper.deleteByPrimaryKey(hbNode.getNodeId());
 
                         break;
                     default:

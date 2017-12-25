@@ -36,10 +36,43 @@
         margin: 0;
         font-family: "微软雅黑";
     }
+
+    .maskBox {
+        position: absolute;
+        width: 130px;
+        left: 50%;
+        height: auto;
+        z-index: 100;
+        background-color: #fff;
+        border: 1px #ddd solid;
+        padding: 1px;
+    }
+
+    #mask {
+        background-color: #666;
+        position: absolute;
+        z-index: 99;
+        left: 0;
+        top: 0;
+        display: none;
+        width: 100%;
+        height: 100%;
+        opacity: 0.5;
+        filter: alpha(opacity=50);
+        -moz-opacity: 0.5;
+    }
 </style>
 </head>
 <body>
 <div id="allmap"></div>
+<!-- 定义遮盖层 -->
+<div id="mask"></div>
+<div class="maskBox"
+     style="display: none">
+    <img src="${ctx}/assets-view/comm/css/images/loading.gif"
+         alt="数据加载中..."/>
+    数据加载中 ...
+</div>
 <div class="modal fade"
      role="dialog"
      aria-labelledby="msTitle"
@@ -106,12 +139,12 @@
 <%@include file="../aplugin/treectrl.jsp" %>
 
 <script type="application/javascript">
+    showMask();
     var pagePars = {
-            map: undefined,
-            enterpriseNode: [],
-            infoWindows: {},
-        }
-    ;
+        map: undefined,
+        enterpriseNode: [],
+        infoWindows: {},
+    };
     var nodeDataSource = function (options) {
         this._data = options.data;
         this._delay = options.delay;
@@ -351,12 +384,15 @@
             headers: {'Content-Type': 'application/json;charset=utf-8'},
             success: function (res) {
                 if (res.code != 0) {
+                    hideMask();
                     callError(res.code, res.message);
                 } else {
                     drawMap(res);
+                    hideMask();
                 }
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
+                hideMask();
                 callError(-900, "操作未完成，向服务器请求失败...");
             }
         });
@@ -390,7 +426,7 @@
             var itemCount = 0;
             for (var itemId in nodeItems) {
                 nodeItems[itemId] = $.parseJSON(nodeItems[itemId]);
-                if (nodeItems[itemId].itemSelect == 1 && nodeItems[itemId].itemShowMain == 1) {
+                if (nodeItems[itemId].itemMonitor == 1 && nodeItems[itemId].itemSelect == 1 && nodeItems[itemId].itemShowMain == 1) {
                     var itemValue = undefined;
 
                     itemCount++;
@@ -524,7 +560,6 @@
             // 创建一个DOM元素
             var div = document.createElement("div");
 
-            div.appendChild(document.createTextNode("放大2级"));
             div.id = "treeDiv";
             div.style.width = '35vh';
             div.style.height = '55vh';
@@ -538,6 +573,7 @@
         var myZoomCtrl = new ZoomControl();
         // 添加到地图当中
         map.addControl(myZoomCtrl);
+        pagePars.map = map;
 
         $("#treeDiv").html(html);
 
@@ -552,7 +588,6 @@
             loadingHTML: '<div class="tree-loading"><i class="fa fa-rotate-right fa-spin"></i></div>',
         });
 
-        pagePars.map = map;
     }
 
     /**
@@ -579,7 +614,7 @@
     function ZoomControl() {
         // 默认停靠位置和偏移量
         this.defaultAnchor = BMAP_ANCHOR_TOP_RIGHT;
-        this.defaultOffset = new BMap.Size(10, 10);
+        this.defaultOffset = new BMap.Size(5, 5);
     }
 
     /**
@@ -604,6 +639,31 @@
         $("#mwTitle").html('<span class="glyphicon glyphicon-bullhorn" aria-hidden="true">&nbsp;警告</span>');
         $("#mwMessage").html(message);
         $("#modal-warning").modal("show");
+    }
+
+    /******************************************************************************
+     * 显示遮盖层
+     *******************************************************************************/
+    function showMask() {
+        $("#mask").css({
+            display: "block",
+            height: $(document).height()
+        });
+        var box = $('.maskBox');
+        box.css({
+            //设置弹出层距离左边的位置
+            left: ($("body").width() - box.width()) / 2 - 20 + "px",
+            //设置弹出层距离上面的位置
+            top: ($(window).height() - box.height()) / 2 + $(window).scrollTop() + "px",
+            display: "block"
+        });
+    }
+
+    /******************************************************************************
+     * 隐藏显示遮盖层
+     *******************************************************************************/
+    function hideMask() {
+        $("#mask,.maskBox").css("display", "none");
     }
 
 </script>

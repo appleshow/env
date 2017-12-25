@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 
 /**
  * <dl>
@@ -52,7 +53,10 @@ public class HbDataLLineServiceImpl implements HbDataLLineService {
     @Override
     public void refHbDataLatest(HttpSession httpSession, RequestRefPar requestRefPar, ResponseData responseData) {
         HbDataLatest hbDataLatest = new HbDataLatest();
+        Date nowDate = new Date();
+        int hours = 1;
 
+        hbDataLatest.setDataTime(new Date(nowDate.getTime() - 1000 * 60 * 60 * hours));
         hbDataLatest.setIperson((int) httpSession.getAttribute(CommUtil.SESSION_PERSON_ID));
         hbDataLatest.setPrflag(requestRefPar.getIntegerPar("enterpriseId"));
         responseData.setData(hbDatalatestMapper.selectByPerson(hbDataLatest));

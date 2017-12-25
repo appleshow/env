@@ -9,7 +9,7 @@
          pageEncoding="UTF-8"
          language="java" %>
 <html>
-<title>站点信息</title>
+<title></title>
 <meta name="description"
       content="Dashboard"/>
 <meta name="viewport"
@@ -457,7 +457,7 @@
                                     var nodeItem = node.nodeItem;
 
                                     for (var item in nodeItem) {
-                                        if (nodeItem[item].itemSelect == 1) {
+                                        if (nodeItem[item].itemMonitor == 1 && nodeItem[item].itemSelect == 1) {
                                             var dataLine = nodeItem[item];
                                             var itemValue = nodeData.hasOwnProperty(item) ? nodeData[item] : undefined;
                                             var alarm = false;

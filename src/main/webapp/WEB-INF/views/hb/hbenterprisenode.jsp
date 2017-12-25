@@ -325,19 +325,21 @@
             <div class="modal-footer">
                 <button type="button"
                         class="btn btn-primary"
+                        id="btnAdd"
                         onclick="addEnterpriseNode()">
                     <span class="glyphicon glyphicon-plus"
                           aria-hidden="true"></span>&nbsp;新增
                 </button>
                 <button type="button"
                         class="btn btn-primary"
+                        id="btnDel"
                         onclick="deleteEnterpriseNode()">
                     <span class="glyphicon glyphicon-remove"
                           aria-hidden="true"></span>&nbsp;删除
                 </button>
                 <button type="button"
                         class="btn btn-primary"
-                        id="btnSaveEnterpriseNode"
+                        id="btnSave"
                         onclick="saveEnterpriseNode()">
                     <span class="glyphicon glyphicon-ok"
                           aria-hidden="true"></span>&nbsp;保存
@@ -346,7 +348,43 @@
         </div>
     </div>
 </div>
-
+<div class="modal fade"
+     tabindex="-1"
+     role="dialog"
+     aria-labelledby="node-modal"
+     id="nodeMoalConfirm">
+    <div class="modal-dialog"
+         role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">&nbsp;&nbsp;&nbsp;确认</h4>
+            </div>
+            <div class="modal-body">
+                <p id="nodeMoalConfirmBody"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button"
+                        class="btn btn-default"
+                        data-dismiss="modal">
+                    <span class="glyphicon glyphicon-remove"
+                          aria-hidden="true"></span>&nbsp;取消
+                </button>
+                <button type="button"
+                        class="btn btn-primary"
+                        onclick="confirmOK()">
+                    <span class="glyphicon glyphicon-ok"
+                          aria-hidden="true"></span>&nbsp;确定
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- 提示框 -->
 <div class="modal fade"
      role="dialog"
@@ -655,6 +693,9 @@
             loadingHTML: '<div class="tree-loading"><i class="fa fa-rotate-right fa-spin"></i></div>',
         });
 
+        $("#btnDel").attr({"disabled": true});
+        $("#btnSave").attr({"disabled": true});
+
         initComboData();
     });
 
@@ -814,22 +855,75 @@
         pagePars.modifyType = "I";
 
         $("#enterpriseNodeForm").data("bootstrapValidator").resetForm();
+
+        $("#btnDel").attr({"disabled": true});
+        $("#btnSave").attr({"disabled": false});
     }
 
     /**
      *
-     *
      */
     function deleteEnterpriseNode() {
+        var selectItems = $('#enterpriseNode').tree('selectedItems');
 
+        $("#nodeMoalConfirmBody").html("将删除站点：<b>" + selectItems[0].name + "</b>...??")
+        $('#nodeMoalConfirm').modal({
+            backdrop: 'static',
+            keyboard: true
+        });
     }
+
+    /**
+     *
+     */
+    function confirmOK() {
+        $("#nodeMoalConfirm").modal('hide');
+
+        var selectItems = $('#enterpriseNode').tree('selectedItems');
+        var hbNodes = [{_type: 'D', nodeId: selectItems[0].id}];
+
+        $.ajax({
+            async: false,
+            type: "POST",
+            url: "${ctx}/viewHbEnterpriseNodeCfg/modifyEnterpriseNode",
+            cache: false,
+            data: ServerRequestPar(1, hbNodes),
+            dataType: "json",
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            success: function (res) {
+                $("#btnAdd").attr('disabled', false);
+                if ("I" != pagePars.modifyType) {
+                    $("#btnDel").attr('disabled', false);
+                }
+                $("#btnSave").attr('disabled', false);
+                if (res.code != 0) {
+                    callError(-999, res.message);
+                } else {
+                    parent.refreshPage();
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                $("#btnAdd").attr('disabled', false);
+                if ("I" != pagePars.modifyType) {
+                    $("#btnDel").attr('disabled', false);
+                }
+                $("#btnSave").attr('disabled', false);
+                callError(-888, "服务器请求异常...！")
+            }
+        });
+    }
+
 
     /**
      *
      *
      */
     function saveEnterpriseNode() {
-        $("#btnSaveEnterpriseNode").attr('disabled', true);
+        $("#btnAdd").attr('disabled', true);
+        $("#btnDel").attr('disabled', true);
+        $("#btnSave").attr('disabled', true);
         $("#enterpriseNodeForm").data("bootstrapValidator").validate();
 
         var check = $("#enterpriseNodeForm").data("bootstrapValidator").isValid();
@@ -838,22 +932,22 @@
             var hbEnterpriseNodes = [];
 
             if (hbEnterpriseNode.typeId == "") {
-                $("#btnSaveEnterpriseNode").attr('disabled', false);
+                $("#btnSave").attr('disabled', false);
                 callError(-100, "请选择一个站点类型...！");
                 return;
             }
             if (hbEnterpriseNode.enterpriseId == "") {
-                $("#btnSaveEnterpriseNode").attr('disabled', false);
+                $("#btnSave").attr('disabled', false);
                 callError(-100, "请选择站点所属企业...！");
                 return;
             }
             if (hbEnterpriseNode.property8 == "") {
-                $("#btnSaveEnterpriseNode").attr('disabled', false);
+                $("#btnSave").attr('disabled', false);
                 callError(-100, "请选择设备厂商...！");
                 return;
             }
             if (!hbEnterpriseNode.hasOwnProperty("property9") || hbEnterpriseNode.property9 == "") {
-                $("#btnSaveEnterpriseNode").attr('disabled', false);
+                $("#btnSave").attr('disabled', false);
                 callError(-100, "请选择设设备型号...！");
                 return;
             }
@@ -874,7 +968,11 @@
                     'Content-Type': 'application/json;charset=utf-8'
                 },
                 success: function (res) {
-                    $("#btnSaveEnterpriseNode").attr('disabled', false);
+                    $("#btnAdd").attr('disabled', false);
+                    if ("I" != pagePars.modifyType) {
+                        $("#btnDel").attr('disabled', false);
+                    }
+                    $("#btnSave").attr('disabled', false);
                     if (res.code != 0) {
                         callError(-999, res.message);
                     } else {
@@ -882,12 +980,20 @@
                     }
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    $("#btnSaveEnterpriseNode").attr('disabled', false);
+                    $("#btnAdd").attr('disabled', false);
+                    if ("I" != pagePars.modifyType) {
+                        $("#btnDel").attr('disabled', false);
+                    }
+                    $("#btnSave").attr('disabled', false);
                     callError(-888, "服务器请求异常...！")
                 }
             });
         } else {
-            $("#btnSaveEnterpriseNode").attr('disabled', false);
+            $("#btnAdd").attr('disabled', false);
+            if ("I" != pagePars.modifyType) {
+                $("#btnDel").attr('disabled', false);
+            }
+            $("#btnSave").attr('disabled', false);
             callError(-100, "录入信息有误，请检查录入信息...！");
         }
     }
@@ -912,7 +1018,11 @@
 
                 $("#enterpriseNodeForm").initForm(hbEnterpriseNode);
 
-                pagePars.modifyType = "U";
+                $("#btnDel").attr('disabled', false);
+                $("#btnSave").attr('disabled', false);
+            } else {
+                $("#btnDel").attr('disabled', true);
+                $("#btnSave").attr('disabled', true);
             }
         }
     }

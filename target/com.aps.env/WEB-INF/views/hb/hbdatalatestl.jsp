@@ -367,7 +367,7 @@
                                 res.data[index].nodeItem = nodeItems;
                                 for (var item in nodeItems) {
                                     nodeItems[item] = $.parseJSON(nodeItems[item]);
-                                    if (nodeItems[item].itemSelect == 1) {
+                                    if (nodeItems[item].itemMonitor == 1 && nodeItems[item].itemSelect == 1) {
                                         var parName = nodeItems[item].itemName;
                                         var parUnit = nodeItems[item].hasOwnProperty("itemUnit") ? nodeItems[item].itemUnit : '';
 

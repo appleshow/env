@@ -29,6 +29,9 @@ public class HbTypeItem extends HbTypeItemKey {
 
     private String itemConvertFormat;
 
+    /**
+     * 是否默认选择
+     */
     private Integer prflag;
 
     private String prgroup;
@@ -55,6 +58,9 @@ public class HbTypeItem extends HbTypeItemKey {
 
     private String property9;
 
+    /**
+     * 是否为监测参数
+     */
     private BigDecimal property10;
 
     private BigDecimal property11;

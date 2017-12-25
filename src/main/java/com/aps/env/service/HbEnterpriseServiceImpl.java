@@ -2,13 +2,17 @@ package com.aps.env.service;
 
 import com.aps.env.comm.*;
 import com.aps.env.dao.HbEnterpriseMapper;
+import com.aps.env.dao.HbNodeMapper;
 import com.aps.env.entity.HbEnterprise;
 import com.aps.env.entity.HbEnterpriseExample;
+import com.aps.env.entity.HbNode;
+import com.aps.env.entity.HbNodeExample;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -26,6 +30,8 @@ import java.util.Map;
 public class HbEnterpriseServiceImpl implements HbEnterpriseService {
     @Resource
     private HbEnterpriseMapper hbEnterpriseMapper;
+    @Resource
+    private HbNodeMapper hbNodeMapper;
 
     @Override
     public void refEnterprise(HttpSession httpSession, RequestRefPar requestRefPar, ResponseData responseData) {
@@ -71,13 +77,16 @@ public class HbEnterpriseServiceImpl implements HbEnterpriseService {
             type = requestMdyPar.getType(rowData);
             hbEnterprise = (HbEnterprise) JsonUtil.readValueAsObject(rowData, HbEnterprise.class);
             if (null != hbEnterprise) {
-                String enterpriseRegionDesc = hbEnterprise.getEnterpriseRegionDesc().replace("(", "#").replace(")", "#");
-                String[] regionTargets = enterpriseRegionDesc.split("#");
+                String enterpriseRegionDesc;
+                String[] regionTargets;
 
-                hbEnterprise.setEnterpriseRegion(regionTargets[1]);
                 personId = requestMdyPar.getPersonId(httpSession, now, rowData);
                 switch (type) {
                     case CommUtil.MODIFY_TYPE_INSERT:
+                        enterpriseRegionDesc = hbEnterprise.getEnterpriseRegionDesc().replace("(", "#").replace(")", "#");
+                        regionTargets = enterpriseRegionDesc.split("#");
+
+                        hbEnterprise.setEnterpriseRegion(regionTargets[1]);
                         hbEnterprise.setDeleteFlag(CommUtil.AVAILABLE);
                         hbEnterprise.setItime(now);
                         hbEnterprise.setIperson(personId);
@@ -86,17 +95,25 @@ public class HbEnterpriseServiceImpl implements HbEnterpriseService {
                         hbEnterpriseMapper.insertSelective(hbEnterprise);
                         break;
                     case CommUtil.MODIFY_TYPE_UPDATE:
+                        enterpriseRegionDesc = hbEnterprise.getEnterpriseRegionDesc().replace("(", "#").replace(")", "#");
+                        regionTargets = enterpriseRegionDesc.split("#");
+
+                        hbEnterprise.setEnterpriseRegion(regionTargets[1]);
                         hbEnterprise.setUtime(now);
                         hbEnterprise.setUperson(personId);
                         hbEnterpriseMapper.updateByPrimaryKeySelective(hbEnterprise);
                         break;
                     case CommUtil.MODIFY_TYPE_DELETE:
-                        HbEnterpriseExample hbEnterpriseExample = new HbEnterpriseExample();
-                        hbEnterpriseExample.createCriteria().andEnterpriseIdEqualTo(hbEnterprise.getEnterpriseId());
-                        HbEnterprise hbEnterpriseDelete = new HbEnterprise();
+                        HbNodeExample hbNodeExample = new HbNodeExample();
+                        hbNodeExample.createCriteria().andEnterpriseIdEqualTo(hbEnterprise.getEnterpriseId());
+                        List<HbNode> hbNodes = hbNodeMapper.selectByExample(hbNodeExample);
+                        if (null != hbNodes && hbNodes.size() > 0) {
+                            responseData.setCode(-108);
+                            responseData.setMessage("删除失败，请先删除该企业下的站点...!!");
+                            return;
+                        }
 
-                        hbEnterpriseDelete.setDeleteFlag(CommUtil.DELETE);
-                        hbEnterpriseMapper.updateByExampleSelective(hbEnterpriseDelete, hbEnterpriseExample);
+                        hbEnterpriseMapper.deleteByPrimaryKey(hbEnterprise.getEnterpriseId());
 
                         break;
                     default:

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -61,6 +62,7 @@ public class HbNodeItemServiceImpl implements HbNodeItemService {
                 hbTypeItemNode.setItemVala3(item.getItemVala3());
                 hbTypeItemNode.setItemConvertFormat(item.getItemConvertFormat());
                 hbTypeItemNode.setItemSelect(0);
+                hbTypeItemNode.setItemMonitor(null == item.getProperty10() ? 0 : Integer.parseInt(item.getProperty10().toString()));
                 hbTypeItemNode.setItemAlarm(0);
                 hbTypeItemNode.setItemShowMain(0);
 
@@ -85,6 +87,9 @@ public class HbNodeItemServiceImpl implements HbNodeItemService {
                                         hbTypeItemNode.setItemVala3(hbTypeItemNodeTemp.getItemVala3());
                                         hbTypeItemNode.setItemConvertFormat(hbTypeItemNodeTemp.getItemConvertFormat());
                                         hbTypeItemNode.setItemSelect(hbTypeItemNodeTemp.getItemSelect());
+                                        hbTypeItemNode.setItemMonitor(hbTypeItemNodeTemp.getItemMonitor());
+                                        hbTypeItemNode.setItemOperating(hbTypeItemNodeTemp.getItemOperating());
+                                        hbTypeItemNode.setItemLog(hbTypeItemNodeTemp.getItemLog());
                                         hbTypeItemNode.setItemAlarm(hbTypeItemNodeTemp.getItemAlarm());
                                         hbTypeItemNode.setItemShowMain(hbTypeItemNodeTemp.getItemShowMain());
                                     }

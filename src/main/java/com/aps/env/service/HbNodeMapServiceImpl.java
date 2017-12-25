@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -42,10 +43,13 @@ public class HbNodeMapServiceImpl implements HbNodeMapService {
         responseData.setData(hbNodeMapper.selectAssociationByPerson(hbNode));
 
         if (1 == dataType) {
+            Date nowDate = new Date();
+            int hours = 1;
             int nodeId = -1;
             ResponseData responseDataLatestData = new ResponseData();
             List<HbDataLatest> hbDataLatests = new ArrayList<>();
             HbDataLatestExample hbDataLatestExample = new HbDataLatestExample();
+            hbDataLatestExample.createCriteria().andDataTimeGreaterThanOrEqualTo(new Date(nowDate.getTime() - 1000 * 60 * 60 * hours));
             hbDataLatestExample.setOrderByClause("NODE_ID,DATA_TIME DESC");
             for (HbDataLatest hbDataLatest : hbDataLatestMapper.selectByExample(hbDataLatestExample)) {
                 if (nodeId != hbDataLatest.getNodeId()) {

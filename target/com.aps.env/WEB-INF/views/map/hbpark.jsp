@@ -28,6 +28,12 @@
       href="${ctx}/assets/css/font-awesome.min.css"/>
 <link rel="stylesheet"
       href="${ctx}/assets-view/comm/tree/css/tree.css"/>
+
+<link rel="stylesheet"
+      href="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.css"/>
+<link rel="stylesheet"
+      href="http://api.map.baidu.com/library/SearchInfoWindow/1.4/src/SearchInfoWindow_min.css"/>
+
 <style type="text/css">
     #allmap {
         width: 100%;
@@ -35,6 +41,58 @@
         overflow: hidden;
         margin: 0;
         font-family: "微软雅黑";
+    }
+
+    dl, dt, dd, ul, li {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    p {
+        font-size: 12px;
+    }
+
+    dt {
+        font-size: 14px;
+        font-family: "微软雅黑";
+        font-weight: bold;
+        border-bottom: 1px dotted #000;
+        padding: 5px 0 5px 5px;
+        margin: 5px 0;
+    }
+
+    dd {
+        padding: 5px 0 0 5px;
+    }
+
+    li {
+        line-height: 28px;
+    }
+
+    .maskBox {
+        position: absolute;
+        width: 130px;
+        left: 50%;
+        height: auto;
+        z-index: 100;
+        background-color: #fff;
+        border: 1px #ddd solid;
+        padding: 1px;
+    }
+
+    #mask {
+        background-color: #666;
+        position: absolute;
+        z-index: 99;
+        left: 0;
+        top: 0;
+        display: none;
+        width: 100%;
+        height: 100%;
+        opacity: 0.5;
+        filter: alpha(opacity=50);
+        -moz-opacity: 0.5;
     }
 </style>
 </head>
@@ -49,13 +107,8 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">园区列表</div>
                     <div class="panel-body"
-                         style="height: 45%;overflow-y:scroll; ">
-                        <input class="form-control"
-                               style="width: 180px; display: none;"
-                               readonly
-                               id="nodeId"
-                               name="nodeId">
-                        </input>
+                         style="height: 45%;overflow-y:scroll; "
+                         id="treeParkDiv">
                         <div id="treePark"
                              class="tree tree-plus-minus tree-solid-line">
                             <div class="tree-folder"
@@ -118,14 +171,13 @@
                         <div class="input-group">
                     <span class="input-group-btn">
                          <button class="btn btn-default"
-                                 type="button">站点类型</button>
+                                 type="button">园区名称</button>
                     </span>
                             <div class="input-group"
                                  style="width: 200px">
                                 <input class="form-control"
-                                       readonly
-                                       id="typeName"
-                                       name="typeName">
+                                       id="parkName"
+                                       name="parkName">
                                 </input>
                             </div>
                         </div>
@@ -134,17 +186,131 @@
                         <div class="input-group">
                             <button type="button"
                                     class="btn btn-primary"
-                                    onclick="refData()">
-                                <span class="glyphicon glyphicon-search"
-                                      aria-hidden="true"></span> &nbsp;&nbsp;查询&nbsp;&nbsp;
+                                    id="btnAdd"
+                                    onclick="addPark()">
+                                <span class="glyphicon glyphicon-plus"
+                                      aria-hidden="true"></span> &nbsp;&nbsp;新增&nbsp;&nbsp;
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <button type="button"
+                                    class="btn btn-primary"
+                                    id="btnDel"
+                                    onclick="delPark()">
+                                <span class="glyphicon glyphicon-remove"
+                                      aria-hidden="true"></span> &nbsp;&nbsp;删除&nbsp;&nbsp;
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <button type="button"
+                                    class="btn btn-primary"
+                                    id="btnEdit"
+                                    onclick="editPark()">
+                                <span class="glyphicon glyphicon-edit"
+                                      aria-hidden="true"></span> &nbsp;&nbsp;编辑&nbsp;&nbsp;
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <button type="button"
+                                    class="btn btn-primary"
+                                    id="btnSave"
+                                    onclick="savePark()">
+                                <span class="glyphicon glyphicon-ok"
+                                      aria-hidden="true"></span> &nbsp;&nbsp;保存&nbsp;&nbsp;
                             </button>
                         </div>
                     </div>
                 </form>
             </div>
             <div class="panel-body"
-                 style="height: 90%;">
+                 style="height: 90%; margin: 0;padding: 0;">
                 <div id="allmap"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 定义遮盖层 -->
+<div id="mask"></div>
+<div class="maskBox"
+     style="display: none">
+    <img src="${ctx}/assets-view/comm/css/images/loading.gif"
+         alt="数据加载中..."/>
+    数据加载中 ...
+</div>
+
+<div class="modal fade"
+     tabindex="-1"
+     role="dialog"
+     aria-labelledby="polySelectModalTitle"
+     id="polySelectModal">
+    <div class="modal-dialog"
+         role="document"
+         style="width:350px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"
+                    id="polySelectModalTitle">区域内包含站点信息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="height:200px;overflow:auto; "
+                     id="polySelectModeBody"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button"
+                        class="btn btn-primary"
+                        onclick="polySeletCacnel()">
+                    <span class="glyphicon glyphicon-remove"
+                          aria-hidden="true"></span>&nbsp;取消
+                </button>
+                <button type="button"
+                        class="btn btn-primary"
+                        onclick="polySeletOk()">
+                    <span class="glyphicon glyphicon-ok"
+                          aria-hidden="true"></span>&nbsp;确定
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade"
+     tabindex="-1"
+     role="dialog"
+     aria-labelledby="node-modal"
+     id="nodeMoalConfirm">
+    <div class="modal-dialog"
+         role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">&nbsp;&nbsp;&nbsp;确认</h4>
+            </div>
+            <div class="modal-body">
+                <p id="nodeMoalConfirmBody"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button"
+                        class="btn btn-default"
+                        data-dismiss="modal">
+                    <span class="glyphicon glyphicon-remove"
+                          aria-hidden="true"></span>&nbsp;取消
+                </button>
+                <button type="button"
+                        class="btn btn-primary"
+                        onclick="confirmOK()">
+                    <span class="glyphicon glyphicon-ok"
+                          aria-hidden="true"></span>&nbsp;确定
+                </button>
             </div>
         </div>
     </div>
@@ -215,12 +381,29 @@
 <%@include file="../aplugin/treectrl.jsp" %>
 
 <script type="application/javascript">
+    showMask();
+
     var pagePars = {
-            map: undefined,
-            enterpriseNode: [],
-            infoWindows: {},
-        }
-    ;
+        map: undefined,
+        enterpriseNode: [],
+        hbPark: [],
+        infoWindows: {},
+        selectPark: undefined,
+        styleOptions: {
+            strokeColor: "red",    //边线颜色。
+            fillColor: "white",      //填充颜色。当参数为空时，圆形将没有填充效果。
+            strokeWeight: 3,       //边线的宽度，以像素为单位。
+            strokeOpacity: 0.8,	   //边线透明度，取值范围0 - 1。
+            fillOpacity: 0.6,      //填充的透明度，取值范围0 - 1。
+            strokeStyle: 'solid' //边线的样式，solid或dashed。
+        },
+        drawingManager: undefined,
+        overlay: undefined,
+        polygonShow: undefined,
+        overlayPaths: [],
+        modifyType: "I",
+    };
+
     var nodeDataSource = function (options) {
         this._data = options.data;
         this._delay = options.delay;
@@ -438,19 +621,75 @@
         }
     };
 
+    var parkDataSource = function (options) {
+        this._data = options.data;
+        this._delay = options.delay;
+        this._dataType = 'park';
+    };
+
+    parkDataSource.prototype = {
+        data: function (options, callback) {
+            setTimeout(function () {
+                    if (options.id != null) {
+                        if (options.type === "folder") {
+                        } else {
+                        }
+                    } else {
+                        $.ajax({
+                                type: "POST",
+                                url: '${ctx}/hbParkCfg/refHbPark',
+                                cache: false,
+                                data: ServerRequestPar(1, {byPerson: "0",}),
+                                dataType: "json",
+                                headers: {
+                                    'Content-Type': 'application/json;charset=utf-8'
+                                },
+                                success: function (res) {
+                                    if (res.code != 0) {
+                                        pagePars.hbNodes = [];
+                                        callback({
+                                            data: []
+                                        });
+                                    } else {
+                                        var treeData = [];
+
+                                        pagePars.hbPark = res.data;
+                                        $.each(pagePars.hbPark, function (index, value) {
+                                            var item = {};
+
+                                            item.id = value.parkGuid;
+                                            item.name = value.parkName;
+                                            item.type = 'item';
+
+                                            treeData.push(item);
+                                        });
+
+                                        callback({
+                                            data: treeData
+                                        });
+                                    }
+                                },
+                                error:
+                                    function (XMLHttpRequest, textStatus, errorThrown) {
+                                        callback({
+                                            data: []
+                                        });
+                                    }
+                            }
+                        );
+                    }
+                },
+                this._delay
+            )
+        }
+    };
+
     jQuery(document).ready(function () {
-        loadJScript();
-    });
+        $("#parkName").attr({"readonly": true});
+        $("#btnDel").attr({"disabled": true});
+        $("#btnEdit").attr({"disabled": true});
+        $("#btnSave").attr({"disabled": true});
 
-    // 百度地图API功能
-    function loadJScript() {
-        var script = document.createElement("script");
-        script.type = "text/javascript";
-        script.src = "http://api.map.baidu.com/api?v=2.0&ak=4bHlkDU3BDrBGjnLIDEzuLCjDdYhaun4&callback=init";
-        document.body.appendChild(script);
-    }
-
-    function init() {
         $('#enterpriseNode').tree({
             cacheItems: true,
             selectable: true,
@@ -462,21 +701,60 @@
             loadingHTML: '<div class="tree-loading"><i class="fa fa-rotate-right fa-spin"></i></div>',
         });
 
+        $('#treePark').tree({
+            cacheItems: true,
+            selectable: true,
+            multiSelect: false,
+            dataSource: new parkDataSource({
+                data: [],
+                delay: 400
+            }),
+            loadingHTML: '<div class="tree-loading"><i class="fa fa-rotate-right fa-spin"></i></div>',
+        });
+
+        loadJScript();
+    });
+
+    // 百度地图API功能
+    function loadJScript() {
+        var script = document.createElement("script");
+        script.type = "text/javascript";
+        script.src = "http://api.map.baidu.com/api?v=2.0&ak=4bHlkDU3BDrBGjnLIDEzuLCjDdYhaun4&callback=init";
+        document.body.appendChild(script);
+    }
+
+    /**
+     *
+     */
+    function init() {
+        <!--加载鼠标绘制工具-->
+        var script = document.createElement("script");
+        script.type = "text/javascript";
+        script.src = "http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.js";
+        document.body.appendChild(script);
+
+        <!--加载检索信息窗口-->
+        script.type = "text/javascript";
+        script.src = "http://api.map.baidu.com/library/SearchInfoWindow/1.4/src/SearchInfoWindow_min.js";
+        document.body.appendChild(script);
+
         $.ajax({
             type: "POST",
-            url: "${ctx}/hbNodeMap/refHbNodeJoinLatestData",
+            url: '${ctx}/viewHbEnterpriseNodeCfg/refEnterpriseNode',
             cache: false,
-            data: ServerRequestPar(1, {dataType: 0,}),
+            data: ServerRequestPar(1, {byPerson: "1",}),
             dataType: "json",
             headers: {'Content-Type': 'application/json;charset=utf-8'},
             success: function (res) {
                 if (res.code != 0) {
+                    hideMask();
                     callError(res.code, res.message);
                 } else {
                     drawMap(res);
                 }
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
+                hideMask();
                 callError(-900, "操作未完成，向服务器请求失败...");
             }
         });
@@ -538,8 +816,68 @@
             map.centerAndZoom(new BMap.Point(longitude[count], latitude[count]), 12);
         }
         map.enableScrollWheelZoom();
-
         pagePars.map = map;
+
+        //绘制工具
+        setTimeout(function () {
+            try {
+                initDrawingManager();
+                hideMask();
+            } catch (e) {
+                pagePars.drawingManager = undefined;
+            }
+        }, 2000);
+        setTimeout(function () {
+            if (pagePars.drawingManager == undefined) {
+                try {
+                    initDrawingManager();
+                    hideMask();
+                } catch (e) {
+                    pagePars.drawingManager = undefined;
+                }
+            }
+        }, 2000);
+        setTimeout(function () {
+            if (pagePars.drawingManager == undefined) {
+                try {
+                    initDrawingManager();
+                    hideMask();
+                } catch (e) {
+                    pagePars.drawingManager = undefined;
+                }
+            }
+        }, 2000);
+        setTimeout(function () {
+            if (pagePars.drawingManager == undefined) {
+                try {
+                    initDrawingManager();
+                    hideMask();
+                } catch (e) {
+                    pagePars.drawingManager = undefined;
+                }
+            }
+        }, 2000);
+        setTimeout(function () {
+            if (pagePars.drawingManager == undefined) {
+                try {
+                    initDrawingManager();
+                    hideMask();
+                } catch (e) {
+                    pagePars.drawingManager = undefined;
+                }
+            }
+        }, 2000);
+        setTimeout(function () {
+            if (pagePars.drawingManager == undefined) {
+                try {
+                    initDrawingManager();
+                    hideMask();
+                } catch (e) {
+                    hideMask();
+                    callError(-100, "初始化失败...!!");
+                }
+            }
+        }, 2000);
     }
 
     /**
@@ -560,6 +898,320 @@
                 pagePars.map.closeInfoWindow();
             }
         }
+        if (dataSource._dataType == "park") {
+            if (undefined != pagePars.polygonShow) {
+                pagePars.map.removeOverlay(pagePars.polygonShow);
+            }
+            if (items && items.length > 0) {
+                var selectPark = undefined;
+
+                $.each(pagePars.hbPark, function (index, park) {
+                    if (park.parkGuid == items[0].id) {
+                        selectPark = park;
+                    }
+                });
+                if (undefined != selectPark && selectPark.hasOwnProperty("parkPath")) {
+                    var parkPath = $.parseJSON(selectPark.parkPath);
+                    var points = [];
+
+                    $.each(parkPath, function (indexParkPoint, parkPoint) {
+                        points.push(new BMap.Point(parkPoint.longitude, parkPoint.latitude));
+                    });
+
+                    var polygon = new BMap.Polygon(points, {strokeColor: "blue", strokeWeight: 2, strokeOpacity: 0.5});  //创建多边形
+
+                    pagePars.map.addOverlay(polygon);
+                    pagePars.polygonShow = polygon;
+                    pagePars.selectPark = selectPark;
+
+                    $("#parkName").val(selectPark.parkName);
+                    $("#parkName").attr({"readonly": true});
+
+                    $("#btnAdd").attr({"disabled": true});
+                    $("#btnEdit").attr({"disabled": false});
+                    $("#btnDel").attr({"disabled": false});
+                    $("#btnSave").attr({"disabled": true});
+                } else {
+                    $("#parkName").val("");
+                    $("#btnAdd").attr({"disabled": false});
+                    $("#btnDel").attr({"disabled": true});
+                    $("#btnEdit").attr({"disabled": true});
+                    $("#btnSave").attr({"disabled": true});
+
+                    pagePars.selectPark = undefined;
+                    pagePars.polygonShow = undefined;
+                }
+            } else {
+                $("#parkName").val("");
+                $("#btnAdd").attr({"disabled": false});
+                $("#btnDel").attr({"disabled": true});
+                $("#btnEdit").attr({"disabled": true});
+                $("#btnSave").attr({"disabled": true});
+
+                pagePars.selectPark = undefined;
+                pagePars.polygonShow = undefined;
+            }
+        }
+    }
+
+    /**
+     *
+     */
+    function overlayComplete(e) {
+        pagePars.overlay = e.overlay;
+        pagePars.drawingManager.close();
+
+        var pathSelect = pagePars.overlay.getPath();
+        var vertx = [], verty = [];
+        var polySelectNode = {};
+        var html = "";
+
+        pagePars.overlayPaths = [];
+        $.each(pathSelect, function (index, path) {
+            var pathTemp = {};
+
+            pathTemp.longitude = path.lng;
+            pathTemp.latitude = path.lat;
+            pagePars.overlayPaths.push(pathTemp);
+
+            vertx.push(path.lng);
+            verty.push(path.lat);
+        });
+
+        $.each(pagePars.enterpriseNode, function (index, node) {
+            var longitude = parseFloat(node.nodeLongitude);
+            var latitude = parseFloat(node.nodeLatitude);
+
+            if (pnpoly(pathSelect.length, vertx, verty, longitude, latitude)) {
+                if (!polySelectNode.hasOwnProperty(node.hbEnterprise.enterpriseName)) {
+                    polySelectNode[node.hbEnterprise.enterpriseName] = [];
+                }
+                polySelectNode[node.hbEnterprise.enterpriseName].push(node.nodeName);
+            }
+        });
+        for (var enterpriseName in polySelectNode) {
+            html += '<p><h6>所属企业：<b>' + enterpriseName + '</b></h6>';
+            $.each(polySelectNode[enterpriseName], function (index, nodeName) {
+                html += '<p><h7>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + nodeName + '</h7></p>';
+            });
+            html += '</p>';
+        }
+
+        $("#polySelectModeBody").html(html);
+        $('#polySelectModal').modal({
+            backdrop: 'static',
+            keyboard: true
+        });
+
+    }
+
+    /**
+     *
+     */
+    function initDrawingManager() {
+        pagePars.drawingManager = new BMapLib.DrawingManager(pagePars.map, {
+            isOpen: false, //是否开启绘制模式
+            enableDrawingTool: true, //是否显示工具栏
+            drawingMode: BMAP_DRAWING_POLYGON,//绘制模式  多边形
+            drawingToolOptions: {
+                anchor: BMAP_ANCHOR_TOP_RIGHT, //位置
+                offset: new BMap.Size(5, 5), //偏离值
+                drawingModes: [
+                    //BMAP_DRAWING_MARKER,
+                    //BMAP_DRAWING_CIRCLE,
+                    //BMAP_DRAWING_POLYLINE,
+                    //BMAP_DRAWING_POLYGON,
+                    //BMAP_DRAWING_RECTANGLE
+                ],
+            },
+            circleOptions: pagePars.styleOptions, //圆的样式
+            polylineOptions: pagePars.styleOptions, //线的样式
+            polygonOptions: pagePars.styleOptions, //多边形的样式
+            rectangleOptions: pagePars.styleOptions, //矩形的样式
+        });
+        pagePars.drawingManager.addEventListener('overlaycomplete', overlayComplete);
+    }
+
+    /**
+     *
+     */
+    function addPark() {
+        if (pagePars.overlay != undefined) {
+            pagePars.map.removeOverlay(pagePars.overlay);
+            pagePars.overlay = undefined;
+            pagePars.overlayPaths = [];
+        }
+        pagePars.drawingManager.setDrawingMode(BMAP_DRAWING_POLYGON);
+        pagePars.drawingManager.open();
+        pagePars.selectPark = undefined;
+        if ("I" == pagePars.modifyType) {
+        } else {
+            $("#parkName").val("");
+            pagePars.modifyType = "I";
+        }
+
+        $("#parkName").attr({"readonly": false});
+
+        $("#btnEdit").attr({"disabled": true});
+        $("#btnDel").attr({"disabled": true});
+        $("#btnSave").attr({"disabled": true});
+    }
+
+    /**
+     *
+     */
+    function delPark() {
+        $("#nodeMoalConfirmBody").html("将删除园区：<b>" + pagePars.selectPark.parkName + "</b>...??")
+        $('#nodeMoalConfirm').modal({
+            backdrop: 'static',
+            keyboard: true
+        });
+    }
+
+    /**
+     *
+     */
+    function confirmOK() {
+        $("#nodeMoalConfirm").modal('hide');
+        pagePars.modifyType = "D";
+        savePark();
+    }
+
+    /**
+     *
+     */
+    function editPark() {
+        if (pagePars.overlay != undefined) {
+            pagePars.map.removeOverlay(pagePars.overlay);
+            pagePars.overlay = undefined;
+            pagePars.overlayPaths = [];
+        }
+        pagePars.drawingManager.setDrawingMode(BMAP_DRAWING_POLYGON);
+        pagePars.drawingManager.open();
+
+        $("#parkName").attr({"readonly": false});
+        $("#btnSave").attr({"disabled": false});
+        pagePars.modifyType = "U";
+    }
+
+    /**
+     *
+     */
+    function savePark() {
+        if ("" == $("#parkName").val() && "D" != pagePars.modifyType) {
+            callError(-100, "园区名称不能为空...!!");
+            return;
+        }
+        if (undefined == pagePars.overlay && "I" == pagePars.modifyType) {
+            callError(-100, "请设定一个区域...!!");
+            return;
+        }
+        var hbPark = {};
+        var hbParks = [];
+
+        hbPark._type = pagePars.modifyType;
+        if ("I" != pagePars.modifyType) {
+            hbPark.parkGuid = pagePars.selectPark.parkGuid;
+        }
+        hbPark.parkName = $("#parkName").val();
+        if (undefined != pagePars.overlay) {
+            hbPark.parkPath = JSON.stringify(pagePars.overlayPaths);
+        }
+
+        hbParks.push(hbPark);
+
+        $("#btnSave").attr({"disabled": true});
+
+        $.ajax({
+            async: false,
+            type: "POST",
+            url: "${ctx}/hbParkCfg/modifyHbPark",
+            cache: false,
+            data: ServerRequestPar(1, hbParks),
+            dataType: "json",
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            success: function (res) {
+                if (res.code != 0) {
+                    $("#btnSave").attr({"disabled": false});
+                    callError(-999, res.message);
+                } else {
+                    $("#parkName").val("");
+                    $("#parkName").attr({"readonly": true});
+                    $("#btnAdd").attr({"disabled": false});
+                    $("#btnDel").attr({"disabled": true});
+                    $("#btnEdit").attr({"disabled": true});
+                    $("#btnSave").attr({"disabled": true});
+                    pagePars.selectPark = undefined;
+                    if (undefined != pagePars.overlay) {
+                        pagePars.map.removeOverlay(pagePars.overlay);
+                        pagePars.overlay = undefined;
+                    }
+                    if (undefined != pagePars.polygonShow) {
+                        pagePars.map.removeOverlay(pagePars.polygonShow);
+                        pagePars.polygonShow = undefined;
+                    }
+
+                    $("#treeParkDiv").html("");
+                    $("#treeParkDiv").html('<div id="treePark"\n' +
+                        '                             class="tree tree-plus-minus tree-solid-line">\n' +
+                        '                            <div class="tree-folder"\n' +
+                        '                                 style="display: none;">\n' +
+                        '                                <div class="tree-folder-header">\n' +
+                        '                                    <i class="fa fa-folder"></i>\n' +
+                        '                                    <div class="tree-folder-name"></div>\n' +
+                        '                                </div>\n' +
+                        '                                <div class="tree-folder-content"></div>\n' +
+                        '                                <div class="tree-loader"\n' +
+                        '                                     style="display: none;"></div>\n' +
+                        '                            </div>\n' +
+                        '                            <div class="tree-item"\n' +
+                        '                                 style="display: none;">\n' +
+                        '                                <i class="tree-dot"></i>\n' +
+                        '                                <div class="tree-item-name"></div>\n' +
+                        '                            </div>\n' +
+                        '                        </div>');
+                    $('#treePark').tree({
+                        cacheItems: true,
+                        selectable: true,
+                        multiSelect: false,
+                        dataSource: new parkDataSource({
+                            data: [],
+                            delay: 400
+                        }),
+                        loadingHTML: '<div class="tree-loading"><i class="fa fa-rotate-right fa-spin"></i></div>',
+                    });
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                $("#btnSave").attr({"disabled": false});
+                callError(-888, "服务器请求异常...！")
+            }
+        });
+    }
+
+    /**
+     *
+     */
+    function polySeletCacnel() {
+        $("#polySelectModal").modal('hide');
+
+        if (pagePars.overlay != undefined) {
+            pagePars.map.removeOverlay(pagePars.overlay);
+            pagePars.overlay = undefined;
+        }
+        pagePars.drawingManager.setDrawingMode(BMAP_DRAWING_POLYGON);
+        pagePars.drawingManager.open();
+    }
+
+    /**
+     *
+     */
+    function polySeletOk() {
+        $("#polySelectModal").modal('hide');
+
+        $("#btnSave").attr({"disabled": false});
     }
 
     // 定义一个控件类,即function
@@ -567,6 +1219,19 @@
         // 默认停靠位置和偏移量
         this.defaultAnchor = BMAP_ANCHOR_TOP_RIGHT;
         this.defaultOffset = new BMap.Size(10, 10);
+    }
+
+    /**
+     *
+     */
+    function pnpoly(nvert, vertx, verty, testx, testy) {
+        var i, j, c = false;
+        for (i = 0, j = nvert - 1; i < nvert; j = i++) {
+            if (((verty[i] > testy) != (verty[j] > testy)) && (testx < (vertx[j] - vertx[i]) * (testy - verty[i]) / (verty[j] - verty[i]) + vertx[i])) {
+                c = !c;
+            }
+        }
+        return c;
     }
 
     /**
@@ -593,6 +1258,30 @@
         $("#modal-warning").modal("show");
     }
 
+    /******************************************************************************
+     * 显示遮盖层
+     *******************************************************************************/
+    function showMask() {
+        $("#mask").css({
+            display: "block",
+            height: $(document).height()
+        });
+        var box = $('.maskBox');
+        box.css({
+            //设置弹出层距离左边的位置
+            left: ($("body").width() - box.width()) / 2 - 20 + "px",
+            //设置弹出层距离上面的位置
+            top: ($(window).height() - box.height()) / 2 + $(window).scrollTop() + "px",
+            display: "block"
+        });
+    }
+
+    /******************************************************************************
+     * 隐藏显示遮盖层
+     *******************************************************************************/
+    function hideMask() {
+        $("#mask,.maskBox").css("display", "none");
+    }
 </script>
 </body>
 </html>

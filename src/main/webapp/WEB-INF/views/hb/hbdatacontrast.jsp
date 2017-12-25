@@ -516,7 +516,7 @@
         var timeLength = momentEnd.diff(momentStr, 'days') + 1;
 
         if (timeLength > pagePars.maxDateLen) {
-            callError(100, "时间区间最大为【" + page.maxDateLen + "天】，当前查询区间为：" + timeLength + "天...!!");
+            callError(100, "时间区间最大为【" + pagePars.maxDateLen + "天】，当前查询区间为：" + timeLength + "天...!!");
             return;
         }
         if (pagePars.gridChanged) {
@@ -594,7 +594,7 @@
             });
             if (select && nodeData.hasOwnProperty("nodeItem")) {
                 for (var par in nodeData.nodeItem) {
-                    if (nodeData.nodeItem[par].itemSelect == 1 && parLine.indexOf("-" + par + "-") <= 0) {
+                    if (nodeData.nodeItem[par].itemMonitor == 1 && nodeData.nodeItem[par].itemSelect == 1 && parLine.indexOf("-" + par + "-") <= 0) {
                         var parName = nodeData.nodeItem[par].itemName;
                         var columnInfo = {};
 
@@ -610,7 +610,7 @@
                         columnInfo.prtype = "T";
 
                         tableColumnInfo["_" + par] = columnInfo;
-                        innerHtml += "<th>" + parName + " (<small>" + nodeData.nodeItem[par].itemUnit + "</small>)</th>";
+                        innerHtml += "<th>" + parName + ( nodeData.nodeItem[par].itemUnit ? " (<small>" + nodeData.nodeItem[par].itemUnit + "</small>)" : "") + "</th>";
                         parLine += "-" + par + "-";
                     }
                 }
@@ -686,7 +686,7 @@
 
                                     lineData.nodeName = node.nodeName;
                                     for (var item in nodeItem) {
-                                        if (node.nodeItem[item].itemSelect == 1) {
+                                        if (node.nodeItem[item].itemMonitor == 1 && node.nodeItem[item].itemSelect == 1) {
                                             if (lineData.hasOwnProperty(item) && lineData[item] != "") {
                                                 var showValue = "";
                                                 var showTitle = "";

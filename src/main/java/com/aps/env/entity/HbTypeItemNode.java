@@ -1,5 +1,6 @@
 package com.aps.env.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.math.BigDecimal;
@@ -41,11 +42,34 @@ public class HbTypeItemNode {
 
     private String itemConvertFormat;
 
-    private int itemSelect;
+    private Integer itemSelect;
+    /**
+     * 是否为监测参数
+     */
+    private Integer itemMonitor;
 
-    private int itemAlarm;
+    private Integer itemAlarm;
 
-    private int itemShowMain;
+    private Integer itemOperating;
+
+    private Integer itemLog;
+
+    private Integer itemShowMain;
+
+    @JsonIgnore
+    public boolean isSelectMonitorItem() {
+        return null != this.getItemSelect() && null != this.getItemMonitor() && 1 == this.getItemSelect() && 1 == this.getItemMonitor() ? true : false;
+    }
+
+    @JsonIgnore
+    public boolean isAlarmItem() {
+        return null != this.getItemAlarm() && 1 == this.getItemAlarm() ? true : false;
+    }
+
+    @JsonIgnore
+    public boolean isShowMainItem() {
+        return null != this.getItemShowMain() && 1 == this.getItemShowMain() ? true : false;
+    }
 
     public Integer getNodeId() {
         return nodeId;
@@ -143,27 +167,51 @@ public class HbTypeItemNode {
         this.itemConvertFormat = itemConvertFormat;
     }
 
-    public int getItemSelect() {
+    public Integer getItemSelect() {
         return itemSelect;
     }
 
-    public void setItemSelect(int itemSelect) {
+    public void setItemSelect(Integer itemSelect) {
         this.itemSelect = itemSelect;
     }
 
-    public int getItemAlarm() {
+    public Integer getItemMonitor() {
+        return itemMonitor;
+    }
+
+    public void setItemMonitor(Integer itemMonitor) {
+        this.itemMonitor = itemMonitor;
+    }
+
+    public Integer getItemOperating() {
+        return itemOperating;
+    }
+
+    public void setItemOperating(Integer itemOperating) {
+        this.itemOperating = itemOperating;
+    }
+
+    public Integer getItemLog() {
+        return itemLog;
+    }
+
+    public void setItemLog(Integer itemLog) {
+        this.itemLog = itemLog;
+    }
+
+    public Integer getItemAlarm() {
         return itemAlarm;
     }
 
-    public void setItemAlarm(int itemAlarm) {
+    public void setItemAlarm(Integer itemAlarm) {
         this.itemAlarm = itemAlarm;
     }
 
-    public int getItemShowMain() {
+    public Integer getItemShowMain() {
         return itemShowMain;
     }
 
-    public void setItemShowMain(int itemShowMain) {
+    public void setItemShowMain(Integer itemShowMain) {
         this.itemShowMain = itemShowMain;
     }
 }

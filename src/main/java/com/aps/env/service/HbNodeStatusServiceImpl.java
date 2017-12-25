@@ -90,7 +90,7 @@ public class HbNodeStatusServiceImpl implements HbNodeStatusService {
         final List<HbDataMode> hbDataModes = findNodeData(nodeId, nodeMn, dataType, hours);
 
         hbTypeItemNodeMap.forEach((itemId, hbTypeItemNode) -> {
-            if (1 == hbTypeItemNode.getItemSelect()) {
+            if (hbTypeItemNode.isSelectMonitorItem()) {
                 hbTypeItemExceptionMap.put(itemId, new HbTypeItemException(hbTypeItemNode));
             }
         });

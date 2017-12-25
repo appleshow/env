@@ -414,19 +414,21 @@
             <div class="modal-footer">
                 <button type="button"
                         class="btn btn-primary"
+                        id="btnAdd"
                         onclick="addEnterprise()">
                     <span class="glyphicon glyphicon-plus"
                           aria-hidden="true"></span>&nbsp;新增
                 </button>
                 <button type="button"
                         class="btn btn-primary"
+                        id="btnDel"
                         onclick="deleteEnterprise()">
                     <span class="glyphicon glyphicon-remove"
                           aria-hidden="true"></span>&nbsp;删除
                 </button>
                 <button type="button"
                         class="btn btn-primary"
-                        id = "btnSaveEnterprise"
+                        id="btnSave"
                         onclick="saveEnterprise()">
                     <span class="glyphicon glyphicon-ok"
                           aria-hidden="true"></span>&nbsp;保存
@@ -435,7 +437,43 @@
         </div>
     </div>
 </div>
-
+<div class="modal fade"
+     tabindex="-1"
+     role="dialog"
+     aria-labelledby="node-modal"
+     id="nodeMoalConfirm">
+    <div class="modal-dialog"
+         role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">&nbsp;&nbsp;&nbsp;确认</h4>
+            </div>
+            <div class="modal-body">
+                <p id="nodeMoalConfirmBody"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button"
+                        class="btn btn-default"
+                        data-dismiss="modal">
+                    <span class="glyphicon glyphicon-remove"
+                          aria-hidden="true"></span>&nbsp;取消
+                </button>
+                <button type="button"
+                        class="btn btn-primary"
+                        onclick="confirmOK()">
+                    <span class="glyphicon glyphicon-ok"
+                          aria-hidden="true"></span>&nbsp;确定
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- 提示框 -->
 <div class="modal fade"
      role="dialog"
@@ -510,7 +548,7 @@
                                 callback({
                                     data: treeData
                                 });
-                            }else{
+                            } else {
                                 var treeData = [];
                                 var subRegions = [];
                                 var subRegionName = "";
@@ -670,6 +708,9 @@
             }),
             loadingHTML: '<div class="tree-loading"><i class="fa fa-rotate-right fa-spin"></i></div>',
         });
+
+        $("#btnDel").attr({"disabled": true});
+        $("#btnSave").attr({"disabled": true});
 
         initComboData();
     });
@@ -846,6 +887,8 @@
 
         $("#enterpriseForm").data("bootstrapValidator").resetForm();
 
+        $("#btnDel").attr({"disabled": true});
+        $("#btnSave").attr({"disabled": false});
     }
 
     /**
@@ -853,7 +896,55 @@
      *
      */
     function deleteEnterprise() {
+        var selectItems = $('#enterpriseRegion').tree('selectedItems');
 
+        $("#nodeMoalConfirmBody").html("将删除企业：<b>" + selectItems[0].name + "</b>...??")
+        $('#nodeMoalConfirm').modal({
+            backdrop: 'static',
+            keyboard: true
+        });
+    }
+
+    /**
+     *
+     */
+    function confirmOK() {
+        $("#nodeMoalConfirm").modal('hide');
+
+        var selectItems = $('#enterpriseRegion').tree('selectedItems');
+        var hbEnterprises = [{_type: 'D', enterpriseId: selectItems[0].id}];
+
+        $.ajax({
+            async: false,
+            type: "POST",
+            url: "${ctx}/viewHbEnterpriseCfg/modifyEnterprise",
+            cache: false,
+            data: ServerRequestPar(1, hbEnterprises),
+            dataType: "json",
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            success: function (res) {
+                $("#btnAdd").attr('disabled', false);
+                if ("I" != pagePars.modifyType) {
+                    $("#btnDel").attr('disabled', false);
+                }
+                $("#btnSave").attr('disabled', false);
+                if (res.code != 0) {
+                    callError(-999, res.message);
+                } else {
+                    parent.refreshPage();
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                $("#btnAdd").attr('disabled', false);
+                if ("I" != pagePars.modifyType) {
+                    $("#btnDel").attr('disabled', false);
+                }
+                $("#btnSave").attr('disabled', false);
+                callError(-888, "服务器请求异常...！")
+            }
+        });
     }
 
     /**
@@ -861,7 +952,9 @@
      *
      */
     function saveEnterprise() {
-        $("#btnSaveEnterprise").attr('disabled',true);
+        $("#btnAdd").attr('disabled', true);
+        $("#btnDel").attr('disabled', true);
+        $("#btnSave").attr('disabled', true);
         $("#enterpriseForm").data("bootstrapValidator").validate();
 
         var check = $("#enterpriseForm").data("bootstrapValidator").isValid();
@@ -870,17 +963,17 @@
             var hbEnterprises = [];
 
             if (hbEnterprise.property0 == "") {
-                $("#btnSaveEnterprise").attr('disabled',false);
+                $("#btnSave").attr('disabled', false);
                 callError(-100, "请选择一个行政区划...！");
                 return;
             }
             if (hbEnterprise.enterpriseTrade == "") {
-                $("#btnSaveEnterprise").attr('disabled',false);
+                $("#btnSave").attr('disabled', false);
                 callError(-100, "请选择一个所属行业...！");
                 return;
             }
             if (hbEnterprise.enterpriseCmlAmount != "" && pagePars.selectUnitId == undefined) {
-                $("#btnSaveEnterprise").attr('disabled',false);
+                $("#btnSave").attr('disabled', false);
                 callError(-100, "请选择请选择危化存量单位...！");
                 return;
             }
@@ -899,7 +992,11 @@
                     'Content-Type': 'application/json;charset=utf-8'
                 },
                 success: function (res) {
-                    $("#btnSaveEnterprise").attr('disabled',false);
+                    $("#btnAdd").attr('disabled', false);
+                    if ("I" != pagePars.modifyType) {
+                        $("#btnDel").attr('disabled', false);
+                    }
+                    $("#btnSave").attr('disabled', false);
                     if (res.code != 0) {
                         callError(-999, res.message);
                     } else {
@@ -907,12 +1004,20 @@
                     }
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    $("#btnSaveEnterprise").attr('disabled',false);
+                    $("#btnAdd").attr('disabled', false);
+                    if ("I" != pagePars.modifyType) {
+                        $("#btnDel").attr('disabled', false);
+                    }
+                    $("#btnSave").attr('disabled', false);
                     callError(-888, "服务器请求异常...！")
                 }
             });
         } else {
-            $("#btnSaveEnterprise").attr('disabled',false);
+            $("#btnAdd").attr('disabled', false);
+            if ("I" != pagePars.modifyType) {
+                $("#btnDel").attr('disabled', false);
+            }
+            $("#btnSave").attr('disabled', false);
             callError(-100, "录入信息有误，请检查录入信息...！");
         }
     }
@@ -942,6 +1047,12 @@
                 });
 
                 pagePars.modifyType = "U";
+
+                $("#btnDel").attr('disabled', false);
+                $("#btnSave").attr('disabled', false);
+            } else {
+                $("#btnDel").attr('disabled', true);
+                $("#btnSave").attr('disabled', true);
             }
         }
     }

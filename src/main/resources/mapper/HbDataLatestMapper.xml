@@ -700,7 +700,7 @@
     AND org.PRFLAG = 1
     ) person ON node.NODE_ID = person.NODE_ID AND node.DELETE_FLAG = 0
     <if test="prflag != null">AND node.ENTERPRISE_ID = #{prflag,jdbcType=INTEGER}
-    </if>) personnode on latest.NODE_ID = personnode.NODE_ID
+    </if>) personnode on latest.NODE_ID = personnode.NODE_ID  <if test="dataTime != null">AND latest.DATA_TIME >=  #{dataTime,jdbcType=TIMESTAMP}</if>
     ORDER BY latest.NODE_ID,latest.DATA_TIME
   </select>
 </mapper>

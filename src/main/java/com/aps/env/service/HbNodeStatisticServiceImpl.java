@@ -95,7 +95,7 @@ public class HbNodeStatisticServiceImpl implements HbNodeStatisticService {
                         hbTypeItemNodeMap.forEach((itemId, hbTypeItem) -> {
                             try {
                                 HbTypeItemNode hbTypeItemNode = JsonUtil.getObjectMapper().readValue(hbTypeItem, HbTypeItemNode.class);
-                                if (hbTypeItemNode.getItemSelect() == 1) {
+                                if (hbTypeItemNode.isSelectMonitorItem()) {
                                     final HbTypeItemException hbTypeItemException = new HbTypeItemException(hbTypeItemNode);
 
                                     nodeDatas.forEach(nodeData -> {
@@ -114,7 +114,7 @@ public class HbNodeStatisticServiceImpl implements HbNodeStatisticService {
 
                                     final ObjectNode checkParInfo = JsonUtil.getObjectNodeInstance();
                                     checkParInfo.put("itemId", itemId);
-                                    if (1 != hbTypeItemNode.getItemAlarm()) {
+                                    if (!hbTypeItemNode.isAlarmItem()) {
                                         checkParInfo.put("itemName", "<kbd style='background:green' title='未开启报警'>" + hbTypeItemNode.getItemName() + "</kbd>");
                                     } else {
                                         checkParInfo.put("itemName", hbTypeItemNode.getItemName());
@@ -132,7 +132,7 @@ public class HbNodeStatisticServiceImpl implements HbNodeStatisticService {
                                     }
 
                                     if (0 < hbTypeItemException.getValueMinCount()) {
-                                        if (1 == hbTypeItemNode.getItemAlarm()) {
+                                        if (hbTypeItemNode.isAlarmItem()) {
                                             checkParInfo.put("minCount", "<span class='badge'><small>" + hbTypeItemException.getValueMinCount() + "</small></span><kbd style='background:red' title='下限：" + hbTypeItemNode.getItemVmin() + "'><small>" + hbTypeItemException.getValueMinCountRate() + "</kbd>");
                                         } else {
                                             checkParInfo.put("minCount", "<span class='badge'><small>" + hbTypeItemException.getValueMinCount() + "</small></span><kbd style='background:green' title='下限：" + hbTypeItemNode.getItemVmin() + "'><small>" + hbTypeItemException.getValueMinCountRate() + "</kbd>");
@@ -140,7 +140,7 @@ public class HbNodeStatisticServiceImpl implements HbNodeStatisticService {
 
                                     }
                                     if (0 < hbTypeItemException.getValueMaxCount()) {
-                                        if (1 == hbTypeItemNode.getItemAlarm()) {
+                                        if (hbTypeItemNode.isAlarmItem()) {
                                             checkParInfo.put("maxCount", "<span class='badge'><small>" + hbTypeItemException.getValueMaxCount() + "</small></span><kbd style='background:red' title='上限：" + hbTypeItemNode.getItemVmax() + "'>" + hbTypeItemException.getValueMaxCountRate() + "</kbd>");
                                         } else {
                                             checkParInfo.put("maxCount", "<span class='badge'><small>" + hbTypeItemException.getValueMaxCount() + "</small></span><kbd style='background:green' title='上限：" + hbTypeItemNode.getItemVmax() + "'>" + hbTypeItemException.getValueMaxCountRate() + "</kbd>");
@@ -148,7 +148,7 @@ public class HbNodeStatisticServiceImpl implements HbNodeStatisticService {
 
                                     }
                                     if (0 < hbTypeItemException.getValueAla1Count()) {
-                                        if (1 == hbTypeItemNode.getItemAlarm()) {
+                                        if (hbTypeItemNode.isAlarmItem()) {
                                             checkParInfo.put("ala1Count", "<span class='badge'><small>" + hbTypeItemException.getValueAla1Count() + "</small></span><kbd style='background:red' title='一级阀值：" + hbTypeItemNode.getItemVala1() + "'>" + hbTypeItemException.getValueAla1CountRate() + "</kbd>");
                                         } else {
                                             checkParInfo.put("ala1Count", "<span class='badge'><small>" + hbTypeItemException.getValueAla1Count() + "</small></span><kbd style='background:green' title='一级阀值：" + hbTypeItemNode.getItemVala1() + "'>" + hbTypeItemException.getValueAla1CountRate() + "</kbd>");
@@ -156,7 +156,7 @@ public class HbNodeStatisticServiceImpl implements HbNodeStatisticService {
 
                                     }
                                     if (0 < hbTypeItemException.getValueAla2Count()) {
-                                        if (1 == hbTypeItemNode.getItemAlarm()) {
+                                        if (hbTypeItemNode.isAlarmItem()) {
                                             checkParInfo.put("ala2Count", "<span class='badge'><small>" + hbTypeItemException.getValueAla2Count() + "</small></span><kbd style='background:red' title='二级阀值：" + hbTypeItemNode.getItemVala2() + "'>" + hbTypeItemException.getValueAla2CountRate() + "</kbd>");
                                         } else {
                                             checkParInfo.put("ala2Count", "<span class='badge'><small>" + hbTypeItemException.getValueAla2Count() + "</small></span><kbd style='background:green' title='二级阀值：" + hbTypeItemNode.getItemVala2() + "'>" + hbTypeItemException.getValueAla2CountRate() + "</kbd>");
@@ -164,7 +164,7 @@ public class HbNodeStatisticServiceImpl implements HbNodeStatisticService {
                                         }
                                     }
                                     if (0 < hbTypeItemException.getValueAla3Count()) {
-                                        if (1 == hbTypeItemNode.getItemAlarm()) {
+                                        if (hbTypeItemNode.isAlarmItem()) {
                                             checkParInfo.put("ala3Count", "<span class='badge'><small>" + hbTypeItemException.getValueAla3Count() + "</small></span><kbd style='background:red' title='三级阀值：" + hbTypeItemNode.getItemVala3() + "'>" + hbTypeItemException.getValueAla3CountRate() + "</kbd>");
                                         } else {
                                             checkParInfo.put("ala3Count", "<span class='badge'><small>" + hbTypeItemException.getValueAla3Count() + "</small></span><kbd style='background:green' title='三级阀值：" + hbTypeItemNode.getItemVala3() + "'>" + hbTypeItemException.getValueAla3CountRate() + "</kbd>");

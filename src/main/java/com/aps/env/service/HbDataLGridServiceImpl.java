@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -32,10 +33,12 @@ public class HbDataLGridServiceImpl implements HbDataLGridService {
     public void refHbDataLatest(HttpSession httpSession, RequestRefPar requestRefPar, ResponseData responseData) {
         List<HbDataLatest> hbDataLatests = new ArrayList<>();
         Integer nodeId = requestRefPar.getIntegerPar("nodeId");
+        Date nowDate = new Date();
+        int hours = 1;
 
         if (null != nodeId) {
             HbDataLatestExample hbDataLatestExample = new HbDataLatestExample();
-            hbDataLatestExample.createCriteria().andNodeIdEqualTo(nodeId).andNodeDataIsNotNull();
+            hbDataLatestExample.createCriteria().andNodeIdEqualTo(nodeId).andNodeDataIsNotNull().andDataTimeGreaterThanOrEqualTo(new Date(nowDate.getTime() - 1000 * 60 * 60 * hours));
             hbDataLatestExample.setOrderByClause("DATA_TIME DESC");
             List<HbDataLatest> hbDataLatestsTemp = hbDataLatestMapper.selectByExample(hbDataLatestExample);
             if (hbDataLatestsTemp.size() > 0) {

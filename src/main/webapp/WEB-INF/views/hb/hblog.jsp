@@ -9,7 +9,7 @@
          pageEncoding="UTF-8"
          language="java" %>
 <html>
-<title>小时数据</title>
+<title>日志信息</title>
 <meta name="description"
       content="Dashboard"/>
 <meta name="viewport"
@@ -131,7 +131,6 @@
         </div>
     </div>
 </div>
-
 <div class="modal fade"
      role="dialog"
      aria-labelledby="msTitle"
@@ -226,6 +225,9 @@
     var pagePars = {
         selectNode: undefined,
         tableDataCur: undefined,
+        pageTitle: '日志信息',
+        maxDateLen: 7,
+        dataType: '3020',
     };
 
 
@@ -248,6 +250,16 @@
             $('#dateTimeStr').data("DateTimePicker").maxDate(e.date);
         });
 
+
+        if ("${dataType}" == "m") {
+            pagePars.pageTitle = "分钟数据";
+            pagePars.maxDateLen = "7";
+            pagePars.dataType = "2051";
+        } else if ("${dataType}" == "h") {
+            pagePars.pageTitle = "小时数据";
+            pagePars.maxDateLen = "31";
+            pagePars.dataType = "2061";
+        }
     })
 
     /**
@@ -280,7 +292,7 @@
         var innerHtml = "<tr>";
 
         $("#tableDiv").empty();
-        $("#tableDiv").html(' <table id="tbdataCur" class="table table-striped table-bordered display responsive nowrap" cellspacing="0" width="100%"> <thead id="tbdataCurHC"></thead></table>');
+        $("#tableDiv").html(' <table id="tbdataCur" class="table table-striped table-bordered display nowrap" cellspacing="0" width="100%"> <thead id="tbdataCurHC"></thead></table>');
 
         tableColumnInfo.nodeName = {
             name: "站点名称",
@@ -320,7 +332,7 @@
                 var nodePar = $.parseJSON(pagePars.selectNode.nodeItem[item]);
 
                 pagePars.selectNode.nodeItem[item] = nodePar;
-                if (nodePar.itemSelect == 1) {
+                if (nodePar.itemLog == 1 && nodePar.itemSelect == 1) {
                     var columnInfo = {};
 
                     columnInfo.name = nodePar.itemName;
@@ -336,7 +348,7 @@
 
                     tableColumnInfo["_" + nodePar.itemId] = columnInfo;
 
-                    innerHtml += "<th>" + nodePar.itemName + " (<small>" + nodePar.itemUnit + "</small>)</th>";
+                    innerHtml += "<th>" + nodePar.itemName + (nodePar.itemUnit ? " (<small>" + nodePar.itemUnit + "</small>)" : "") + "</th>";
                 }
             }
 
@@ -362,6 +374,7 @@
             recordsFiltered: 0,
             data: []
         };
+
         if (pagePars.selectNode == undefined) {
             callback(tableData);
             return;
@@ -373,7 +386,7 @@
             data: ServerRequestPar(1, {
                 nodeId: pagePars.selectNode.nodeId,
                 nodeMn: pagePars.selectNode.nodeMn,
-                dataType: '2061',
+                dataType: pagePars.dataType,
                 dateStr: $('#dateStr').val(),
                 dateEnd: $('#dateEnd').val(),
                 pageNumber: data.length == -1 ? 0 : data.start / data.length + 1,
@@ -396,26 +409,35 @@
                             var nodeItem = pagePars.selectNode.nodeItem;
 
                             for (var item in nodeItem) {
-                                if (nodeItem[item].itemSelect == 1) {
-                                    var item = item;
+                                if (nodeItem[item].itemLog == 1 && nodeItem[item].itemSelect == 1) {
                                     if (lineData.hasOwnProperty(item) && lineData[item] != "") {
                                         var showValue = "";
+                                        var showTitle = "";
 
                                         if (nodeItem[item].itemVmin != "" && parseFloat(nodeItem[item].itemVmin) > parseFloat(lineData[item])) {
                                             showValue = "<span class='badge' title='参数下限: " + nodeItem[item].itemVmin + "'><small>下</small></span>";
+                                            showTitle += '参数下限: ' + nodeItem[item].itemVmin;
                                         } else if (nodeItem[item].itemVmax != "" && parseFloat(nodeItem[item].itemVmax) < parseFloat(lineData[item])) {
                                             showValue = "<span class='badge' title='参数上限: " + nodeItem[item].itemVmax + "'><small>上</small></span>";
+                                            showTitle += ' 参数上限: ' + nodeItem[item].itemVmax;
                                         }
                                         if (nodeItem[item].itemVala3 != "" && parseFloat(lineData[item]) > parseFloat(nodeItem[item].itemVala3)) {
                                             showValue += "<span class='badge' title='三级阀值: " + nodeItem[item].itemVala3 + "'><small>三</small></span>";
+                                            showTitle += ' 三级阀值: ' + nodeItem[item].itemVala3;
                                         } else if (nodeItem[item].itemVala2 != "" && parseFloat(lineData[item]) > parseFloat(nodeItem[item].itemVala2)) {
                                             showValue += "<span class='badge' title='二级阀值: " + nodeItem[item].itemVala2 + "'><small>二</small></span>";
+                                            showTitle += ' 二级阀值: ' + nodeItem[item].itemVala2;
                                         } else if (nodeItem[item].itemVala1 != "" && parseFloat(lineData[item]) > parseFloat(nodeItem[item].itemVala1)) {
                                             showValue += "<span class='badge' title='一级阀值: " + nodeItem[item].itemVala1 + "'><small>一</small></span>";
+                                            showTitle += ' 一级阀值: ' + nodeItem[item].itemVala1;
                                         }
 
                                         if (showValue != "") {
-                                            lineData["_" + item] = showValue + '<kbd style="background:red">' + lineData[item] + '</kbd>';
+                                            if (nodeItem[item].itemAlarm == 1) {
+                                                lineData["_" + item] = showValue + '<kbd style="background:red">' + lineData[item] + '</kbd>';
+                                            } else {
+                                                lineData["_" + item] = '<kbd style="background:green" title="' + showTitle + '">' + lineData[item] + '</kbd>';
+                                            }
                                         } else {
                                             lineData["_" + item] = lineData[item];
                                         }
@@ -454,11 +476,11 @@
         var momentEnd = moment($('#dateEnd').val());
         var timeLength = momentEnd.diff(momentStr, 'days') + 1;
 
-        if (timeLength > 31) {
-            callError(100, "时间区间最大为【31天】，当前查询区间为：" + timeLength + "天...!!");
+        if (timeLength > pagePars.maxDateLen) {
+            callError(100, "时间区间最大为【" + pagePars.maxDateLen + "天】，当前查询区间为：" + timeLength + "天...!!");
             return;
         }
-        document.title = "小时数据 - " + pagePars.selectNode.nodeName;
+        document.title = pagePars.pageTitle + " - " + pagePars.selectNode.nodeName;
         pagePars.tableDataCur.table.ajax.reload(null, false);
     }
 
@@ -485,7 +507,7 @@
                     pagePars.selectNode = node;
                 }
             });
-            document.title = "小时数据 - " + pagePars.selectNode.nodeName;
+            document.title = "日志信息 - " + pagePars.selectNode.nodeName;
             createtableDivHis();
         }
 
