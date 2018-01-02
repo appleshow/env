@@ -1,11 +1,14 @@
 package com.aps.env.service;
 
+import com.aps.env.comm.RequestRefPar;
+import com.aps.env.comm.ResponseData;
 import com.aps.env.entity.ComOrgFormRights;
 import com.aps.env.entity.ComPerson;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -28,4 +31,6 @@ public interface LoginViewService {
     List<ComOrgFormRights> selectPersonPermissions(Integer personId);
 
     ModelAndView tryToLogin(String userId, String password, String verification, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse);
+
+    void tryToLoginMobile(HttpSession httpSession, RequestRefPar requestRefPar, ResponseData responseData);
 }

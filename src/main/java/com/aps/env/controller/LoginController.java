@@ -1,12 +1,11 @@
 package com.aps.env.controller;
 
+import com.aps.env.comm.RequestRefPar;
+import com.aps.env.comm.ResponseData;
 import com.aps.env.service.LoginViewService;
 import com.aps.env.service.PreLoginHandler;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
@@ -85,6 +84,23 @@ public class LoginController extends ExceptionController {
     public ModelAndView login(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @RequestParam("userId") String userId,
                               @RequestParam("password") String password, @RequestParam("verification") String verification) {
         return loginViewService.tryToLogin(userId, password, verification, httpServletRequest, httpServletResponse);
+    }
+
+    /**
+     * 提交登入Mobile
+     *
+     * @param httpSession
+     * @param requestRefPar
+     * @return
+     */
+    @RequestMapping(value = "/loginMobile", method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseData loginMobile(HttpSession httpSession, @RequestBody RequestRefPar requestRefPar) {
+        ResponseData responseData = new ResponseData();
+
+        loginViewService.tryToLoginMobile(httpSession, requestRefPar, responseData);
+
+        return responseData;
     }
 
 }

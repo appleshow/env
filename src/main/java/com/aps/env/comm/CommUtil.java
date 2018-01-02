@@ -86,7 +86,7 @@ public class CommUtil {
      * @return: boolean
      */
     public static boolean isPermissoned(HttpSession httpSession, int formId, String action, ResponseData responseData) {
-        boolean isPermissioined;
+        boolean isPermission;
         int permissionedCount = 0;
         Object sessionPermissions = httpSession.getAttribute(SESSION_USER_PERMISSIONS);
 
@@ -94,16 +94,16 @@ public class CommUtil {
             responseData.setCode(-201);
             responseData.setMessage("未登录，您无法访问此功能！");
 
-            isPermissioined = false;
+            isPermission = false;
         } else {
             if (0 == formId) {
-                isPermissioined = true;
+                isPermission = true;
             } else {
                 if (null == sessionPermissions) {
                     responseData.setCode(-202);
                     responseData.setMessage("权限不足，您无法访问此功能！");
 
-                    isPermissioined = false;
+                    isPermission = false;
                 } else {
                     @SuppressWarnings("unchecked")
                     List<ComOrgFormRights> personPermissions = (List<ComOrgFormRights>) sessionPermissions;
@@ -111,10 +111,10 @@ public class CommUtil {
                     for (ComOrgFormRights orgFormRights : personPermissions) {
                         if (orgFormRights.getFormId() == formId && orgFormRights.getRightId().equals(action)) {
                             if (1 == CommUtil.nvl(orgFormRights.getRea())) {
-                                isPermissioined = false;
+                                isPermission = false;
                                 responseData.setCode(-203);
                                 responseData.setMessage("功能已被锁定，您无法访问此功能！");
-                                return isPermissioined;
+                                return isPermission;
                             }
                             permissionedCount += CommUtil.nvl(orgFormRights.getRel());
                         }
@@ -124,15 +124,15 @@ public class CommUtil {
                         responseData.setCode(-204);
                         responseData.setMessage("权限不足，您无法访问此功能！");
 
-                        isPermissioined = false;
+                        isPermission = false;
                     } else {
-                        isPermissioined = true;
+                        isPermission = true;
                     }
 
                 }
             }
         }
-        return isPermissioined;
+        return isPermission;
     }
 
     /**
