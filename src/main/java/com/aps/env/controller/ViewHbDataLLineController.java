@@ -29,7 +29,7 @@ import javax.servlet.http.HttpSession;
 public class ViewHbDataLLineController extends ExceptionController {
     @Resource(name = "hbDataLLineServiceImpl")
     private HbDataLLineService viewHbDataLLineService;
-    private final int formId = 13;
+    private final int formId = 0;
 
     /**
      * @param httpSession

@@ -2,6 +2,7 @@ package com.aps.env.comm;
 
 import com.aps.env.entity.ComOrgFormRights;
 import com.aps.env.entity.HbNode;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.context.ContextLoader;
 import org.springframework.web.context.WebApplicationContext;
 
@@ -25,7 +26,6 @@ public class CommUtil {
     public final static String CONTEXT_PATH = "ctx";
     public final static String NIO_SERVER = "nioServer";
     public final static String LOCK_WORD = "jmzfc369";
-    public final static String LOADED = "loaded";
     public final static String SESSION_VERIFICATION = "verification";
     public final static String SESSION_PERSON_ID = "personId";
     public final static String SESSION_USER_ID = "userId";
@@ -40,14 +40,10 @@ public class CommUtil {
 
     public final static String HB_DATA_CUR = "HB_DATA_CUR";
     public final static String HB_DATA_HIS = "HB_DATA_HIS";
-    public final static String HB_DATA_RTD212 = "-Rtd";
-    public final static String HB_DATA_AVG212 = "-Avg";
 
     public final static int MAX_LATEST_DATA = 30;
     public final static Integer AVAILABLE = 0;
     public final static Integer DELETE = 1;
-
-    public final static int NIO_TCP_PORT = Integer.parseInt(StringUtil.isNullOrEmpty(System.getenv("NIO_PORT")) ? "9123" : System.getenv("NIO_PORT"));
 
     public final static String SYS_PATH = CommUtil.class.getResource("/").getPath();
     private final static WebApplicationContext webApplicationContext = ContextLoader.getCurrentWebApplicationContext();

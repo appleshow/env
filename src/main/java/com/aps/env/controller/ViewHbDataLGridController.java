@@ -29,7 +29,7 @@ import javax.servlet.http.HttpSession;
 public class ViewHbDataLGridController extends ExceptionController {
     @Resource(name = "hbDataLGridServiceImpl")
     private HbDataLGridService viewHbDataLGridService;
-    private final int formId = 28;
+    private final int formId = 0;
 
     /**
      * @param httpSession

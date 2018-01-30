@@ -18,7 +18,8 @@
        http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.0.xsd"
        default-lazy-init="true">
     <!-- dataSource -->
-    <import resource="classpath:dataSource-${ENV_NAME}.xml"/>
+    <!--<import resource="classpath:dataSource-${ENV_NAME}.xml"/>-->
+    <import resource="file:${DB_CONFIG}/env.xml"/>
     <!-- 防止事务失效，此处对所有Service进行扫描 -->
     <context:component-scan base-package="com.aps.env.service">
     </context:component-scan>

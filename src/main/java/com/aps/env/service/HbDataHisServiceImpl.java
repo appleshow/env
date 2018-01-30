@@ -46,7 +46,7 @@ public class HbDataHisServiceImpl implements HbDataHisService {
         Date dateEnd = dateFormat.parse(requestRefPar.getStringPar("dateEnd"));
         HbDataModeExample hbDataModeExample = new HbDataModeExample();
         hbDataModeExample.setDataTbale(CommUtil.HB_DATA_CUR + nodeId);
-        hbDataModeExample.createCriteria().andNodeMnEqualTo(nodeMn).andDataTypeEqualTo(dataType).andDataTimeBetween(dateStr, dateEnd);
+        hbDataModeExample.createCriteria().andDataTypeEqualTo(dataType).andDataTimeBetween(dateStr, dateEnd);
         hbDataModeExample.setOrderByClause("DATA_TIME");
 
         if (null != pageNumber && null != pageSize) {

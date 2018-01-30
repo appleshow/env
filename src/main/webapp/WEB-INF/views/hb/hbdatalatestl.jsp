@@ -352,7 +352,7 @@
                     $("#lineCurBox").html(html);
 
                     $.each(res.data, function (index, value) {
-                        if (value.hasOwnProperty("nodeMn")) {
+                        if (value.hasOwnProperty("nodeItem")) {
                             var nodeItems = value.nodeItem;
                             var yAxis = [], series = [], pars = [], parNames = [], parUnits = [], parCount = 0;
 

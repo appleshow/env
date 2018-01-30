@@ -52,7 +52,7 @@ public class HbContrastServiceImpl implements HbContrastService {
         for (int index = 0; index < nodeIds.length; index++) {
             HbDataModeExample hbDataModeExample = new HbDataModeExample();
             hbDataModeExample.setDataTbale(CommUtil.HB_DATA_CUR + nodeIds[index]);
-            hbDataModeExample.createCriteria().andNodeMnEqualTo(nodeMns[index]).andDataTypeEqualTo(dataType).andDataTimeBetween(dateStr, dateEnd);
+            hbDataModeExample.createCriteria().andDataTypeEqualTo(dataType).andDataTimeBetween(dateStr, dateEnd);
             hbDataModeExample.setOrderByClause("DATA_TIME");
 
 

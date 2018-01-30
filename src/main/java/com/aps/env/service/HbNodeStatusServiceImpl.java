@@ -143,7 +143,7 @@ public class HbNodeStatusServiceImpl implements HbNodeStatusService {
         final Date dateStr = new Date(dateEnd.getTime() - 1000 * 60 * 60 * hours);
         HbDataModeExample hbDataModeExample = new HbDataModeExample();
         hbDataModeExample.setDataTbale(CommUtil.HB_DATA_CUR + nodeId);
-        hbDataModeExample.createCriteria().andNodeMnEqualTo(nodeMn).andDataTypeEqualTo(dataType).andDataTimeBetween(dateStr, dateEnd);
+        hbDataModeExample.createCriteria().andDataTypeEqualTo(dataType).andDataTimeBetween(dateStr, dateEnd);
         hbDataModeExample.setOrderByClause("DATA_TIME");
 
         return hbDataModeMapper.selectByExample(hbDataModeExample);

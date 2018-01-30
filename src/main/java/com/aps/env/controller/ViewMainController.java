@@ -5,6 +5,7 @@ import com.aps.env.comm.RequestMdyPar;
 import com.aps.env.comm.ResponseData;
 import com.aps.env.comm.StringUtil;
 import com.aps.env.service.MainService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -29,6 +30,8 @@ import java.util.Map;
 public class ViewMainController extends ExceptionController {
     @Resource(name = "mainServiceImpl")
     private MainService viewMainService;
+    @Value("${NIO_SERVER}")
+    private String nioServerAddr;
 
     /**
      * @param httpSession
@@ -78,6 +81,10 @@ public class ViewMainController extends ExceptionController {
             convertUrl.forEach((key, value) -> {
                 if (!key.equals("url")) {
                     modelAndView.addObject(key, value);
+                } else {
+                    if (convertUrl.get("url").indexOf("hbnodstatus") > 0) {
+                        modelAndView.addObject(CommUtil.NIO_SERVER, this.nioServerAddr);
+                    }
                 }
             });
 

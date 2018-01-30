@@ -10,7 +10,7 @@
          language="java" %>
 <html>
 <head>
-    <script type='text/javascript'>window.parent.reLoad('/');</script>
+    <script type='text/javascript'>window.parent.reLoad('${ctx}/');</script>
 </head>
 <body></body>
 </html>

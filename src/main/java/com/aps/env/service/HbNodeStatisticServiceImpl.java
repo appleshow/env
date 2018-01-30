@@ -67,7 +67,7 @@ public class HbNodeStatisticServiceImpl implements HbNodeStatisticService {
                 if (null != hbTypeItemNodeMap) {
                     final HbDataModeExample hbDataModeExample = new HbDataModeExample();
                     hbDataModeExample.setDataTbale(CommUtil.HB_DATA_CUR + nodeId);
-                    hbDataModeExample.createCriteria().andNodeMnEqualTo(hbNode.getNodeMn()).andDataTypeEqualTo(dataType).andDataTimeBetween(dateStr, dateEnd);
+                    hbDataModeExample.createCriteria().andDataTypeEqualTo(dataType).andDataTimeBetween(dateStr, dateEnd);
                     hbDataModeExample.setOrderByClause("DATA_TIME");
                     hbDataModes = hbDataModeMapper.selectByExample(hbDataModeExample);
 

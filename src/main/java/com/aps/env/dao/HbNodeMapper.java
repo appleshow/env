@@ -12,7 +12,7 @@ public interface HbNodeMapper {
 
     int deleteByExample(HbNodeExample example);
 
-    int deleteByPrimaryKey(Integer nodeId);
+    int deleteByPrimaryKey(HbNode hbNode);
 
     int insert(HbNode record);
 

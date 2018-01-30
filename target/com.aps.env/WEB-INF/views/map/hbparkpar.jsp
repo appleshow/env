@@ -630,10 +630,10 @@
                                                     selectParkPars[newItemId].nodeIds += ";" + node.nodeId + "";
                                                     selectParkPars[newItemId].nodeMns += ";" + node.nodeMn + "";
                                                     selectParkPars[newItemId].itemVsta = itemInfo.hasOwnProperty("itemVsta") && itemInfo.itemVsta > selectParkPars[newItemId].itemVsta ? itemInfo.itemVsta : selectParkPars[newItemId].itemVsta;
-                                                    if (!selectParkPars[newItemId]["nodePoint"].hasOwnProperty(node.nodeMn)) {
-                                                        selectParkPars[newItemId]["nodePoint"][node.nodeMn] = {};
-                                                        selectParkPars[newItemId]["nodePoint"][node.nodeMn].longitude = parseFloat(node.nodeLongitude);
-                                                        selectParkPars[newItemId]["nodePoint"][node.nodeMn].latitude = parseFloat(node.nodeLatitude);
+                                                    if (!selectParkPars[newItemId]["nodePoint"].hasOwnProperty(node.nodeId)) {
+                                                        selectParkPars[newItemId]["nodePoint"][node.nodeId] = {};
+                                                        selectParkPars[newItemId]["nodePoint"][node.nodeId].longitude = parseFloat(node.nodeLongitude);
+                                                        selectParkPars[newItemId]["nodePoint"][node.nodeId].latitude = parseFloat(node.nodeLatitude);
                                                     }
                                                 } else {
                                                     selectParkPars[newItemId] = {};
@@ -644,9 +644,9 @@
                                                     selectParkPars[newItemId].nodeIds = node.nodeId + "";
                                                     selectParkPars[newItemId].nodeMns = node.nodeMn + "";
                                                     selectParkPars[newItemId].nodePoint = {};
-                                                    selectParkPars[newItemId]["nodePoint"][node.nodeMn] = {};
-                                                    selectParkPars[newItemId]["nodePoint"][node.nodeMn].longitude = parseFloat(node.nodeLongitude);
-                                                    selectParkPars[newItemId]["nodePoint"][node.nodeMn].latitude = parseFloat(node.nodeLatitude);
+                                                    selectParkPars[newItemId]["nodePoint"][node.nodeId] = {};
+                                                    selectParkPars[newItemId]["nodePoint"][node.nodeId].longitude = parseFloat(node.nodeLongitude);
+                                                    selectParkPars[newItemId]["nodePoint"][node.nodeId].latitude = parseFloat(node.nodeLatitude);
                                                 }
                                             }
                                         }

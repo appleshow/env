@@ -112,7 +112,6 @@ public class HbEnterpriseNodeServiceImpl implements HbEnterpriseNodeService {
         Map<String, String> rowData;
         final Map<String, Object> nodeItemMap = new HashMap<>();
         HbNode hbNode;
-        HbDataLatest hbDataLatest;
         HbNodeExample hbNodeExample;
 
         for (int row = 0; row < requestMdyPar.getParCount(); row++) {
@@ -134,7 +133,7 @@ public class HbEnterpriseNodeServiceImpl implements HbEnterpriseNodeService {
                         final HbTypeItemExample hbTypeItemExample = new HbTypeItemExample();
                         hbTypeItemExample.createCriteria().andTypeIdEqualTo(hbNode.getTypeId());
                         final List<HbTypeItem> hbTypeItems = hbTypeItemMapper.selectByExample(hbTypeItemExample);
-                        hbTypeItems.stream().forEach(item -> {
+                        hbTypeItems.forEach(item -> {
                             if (1 == item.getPrflag()) {
                                 HbTypeItemNode hbTypeItemNode = new HbTypeItemNode();
                                 hbTypeItemNode.setItemId(item.getItemId());
@@ -164,6 +163,7 @@ public class HbEnterpriseNodeServiceImpl implements HbEnterpriseNodeService {
                         hbNode.setUperson(personId);
                         hbNodeMapper.insertSelective(hbNode);
 
+                        /*
                         hbDataLatest = new HbDataLatest();
                         for (int index = 0; index < CommUtil.MAX_LATEST_DATA; index++) {
                             hbDataLatest.setDataGuid(UUID.randomUUID().toString());
@@ -176,6 +176,7 @@ public class HbEnterpriseNodeServiceImpl implements HbEnterpriseNodeService {
 
                             hbDataLatestMapper.insertSelective(hbDataLatest);
                         }
+                        */
 
                         String sql;
                         String nodeIdStr = String.valueOf(hbNode.getNodeId());
@@ -208,7 +209,7 @@ public class HbEnterpriseNodeServiceImpl implements HbEnterpriseNodeService {
                         comResourceExample.createCriteria().andResourceTypeFEqualTo(hbNode.getNodeId()).andResourceTypeAEqualTo("NODE");
                         comResourceMapper.deleteByExample(comResourceExample);
 
-                        hbNodeMapper.deleteByPrimaryKey(hbNode.getNodeId());
+                        hbNodeMapper.deleteByPrimaryKey(hbNode);
 
                         break;
                     default:
