@@ -1008,6 +1008,7 @@
                 var selectItem = items[0];
                 var hbEnterpriseNode = {};
 
+                pagePars.modifyType = "U";
                 $.each(pagePars.enterpriseNode, function (index, node) {
                     if (selectItem.id == node.nodeId) {
                         hbEnterpriseNode = node;

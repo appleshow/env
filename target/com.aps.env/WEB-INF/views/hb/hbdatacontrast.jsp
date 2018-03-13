@@ -681,7 +681,7 @@
                             var lineData = $.parseJSON(dataHis.nodeData);
 
                             $.each(pagePars.enterpriseNode, function (index, node) {
-                                if (node.nodeMn == dataHis.nodeMn && node.hasOwnProperty("nodeItem")) {
+                                if (node.nodeId == dataHis.nodeMn && node.hasOwnProperty("nodeItem")) {
                                     var nodeItem = node.nodeItem;
 
                                     lineData.nodeName = node.nodeName;
