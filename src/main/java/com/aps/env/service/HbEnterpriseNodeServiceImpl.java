@@ -79,6 +79,8 @@ public class HbEnterpriseNodeServiceImpl implements HbEnterpriseNodeService {
             "  KEY `HB_DATA_MODE_C@` (`DATA_TIME`) USING BTREE\n" +
             ") ENGINE=InnoDB DEFAULT CHARSET=utf8";
 
+    private final String RENAME_TABLE_SQL = "RENAME TABLE #F TO #T";
+
     @Override
     public void refNodeType(HttpSession httpSession, RequestRefPar requestRefPar, ResponseData responseData) {
         HbTypeExample hbTypeExample = new HbTypeExample();
@@ -107,11 +109,12 @@ public class HbEnterpriseNodeServiceImpl implements HbEnterpriseNodeService {
     public void modifyEnterpriseNode(HttpSession httpSession, RequestMdyPar requestMdyPar, ResponseData responseData) {
         int personId;
         boolean jsonParseException = false;
-        String type;
+        String type, sql;
         Date now = new Date();
         Map<String, String> rowData;
         final Map<String, Object> nodeItemMap = new HashMap<>();
         HbNode hbNode;
+        HbDataMode hbDataMode;
         HbNodeExample hbNodeExample;
 
         for (int row = 0; row < requestMdyPar.getParCount(); row++) {
@@ -178,9 +181,8 @@ public class HbEnterpriseNodeServiceImpl implements HbEnterpriseNodeService {
                         }
                         */
 
-                        String sql;
                         String nodeIdStr = String.valueOf(hbNode.getNodeId());
-                        HbDataMode hbDataMode = new HbDataMode();
+                        hbDataMode = new HbDataMode();
                         sql = CREATE_TABLE_SQL.replace("#", CommUtil.HB_DATA_CUR + nodeIdStr);
                         sql = sql.replace("@", "C" + nodeIdStr);
                         hbDataMode.setNodeTable(sql);
@@ -210,6 +212,21 @@ public class HbEnterpriseNodeServiceImpl implements HbEnterpriseNodeService {
                         comResourceMapper.deleteByExample(comResourceExample);
 
                         hbNodeMapper.deleteByPrimaryKey(hbNode);
+
+                        hbDataMode = new HbDataMode();
+                        String guid = UUID.randomUUID().toString();
+
+                        guid = guid.replace("-", "_");
+
+                        sql = RENAME_TABLE_SQL.replace("#F", CommUtil.HB_DATA_CUR + String.valueOf(hbNode.getNodeId()));
+                        sql = sql.replace("#T", CommUtil.HB_DATA_CUR + String.valueOf(hbNode.getNodeId()) + "_" + guid);
+                        hbDataMode.setNodeTable(sql);
+                        hbDataModeMapper.createTable(hbDataMode);
+
+                        sql = RENAME_TABLE_SQL.replace("#F", CommUtil.HB_DATA_HIS + String.valueOf(hbNode.getNodeId()));
+                        sql = sql.replace("#T", CommUtil.HB_DATA_HIS + String.valueOf(hbNode.getNodeId()) + "_" + guid);
+                        hbDataMode.setNodeTable(sql);
+                        hbDataModeMapper.createTable(hbDataMode);
 
                         break;
                     default:

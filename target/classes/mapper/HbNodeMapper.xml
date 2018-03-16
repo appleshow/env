@@ -208,9 +208,7 @@
     where NODE_ID = #{nodeId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="com.aps.env.entity.HbNode" >
-    delete from hb_node where NODE_ID = #{nodeId,jdbcType=INTEGER};
-    alter table hb_data_cur${nodeId} rename hb_data_cur${nodeId}_d;
-    alter table hb_data_his${nodeId} rename hb_data_his${nodeId}_d;
+    delete from hb_node where NODE_ID = ${nodeId}
   </delete>
   <delete id="deleteByExample" parameterType="com.aps.env.entity.HbNodeExample" >
     delete from hb_node

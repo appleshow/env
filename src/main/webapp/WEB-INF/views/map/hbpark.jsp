@@ -913,13 +913,30 @@
                 if (undefined != selectPark && selectPark.hasOwnProperty("parkPath")) {
                     var parkPath = $.parseJSON(selectPark.parkPath);
                     var points = [];
+                    var maxLongitude = -999, minLongitude = 99999, maxLatitude = -999, minLatitude = 99999;
 
                     $.each(parkPath, function (indexParkPoint, parkPoint) {
+                        var longitudeTemp = parseFloat(parkPoint.longitude);
+                        var latitudeTemp = parseFloat(parkPoint.latitude);
+
+                        if (maxLongitude < longitudeTemp) {
+                            maxLongitude = longitudeTemp;
+                        }
+                        if (minLongitude > longitudeTemp) {
+                            minLongitude = longitudeTemp;
+                        }
+                        if (maxLatitude < latitudeTemp) {
+                            maxLatitude = latitudeTemp;
+                        }
+                        if (minLatitude > latitudeTemp) {
+                            minLatitude = latitudeTemp;
+                        }
                         points.push(new BMap.Point(parkPoint.longitude, parkPoint.latitude));
                     });
 
                     var polygon = new BMap.Polygon(points, {strokeColor: "blue", strokeWeight: 2, strokeOpacity: 0.5});  //创建多边形
 
+                    pagePars.map.centerAndZoom(new BMap.Point(minLongitude + (maxLongitude - minLongitude) / 2.0, minLatitude + (maxLatitude - minLatitude) / 2.0), 12)
                     pagePars.map.addOverlay(polygon);
                     pagePars.polygonShow = polygon;
                     pagePars.selectPark = selectPark;
