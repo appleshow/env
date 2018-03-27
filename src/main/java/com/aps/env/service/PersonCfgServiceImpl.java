@@ -126,10 +126,10 @@ public class PersonCfgServiceImpl implements PersonCfgService {
                         }
                         break;
                     case CommUtil.MODIFY_TYPE_DELETE:
-                        ComPersonOrg comPersonOrg = new ComPersonOrg();
+                        ComPersonOrgExample comPersonOrgExample = new ComPersonOrgExample();
+                        comPersonOrgExample.createCriteria().andPersonIdEqualTo(comPerson.getPersonId());
+                        comPersonOrgMapper.deleteByExample(comPersonOrgExample);
 
-                        comPersonOrg.setPersonId(comPerson.getPersonId());
-                        comPersonOrgMapper.deleteByPrimaryKey(comPersonOrg);
                         comPersonMapper.deleteByPrimaryKey(comPerson.getPersonId());
 
                         break;

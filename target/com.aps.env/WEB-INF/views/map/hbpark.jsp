@@ -936,7 +936,7 @@
 
                     var polygon = new BMap.Polygon(points, {strokeColor: "blue", strokeWeight: 2, strokeOpacity: 0.5});  //创建多边形
 
-                    pagePars.map.centerAndZoom(new BMap.Point(minLongitude + (maxLongitude - minLongitude) / 2.0, minLatitude + (maxLatitude - minLatitude) / 2.0), 12)
+                    pagePars.map.centerAndZoom(new BMap.Point(minLongitude + (maxLongitude - minLongitude) / 2.0, minLatitude + (maxLatitude - minLatitude) / 2.0), 12);
                     pagePars.map.addOverlay(polygon);
                     pagePars.polygonShow = polygon;
                     pagePars.selectPark = selectPark;

@@ -1,6 +1,5 @@
 package com.aps.env.controller;
 
-import com.aps.env.comm.JsonUtil;
 import com.aps.env.comm.ResponseData;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

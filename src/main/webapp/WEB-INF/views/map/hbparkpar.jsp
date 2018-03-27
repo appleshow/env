@@ -930,6 +930,7 @@
                         // 创建标注
                         var marker = new BMap.Marker(new BMap.Point(longitude, latitude));
                         pagePars.map.addOverlay(marker);
+                        pagePars.map.centerAndZoom(new BMap.Point(longitude, latitude), 12);
                         pagePars.marker = marker;
                         marker.addEventListener("click", function (e) {
                             var itemName = undefined, itemUnit = undefined, itemValue = undefined;
@@ -1058,6 +1059,8 @@
 
         var maxValue = 0;
         var points = [];
+        var maxLongitude = -999, minLongitude = 99999, maxLatitude = -999, minLatitude = 99999;
+
         for (var nodeMn in nodeParValue) {
             nodeParValue[nodeMn].value = (nodeParValue[nodeMn].sumValue / nodeParValue[nodeMn].count).toFixed(2);
             if (nodeParValue[nodeMn].value > maxValue) {
@@ -1068,9 +1071,26 @@
             point.lat = nodePoint[nodeMn].latitude;
             point.count = nodeParValue[nodeMn].value;
 
+            var longitudeTemp = parseFloat(nodePoint[nodeMn].longitude);
+            var latitudeTemp = parseFloat(nodePoint[nodeMn].latitude);
+
+            if (maxLongitude < longitudeTemp) {
+                maxLongitude = longitudeTemp;
+            }
+            if (minLongitude > longitudeTemp) {
+                minLongitude = longitudeTemp;
+            }
+            if (maxLatitude < latitudeTemp) {
+                maxLatitude = latitudeTemp;
+            }
+            if (minLatitude > latitudeTemp) {
+                minLatitude = latitudeTemp;
+            }
+
             points.push(point);
         }
 
+        pagePars.map.centerAndZoom(new BMap.Point(minLongitude + (maxLongitude - minLongitude) / 2.0, minLatitude + (maxLatitude - minLatitude) / 2.0), 12);
         pagePars.heatmapOverlay = new BMapLib.HeatmapOverlay({"radius": 50});
         pagePars.map.addOverlay(pagePars.heatmapOverlay);
         pagePars.heatmapOverlay.setDataSet({data: points, max: itemVsta == 0 ? maxValue : itemVsta});
