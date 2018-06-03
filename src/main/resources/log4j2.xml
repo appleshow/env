@@ -2,7 +2,7 @@
 <configuration status="off">
 	<properties>
 		<property name="LOG_HOME">/opt/env/ApplicationLogs</property>
-		<property name="PATTENR">## 【%-5level】 %d{yyyy-MM-dd HH:mm:ss} %C.%M(L:%L)%n>>%msg%n</property>
+		<property name="PATTENR">** [%-5level] ** %d{yyyy-MM-dd HH:mm:ss} %C.%M(L:%L)%n>>%msg%n</property>
 	</properties>
 	<appenders>
 		<Console name="Console" target="SYSTEM_OUT">
@@ -22,7 +22,7 @@
 		</RollingFile>
 	</appenders>
 	<loggers>
-		<root level="debug">
+		<root level="info">
 			<appender-ref ref="Console"/>
 		</root>
 		<logger name="com.mchange.v2" level="debug" additivity="true">

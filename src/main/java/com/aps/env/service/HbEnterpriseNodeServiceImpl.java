@@ -112,7 +112,7 @@ public class HbEnterpriseNodeServiceImpl implements HbEnterpriseNodeService {
         String type, sql;
         Date now = new Date();
         Map<String, String> rowData;
-        final Map<String, Object> nodeItemMap = new HashMap<>();
+        final Map<String, String> nodeItemMap = new HashMap<>();
         HbNode hbNode;
         HbDataMode hbDataMode;
         HbNodeExample hbNodeExample;
@@ -151,14 +151,15 @@ public class HbEnterpriseNodeServiceImpl implements HbEnterpriseNodeService {
                                 hbTypeItemNode.setItemVala3(item.getItemVala3());
                                 hbTypeItemNode.setItemConvertFormat(item.getItemConvertFormat());
                                 hbTypeItemNode.setItemSelect(1);
-                                hbTypeItemNode.setItemMonitor(null == item.getProperty10() ? 0 : Integer.parseInt(item.getProperty10().toString()));
+                                hbTypeItemNode.setItemMonitor(null == item.getProperty10() ? 0 : item.getProperty10().intValue());
                                 hbTypeItemNode.setItemAlarm(0);
                                 hbTypeItemNode.setItemShowMain(0);
-                                nodeItemMap.put(hbTypeItemNode.getItemId(), hbTypeItemNode);
+                                nodeItemMap.put(hbTypeItemNode.getItemId(), JsonUtil.writeValueAsString(hbTypeItemNode));
                             }
                         });
 
                         hbNode.setNodeItem(JsonUtil.writeValueAsString(nodeItemMap));
+                        hbNode.setPrflag(0);
                         hbNode.setDeleteFlag(CommUtil.AVAILABLE);
                         hbNode.setItime(now);
                         hbNode.setIperson(personId);

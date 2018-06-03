@@ -2,7 +2,7 @@
 <configuration status="off">
 	<properties>
 		<property name="LOG_HOME">/opt/env/ApplicationLogs</property>
-		<property name="PATTENR">## 【%-5level】 %d{yyyy-MM-dd HH:mm:ss} %C.%M(L:%L)%n>>%msg%n</property>
+		<property name="PATTENR">** [%-5level] ** %d{yyyy-MM-dd HH:mm:ss} %C.%M(L:%L)%n>>%msg%n</property>
 	</properties>
 	<appenders>
 		<Console name="Console" target="SYSTEM_OUT">

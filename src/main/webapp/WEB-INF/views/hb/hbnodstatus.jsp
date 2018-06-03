@@ -211,6 +211,12 @@
         $('#hours').on('select2:select', function (evt) {
             pagePars.tableHbNodeStatus.table.ajax.reload(null, false);
         });
+
+        setInterval(function () {
+                pagePars.tableHbNodeStatus.table.ajax.reload(null, false);
+            },
+            1000 * 60
+        );
     });
 
     /**
@@ -304,20 +310,21 @@
                                 //exceptionParString += ' <button type="button" class="btn btn-sm btn-danger" title="' + titleInfo + '">' + exceptionPar.hbTypeItemNode.itemName + '</button>'
                             });
 
-                            lineData.nodeStatus = "<kbd style='background:red'>离线</kbd>";
+                            lineData.nodeStatus = lineData.nodeStatus == 1 ? "<kbd style='background:green'>在线</kbd>" : "<kbd style='background:red'>离线</kbd>";
                             lineData.exceptionPars = exceptionParString;
                             lineData.DT_RowId = "_" + index;
 
                             tableData.data.push(lineData);
                         } else {
-                            lineData.nodeStatus = "<kbd style='background:red'>离线</kbd>";
+                            lineData.nodeStatus = lineData.nodeStatus == 1 ? "<kbd style='background:green'>在线</kbd>" : "<kbd style='background:red'>离线</kbd>";
                             lineData.DT_RowId = "_" + index;
 
                             tableData.data.push(lineData);
                         }
                     });
 
-                    refData(tableData, callback);
+                    callback(tableData);
+                    //refData(tableData, callback);
                 }
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -360,6 +367,7 @@
         $("#mwMessage").html(message);
         $("#modal-warning").modal("show");
     }
+
 </script>
 </body>
 </html>

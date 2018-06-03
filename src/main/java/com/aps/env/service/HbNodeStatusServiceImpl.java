@@ -51,7 +51,7 @@ public class HbNodeStatusServiceImpl implements HbNodeStatusService {
             lineMap.put("nodeName", node.getNodeName());
             lineMap.put("enterpriseName", node.getHbEnterprise().getEnterpriseName());
             lineMap.put("typeName", node.getHbType().getTypeName());
-            lineMap.put("nodeStatus", "");
+            lineMap.put("nodeStatus", node.getPrflag());
 
             final Map<String, HbTypeItemNode> hbTypeItemNodeMap = new HashMap<>();
             try {

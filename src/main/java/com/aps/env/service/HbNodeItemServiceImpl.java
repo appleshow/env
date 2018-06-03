@@ -62,7 +62,7 @@ public class HbNodeItemServiceImpl implements HbNodeItemService {
                 hbTypeItemNode.setItemVala3(item.getItemVala3());
                 hbTypeItemNode.setItemConvertFormat(item.getItemConvertFormat());
                 hbTypeItemNode.setItemSelect(0);
-                hbTypeItemNode.setItemMonitor(null == item.getProperty10() ? 0 : Integer.parseInt(item.getProperty10().toString()));
+                hbTypeItemNode.setItemMonitor(null == item.getProperty10() ? 0 : item.getProperty10().intValue());
                 hbTypeItemNode.setItemAlarm(0);
                 hbTypeItemNode.setItemShowMain(0);
 
