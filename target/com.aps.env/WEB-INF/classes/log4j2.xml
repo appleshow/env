@@ -22,7 +22,7 @@
 		</RollingFile>
 	</appenders>
 	<loggers>
-		<root level="debug">
+		<root level="info">
 			<appender-ref ref="Console"/>
 		</root>
 		<logger name="com.mchange.v2" level="debug" additivity="true">

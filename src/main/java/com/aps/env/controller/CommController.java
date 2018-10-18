@@ -2,16 +2,15 @@ package com.aps.env.controller;
 
 import com.aps.env.comm.RequestRefPar;
 import com.aps.env.comm.ResponseData;
-import com.aps.env.comm.StringUtil;
 import com.aps.env.service.CommService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.text.ParseException;
 
 /**
  * <dl>
@@ -44,4 +43,53 @@ public class CommController extends ExceptionController {
 
         return responseData;
     }
+
+    /**
+     * @param uploadFile
+     * @param personId
+     * @param nodeId
+     * @param uuid
+     * @param title
+     * @param content
+     * @param fileNames
+     * @param latitude
+     * @param longitude
+     * @param httpSession
+     * @return
+     * @throws IOException
+     */
+    @RequestMapping(value = "uploadImage", method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseData uploadImage(@RequestParam MultipartFile uploadFile,
+                                    @RequestParam Integer personId,
+                                    @RequestParam Integer nodeId,
+                                    @RequestParam String uuid,
+                                    @RequestParam String title,
+                                    @RequestParam String content,
+                                    @RequestParam String fileNames,
+                                    @RequestParam(required = false) String latitude,
+                                    @RequestParam(required = false) String longitude,
+                                    HttpSession httpSession) throws IOException {
+        ResponseData responseData = new ResponseData();
+
+        commService.uploadImage(httpSession, uploadFile, personId, nodeId, uuid, title, content, fileNames, latitude, longitude, responseData);
+
+        return responseData;
+    }
+
+    /**
+     * @param httpSession
+     * @param requestRefPar
+     * @return
+     */
+    @RequestMapping(value = "referImage", method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseData referImage(HttpSession httpSession, @RequestBody RequestRefPar requestRefPar) throws ParseException {
+        ResponseData responseData = new ResponseData();
+
+        commService.referImage(httpSession, requestRefPar, responseData);
+
+        return responseData;
+    }
+
 }

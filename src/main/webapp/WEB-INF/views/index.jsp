@@ -205,7 +205,6 @@
             });
 
             if (login) {
-                // 将密码字段使用 MD5(MD5(密码) + 验证码）编码后发给服务端
                 var elePasswd = $("input[name=password]");
                 var passwd = elePasswd.val();
                 elePasswd.val($.md5($.md5(passwd) + $("input[name=verification]").val()));

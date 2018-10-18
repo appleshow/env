@@ -141,6 +141,7 @@
 <script type="application/javascript">
     showMask();
     var pagePars = {
+        loaded: false,
         map: undefined,
         enterpriseNode: [],
         infoWindows: {},
@@ -375,6 +376,8 @@
     }
 
     function init() {
+        hideMask();
+        showMask();
         $.ajax({
             type: "POST",
             url: "${ctx}/hbNodeMap/refHbNodeJoinLatestData",
@@ -389,6 +392,10 @@
                 } else {
                     drawMap(res);
                     hideMask();
+                    if (!pagePars.loaded) {
+                        pagePars.loaded = true;
+                        window.setInterval(init, 1000 * 60 * 1);
+                    }
                 }
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -410,11 +417,13 @@
         var nodeDataLatstOne = res.subJoinResponseData.data;
         var longitude = [], latitude = [], count = 0;
 
+        map.clearOverlays();
         $.each(res.data, function (indexNode, node) {
             count++;
             var nodeTime = "";
             var nodeItems;
-            if (typeof ( node.nodeItem ) === "undefined" || node.nodeItem === null) {
+            var exceptionPar = false;
+            if (typeof (node.nodeItem) === "undefined" || node.nodeItem === null) {
                 nodeItems = {};
             } else {
                 nodeItems = $.parseJSON(node.nodeItem);
@@ -458,6 +467,7 @@
 
                         if (showTitle != "") {
                             if (nodeItems[itemId].itemAlarm == 1) {
+                                exceptionPar = true;
                                 content += "<button class='btn btn-danger' type='button' style='width:200px;text-align: left' title='" + showTitle + "'>" + nodeItems[itemId].itemName + " <span class='badge'>" + itemValue + nodeItems[itemId].itemUnit + "</span></button>";
                             } else {
                                 content += "<button class='btn btn-success' type='button' style='width:200px;text-align: left' title=':" + showTitle + "'>" + nodeItems[itemId].itemName + " <span class='badge'>" + itemValue + nodeItems[itemId].itemUnit + "</span></button>";
@@ -484,6 +494,9 @@
             var marker = new BMap.Marker(new BMap.Point(_longitude, _latitude));
             // 将标注添加到地图中
             map.addOverlay(marker);
+            if (exceptionPar) {
+                marker.setAnimation(BMAP_ANIMATION_BOUNCE);
+            }
 
             var opts = {
                 width: 400, // 信息窗口宽度
@@ -636,9 +649,12 @@
      * @returns
      */
     function callError(code, message) {
-        $("#mwTitle").html('<span class="glyphicon glyphicon-bullhorn" aria-hidden="true">&nbsp;警告</span>');
-        $("#mwMessage").html(message);
-        $("#modal-warning").modal("show");
+        if (!pagePars.loaded) {
+            $("#mwTitle").html('<span class="glyphicon glyphicon-bullhorn" aria-hidden="true">&nbsp;警告</span>');
+            $("#mwMessage").html(message);
+            $("#modal-warning").modal("show");
+
+        }
     }
 
     /******************************************************************************

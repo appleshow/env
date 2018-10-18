@@ -9,7 +9,7 @@ function ServerRequestPar(parCount, inPars) {
         inPar: inPars
     };
 
-    return JSON.stringify(par).replace(/%/g, "%25").replace(/\&/g, "%26").replace(/\+/g, "%2B");
+    return JSON.stringify(par);//.replace(/%/g, "%25").replace(/\&/g, "%26").replace(/\+/g, "%2B");
 }
 
 /**
@@ -86,19 +86,29 @@ function DataTablesButtons(table, button) {
                 buttons: [
                     {
                         extend: "copy",
-                        text: '<a class="btn btn-default purple" href="javascript:void(0);" style="width:100%;text-align:left;"><i class="fa fa-clipboard"></i> 复制</a>'
+                        text: '<a class="btn btn-default purple" href="javascript:void(0);" style="width:100%;text-align:left;"><i class="fa fa-clipboard"></i> 复制</a>',
+                        tableName: table.tableName,
+                        showTitle: false,
                     }, {
                         extend: "print",
-                        text: '<a class="btn btn-default purple" href="javascript:void(0);" style="width:100%;text-align:left;"><i class="fa fa-print"></i> 打印</a>'
+                        text: '<a class="btn btn-default purple" href="javascript:void(0);" style="width:100%;text-align:left;"><i class="fa fa-print"></i> 打印</a>',
+                        tableName: table.tableName,
+                        showTitle: false,
                     }, {
                         extend: "excel",
-                        text: '<a class="btn btn-default purple" href="javascript:void(0);" style="width:100%;text-align:left;"><i class="fa fa-table"></i> 另存为Excel</a>'
+                        text: '<a class="btn btn-default purple" href="javascript:void(0);" style="width:100%;text-align:left;"><i class="fa fa-table"></i> 另存为Excel</a>',
+                        tableName: table.tableName,
+                        showTitle: false,
                     }, {
                         extend: "csv",
-                        text: '<a class="btn btn-default purple" href="javascript:void(0);" style="width:100%;text-align:left;"><i class="fa fa-table"></i> 另存为CSV</a>'
+                        text: '<a class="btn btn-default purple" href="javascript:void(0);" style="width:100%;text-align:left;"><i class="fa fa-table"></i> 另存为CSV</a>',
+                        tableName: table.tableName,
+                        showTitle: false,
                     }, {
                         extend: "pdf",
-                        text: '<a class="btn btn-default purple" href="javascript:void(0);" style="width:100%;text-align:left;"><i class="fa fa-file-text"></i> 另存为PDF</a>'
+                        text: '<a class="btn btn-default purple" href="javascript:void(0);" style="width:100%;text-align:left;"><i class="fa fa-file-text"></i> 另存为PDF</a>',
+                        tableName: table.tableName,
+                        showTitle: false,
                     }
                 ]
             });
@@ -259,7 +269,7 @@ function DataTablesFields(columnInfo) {
  * @param callError
  * @returns {___anonymous3244_3245}
  */
-function CommDataTables(tableName, columnHeadName, column, callError, url) {
+function CommDataTables(tableName, columnHeadName, column, callError, url, scrollY) {
     this.table = function () {
     };
     this.editor = function () {
@@ -279,9 +289,10 @@ function CommDataTables(tableName, columnHeadName, column, callError, url) {
         ],
         pageLength: 50
     };
-    this.scrollY = 80;
+    this.scrollY = scrollY ? scrollY : 80;
     this.scrollX = true;
     this.buttons = "RNEDP";
+    this.tableName = tableName;
     if (!isNaN(column)) {
         this.columnsInfo = DataTablesColumnInfo(column, columnHeadName, callError, url);
     } else {
@@ -444,7 +455,7 @@ function CommDataTables(tableName, columnHeadName, column, callError, url) {
                 if (!(table.columnsInfo[columnId].hide === 1)) {
                     if (table.columnsInfo[columnId].update === 1 && this.val(columnId) === "") {
                         table.editor.field(columnId).focus();
-                        table.editor.field(columnId).message("<font color='red'>此项不能为空</font>");
+                        table.editor.field(columnId).message("<span style='color: red'>此项不能为空</span>");
                         this.error("操作失败，请录入项目：<strong>" + table.columnsInfo[columnId].name + "</strong>!");
                         return false;
                     } else {
@@ -454,7 +465,7 @@ function CommDataTables(tableName, columnHeadName, column, callError, url) {
                 if (table.columnsInfo[columnId].prtype === "N" && table.columnsInfo[columnId].type === "text" && !(this.val(columnId) === "")) {
                     if (isNaN(this.val(columnId).replace(" ", "a"))) {
                         table.editor.field(columnId).focus();
-                        table.editor.field(columnId).message("<font color='red'>此项必须为数字</font>");
+                        table.editor.field(columnId).message("<span style='color: red;'>此项必须为数字</span>");
                         this.error("操作失败，录入项目：<strong>" + table.columnsInfo[columnId].name + "</strong> 有误!");
                         return false;
                     } else {

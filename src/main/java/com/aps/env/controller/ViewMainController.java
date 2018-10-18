@@ -30,8 +30,8 @@ import java.util.Map;
 public class ViewMainController extends ExceptionController {
     @Resource(name = "mainServiceImpl")
     private MainService viewMainService;
-    @Value("${NIO_SERVER}")
-    private String nioServerAddr;
+    @Value("${ENFORCE_IMAGE}")
+    private String enforceImagePath;
 
     /**
      * @param httpSession
@@ -82,8 +82,8 @@ public class ViewMainController extends ExceptionController {
                 if (!key.equals("url")) {
                     modelAndView.addObject(key, value);
                 } else {
-                    if (convertUrl.get("url").indexOf("hbnodstatus") > 0) {
-                        modelAndView.addObject(CommUtil.NIO_SERVER, this.nioServerAddr);
+                    if (convertUrl.get("url").indexOf("enforce") > 0) {
+                        modelAndView.addObject(CommUtil.IMAGE_PATH, StringUtil.isNullOrEmpty(this.enforceImagePath) ? CommUtil.HB_ENFORCE_PIC : String.format("%s/%s", "image", CommUtil.HB_ENFORCE_PIC));
                     }
                 }
             });

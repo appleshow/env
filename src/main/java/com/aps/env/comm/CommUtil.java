@@ -25,6 +25,7 @@ import java.util.List;
 public class CommUtil {
     public final static String CONTEXT_PATH = "ctx";
     public final static String NIO_SERVER = "nioServer";
+    public final static String IMAGE_PATH = "imagePath";
     public final static String LOCK_WORD = "jmzfc369";
     public final static String SESSION_VERIFICATION = "verification";
     public final static String SESSION_PERSON_ID = "personId";
@@ -40,6 +41,8 @@ public class CommUtil {
 
     public final static String HB_DATA_CUR = "HB_DATA_CUR";
     public final static String HB_DATA_HIS = "HB_DATA_HIS";
+
+    public final static String HB_ENFORCE_PIC = "enforcepic";
 
     public final static int MAX_LATEST_DATA = 30;
     public final static Integer AVAILABLE = 0;
@@ -204,7 +207,7 @@ public class CommUtil {
     }
 
     /**
-     * @return HashMap<String,HbNode>
+     * @return HashMap<String   ,   HbNode>
      * @Title: getHbNodeCache
      * @Description: TODO
      * @throws:

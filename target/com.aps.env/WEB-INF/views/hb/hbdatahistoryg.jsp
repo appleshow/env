@@ -9,50 +9,52 @@
          pageEncoding="UTF-8"
          language="java" %>
 <html>
-<title>分钟数据</title>
-<meta name="description"
-      content="Dashboard"/>
-<meta name="viewport"
-      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta http-equiv="X-UA-Compatible"
-      content="IE=edge"/>
-<meta http-equiv="Content-Type"
-      content="text/html; charset=utf-8"/>
-<!--DataTables Styles-->
-<!--DataTables Styles-->
-<link rel="stylesheet"
-      href="${ctx}/dataTables/Bootstrap-3.3.6/css/bootstrap.min.css"/>
-<link rel="stylesheet"
-      href="${ctx}/dataTables/DataTables-1.10.11/css/dataTables.bootstrap.min.css"/>
-<link rel="stylesheet"
-      href="${ctx}/dataTables/Responsive-2.0.2/css/responsive.bootstrap.css"/>
-<link rel="stylesheet"
-      href="${ctx}/dataTables/Buttons-1.1.2/css/buttons.bootstrap.min.css"/>
-<link rel="stylesheet"
-      href="${ctx}/dataTables/Buttons-1.1.2/css/buttons.bootstrap.min.css"/>
-<link rel="stylesheet"
-      href="${ctx}/dataTables/Select-1.1.2/css/select.bootstrap.min.css"/>
-<link rel="stylesheet"
-      href="${ctx}/dataTables/Editor-1.5.5/css/editor.bootstrap.min.css"/>
-<!--  -->
-<link rel="stylesheet"
-      href="${ctx}/datetimePicker/css/bootstrap-datetimepicker.min.css"/>
-<link rel="stylesheet"
-      href="${ctx}/assets-view/comm/color.css"/>
-<link rel="stylesheet"
-      href="${ctx}/assets/css/font-awesome.min.css"/>
-<link rel="stylesheet"
-      href="${ctx}/assets-view/comm/tree/css/tree.css"/>
-<style type="text/css">
-    .table > tbody > tr > td, .table > tbody > tr > th {
-        padding: 3px;
-    }
+<head>
+    <title>分钟数据</title>
+    <meta name="description"
+          content="Dashboard"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible"
+          content="IE=edge"/>
+    <meta http-equiv="Content-Type"
+          content="text/html; charset=utf-8"/>
+    <!--DataTables Styles-->
+    <!--DataTables Styles-->
+    <link rel="stylesheet"
+          href="${ctx}/dataTables/Bootstrap-3.3.6/css/bootstrap.min.css"/>
+    <link rel="stylesheet"
+          href="${ctx}/dataTables/DataTables-1.10.11/css/dataTables.bootstrap.min.css"/>
+    <link rel="stylesheet"
+          href="${ctx}/dataTables/Responsive-2.0.2/css/responsive.bootstrap.css"/>
+    <link rel="stylesheet"
+          href="${ctx}/dataTables/Buttons-1.1.2/css/buttons.bootstrap.min.css"/>
+    <link rel="stylesheet"
+          href="${ctx}/dataTables/Buttons-1.1.2/css/buttons.bootstrap.min.css"/>
+    <link rel="stylesheet"
+          href="${ctx}/dataTables/Select-1.1.2/css/select.bootstrap.min.css"/>
+    <link rel="stylesheet"
+          href="${ctx}/dataTables/Editor-1.5.5/css/editor.bootstrap.min.css"/>
+    <!--  -->
+    <link rel="stylesheet"
+          href="${ctx}/datetimePicker/css/bootstrap-datetimepicker.min.css"/>
+    <link rel="stylesheet"
+          href="${ctx}/assets-view/comm/color.css"/>
+    <link rel="stylesheet"
+          href="${ctx}/assets/css/font-awesome.min.css"/>
+    <link rel="stylesheet"
+          href="${ctx}/assets-view/comm/tree/css/tree.css"/>
+    <style type="text/css">
+        .table > tbody > tr > td, .table > tbody > tr > th {
+            padding: 3px;
+        }
 
-    .table-bordered > tfoot > tr > td, .table-bordered > tfoot > tr > th,
-    .table-bordered > thead > tr > td, .table-bordered > thead > tr > th {
-        border: 1px solid black;
-    }
-</style>
+        .table-bordered > tfoot > tr > td, .table-bordered > tfoot > tr > th,
+        .table-bordered > thead > tr > td, .table-bordered > thead > tr > th {
+            border: 1px solid black;
+        }
+    </style>
+</head>
 <body>
 <div class="panel panel-default">
     <div class="panel-heading">
@@ -121,6 +123,7 @@
     </div>
     <div class="panel-body">
         <div id="tableDiv">
+            <!--#tbdataCur-->
             <table id="tbdataCur"
                    class="table table-striped table-bordered display responsive nowrap"
                    cellspacing="0"
@@ -128,6 +131,7 @@
                 <thead id="tbdataCurHC">
                 </thead>
             </table>
+            <!--#tbdataCur-->
         </div>
     </div>
 </div>
@@ -210,7 +214,7 @@
 <script src="${ctx}/dataTables/pdfmake-0.1.18/build/pdfmake.min.js"></script>
 <script src="${ctx}/dataTables/pdfmake-0.1.18/build/vfs_fonts.js"></script>
 <script src="${ctx}/dataTables/Buttons-1.1.2/js/buttons.html5.min.js"></script>
-<script src="${ctx}/dataTables/Buttons-1.1.2/js/buttons.print.min.js"></script>
+<script src="${ctx}/dataTables/Buttons-1.1.2/js/buttons.print.js"></script>
 
 <script src="${ctx}/datetimePicker/js/moment.min.js"></script>
 <script src="${ctx}/datetimePicker/js/bootstrap-datetimepicker.min.js"></script>
@@ -232,8 +236,8 @@
 
 
     jQuery(document).ready(function () {
-        $('#dateStr').val(( new Date() ).format("yyyy-MM-dd") + " 00:00:00");
-        $('#dateEnd').val(( new Date() ).format("yyyy-MM-dd") + " 23:59:59");
+        $('#dateStr').val((new Date()).format("yyyy-MM-dd") + " 00:00:00");
+        $('#dateEnd').val((new Date()).format("yyyy-MM-dd") + " 23:59:59");
 
         dateTimeDefualt();
 
@@ -292,7 +296,7 @@
         var innerHtml = "<tr>";
 
         $("#tableDiv").empty();
-        $("#tableDiv").html(' <table id="tbdataCur" class="table table-striped table-bordered display nowrap" cellspacing="0" width="100%"> <thead id="tbdataCurHC"></thead></table>');
+        $("#tableDiv").html('<!--#tbdataCur--> <table id="tbdataCur" class="table table-striped table-bordered display nowrap" cellspacing="0" width="100%"> <thead id="tbdataCurHC"></thead></table><!--#tbdataCur-->');
 
         tableColumnInfo.nodeName = {
             name: "站点名称",
@@ -348,7 +352,7 @@
 
                     tableColumnInfo["_" + nodePar.itemId] = columnInfo;
 
-                    innerHtml += "<th>" + nodePar.itemName + ( nodePar.itemUnit ? " (<small>" + nodePar.itemUnit + "</small>)" : "" ) + "</th>";
+                    innerHtml += "<th>" + nodePar.itemName + (nodePar.itemUnit ? " (<small>" + nodePar.itemUnit + "</small>)" : "") + "</th>";
                 }
             }
 

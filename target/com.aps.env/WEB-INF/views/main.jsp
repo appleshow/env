@@ -928,6 +928,10 @@
      * @param icon
      */
     function showPage(url, name, id, icon) {
+        if (name == "关于系统") {
+            window.open("http://www.grasun-opt.com/contact.asp");
+            return;
+        }
         if (pageid == id) {
             return;
         }

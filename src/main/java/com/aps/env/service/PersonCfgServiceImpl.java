@@ -103,23 +103,25 @@ public class PersonCfgServiceImpl implements PersonCfgService {
 
                         break;
                     case CommUtil.MODIFY_TYPE_UPDATE:
+                        comPerson.setUtime(now);
+                        comPerson.setUperson(personId);
                         if ("1".equals(rowData.get("resPsw"))) {
                             comPerson.setUserPsw(StringUtil.desEncryptStr(comPerson.getUserId(), CommUtil.LOCK_WORD));
                         }
                         returnValue = comPersonMapper.updateByPrimaryKeySelective(comPerson);
                         if (returnValue > 0) {
-                            ComPersonOrg comPersonOrg = new ComPersonOrg();
-                            comPersonOrg.setPersonId(comPerson.getPersonId());
-                            comPersonOrg.setPrtype("0");
-                            comPersonOrgMapper.deleteByPrimaryKey(comPersonOrg);
+                            ComPersonOrgExample comPersonOrgExample = new ComPersonOrgExample();
+                            comPersonOrgExample.createCriteria().andPersonIdEqualTo(comPerson.getPersonId()).andPrtypeEqualTo("0");
+                            comPersonOrgMapper.deleteByExample(comPersonOrgExample);
 
+                            ComPersonOrg comPersonOrg = new ComPersonOrg();
                             comPersonOrg.setPersonId(comPerson.getPersonId());
                             comPersonOrg.setOrgId(comPerson.getUserOrg());
                             comPersonOrg.setPrflag(1);
                             comPersonOrg.setPrtype("0");
-                            comPersonOrg.setIperson(comPerson.getIperson());
-                            comPersonOrg.setItime(comPerson.getItime());
-                            comPersonOrg.setIperson(comPerson.getIperson());
+                            comPersonOrg.setIperson(personId);
+                            comPersonOrg.setItime(now);
+                            comPersonOrg.setUperson(personId);
                             comPersonOrg.setUtime(comPerson.getUtime());
 
                             comPersonOrgMapper.insertSelective(comPersonOrg);

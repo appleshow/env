@@ -1,6 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
-        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
 <generatorConfiguration>
     <!-- 指定数据连接驱动jar地址 -->
     <classPathEntry
@@ -14,8 +16,8 @@
             <property name="suppressAllComments" value="true"/>
         </commentGenerator>
         <!-- ***jdbc连接 -->
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://192.168.0.105:3306/env?serverTimezone=UTC&amp;useSSL=false&amp;nullNamePatternMatchesAll=true"
-                        userId="admin" password="soaring"/>
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://192.168.0.106:3306/env?serverTimezone=UTC&amp;useSSL=false&amp;nullNamePatternMatchesAll=true"
+                        userId="root" password="asdiop"/>
         <!--*** 类型转换 -->
         <javaTypeResolver>
             <!-- 是否使用bigDecimal， false可自动转化以下类型（Long, Integer, Short, etc.） -->
@@ -39,7 +41,7 @@
             <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
         <!-- ***配置表信息 -->
-        <table schema="" tableName="hb_park"
+        <table schema="" tableName="hb_node_contact"
                enableInsert="true"
                enableSelectByPrimaryKey="true" enableUpdateByPrimaryKey="true"
                enableDeleteByPrimaryKey="true" enableSelectByExample="true"

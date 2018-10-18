@@ -102,6 +102,74 @@
     </div>
 </div>
 
+<div class="modal fade"
+     role="dialog"
+     aria-labelledby="dataTitle"
+     id="modal-data">
+    <div class="modal-dialog"
+         role="document"
+         style="width: 1000px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title text-center"
+                    id="dataTitle">
+                </h4>
+            </div>
+            <div class="modal-body">
+                <table border="1"
+                       style="width: 100%;"
+                       id="dataTable">
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button"
+                        class="btn btn-warning"
+                        data-dismiss="modal">确定
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade"
+     role="dialog"
+     aria-labelledby="lineTitle"
+     id="modal-line">
+    <div class="modal-dialog"
+         role="document"
+         style="width: 1000px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title text-center"
+                    id="lineTitle">
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div style="width: 950px;"
+                     id="lineModal"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button"
+                        class="btn btn-warning"
+                        data-dismiss="modal">确定
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- 提示框 -->
 <div class="modal fade"
      role="dialog"
@@ -344,7 +412,7 @@
 
                     $.each(res.data, function (index, value) {
                         html += '<div class="panel panel-default subbox">';
-                        html += '<div class="panel-heading">' + value.nodeName + '</div>';
+                        html += '<div class="panel-heading"><a href="#" onclick=showNodeData("' + value.nodeName + '","' + value.nodeId + '")>' + value.nodeName + '</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" onclick=showNodeLine("' + value.nodeName + '","' + value.nodeId + '")><span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span></a></div>';
                         html += '<div class="panel-body line" id = "line' + value.nodeId + '"></div>';
                         html += '</div>';
                     });
@@ -361,6 +429,7 @@
                                 nodeName: value.nodeName,
                                 label: []
                             };
+
                             if (!(typeof (nodeItems) === "undefined" || nodeItems === null)) {
                                 nodeItems = $.parseJSON(nodeItems);
                                 parCount = -1;
@@ -456,6 +525,8 @@
                             pagePars.nodeLines[value.nodeId].parName = parNames;
                             pagePars.nodeLines[value.nodeId].parUnit = parUnits;
                             pagePars.nodeLines[value.nodeId].parCount = parCount + 1;
+                            pagePars.nodeLines[value.nodeId].yAxis = yAxis;
+                            pagePars.nodeLines[value.nodeId].series = series;
                         }
                     });
 
@@ -542,6 +613,81 @@
                 $("#lineCurBox").html("");
             }
         }
+    }
+
+    /**
+     *
+     */
+    function showNodeData(nodeName, nodeId) {
+        $("#dataTitle").html(nodeName + " 时实数据");
+
+        var htmlHead = "<tr><td style='text-align: center;background: #a2aec7;'>数据时间</td>";
+        $.each(pagePars.nodeLines[nodeId].parName, function (index, name) {
+            htmlHead += "<td style='text-align: center;background: #a2aec7;'>" + name + (pagePars.nodeLines[nodeId].parUnit[index] != "" ? "(" + pagePars.nodeLines[nodeId].parUnit[index] + ")" : "") + "</td>";
+        });
+        htmlHead += "</tr>";
+
+        var htmlBody = "";
+        for (var count = 0; count < pagePars.nodeLines[nodeId].par.length; count++) {
+            htmlBody += "<tr><td>" + pagePars.nodeLines[nodeId].label[count] + "</td>";
+            $.each(pagePars.nodeLines[nodeId].par, function (index, par) {
+                htmlBody += "<td style='text-align: right'>" + pagePars.nodeLines[nodeId][par][count] + "</td>";
+            });
+            htmlBody += "</tr>";
+        }
+
+        $("#dataTable").html(htmlHead + htmlBody);
+
+        $("#modal-data").modal("show");
+    }
+
+
+    /**
+     *
+     */
+    function showNodeLine(nodeName, nodeId) {
+        var chart = new Highcharts.Chart({
+            credits: {
+                // text : '嘉臣光电科技有限公司',
+                // href : 'http://www.grasun-opt.com/'
+                text: '',
+                href: '#'
+            },
+            chart: {
+                renderTo: "lineModal",
+                zoomType: 'xy'
+            },
+            title: {
+                text: '-实时曲线-'
+            },
+            xAxis: [
+                {
+                    title: {
+                        text: '',
+                        style: {
+                            color: pagePars.colors[10]
+                        }
+                    },
+                    type: 'datetime',
+                    tickInterval: 200,
+                    categories: []
+                }
+            ],
+            yAxis: pagePars.nodeLines[nodeId].yAxis,
+            tooltip: {
+                crosshairs: true,
+                shared: true
+            },
+            series: pagePars.nodeLines[nodeId].series,
+        });
+
+        chart.xAxis[0].setCategories(pagePars.nodeLines[nodeId].label);
+        $.each(pagePars.nodeLines[nodeId].par, function (index, par) {
+            chart.series[index].setData(pagePars.nodeLines[nodeId][par]);
+        });
+
+        $("#lineTitle").html(nodeName + " 时实曲线");
+        $("#modal-line").modal("show");
     }
 
     /**

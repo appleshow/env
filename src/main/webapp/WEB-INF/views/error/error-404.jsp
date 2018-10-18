@@ -60,7 +60,7 @@
             <h2>page not found</h2>
             <p class="description">We Couldn’t Find This Page</p>
         </div>
-        <a href="/"
+        <a href="/env"
            class="return-btn"><i class="fa fa-home"></i>Home</a>
     </section>
 </div>
