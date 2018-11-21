@@ -16,7 +16,7 @@
             <property name="suppressAllComments" value="true"/>
         </commentGenerator>
         <!-- ***jdbc连接 -->
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://192.168.0.106:3306/env?serverTimezone=UTC&amp;useSSL=false&amp;nullNamePatternMatchesAll=true"
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://192.168.0.108:3306/env?serverTimezone=UTC&amp;useSSL=false&amp;nullNamePatternMatchesAll=true"
                         userId="root" password="asdiop"/>
         <!--*** 类型转换 -->
         <javaTypeResolver>
@@ -41,7 +41,7 @@
             <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
         <!-- ***配置表信息 -->
-        <table schema="" tableName="hb_node_contact"
+        <table schema="" tableName="hb_node_alarm"
                enableInsert="true"
                enableSelectByPrimaryKey="true" enableUpdateByPrimaryKey="true"
                enableDeleteByPrimaryKey="true" enableSelectByExample="true"

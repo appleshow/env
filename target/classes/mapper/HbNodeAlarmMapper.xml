@@ -1,0 +1,749 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aps.env.dao.HbNodeAlarmMapper" >
+  <resultMap id="BaseResultMap" type="com.aps.env.entity.HbNodeAlarm" >
+    <id column="GUID" property="guid" jdbcType="VARCHAR" />
+    <result column="NODE_ID" property="nodeId" jdbcType="INTEGER" />
+    <result column="NODE_MN" property="nodeMn" jdbcType="VARCHAR" />
+    <result column="NODE_NAME" property="nodeName" jdbcType="VARCHAR" />
+    <result column="ITEM_CODE" property="itemCode" jdbcType="VARCHAR" />
+    <result column="ITEM_NAME" property="itemName" jdbcType="VARCHAR" />
+    <result column="ITEM_VALUE" property="itemValue" jdbcType="VARCHAR" />
+    <result column="ITEM_DATE" property="itemDate" jdbcType="VARCHAR" />
+    <result column="ITEM_ALARM" property="itemAlarm" jdbcType="VARCHAR" />
+    <result column="ITEM_PHONE" property="itemPhone" jdbcType="VARCHAR" />
+    <result column="PRFLAG" property="prflag" jdbcType="INTEGER" />
+    <result column="PRGROUP" property="prgroup" jdbcType="VARCHAR" />
+    <result column="PRTYPE" property="prtype" jdbcType="VARCHAR" />
+    <result column="PROPERTY0" property="property0" jdbcType="VARCHAR" />
+    <result column="PROPERTY1" property="property1" jdbcType="VARCHAR" />
+    <result column="PROPERTY2" property="property2" jdbcType="VARCHAR" />
+    <result column="PROPERTY3" property="property3" jdbcType="VARCHAR" />
+    <result column="PROPERTY4" property="property4" jdbcType="VARCHAR" />
+    <result column="PROPERTY5" property="property5" jdbcType="VARCHAR" />
+    <result column="PROPERTY6" property="property6" jdbcType="VARCHAR" />
+    <result column="PROPERTY7" property="property7" jdbcType="VARCHAR" />
+    <result column="PROPERTY8" property="property8" jdbcType="VARCHAR" />
+    <result column="PROPERTY9" property="property9" jdbcType="VARCHAR" />
+    <result column="PROPERTY10" property="property10" jdbcType="DECIMAL" />
+    <result column="PROPERTY11" property="property11" jdbcType="DECIMAL" />
+    <result column="PROPERTY12" property="property12" jdbcType="DECIMAL" />
+    <result column="PROPERTY13" property="property13" jdbcType="DECIMAL" />
+    <result column="PROPERTY14" property="property14" jdbcType="DECIMAL" />
+    <result column="PRINF" property="prinf" jdbcType="VARCHAR" />
+    <result column="PREXP" property="prexp" jdbcType="VARCHAR" />
+    <result column="ITIME" property="itime" jdbcType="TIMESTAMP" />
+    <result column="ISHIFT" property="ishift" jdbcType="VARCHAR" />
+    <result column="IGROUP" property="igroup" jdbcType="VARCHAR" />
+    <result column="IPERSON" property="iperson" jdbcType="INTEGER" />
+    <result column="UTIME" property="utime" jdbcType="TIMESTAMP" />
+    <result column="USHIFT" property="ushift" jdbcType="VARCHAR" />
+    <result column="UGROUP" property="ugroup" jdbcType="VARCHAR" />
+    <result column="UPERSON" property="uperson" jdbcType="INTEGER" />
+    <result column="UFROM" property="ufrom" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    GUID, NODE_ID, NODE_MN, NODE_NAME, ITEM_CODE, ITEM_NAME, ITEM_VALUE, ITEM_DATE, ITEM_ALARM, 
+    ITEM_PHONE, PRFLAG, PRGROUP, PRTYPE, PROPERTY0, PROPERTY1, PROPERTY2, PROPERTY3, 
+    PROPERTY4, PROPERTY5, PROPERTY6, PROPERTY7, PROPERTY8, PROPERTY9, PROPERTY10, PROPERTY11, 
+    PROPERTY12, PROPERTY13, PROPERTY14, PRINF, PREXP, ITIME, ISHIFT, IGROUP, IPERSON, 
+    UTIME, USHIFT, UGROUP, UPERSON, UFROM
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.aps.env.entity.HbNodeAlarmExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from hb_node_alarm
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from hb_node_alarm
+    where GUID = #{guid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from hb_node_alarm
+    where GUID = #{guid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.aps.env.entity.HbNodeAlarmExample" >
+    delete from hb_node_alarm
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.aps.env.entity.HbNodeAlarm" >
+    insert into hb_node_alarm (GUID, NODE_ID, NODE_MN, 
+      NODE_NAME, ITEM_CODE, ITEM_NAME, 
+      ITEM_VALUE, ITEM_DATE, ITEM_ALARM, 
+      ITEM_PHONE, PRFLAG, PRGROUP, 
+      PRTYPE, PROPERTY0, PROPERTY1, 
+      PROPERTY2, PROPERTY3, PROPERTY4, 
+      PROPERTY5, PROPERTY6, PROPERTY7, 
+      PROPERTY8, PROPERTY9, PROPERTY10, 
+      PROPERTY11, PROPERTY12, PROPERTY13, 
+      PROPERTY14, PRINF, PREXP, 
+      ITIME, ISHIFT, IGROUP, 
+      IPERSON, UTIME, USHIFT, 
+      UGROUP, UPERSON, UFROM
+      )
+    values (#{guid,jdbcType=VARCHAR}, #{nodeId,jdbcType=INTEGER}, #{nodeMn,jdbcType=VARCHAR}, 
+      #{nodeName,jdbcType=VARCHAR}, #{itemCode,jdbcType=VARCHAR}, #{itemName,jdbcType=VARCHAR}, 
+      #{itemValue,jdbcType=VARCHAR}, #{itemDate,jdbcType=VARCHAR}, #{itemAlarm,jdbcType=VARCHAR}, 
+      #{itemPhone,jdbcType=VARCHAR}, #{prflag,jdbcType=INTEGER}, #{prgroup,jdbcType=VARCHAR}, 
+      #{prtype,jdbcType=VARCHAR}, #{property0,jdbcType=VARCHAR}, #{property1,jdbcType=VARCHAR}, 
+      #{property2,jdbcType=VARCHAR}, #{property3,jdbcType=VARCHAR}, #{property4,jdbcType=VARCHAR}, 
+      #{property5,jdbcType=VARCHAR}, #{property6,jdbcType=VARCHAR}, #{property7,jdbcType=VARCHAR}, 
+      #{property8,jdbcType=VARCHAR}, #{property9,jdbcType=VARCHAR}, #{property10,jdbcType=DECIMAL}, 
+      #{property11,jdbcType=DECIMAL}, #{property12,jdbcType=DECIMAL}, #{property13,jdbcType=DECIMAL}, 
+      #{property14,jdbcType=DECIMAL}, #{prinf,jdbcType=VARCHAR}, #{prexp,jdbcType=VARCHAR}, 
+      #{itime,jdbcType=TIMESTAMP}, #{ishift,jdbcType=VARCHAR}, #{igroup,jdbcType=VARCHAR}, 
+      #{iperson,jdbcType=INTEGER}, #{utime,jdbcType=TIMESTAMP}, #{ushift,jdbcType=VARCHAR}, 
+      #{ugroup,jdbcType=VARCHAR}, #{uperson,jdbcType=INTEGER}, #{ufrom,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.aps.env.entity.HbNodeAlarm" >
+    insert into hb_node_alarm
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="guid != null" >
+        GUID,
+      </if>
+      <if test="nodeId != null" >
+        NODE_ID,
+      </if>
+      <if test="nodeMn != null" >
+        NODE_MN,
+      </if>
+      <if test="nodeName != null" >
+        NODE_NAME,
+      </if>
+      <if test="itemCode != null" >
+        ITEM_CODE,
+      </if>
+      <if test="itemName != null" >
+        ITEM_NAME,
+      </if>
+      <if test="itemValue != null" >
+        ITEM_VALUE,
+      </if>
+      <if test="itemDate != null" >
+        ITEM_DATE,
+      </if>
+      <if test="itemAlarm != null" >
+        ITEM_ALARM,
+      </if>
+      <if test="itemPhone != null" >
+        ITEM_PHONE,
+      </if>
+      <if test="prflag != null" >
+        PRFLAG,
+      </if>
+      <if test="prgroup != null" >
+        PRGROUP,
+      </if>
+      <if test="prtype != null" >
+        PRTYPE,
+      </if>
+      <if test="property0 != null" >
+        PROPERTY0,
+      </if>
+      <if test="property1 != null" >
+        PROPERTY1,
+      </if>
+      <if test="property2 != null" >
+        PROPERTY2,
+      </if>
+      <if test="property3 != null" >
+        PROPERTY3,
+      </if>
+      <if test="property4 != null" >
+        PROPERTY4,
+      </if>
+      <if test="property5 != null" >
+        PROPERTY5,
+      </if>
+      <if test="property6 != null" >
+        PROPERTY6,
+      </if>
+      <if test="property7 != null" >
+        PROPERTY7,
+      </if>
+      <if test="property8 != null" >
+        PROPERTY8,
+      </if>
+      <if test="property9 != null" >
+        PROPERTY9,
+      </if>
+      <if test="property10 != null" >
+        PROPERTY10,
+      </if>
+      <if test="property11 != null" >
+        PROPERTY11,
+      </if>
+      <if test="property12 != null" >
+        PROPERTY12,
+      </if>
+      <if test="property13 != null" >
+        PROPERTY13,
+      </if>
+      <if test="property14 != null" >
+        PROPERTY14,
+      </if>
+      <if test="prinf != null" >
+        PRINF,
+      </if>
+      <if test="prexp != null" >
+        PREXP,
+      </if>
+      <if test="itime != null" >
+        ITIME,
+      </if>
+      <if test="ishift != null" >
+        ISHIFT,
+      </if>
+      <if test="igroup != null" >
+        IGROUP,
+      </if>
+      <if test="iperson != null" >
+        IPERSON,
+      </if>
+      <if test="utime != null" >
+        UTIME,
+      </if>
+      <if test="ushift != null" >
+        USHIFT,
+      </if>
+      <if test="ugroup != null" >
+        UGROUP,
+      </if>
+      <if test="uperson != null" >
+        UPERSON,
+      </if>
+      <if test="ufrom != null" >
+        UFROM,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="guid != null" >
+        #{guid,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeId != null" >
+        #{nodeId,jdbcType=INTEGER},
+      </if>
+      <if test="nodeMn != null" >
+        #{nodeMn,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeName != null" >
+        #{nodeName,jdbcType=VARCHAR},
+      </if>
+      <if test="itemCode != null" >
+        #{itemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null" >
+        #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="itemValue != null" >
+        #{itemValue,jdbcType=VARCHAR},
+      </if>
+      <if test="itemDate != null" >
+        #{itemDate,jdbcType=VARCHAR},
+      </if>
+      <if test="itemAlarm != null" >
+        #{itemAlarm,jdbcType=VARCHAR},
+      </if>
+      <if test="itemPhone != null" >
+        #{itemPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="prflag != null" >
+        #{prflag,jdbcType=INTEGER},
+      </if>
+      <if test="prgroup != null" >
+        #{prgroup,jdbcType=VARCHAR},
+      </if>
+      <if test="prtype != null" >
+        #{prtype,jdbcType=VARCHAR},
+      </if>
+      <if test="property0 != null" >
+        #{property0,jdbcType=VARCHAR},
+      </if>
+      <if test="property1 != null" >
+        #{property1,jdbcType=VARCHAR},
+      </if>
+      <if test="property2 != null" >
+        #{property2,jdbcType=VARCHAR},
+      </if>
+      <if test="property3 != null" >
+        #{property3,jdbcType=VARCHAR},
+      </if>
+      <if test="property4 != null" >
+        #{property4,jdbcType=VARCHAR},
+      </if>
+      <if test="property5 != null" >
+        #{property5,jdbcType=VARCHAR},
+      </if>
+      <if test="property6 != null" >
+        #{property6,jdbcType=VARCHAR},
+      </if>
+      <if test="property7 != null" >
+        #{property7,jdbcType=VARCHAR},
+      </if>
+      <if test="property8 != null" >
+        #{property8,jdbcType=VARCHAR},
+      </if>
+      <if test="property9 != null" >
+        #{property9,jdbcType=VARCHAR},
+      </if>
+      <if test="property10 != null" >
+        #{property10,jdbcType=DECIMAL},
+      </if>
+      <if test="property11 != null" >
+        #{property11,jdbcType=DECIMAL},
+      </if>
+      <if test="property12 != null" >
+        #{property12,jdbcType=DECIMAL},
+      </if>
+      <if test="property13 != null" >
+        #{property13,jdbcType=DECIMAL},
+      </if>
+      <if test="property14 != null" >
+        #{property14,jdbcType=DECIMAL},
+      </if>
+      <if test="prinf != null" >
+        #{prinf,jdbcType=VARCHAR},
+      </if>
+      <if test="prexp != null" >
+        #{prexp,jdbcType=VARCHAR},
+      </if>
+      <if test="itime != null" >
+        #{itime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ishift != null" >
+        #{ishift,jdbcType=VARCHAR},
+      </if>
+      <if test="igroup != null" >
+        #{igroup,jdbcType=VARCHAR},
+      </if>
+      <if test="iperson != null" >
+        #{iperson,jdbcType=INTEGER},
+      </if>
+      <if test="utime != null" >
+        #{utime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ushift != null" >
+        #{ushift,jdbcType=VARCHAR},
+      </if>
+      <if test="ugroup != null" >
+        #{ugroup,jdbcType=VARCHAR},
+      </if>
+      <if test="uperson != null" >
+        #{uperson,jdbcType=INTEGER},
+      </if>
+      <if test="ufrom != null" >
+        #{ufrom,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.aps.env.entity.HbNodeAlarmExample" resultType="java.lang.Integer" >
+    select count(*) from hb_node_alarm
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update hb_node_alarm
+    <set >
+      <if test="record.guid != null" >
+        GUID = #{record.guid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nodeId != null" >
+        NODE_ID = #{record.nodeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.nodeMn != null" >
+        NODE_MN = #{record.nodeMn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nodeName != null" >
+        NODE_NAME = #{record.nodeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.itemCode != null" >
+        ITEM_CODE = #{record.itemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.itemName != null" >
+        ITEM_NAME = #{record.itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.itemValue != null" >
+        ITEM_VALUE = #{record.itemValue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.itemDate != null" >
+        ITEM_DATE = #{record.itemDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.itemAlarm != null" >
+        ITEM_ALARM = #{record.itemAlarm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.itemPhone != null" >
+        ITEM_PHONE = #{record.itemPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.prflag != null" >
+        PRFLAG = #{record.prflag,jdbcType=INTEGER},
+      </if>
+      <if test="record.prgroup != null" >
+        PRGROUP = #{record.prgroup,jdbcType=VARCHAR},
+      </if>
+      <if test="record.prtype != null" >
+        PRTYPE = #{record.prtype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.property0 != null" >
+        PROPERTY0 = #{record.property0,jdbcType=VARCHAR},
+      </if>
+      <if test="record.property1 != null" >
+        PROPERTY1 = #{record.property1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.property2 != null" >
+        PROPERTY2 = #{record.property2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.property3 != null" >
+        PROPERTY3 = #{record.property3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.property4 != null" >
+        PROPERTY4 = #{record.property4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.property5 != null" >
+        PROPERTY5 = #{record.property5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.property6 != null" >
+        PROPERTY6 = #{record.property6,jdbcType=VARCHAR},
+      </if>
+      <if test="record.property7 != null" >
+        PROPERTY7 = #{record.property7,jdbcType=VARCHAR},
+      </if>
+      <if test="record.property8 != null" >
+        PROPERTY8 = #{record.property8,jdbcType=VARCHAR},
+      </if>
+      <if test="record.property9 != null" >
+        PROPERTY9 = #{record.property9,jdbcType=VARCHAR},
+      </if>
+      <if test="record.property10 != null" >
+        PROPERTY10 = #{record.property10,jdbcType=DECIMAL},
+      </if>
+      <if test="record.property11 != null" >
+        PROPERTY11 = #{record.property11,jdbcType=DECIMAL},
+      </if>
+      <if test="record.property12 != null" >
+        PROPERTY12 = #{record.property12,jdbcType=DECIMAL},
+      </if>
+      <if test="record.property13 != null" >
+        PROPERTY13 = #{record.property13,jdbcType=DECIMAL},
+      </if>
+      <if test="record.property14 != null" >
+        PROPERTY14 = #{record.property14,jdbcType=DECIMAL},
+      </if>
+      <if test="record.prinf != null" >
+        PRINF = #{record.prinf,jdbcType=VARCHAR},
+      </if>
+      <if test="record.prexp != null" >
+        PREXP = #{record.prexp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.itime != null" >
+        ITIME = #{record.itime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.ishift != null" >
+        ISHIFT = #{record.ishift,jdbcType=VARCHAR},
+      </if>
+      <if test="record.igroup != null" >
+        IGROUP = #{record.igroup,jdbcType=VARCHAR},
+      </if>
+      <if test="record.iperson != null" >
+        IPERSON = #{record.iperson,jdbcType=INTEGER},
+      </if>
+      <if test="record.utime != null" >
+        UTIME = #{record.utime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.ushift != null" >
+        USHIFT = #{record.ushift,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ugroup != null" >
+        UGROUP = #{record.ugroup,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uperson != null" >
+        UPERSON = #{record.uperson,jdbcType=INTEGER},
+      </if>
+      <if test="record.ufrom != null" >
+        UFROM = #{record.ufrom,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update hb_node_alarm
+    set GUID = #{record.guid,jdbcType=VARCHAR},
+      NODE_ID = #{record.nodeId,jdbcType=INTEGER},
+      NODE_MN = #{record.nodeMn,jdbcType=VARCHAR},
+      NODE_NAME = #{record.nodeName,jdbcType=VARCHAR},
+      ITEM_CODE = #{record.itemCode,jdbcType=VARCHAR},
+      ITEM_NAME = #{record.itemName,jdbcType=VARCHAR},
+      ITEM_VALUE = #{record.itemValue,jdbcType=VARCHAR},
+      ITEM_DATE = #{record.itemDate,jdbcType=VARCHAR},
+      ITEM_ALARM = #{record.itemAlarm,jdbcType=VARCHAR},
+      ITEM_PHONE = #{record.itemPhone,jdbcType=VARCHAR},
+      PRFLAG = #{record.prflag,jdbcType=INTEGER},
+      PRGROUP = #{record.prgroup,jdbcType=VARCHAR},
+      PRTYPE = #{record.prtype,jdbcType=VARCHAR},
+      PROPERTY0 = #{record.property0,jdbcType=VARCHAR},
+      PROPERTY1 = #{record.property1,jdbcType=VARCHAR},
+      PROPERTY2 = #{record.property2,jdbcType=VARCHAR},
+      PROPERTY3 = #{record.property3,jdbcType=VARCHAR},
+      PROPERTY4 = #{record.property4,jdbcType=VARCHAR},
+      PROPERTY5 = #{record.property5,jdbcType=VARCHAR},
+      PROPERTY6 = #{record.property6,jdbcType=VARCHAR},
+      PROPERTY7 = #{record.property7,jdbcType=VARCHAR},
+      PROPERTY8 = #{record.property8,jdbcType=VARCHAR},
+      PROPERTY9 = #{record.property9,jdbcType=VARCHAR},
+      PROPERTY10 = #{record.property10,jdbcType=DECIMAL},
+      PROPERTY11 = #{record.property11,jdbcType=DECIMAL},
+      PROPERTY12 = #{record.property12,jdbcType=DECIMAL},
+      PROPERTY13 = #{record.property13,jdbcType=DECIMAL},
+      PROPERTY14 = #{record.property14,jdbcType=DECIMAL},
+      PRINF = #{record.prinf,jdbcType=VARCHAR},
+      PREXP = #{record.prexp,jdbcType=VARCHAR},
+      ITIME = #{record.itime,jdbcType=TIMESTAMP},
+      ISHIFT = #{record.ishift,jdbcType=VARCHAR},
+      IGROUP = #{record.igroup,jdbcType=VARCHAR},
+      IPERSON = #{record.iperson,jdbcType=INTEGER},
+      UTIME = #{record.utime,jdbcType=TIMESTAMP},
+      USHIFT = #{record.ushift,jdbcType=VARCHAR},
+      UGROUP = #{record.ugroup,jdbcType=VARCHAR},
+      UPERSON = #{record.uperson,jdbcType=INTEGER},
+      UFROM = #{record.ufrom,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aps.env.entity.HbNodeAlarm" >
+    update hb_node_alarm
+    <set >
+      <if test="nodeId != null" >
+        NODE_ID = #{nodeId,jdbcType=INTEGER},
+      </if>
+      <if test="nodeMn != null" >
+        NODE_MN = #{nodeMn,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeName != null" >
+        NODE_NAME = #{nodeName,jdbcType=VARCHAR},
+      </if>
+      <if test="itemCode != null" >
+        ITEM_CODE = #{itemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null" >
+        ITEM_NAME = #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="itemValue != null" >
+        ITEM_VALUE = #{itemValue,jdbcType=VARCHAR},
+      </if>
+      <if test="itemDate != null" >
+        ITEM_DATE = #{itemDate,jdbcType=VARCHAR},
+      </if>
+      <if test="itemAlarm != null" >
+        ITEM_ALARM = #{itemAlarm,jdbcType=VARCHAR},
+      </if>
+      <if test="itemPhone != null" >
+        ITEM_PHONE = #{itemPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="prflag != null" >
+        PRFLAG = #{prflag,jdbcType=INTEGER},
+      </if>
+      <if test="prgroup != null" >
+        PRGROUP = #{prgroup,jdbcType=VARCHAR},
+      </if>
+      <if test="prtype != null" >
+        PRTYPE = #{prtype,jdbcType=VARCHAR},
+      </if>
+      <if test="property0 != null" >
+        PROPERTY0 = #{property0,jdbcType=VARCHAR},
+      </if>
+      <if test="property1 != null" >
+        PROPERTY1 = #{property1,jdbcType=VARCHAR},
+      </if>
+      <if test="property2 != null" >
+        PROPERTY2 = #{property2,jdbcType=VARCHAR},
+      </if>
+      <if test="property3 != null" >
+        PROPERTY3 = #{property3,jdbcType=VARCHAR},
+      </if>
+      <if test="property4 != null" >
+        PROPERTY4 = #{property4,jdbcType=VARCHAR},
+      </if>
+      <if test="property5 != null" >
+        PROPERTY5 = #{property5,jdbcType=VARCHAR},
+      </if>
+      <if test="property6 != null" >
+        PROPERTY6 = #{property6,jdbcType=VARCHAR},
+      </if>
+      <if test="property7 != null" >
+        PROPERTY7 = #{property7,jdbcType=VARCHAR},
+      </if>
+      <if test="property8 != null" >
+        PROPERTY8 = #{property8,jdbcType=VARCHAR},
+      </if>
+      <if test="property9 != null" >
+        PROPERTY9 = #{property9,jdbcType=VARCHAR},
+      </if>
+      <if test="property10 != null" >
+        PROPERTY10 = #{property10,jdbcType=DECIMAL},
+      </if>
+      <if test="property11 != null" >
+        PROPERTY11 = #{property11,jdbcType=DECIMAL},
+      </if>
+      <if test="property12 != null" >
+        PROPERTY12 = #{property12,jdbcType=DECIMAL},
+      </if>
+      <if test="property13 != null" >
+        PROPERTY13 = #{property13,jdbcType=DECIMAL},
+      </if>
+      <if test="property14 != null" >
+        PROPERTY14 = #{property14,jdbcType=DECIMAL},
+      </if>
+      <if test="prinf != null" >
+        PRINF = #{prinf,jdbcType=VARCHAR},
+      </if>
+      <if test="prexp != null" >
+        PREXP = #{prexp,jdbcType=VARCHAR},
+      </if>
+      <if test="itime != null" >
+        ITIME = #{itime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ishift != null" >
+        ISHIFT = #{ishift,jdbcType=VARCHAR},
+      </if>
+      <if test="igroup != null" >
+        IGROUP = #{igroup,jdbcType=VARCHAR},
+      </if>
+      <if test="iperson != null" >
+        IPERSON = #{iperson,jdbcType=INTEGER},
+      </if>
+      <if test="utime != null" >
+        UTIME = #{utime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ushift != null" >
+        USHIFT = #{ushift,jdbcType=VARCHAR},
+      </if>
+      <if test="ugroup != null" >
+        UGROUP = #{ugroup,jdbcType=VARCHAR},
+      </if>
+      <if test="uperson != null" >
+        UPERSON = #{uperson,jdbcType=INTEGER},
+      </if>
+      <if test="ufrom != null" >
+        UFROM = #{ufrom,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where GUID = #{guid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aps.env.entity.HbNodeAlarm" >
+    update hb_node_alarm
+    set NODE_ID = #{nodeId,jdbcType=INTEGER},
+      NODE_MN = #{nodeMn,jdbcType=VARCHAR},
+      NODE_NAME = #{nodeName,jdbcType=VARCHAR},
+      ITEM_CODE = #{itemCode,jdbcType=VARCHAR},
+      ITEM_NAME = #{itemName,jdbcType=VARCHAR},
+      ITEM_VALUE = #{itemValue,jdbcType=VARCHAR},
+      ITEM_DATE = #{itemDate,jdbcType=VARCHAR},
+      ITEM_ALARM = #{itemAlarm,jdbcType=VARCHAR},
+      ITEM_PHONE = #{itemPhone,jdbcType=VARCHAR},
+      PRFLAG = #{prflag,jdbcType=INTEGER},
+      PRGROUP = #{prgroup,jdbcType=VARCHAR},
+      PRTYPE = #{prtype,jdbcType=VARCHAR},
+      PROPERTY0 = #{property0,jdbcType=VARCHAR},
+      PROPERTY1 = #{property1,jdbcType=VARCHAR},
+      PROPERTY2 = #{property2,jdbcType=VARCHAR},
+      PROPERTY3 = #{property3,jdbcType=VARCHAR},
+      PROPERTY4 = #{property4,jdbcType=VARCHAR},
+      PROPERTY5 = #{property5,jdbcType=VARCHAR},
+      PROPERTY6 = #{property6,jdbcType=VARCHAR},
+      PROPERTY7 = #{property7,jdbcType=VARCHAR},
+      PROPERTY8 = #{property8,jdbcType=VARCHAR},
+      PROPERTY9 = #{property9,jdbcType=VARCHAR},
+      PROPERTY10 = #{property10,jdbcType=DECIMAL},
+      PROPERTY11 = #{property11,jdbcType=DECIMAL},
+      PROPERTY12 = #{property12,jdbcType=DECIMAL},
+      PROPERTY13 = #{property13,jdbcType=DECIMAL},
+      PROPERTY14 = #{property14,jdbcType=DECIMAL},
+      PRINF = #{prinf,jdbcType=VARCHAR},
+      PREXP = #{prexp,jdbcType=VARCHAR},
+      ITIME = #{itime,jdbcType=TIMESTAMP},
+      ISHIFT = #{ishift,jdbcType=VARCHAR},
+      IGROUP = #{igroup,jdbcType=VARCHAR},
+      IPERSON = #{iperson,jdbcType=INTEGER},
+      UTIME = #{utime,jdbcType=TIMESTAMP},
+      USHIFT = #{ushift,jdbcType=VARCHAR},
+      UGROUP = #{ugroup,jdbcType=VARCHAR},
+      UPERSON = #{uperson,jdbcType=INTEGER},
+      UFROM = #{ufrom,jdbcType=VARCHAR}
+    where GUID = #{guid,jdbcType=VARCHAR}
+  </update>
+</mapper>
