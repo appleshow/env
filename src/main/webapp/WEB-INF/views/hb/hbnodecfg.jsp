@@ -213,7 +213,7 @@
 <script src="${ctx}/assets-view/comm/commDataTables.js"></script>
 
 <%@include file="../aplugin/treectrl.jsp" %>
-<%@include file="../aplugin/nodewindow.jsp" %>
+<%@include file="../aplugin/nodepersonwindow.jsp" %>
 
 <script>
     var tableNodeItem;
@@ -251,7 +251,7 @@
      *
      */
     function openNodeWindow() {
-        __showNodeWindow(callBackNodeSelect);
+        __showNodePersonWindow(callBackNodeSelect);
     }
 
     /**
