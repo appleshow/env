@@ -212,17 +212,13 @@ public class HbTypeItemException {
         if (null == this.valueMax) {
             this.valueMax = valueMax;
         } else {
-            this.valueMax = this.valueMin < valueMin ? valueMax : this.valueMax;
+            this.valueMax = this.valueMax < valueMax ? valueMax : this.valueMax;
         }
         return this;
     }
 
     public Double getValueSum() {
         return valueSum;
-    }
-
-    public void setValueSum(Double valueSum) {
-        this.valueSum = valueSum;
     }
 
     public Double getValueAvg() {
@@ -233,63 +229,31 @@ public class HbTypeItemException {
         }
     }
 
-    public void setValueAvg(Double valueAvg) {
-        this.valueAvg = valueAvg;
-    }
-
     public int getValueTotalCount() {
         return valueTotalCount;
-    }
-
-    public void setValueTotalCount(int valueTotalCount) {
-        this.valueTotalCount = valueTotalCount;
     }
 
     public int getValueMinCount() {
         return valueMinCount;
     }
 
-    public void setValueMinCount(int valueMinCount) {
-        this.valueMinCount = valueMinCount;
-    }
-
     public int getValueMaxCount() {
         return valueMaxCount;
-    }
-
-    public void setValueMaxCount(int valueMaxCount) {
-        this.valueMaxCount = valueMaxCount;
     }
 
     public int getValueAla1Count() {
         return valueAla1Count;
     }
 
-    public void setValueAla1Count(int valueAla1Count) {
-        this.valueAla1Count = valueAla1Count;
-    }
-
     public int getValueAla2Count() {
         return valueAla2Count;
-    }
-
-    public void setValueAla2Count(int valueAla2Count) {
-        this.valueAla2Count = valueAla2Count;
     }
 
     public int getValueAla3Count() {
         return valueAla3Count;
     }
 
-    public void setValueAla3Count(int valueAla3Count) {
-        this.valueAla3Count = valueAla3Count;
-    }
-
     public HbTypeItemNode getHbTypeItemNode() {
         return hbTypeItemNode;
-    }
-
-    public void setHbTypeItemNode(HbTypeItemNode hbTypeItemNode) {
-        this.hbTypeItemNode = hbTypeItemNode;
     }
 }
