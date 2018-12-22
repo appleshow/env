@@ -831,7 +831,7 @@
   </update>
   <!-- additional -->
   <select id="selectByPerson" resultMap="BaseResultMap" parameterType="com.aps.env.entity.HbEnterprise" >
-    SELECT
+    SELECT DISTINCT
 	enterprise.*
     FROM
 	hb_enterprise enterprise
