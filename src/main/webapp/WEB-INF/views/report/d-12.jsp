@@ -115,7 +115,8 @@
                                        class="form-control"
                                        style="width: 90px;"
                                        id="dateStr"/>
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span> </span>
+                                <span class="input-group-addon"><span
+                                        class="glyphicon glyphicon-calendar"></span> </span>
                             </div>
                             <select class="form-control"
                                     style="width: 120px;"
@@ -132,7 +133,7 @@
                         <div class="input-group">
                             <button type="button"
                                     class="btn btn-primary"
-                                    onclick="refData()">
+                                    onclick="refData(true)">
                                 <span class="glyphicon glyphicon-search"
                                       aria-hidden="true"></span> &nbsp;&nbsp;查询&nbsp;&nbsp;
                             </button>
@@ -141,69 +142,8 @@
                 </form>
             </div>
             <div class="panel-body"
-                 style="overflow: auto;height: 88%;">
-                <!--#tbReport-->
-                <table class="table table-striped table-bordered display responsive nowrap"
-                       cellspacing="0"
-                       style="width: 100%;"
-                       name="tbReport"
-                       id="tbReport">
-                    <thead>
-                    <tr>
-                        <th colspan="16"
-                            style="text-align: center;"><h3><b>表 D-12 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;烟气排放连续监测月平均值季报表</b></h3>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th colspan="16"
-                            style="text-align: left;padding-left: 20%;">排放源名称：<span id="nodeName"></span>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th colspan="16"
-                            style="text-align: left;padding-left: 20%;">
-                            排放源编号：<span id="nodeMN"></span><span style="padding-left: 40%;">监测年份：<span id="reportYear"></span>年</span>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th rowspan="2"
-                            style="text-align: center;vertical-align: middle;">时间
-                        </th>
-                        <th colspan="3"
-                            style="text-align: center;">颗粒物
-                        </th>
-                        <th colspan="3"
-                            style="text-align: center;">SO<sub>2</sub></th>
-                        <th colspan="3"
-                            style="text-align: center;">NO<sub>x</sub></th>
-                        <th style="text-align: center;">标态流量</th>
-                        <th style="text-align: center;">氧量</th>
-                        <th style="text-align: center;">烟温</th>
-                        <th style="text-align: center;">含湿量</th>
-                        <th style="text-align: center;">负荷</th>
-                        <th rowspan="2"
-                            style="text-align: center;vertical-align: middle;">备注
-                        </th>
-                    </tr>
-                    <tr>
-                        <th style="text-align: center;">mg/m<sup>3</sup></th>
-                        <th style="text-align: center;">折算 mg/m<sup>3</sup></th>
-                        <th style="text-align: center;">kg/h</th>
-                        <th style="text-align: center;">m/m<sup>2</sup></th>
-                        <th style="text-align: center;">折算 mg/m<sup>3</sup></th>
-                        <th style="text-align: center;">kg/h</th>
-                        <th style="text-align: center;">mg/m<sup>3</sup></th>
-                        <th style="text-align: center;">折算 mg/m<sup>3</sup></th>
-                        <th style="text-align: center;">kg/h</th>
-                        <th style="text-align: center;">m<sup>2</sup>/h</th>
-                        <th style="text-align: center;">%</th>
-                        <th style="text-align: center;">°C</th>
-                        <th style="text-align: center;">%</th>
-                        <th style="text-align: center;">%</th>
-                    </tr>
-                    </thead>
-                </table>
-                <!--#tbReport-->
+                 style="overflow: auto;height: 88%;"
+                 id="tableDiv">>
             </div>
         </div>
     </div>
@@ -310,8 +250,232 @@
         selectNodeId: "",
         selectNodeName: "",
         selectNodeMN: "",
-        columnHeadInfo: undefined,
+        selectNodeTypId: undefined,
     };
+    var tableG = '<!--#tbReport-->\n' +
+        '                <table class="table table-striped table-bordered display responsive nowrap"\n' +
+        '                       cellspacing="0"\n' +
+        '                       style="width: 100%;"\n' +
+        '                       name="tbReport"\n' +
+        '                       id="tbReport">\n' +
+        '                    <thead>\n' +
+        '                    <tr>\n' +
+        '                        <th colspan="16"\n' +
+        '                            style="text-align: center;"><h3><b>表 D-12 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;烟气排放连续监测月平均值季报表</b>\n' +
+        '                        </h3>\n' +
+        '                        </th>\n' +
+        '                    </tr>\n' +
+        '                    <tr>\n' +
+        '                        <th colspan="16"\n' +
+        '                            style="text-align: left;padding-left: 20%;">排放源名称：<span id="nodeName"></span>\n' +
+        '                        </th>\n' +
+        '                    </tr>\n' +
+        '                    <tr>\n' +
+        '                        <th colspan="16"\n' +
+        '                            style="text-align: left;padding-left: 20%;">\n' +
+        '                            排放源编号：<span id="nodeMN"></span><span style="padding-left: 40%;">监测年份：<span id="reportYear"></span>年</span>\n' +
+        '                        </th>\n' +
+        '                    </tr>\n' +
+        '                    <tr>\n' +
+        '                        <th rowspan="2"\n' +
+        '                            style="text-align: center;vertical-align: middle;">时间\n' +
+        '                        </th>\n' +
+        '                        <th colspan="3"\n' +
+        '                            style="text-align: center;">颗粒物\n' +
+        '                        </th>\n' +
+        '                        <th colspan="3"\n' +
+        '                            style="text-align: center;">SO<sub>2</sub></th>\n' +
+        '                        <th colspan="3"\n' +
+        '                            style="text-align: center;">NO<sub>x</sub></th>\n' +
+        '                        <th style="text-align: center;">标态流量</th>\n' +
+        '                        <th style="text-align: center;">氧量</th>\n' +
+        '                        <th style="text-align: center;">烟温</th>\n' +
+        '                        <th style="text-align: center;">含湿量</th>\n' +
+        '                        <th style="text-align: center;">负荷</th>\n' +
+        '                        <th rowspan="2"\n' +
+        '                            style="text-align: center;vertical-align: middle;">备注\n' +
+        '                        </th>\n' +
+        '                    </tr>\n' +
+        '                    <tr>\n' +
+        '                        <th style="text-align: center;">mg/m<sup>3</sup></th>\n' +
+        '                        <th style="text-align: center;">折算 mg/m<sup>3</sup></th>\n' +
+        '                        <th style="text-align: center;">kg/h</th>\n' +
+        '                        <th style="text-align: center;">m/m<sup>2</sup></th>\n' +
+        '                        <th style="text-align: center;">折算 mg/m<sup>3</sup></th>\n' +
+        '                        <th style="text-align: center;">kg/h</th>\n' +
+        '                        <th style="text-align: center;">mg/m<sup>3</sup></th>\n' +
+        '                        <th style="text-align: center;">折算 mg/m<sup>3</sup></th>\n' +
+        '                        <th style="text-align: center;">kg/h</th>\n' +
+        '                        <th style="text-align: center;">m<sup>2</sup>/h</th>\n' +
+        '                        <th style="text-align: center;">%</th>\n' +
+        '                        <th style="text-align: center;">°C</th>\n' +
+        '                        <th style="text-align: center;">%</th>\n' +
+        '                        <th style="text-align: center;">%</th>\n' +
+        '                    </tr>\n' +
+        '                    </thead>\n' +
+        '                </table>\n' +
+        '                <!--#tbReport-->';
+
+    var tableW = '<!--#tbReport-->\n' +
+        '                <table class="table table-striped table-bordered display responsive nowrap"\n' +
+        '                       cellspacing="0"\n' +
+        '                       style="width: 100%;"\n' +
+        '                       name="tbReport"\n' +
+        '                       id="tbReport">\n' +
+        '                    <thead>\n' +
+        '                    <tr>\n' +
+        '                        <th colspan="7"\n' +
+        '                            style="text-align: center;"><h3><b>表 D-12 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;污水排放连续监测月平均值季报表</b>\n' +
+        '                        </h3>\n' +
+        '                        </th>\n' +
+        '                    </tr>\n' +
+        '                    <tr>\n' +
+        '                        <th colspan="7"\n' +
+        '                            style="text-align: left;padding-left: 20%;">排放源名称：<span id="nodeName"></span>\n' +
+        '                        </th>\n' +
+        '                    </tr>\n' +
+        '                    <tr>\n' +
+        '                        <th colspan="7"\n' +
+        '                            style="text-align: left;padding-left: 20%;">\n' +
+        '                            排放源编号：<span id="nodeMN"></span><span style="padding-left: 40%;">监测年份：<span id="reportYear"></span>年</span>\n' +
+        '                        </th>\n' +
+        '                    </tr>\n' +
+        '                    <tr>\n' +
+        '                        <th rowspan="2"\n' +
+        '                            style="text-align: center;vertical-align: middle;">时间\n' +
+        '                        </th>\n' +
+        '                        <th colspan="2"\n' +
+        '                            style="text-align: center;">化学需氧量(COD)\n' +
+        '                        </th>\n' +
+        '                        <th colspan="2"\n' +
+        '                            style="text-align: center;">氨氮</th>\n' +
+        '                        <th style="text-align: center;">流量</th>\n' +
+        '                        <th rowspan="2"\n' +
+        '                            style="text-align: center;vertical-align: middle;">备注\n' +
+        '                        </th>\n' +
+        '                    </tr>\n' +
+        '                    <tr>\n' +
+        '                        <th style="text-align: center;">浓度(mg/l)</th>\n' +
+        '                        <th style="text-align: center;">排放量(kg)</th>\n' +
+        '                        <th style="text-align: center;">浓度(mg/l)</th>\n' +
+        '                        <th style="text-align: center;">排放量(kg)</th>\n' +
+        '                        <th style="text-align: center;">t</th>\n' +
+        '                    </tr>\n' +
+        '                    </thead>\n' +
+        '                </table>\n' +
+        '                <!--#tbReport-->';
+
+    var tableD = '<!--#tbReport-->\n' +
+        '                <table class="table table-striped table-bordered display responsive nowrap"\n' +
+        '                       cellspacing="0"\n' +
+        '                       style="width: 100%;"\n' +
+        '                       name="tbReport"\n' +
+        '                       id="tbReport">\n' +
+        '                    <thead>\n' +
+        '                    <tr>\n' +
+        '                        <th colspan="7"\n' +
+        '                            style="text-align: center;"><h3><b>表 D-12 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;大气质量连续监测月平均值季报表</b>\n' +
+        '                        </h3>\n' +
+        '                        </th>\n' +
+        '                    </tr>\n' +
+        '                    <tr>\n' +
+        '                        <th colspan="7"\n' +
+        '                            style="text-align: left;padding-left: 20%;">排放源名称：<span id="nodeName"></span>\n' +
+        '                        </th>\n' +
+        '                    </tr>\n' +
+        '                    <tr>\n' +
+        '                        <th colspan="7"\n' +
+        '                            style="text-align: left;padding-left: 20%;">\n' +
+        '                            排放源编号：<span id="nodeMN"></span><span style="padding-left: 40%;">监测年份：<span id="reportYear"></span>年</span>\n' +
+        '                        </th>\n' +
+        '                    </tr>\n' +
+        '                    <tr>\n' +
+        '                        <th rowspan="2"\n' +
+        '                            style="text-align: center;vertical-align: middle;">时间\n' +
+        '                        </th>\n' +
+        '                        <th style="text-align: center;">温度</th>\n' +
+        '                        <th style="text-align: center;">湿度</th>\n' +
+        '                        <th style="text-align: center;">大气压</th>\n' +
+        '                        <th style="text-align: center;">PM10</th>\n' +
+        '                        <th style="text-align: center;">PM2.5</th>\n' +
+        '                        <th rowspan="2"\n' +
+        '                            style="text-align: center;vertical-align: middle;">备注\n' +
+        '                        </th>\n' +
+        '                    </tr>\n' +
+        '                    <tr>\n' +
+        '                        <th style="text-align: center;">°C</th>\n' +
+        '                        <th style="text-align: center;">%</th>\n' +
+        '                        <th style="text-align: center;">KPa</th>\n' +
+        '                        <th style="text-align: center;">ng/m<sup>3</sup></th>\n' +
+        '                        <th style="text-align: center;">ug/m<sup>3</sup></th>\n' +
+        '                    </tr>\n' +
+        '                    </thead>\n' +
+        '                </table>\n' +
+        '                <!--#tbReport-->';
+
+    var tableV = '<!--#tbReport-->\n' +
+        '                <table class="table table-striped table-bordered display responsive nowrap"\n' +
+        '                       cellspacing="0"\n' +
+        '                       style="width: 100%;"\n' +
+        '                       name="tbReport"\n' +
+        '                       id="tbReport">\n' +
+        '                    <thead>\n' +
+        '                    <tr>\n' +
+        '                        <th colspan="16"\n' +
+        '                            style="text-align: center;"><h3><b>表 D-12 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;烟气排放连续监测月平均值季报表</b>\n' +
+        '                        </h3>\n' +
+        '                        </th>\n' +
+        '                    </tr>\n' +
+        '                    <tr>\n' +
+        '                        <th colspan="16"\n' +
+        '                            style="text-align: left;padding-left: 20%;">排放源名称：<span id="nodeName"></span>\n' +
+        '                        </th>\n' +
+        '                    </tr>\n' +
+        '                    <tr>\n' +
+        '                        <th colspan="16"\n' +
+        '                            style="text-align: left;padding-left: 20%;">\n' +
+        '                            排放源编号：<span id="nodeMN"></span><span style="padding-left: 40%;">监测年份：<span id="reportYear"></span>年</span>\n' +
+        '                        </th>\n' +
+        '                    </tr>\n' +
+        '                    <tr>\n' +
+        '                        <th rowspan="2"\n' +
+        '                            style="text-align: center;vertical-align: middle;">时间\n' +
+        '                        </th>\n' +
+        '                        <th colspan="3"\n' +
+        '                            style="text-align: center;">颗粒物\n' +
+        '                        </th>\n' +
+        '                        <th colspan="3"\n' +
+        '                            style="text-align: center;">SO<sub>2</sub></th>\n' +
+        '                        <th colspan="3"\n' +
+        '                            style="text-align: center;">NO<sub>x</sub></th>\n' +
+        '                        <th style="text-align: center;">标态流量</th>\n' +
+        '                        <th style="text-align: center;">氧量</th>\n' +
+        '                        <th style="text-align: center;">烟温</th>\n' +
+        '                        <th style="text-align: center;">含湿量</th>\n' +
+        '                        <th style="text-align: center;">负荷</th>\n' +
+        '                        <th rowspan="2"\n' +
+        '                            style="text-align: center;vertical-align: middle;">备注\n' +
+        '                        </th>\n' +
+        '                    </tr>\n' +
+        '                    <tr>\n' +
+        '                        <th style="text-align: center;">mg/m<sup>3</sup></th>\n' +
+        '                        <th style="text-align: center;">折算 mg/m<sup>3</sup></th>\n' +
+        '                        <th style="text-align: center;">kg/h</th>\n' +
+        '                        <th style="text-align: center;">m/m<sup>2</sup></th>\n' +
+        '                        <th style="text-align: center;">折算 mg/m<sup>3</sup></th>\n' +
+        '                        <th style="text-align: center;">kg/h</th>\n' +
+        '                        <th style="text-align: center;">mg/m<sup>3</sup></th>\n' +
+        '                        <th style="text-align: center;">折算 mg/m<sup>3</sup></th>\n' +
+        '                        <th style="text-align: center;">kg/h</th>\n' +
+        '                        <th style="text-align: center;">m<sup>2</sup>/h</th>\n' +
+        '                        <th style="text-align: center;">%</th>\n' +
+        '                        <th style="text-align: center;">°C</th>\n' +
+        '                        <th style="text-align: center;">%</th>\n' +
+        '                        <th style="text-align: center;">%</th>\n' +
+        '                    </tr>\n' +
+        '                    </thead>\n' +
+        '                </table>\n' +
+        '                <!--#tbReport-->';
 
     var DataSourceTree = function (options) {
         this._data = options.data;
@@ -407,7 +571,10 @@
                                                         } else {
                                                             subRegionCount = 0;
                                                         }
-                                                        subRegions.push({regionName: regionTargets[regionIndex + 1], regionCount: subRegionCount,});
+                                                        subRegions.push({
+                                                            regionName: regionTargets[regionIndex + 1],
+                                                            regionCount: subRegionCount,
+                                                        });
                                                     } else {
                                                         if (value.nodeId && value.nodeId != "") {
                                                             subRegionCount++;
@@ -473,7 +640,12 @@
                                                 }
                                             }
                                         });
-                                        treeData.push({id: "所有", name: "<b>所有站点</b> - [" + allCount + "]", type: "folder", isEnterprise: false,});
+                                        treeData.push({
+                                            id: "所有",
+                                            name: "<b>所有站点</b> - [" + allCount + "]",
+                                            type: "folder",
+                                            isEnterprise: false,
+                                        });
 
                                         $.each(pagePars.enterpriseNode, function (index, value) {
                                             var regionDesc = value.hbEnterprise.enterpriseRegionDesc;
@@ -559,21 +731,6 @@
             loadingHTML: '<div class="tree-loading"><i class="fa fa-rotate-right fa-spin"></i></div>',
         });
 
-        pagePars.tbReport = new CommDataTables("#tbReport", null, initColumnInfo(), callError, null, 50);
-        pagePars.tbReport.buttons = "P";
-        pagePars.tbReport.lengthInfo = {
-            lengthMenu: [
-                [
-                    -1
-                ], [
-                    "全部"
-                ]
-            ],
-            pageLength: -1
-        };
-
-        pagePars.tbReport.create(null, dataTableAjax);
-
     });
 
     /**
@@ -607,6 +764,7 @@
                 data: ServerRequestPar(1, {
                     nodeId: pagePars.selectNodeId,
                     type: "D12",
+                    nodeType: pagePars.selectNodeTypId,
                     pattern: "MM",
                     dataRows: 3,
                     startCheck: monthFrom,
@@ -675,15 +833,17 @@
         tableColumnInfo["c5"] = columnInfo;
         tableColumnInfo["c6"] = columnInfo;
         tableColumnInfo["c7"] = columnInfo;
-        tableColumnInfo["c8"] = columnInfo;
-        tableColumnInfo["c9"] = columnInfo;
-        tableColumnInfo["c10"] = columnInfo;
-        tableColumnInfo["c11"] = columnInfo;
-        tableColumnInfo["c12"] = columnInfo;
-        tableColumnInfo["c13"] = columnInfo;
-        tableColumnInfo["c14"] = columnInfo;
-        tableColumnInfo["c15"] = columnInfo;
-        tableColumnInfo["c16"] = columnInfo;
+        if (2 != pagePars.selectNodeTypId && 3 != pagePars.selectNodeTypId) {
+            tableColumnInfo["c8"] = columnInfo;
+            tableColumnInfo["c9"] = columnInfo;
+            tableColumnInfo["c10"] = columnInfo;
+            tableColumnInfo["c11"] = columnInfo;
+            tableColumnInfo["c12"] = columnInfo;
+            tableColumnInfo["c13"] = columnInfo;
+            tableColumnInfo["c14"] = columnInfo;
+            tableColumnInfo["c15"] = columnInfo;
+            tableColumnInfo["c16"] = columnInfo;
+        }
 
 
         return tableColumnInfo;
@@ -692,7 +852,27 @@
     /**
      *
      */
-    function refData() {
+    function initTable() {
+        pagePars.tbReport = new CommDataTables("#tbReport", null, initColumnInfo(), callError, null, 50);
+        pagePars.tbReport.buttons = "P";
+        pagePars.tbReport.lengthInfo = {
+            lengthMenu: [
+                [
+                    -1
+                ], [
+                    "全部"
+                ]
+            ],
+            pageLength: -1
+        };
+
+        pagePars.tbReport.create(null, dataTableAjax);
+    }
+
+    /**
+     *
+     */
+    function refData(loadData) {
         if (pagePars.selectNodeId == "") {
             callError(100, "请先选择一个站点...!!");
             return;
@@ -704,15 +884,9 @@
         var selectDateSplit = $("#dateStr").val().split("-");
         $("#reportYear").html(selectDateSplit[0]);
 
-
-        pagePars.columnHeadInfo = [
-            ["表 D-12            烟气排放连续监测月平均值季报表"],
-            ["排放源名称：" + pagePars.selectNodeName],
-            ["排放源编号：" + pagePars.selectNodeMN + "                                           监测年份：" + selectDateSplit[0] + "年"],
-            ["时间", "颗粒物", "", "", "SO2", "", "", "NOx", "", "", "标态流量", "氧量", "烟温", "含湿量", "负荷", "备注"],
-            ["", "mg/m3", "折算mg/m3", "t/m", "mg/m3", "折算mg/m3", "t/m", "mg/m3", "折算mg/m3", "t/m", "m3/m", "%", "℃", "%", "%", ""]];
-
-        pagePars.tbReport.table.ajax.reload(null, false);
+        if (loadData) {
+            pagePars.tbReport.table.ajax.reload(null, false);
+        }
     }
 
     /**
@@ -721,19 +895,39 @@
     function treeSelectItem(items, dataSource) {
         if (dataSource._dataType == 'enterpriseNode') {
             if (items.length > 0) {
+                var html = "";
+
                 pagePars.selectNodeId = items[0].id;
                 pagePars.selectNodeName = items[0].name;
                 $.each(pagePars.enterpriseNode, function (index, node) {
                     if (pagePars.selectNodeId == node.nodeId) {
                         pagePars.selectNodeMN = node.nodeMn;
+                        pagePars.selectNodeTypId = node.typeId;
+
+                        if (1 == node.typeId) {
+                            html = tableG;
+                        } else if (2 == node.typeId) {
+                            html = tableW;
+                        } else if (3 == node.typeId) {
+                            html = tableD;
+                        } else if (4 == node.typeId) {
+                            html = tableV;
+                        }
                     }
                 });
                 document.title = pagePars.pageTitle + " - " + items[0].name;
+
+                $("#tableDiv").html(html);
+                if (html != "") {
+                    refData(false);
+                    initTable();
+                }
             } else {
                 pagePars.selectNodeId = "";
                 pagePars.selectNodeName = "";
+
+                $("#tableDiv").html("");
             }
-            refData();
         }
     }
 

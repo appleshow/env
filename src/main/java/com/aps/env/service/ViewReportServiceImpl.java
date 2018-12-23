@@ -30,7 +30,67 @@ import java.util.*;
 public class ViewReportServiceImpl implements ViewReportService {
     @Resource
     private HbDataModeMapper hbDataModeMapper;
-    final private String[] D10_PAR = {
+    final private String[] D10_PAR_G = {
+            //颗粒物(烟尘)
+            "01;a34013",
+            //颗粒物(烟尘) 折算值
+            "01-ZsAvg;a34013-ZsAvg",
+            //颗粒物(烟尘) 排量
+            "",
+            //SO2
+            "02;a21026",
+            //SO2 折算值
+            "02-ZsAvg;a21026-ZsAvg",
+            //SO2 排量
+            "",
+            //NOx
+            "03;a21002",
+            //NOx 折算值
+            "03-ZsAvg;a21002-ZsAvg",
+            //NOx 排量
+            "",
+            //标态流量
+            "S02;a01011",
+            //氧量
+            "S01;a19001",
+            //烟温
+            "S03;a01012",
+            //含湿量
+            "S05;a01014",
+            //负荷
+            "",
+            //备注
+            "",
+    };
+    final private String[] D10_PAR_W = {
+            //化学需氧量(COD) 浓度
+            "011;w01018",
+            //化学需氧量(COD) 排量
+            "",
+            //氨氮  浓度
+            "060;w21003",
+            //氨氮 排量
+            "",
+            //流量
+            "B01;w00000",
+            //备注
+            "",
+    };
+    final private String[] D10_PAR_D = {
+            //温度
+            "a01001",
+            //湿度
+            "a01002",
+            //大气压
+            "a01006",
+            //PM10
+            "a34002",
+            //PM2.5
+            "a34004",
+            //备注
+            "",
+    };
+    final private String[] D10_PAR_V = {
             //颗粒物(烟尘)
             "01;a34013",
             //颗粒物(烟尘) 折算值
@@ -63,6 +123,7 @@ public class ViewReportServiceImpl implements ViewReportService {
             "",
     };
 
+
     /**
      * @param httpSession
      * @param requestRefPar
@@ -75,10 +136,16 @@ public class ViewReportServiceImpl implements ViewReportService {
         final int dataRows = requestRefPar.getIntegerPar("dataRows");
         final int startCheck = requestRefPar.getIntegerPar("startCheck");
         final String type = requestRefPar.getStringPar("type");
+        final String nodeTyp = requestRefPar.getStringPar("nodeType");
         final String pattern = requestRefPar.getStringPar("pattern");
         final Integer nodeId = requestRefPar.getIntegerPar("nodeId");
         final Date dateStr = DateUtil.fromString(requestRefPar.getStringPar("dateStr"), DateUtil.SIMPLE_DATE_FORMAT1);
         final Date dateEnd = DateUtil.fromString(requestRefPar.getStringPar("dateEnd"), DateUtil.SIMPLE_DATE_FORMAT1);
+        final Calendar calendar = Calendar.getInstance();
+        calendar.setTime(dateStr);
+        final int referYear = calendar.get(Calendar.YEAR);
+        final int referMonth = calendar.get(Calendar.MONDAY);
+        final int referDay = calendar.get(Calendar.DAY_OF_MONTH);
 
         HbDataModeExample hbDataModeExample = new HbDataModeExample();
         hbDataModeExample.setDataTbale(CommUtil.HB_DATA_CUR + nodeId);
@@ -95,9 +162,34 @@ public class ViewReportServiceImpl implements ViewReportService {
         initReportTableItemMap(reportTableItemMap, check, dataColumnSize);
         for (HbDataMode hbDataMode : hbDataModeList) {
             int beCheck = Integer.parseInt(simpleDateFormat.format(hbDataMode.getDataTime()));
+            calendar.setTime(hbDataMode.getDataTime());
+            final int thisYear = calendar.get(Calendar.YEAR);
+            final int thisMonth = calendar.get(Calendar.MONDAY);
+            final int thisDay = calendar.get(Calendar.DAY_OF_MONTH);
 
-            if (beCheck == 0 && "D10".equals(type)) {
-                beCheck = 24;
+            switch (type) {
+                case "D10":
+                    if (referYear != thisYear || referMonth != thisMonth || referDay != thisDay) {
+                        beCheck = dataRows;
+                    }
+                    break;
+                case "D11":
+                    if (referYear != thisYear || referMonth != thisMonth) {
+                        beCheck = dataRows;
+                    }
+                    break;
+                case "D12":
+                    if (referYear != thisYear || referMonth != thisMonth) {
+                        beCheck = startCheck + dataRows - 1;
+                    }
+                    break;
+                case "D13":
+                    if (referYear != thisYear) {
+                        beCheck = dataRows;
+                    }
+                    break;
+                default:
+                    break;
             }
             if (beCheck != check) {
                 if (beCheck != check + 1) {
@@ -109,8 +201,15 @@ public class ViewReportServiceImpl implements ViewReportService {
 
                 check = beCheck;
             }
-
-            readParValueAll(check, D10_PAR, JsonUtil.getObjectMapper().readValue(hbDataMode.getNodeData(), Map.class), reportTableItemMap);
+            if ("4".equals(nodeTyp)) {
+                readParValueAll(check, D10_PAR_V, JsonUtil.getObjectMapper().readValue(hbDataMode.getNodeData(), Map.class), reportTableItemMap);
+            } else if ("3".equals(nodeTyp)) {
+                readParValueAll(check, D10_PAR_D, JsonUtil.getObjectMapper().readValue(hbDataMode.getNodeData(), Map.class), reportTableItemMap);
+            } else if ("2".equals(nodeTyp)) {
+                readParValueAll(check, D10_PAR_W, JsonUtil.getObjectMapper().readValue(hbDataMode.getNodeData(), Map.class), reportTableItemMap);
+            } else {
+                readParValueAll(check, D10_PAR_G, JsonUtil.getObjectMapper().readValue(hbDataMode.getNodeData(), Map.class), reportTableItemMap);
+            }
         }
         for (int empty = check + 1; empty <= (startCheck - 1) + dataRows; empty++) {
             reportTableItemMap.put(empty, new ArrayList<>());
@@ -129,7 +228,23 @@ public class ViewReportServiceImpl implements ViewReportService {
                 .setC8(sampleCount).setC8(sampleCount).setC9(sampleCount).setC11(sampleCount).setC12(sampleCount).setC13(sampleCount).setC14(sampleCount);
         reportTableList.add(reportTableSampleCount);
 
-        reportTableList.add(new ReportTable("日排放总量(t)"));
+        switch (type) {
+            case "D10":
+                reportTableList.add(new ReportTable("日排放总量(t)"));
+                break;
+            case "D11":
+                reportTableList.add(new ReportTable("月排放总量(t)"));
+                break;
+            case "D12":
+                reportTableList.add(new ReportTable("季排放总量(t)"));
+                break;
+            case "D13":
+                reportTableList.add(new ReportTable("年排放总量(t)"));
+                break;
+            default:
+                reportTableList.add(new ReportTable("排放总量(t)"));
+                break;
+        }
 
         responseData.setTotalCount(reportTableList.size());
         responseData.setData(reportTableList);
