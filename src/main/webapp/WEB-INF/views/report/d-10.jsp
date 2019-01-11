@@ -809,7 +809,7 @@
         tableColumnInfo["c5"] = columnInfo;
         tableColumnInfo["c6"] = columnInfo;
         tableColumnInfo["c7"] = columnInfo;
-        if (2 != pagePars.selectNodeTypId && 3 != pagePars.selectNodeTypId) {
+        if (pagePars.selectNodeTypId.indexOf("废气") >= 0 || pagePars.selectNodeTypId.indexOf("VOC") >= 0) {
             tableColumnInfo["c8"] = columnInfo;
             tableColumnInfo["c9"] = columnInfo;
             tableColumnInfo["c10"] = columnInfo;
@@ -880,16 +880,16 @@
                 $.each(pagePars.enterpriseNode, function (index, node) {
                     if (pagePars.selectNodeId == node.nodeId) {
                         pagePars.selectNodeMN = node.nodeMn;
-                        pagePars.selectNodeTypId = node.typeId;
+                        pagePars.selectNodeTypId = node.hbType.typeName;
 
-                        if (1 == node.typeId) {
-                            html = tableG;
-                        } else if (2 == node.typeId) {
-                            html = tableW;
-                        } else if (3 == node.typeId) {
-                            html = tableD;
-                        } else if (4 == node.typeId) {
+                        if (pagePars.selectNodeTypId.indexOf("VOC") >= 0) {
                             html = tableV;
+                        } else if (pagePars.selectNodeTypId.indexOf("空气") >= 0) {
+                            html = tableD;
+                        } else if (pagePars.selectNodeTypId.indexOf("水") >= 0) {
+                            html = tableW;
+                        } else {
+                            html = tableG;
                         }
                     }
                 });

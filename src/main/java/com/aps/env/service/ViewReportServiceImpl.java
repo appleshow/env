@@ -201,11 +201,11 @@ public class ViewReportServiceImpl implements ViewReportService {
 
                 check = beCheck;
             }
-            if ("4".equals(nodeTyp)) {
+            if (nodeTyp.startsWith("4") || nodeTyp.indexOf("VOC") >= 0) {
                 readParValueAll(check, D10_PAR_V, JsonUtil.getObjectMapper().readValue(hbDataMode.getNodeData(), Map.class), reportTableItemMap);
-            } else if ("3".equals(nodeTyp)) {
+            } else if (nodeTyp.startsWith("3") || nodeTyp.indexOf("空气") >= 0) {
                 readParValueAll(check, D10_PAR_D, JsonUtil.getObjectMapper().readValue(hbDataMode.getNodeData(), Map.class), reportTableItemMap);
-            } else if ("2".equals(nodeTyp)) {
+            } else if (nodeTyp.startsWith("2") || nodeTyp.indexOf("水") >= 0) {
                 readParValueAll(check, D10_PAR_W, JsonUtil.getObjectMapper().readValue(hbDataMode.getNodeData(), Map.class), reportTableItemMap);
             } else {
                 readParValueAll(check, D10_PAR_G, JsonUtil.getObjectMapper().readValue(hbDataMode.getNodeData(), Map.class), reportTableItemMap);
