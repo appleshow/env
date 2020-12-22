@@ -89,7 +89,14 @@
             <div class="navbar-header pull-right">
                 <div class="navbar-account">
                     <ul class="account-area">
-                        <li id="person-m"></li>
+                        <li id="person-m">
+                            <div class="weather">
+                                <iframe class="iframe" name="weather_iframe" scrolling="no" frameborder="0"
+                                        allowtransparency="true"
+                                        src="//i.tianqi.com/index.php?c=code&id=12&color=%23FFFFFF&icon=1&num=1&site=12"></iframe>
+                            </div>
+                            <div id="tp-weather-widget"></div>
+                        </li>
                         <li><a class="login-area dropdown-toggle"
                                data-toggle="dropdown">
                             <div class="avatar"
@@ -98,7 +105,8 @@
                             </div>
                             <section>
                                 <h2>
-                                    <span class="profile"><span id="lblUserName">&nbsp;您好，username &nbsp;&nbsp;&nbsp; </span></span>
+                                    <span class="profile"><span
+                                            id="lblUserName">&nbsp;您好，username &nbsp;&nbsp;&nbsp; </span></span>
                                 </h2>
                             </section>
                         </a> <!--Login Area Dropdown-->
@@ -289,15 +297,18 @@
                                         <span class="input-icon icon-right"> <input type="password"
                                                                                     class="form-control"
                                                                                     id="pwo"
-                                                                                    placeholder="请录入旧密码"> <i class="fa fa-key blue"></i>
+                                                                                    placeholder="请录入旧密码"> <i
+                                                class="fa fa-key blue"></i>
                                         </span><span class="input-icon icon-right"> <input type="password"
                                                                                            class="form-control"
                                                                                            id="pwn1"
-                                                                                           placeholder="请录入新密码"> <i class="fa fa-key blue"></i>
+                                                                                           placeholder="请录入新密码"> <i
+                                class="fa fa-key blue"></i>
                                         </span><span class="input-icon icon-right"> <input type="password"
                                                                                            class="form-control"
                                                                                            id="pwn2"
-                                                                                           placeholder="请确认新密码"> <i class="fa fa-key blue"></i>
+                                                                                           placeholder="请确认新密码"> <i
+                                class="fa fa-key blue"></i>
                                         </span>
                         </div>
                     </div>
@@ -385,6 +396,43 @@
         $span.remove();
         return color;
     }
+
+    (function(T, h, i, n, k, P, a, g, e) {
+        g = function() {
+            P = h.createElement(i);
+            a = h.getElementsByTagName(i)[0];
+            P.src = k;
+            P.charset = "utf-8";
+            P.async = 1;
+            a.parentNode.insertBefore(P, a)
+        };
+        T["ThinkPageWeatherWidgetObject"] = n;
+        T[n] || (T[n] = function() {
+            (T[n].q = T[n].q || []).push(arguments)
+        });
+        T[n].l = +new Date();
+        if (T.attachEvent) {
+            T.attachEvent("onload", g)
+        } else {
+            T.addEventListener("load", g, false)
+        }
+    }(window, document, "script", "tpwidget", "//widget.seniverse.com/widget/chameleon.js"))
+
+    tpwidget("init", {
+        "flavor": "slim",
+        "location": "WX4FBXXFKE4F",
+        "geolocation": "enabled",
+        "language": "zh-chs",
+        "unit": "c",
+        "theme": "chameleon",
+        "container": "tp-weather-widget",
+        "bubble": "enabled",
+        "alarmType": "badge",
+        "color": "#F47837",
+        "uid": "UC6AD9E048",
+        "hash": "76465b415261736ddd08da3f7f9b24d0"
+    });
+    tpwidget("show");
 
     // Handle RTL SUpport for Changer CheckBox
     $("#skin-changer li a").click(function () {
@@ -547,7 +595,7 @@
             {
                 html: true,
                 template: '<div class="popover ' + $(this).data("class") + '"><div class="arrow"></div><h3 class="popover-title ' + $(this).data("titleclass")
-                + '">Popover right</h3><div class="popover-content"></div></div>'
+                    + '">Popover right</h3><div class="popover-content"></div></div>'
             });
     });
 
@@ -557,7 +605,7 @@
             {
                 html: true,
                 template: '<div class="popover ' + $(this).data("class") + '"><div class="arrow"></div><h3 class="popover-title ' + $(this).data("titleclass")
-                + '">Popover right</h3><div class="popover-content"></div></div>',
+                    + '">Popover right</h3><div class="popover-content"></div></div>',
                 trigger: "hover"
             });
     });
@@ -994,7 +1042,7 @@
             return;
         }
 
-        var url = "${ctx}/viewMainupdatePersonPSW";
+        var url = "${ctx}/viewMain/updatePersonPSW";
         var inf = [
             {
                 pswo: $.md5($("#pwo").val()),

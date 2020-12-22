@@ -873,7 +873,7 @@ FROM
 			AND resource.RESOURCE_TYPE_E = org.org_id
 			AND org.PERSON_ID =  #{iperson,jdbcType=INTEGER}
 			AND org.PRFLAG = 1
-		) person ON node.NODE_ID = person.NODE_ID AND node.DELETE_FLAG = 0
+		) person ON (node.NODE_ID = person.NODE_ID OR node.IPERSON = #{iperson,jdbcType=INTEGER}) AND node.DELETE_FLAG = 0
 	) n
 INNER JOIN hb_enterprise e ON e.ENTERPRISE_ID = n.ENTERPRISE_ID AND e.DELETE_FLAG = 0
 INNER JOIN hb_type t ON t.TYPE_ID = n.TYPE_ID

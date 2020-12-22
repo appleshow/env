@@ -8,60 +8,135 @@
 <%@ page contentType="text/html;charset=UTF-8"
          language="java" %>
 <html>
-<title>站点状态</title>
-<meta name="description"
-      content="Dashboard"/>
-<meta name="viewport"
-      content="width=device-width, initial-scale=1">
-<meta name="viewport"
-      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta http-equiv="X-UA-Compatible"
-      content="IE=edge"/>
-<meta http-equiv="Content-Type"
-      content="text/html; charset=utf-8"/>
-<!--DataTables Styles-->
-<link rel="stylesheet"
-      href="${ctx}/dataTables/Bootstrap-3.3.6/css/bootstrap.min.css">
-<link rel="stylesheet"
-      href="${ctx}/dataTables/DataTables-1.10.11/css/dataTables.bootstrap.min.css">
-<link rel="stylesheet"
-      href="${ctx}/dataTables/Responsive-2.0.2/css/responsive.bootstrap.css">
-<link rel="stylesheet"
-      href="${ctx}/dataTables/Buttons-1.1.2/css/buttons.bootstrap.min.css">
-<link rel="stylesheet"
-      href="${ctx}/dataTables/Buttons-1.1.2/css/buttons.bootstrap.min.css">
-<link rel="stylesheet"
-      href="${ctx}/dataTables/Select-1.1.2/css/select.bootstrap.min.css">
-<link rel="stylesheet"
-      href="${ctx}/dataTables/Editor-1.5.5/css/editor.bootstrap.min.css">
-<!--  -->
-<link rel="stylesheet"
-      href="${ctx}/assets-view/comm/color.css"/>
-<link rel="stylesheet"
-      href="${ctx}/assets-view/comm/select2-4.0.2/css/select2.min.css"/>
-<style type="text/css">
-    .table > tbody > tr > td, .table > tbody > tr > th {
-        padding: 3px;
-    }
+<head>
+    <title>站点状态</title>
+    <meta name="description"
+          content="Dashboard"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible"
+          content="IE=edge"/>
+    <meta http-equiv="Content-Type"
+          content="text/html; charset=utf-8"/>
+    <!--DataTables Styles-->
+    <link rel="stylesheet"
+          href="${ctx}/dataTables/Bootstrap-3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="${ctx}/dataTables/DataTables-1.10.11/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet"
+          href="${ctx}/dataTables/Responsive-2.0.2/css/responsive.bootstrap.css">
+    <link rel="stylesheet"
+          href="${ctx}/dataTables/Buttons-1.1.2/css/buttons.bootstrap.min.css">
+    <link rel="stylesheet"
+          href="${ctx}/dataTables/Buttons-1.1.2/css/buttons.bootstrap.min.css">
+    <link rel="stylesheet"
+          href="${ctx}/dataTables/Select-1.1.2/css/select.bootstrap.min.css">
+    <link rel="stylesheet"
+          href="${ctx}/dataTables/Editor-1.5.5/css/editor.bootstrap.min.css">
+    <!--  -->
+    <link rel="stylesheet"
+          href="${ctx}/assets-view/comm/color.css"/>
+    <link rel="stylesheet"
+          href="${ctx}/assets-view/comm/select2-4.0.2/css/select2.min.css"/>
+    <style type="text/css">
+        .table > tbody > tr > td, .table > tbody > tr > th {
+            padding: 3px;
+        }
 
-    .table-bordered > tfoot > tr > td, .table-bordered > tfoot > tr > th,
-    .table-bordered > thead > tr > td, .table-bordered > thead > tr > th {
-        border: 1px solid black;
-    }
+        .table-bordered > tfoot > tr > td, .table-bordered > tfoot > tr > th,
+        .table-bordered > thead > tr > td, .table-bordered > thead > tr > th {
+            border: 1px solid black;
+        }
 
-    .select2-container .select2-selection--single {
-        height: 34px !important;
-        line-height: 34px;
-    }
+        .select2-container .select2-selection--single {
+            height: 34px !important;
+            line-height: 34px;
+        }
 
-    .select2-container--default .select2-selection--single .select2-selection__rendered {
-        line-height: 34px;
-    }
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            line-height: 34px;
+        }
 
-    .select2-container--default .select2-selection--single .select2-selection__arrow {
-        height: 34px;
-    }
-</style>
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+            height: 34px;
+        }
+
+        .box-red {
+            font-size: 14px;
+            color: red;
+            margin: 10px;
+            animation: changeshadow-red 1s ease-in infinite;
+            /* 其它浏览器兼容性前缀 */
+            -webkit-animation: changeshadow-red 1s linear infinite;
+            -moz-animation: changeshadow-red 1s linear infinite;
+            -ms-animation: changeshadow-red 1s linear infinite;
+            -o-animation: changeshadow-red 1s linear infinite;
+        }
+
+        @keyframes changeshadow-red {
+            0% {
+                text-shadow: 0 0 4px red;
+            }
+            50% {
+                text-shadow: 0 0 40px red
+            }
+            100% {
+                text-shadow: 0 0 4px red
+            }
+        }
+
+        /* 添加兼容性前缀 */
+        @-webkit-keyframes changeshadow-red {
+            0% {
+                text-shadow: 0 0 4px red
+            }
+            50% {
+                text-shadow: 0 0 40px red
+            }
+            100% {
+                text-shadow: 0 0 4px red
+            }
+        }
+
+        @-moz-keyframes changeshadow-red {
+            0% {
+                text-shadow: 0 0 4px red
+            }
+            50% {
+                text-shadow: 0 0 40px red
+            }
+            100% {
+                text-shadow: 0 0 4px red
+            }
+        }
+
+        @-ms-keyframes changeshadow-red {
+            0% {
+                text-shadow: 0 0 4px red
+            }
+            50% {
+                text-shadow: 0 0 40px red
+            }
+            100% {
+                text-shadow: 0 0 4px red
+            }
+        }
+
+        @-o-keyframes changeshadow-red {
+            0% {
+                text-shadow: 0 0 4px red
+            }
+            50% {
+                text-shadow: 0 0 40px red
+            }
+            100% {
+                text-shadow: 0 0 4px red
+            }
+        }
+
+    </style>
 </head>
 <body>
 <div class="panel panel-default">
@@ -234,6 +309,8 @@
             data: []
         };
 
+        pagePars.alarmVoice = false;
+
         $.ajax({
             type: "POST",
             url: "${ctx}/viewHbNodeStatus/refNodeStatus",
@@ -303,7 +380,11 @@
                                 }
 
                                 if (exceptionPar.hbTypeItemNode.itemAlarm == 1) {
-                                    exceptionParString += ' <kbd style="background:red" title="' + titleInfo + '">' + exceptionPar.hbTypeItemNode.itemName + '</kbd>';
+                                    if (exceptionPar.hbTypeItemNode.itemAlarmVoice && exceptionPar.hbTypeItemNode.itemAlarmVoice == 1) {
+                                        exceptionParString += '<kdb class="box-red" title="' + titleInfo + '">' + exceptionPar.hbTypeItemNode.itemName + '</kdb>';
+                                    } else {
+                                        exceptionParString += ' <kbd style="background:red" title="' + titleInfo + '">' + exceptionPar.hbTypeItemNode.itemName + '</kbd>';
+                                    }
                                 } else {
                                     exceptionParString += ' <kbd style="background:green" title="' + titleInfo + '">' + exceptionPar.hbTypeItemNode.itemName + '</kbd>';
                                 }
@@ -324,7 +405,6 @@
                     });
 
                     callback(tableData);
-                    //refData(tableData, callback);
                 }
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {

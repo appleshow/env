@@ -24,7 +24,7 @@ import java.util.List;
  */
 public interface LoginViewService {
 
-    ComPerson selectPersoinByPrimaryKey(Integer personId);
+    ComPerson selectPersonByPrimaryKey(Integer personId);
 
     ComPerson selectPersonByUserId(String userId);
 

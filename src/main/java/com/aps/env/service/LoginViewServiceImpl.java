@@ -45,10 +45,10 @@ public class LoginViewServiceImpl implements LoginViewService {
      *
      * @param personId
      * @return
-     * @see LoginViewService#selectPersoinByPrimaryKey(java.lang.Integer)
+     * @see LoginViewService#selectPersonByPrimaryKey(java.lang.Integer)
      */
     @Override
-    public ComPerson selectPersoinByPrimaryKey(Integer personId) {
+    public ComPerson selectPersonByPrimaryKey(Integer personId) {
         return this.comPersonMapper.selectByPrimaryKey(personId);
     }
 

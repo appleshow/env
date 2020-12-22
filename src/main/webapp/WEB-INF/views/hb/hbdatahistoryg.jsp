@@ -53,6 +53,80 @@
         .table-bordered > thead > tr > td, .table-bordered > thead > tr > th {
             border: 1px solid black;
         }
+
+        .box-red {
+            font-size: 14px;
+            color: red;
+            margin: 10px;
+            animation: changeshadow-red 1s ease-in infinite;
+            /* 其它浏览器兼容性前缀 */
+            -webkit-animation: changeshadow-red 1s linear infinite;
+            -moz-animation: changeshadow-red 1s linear infinite;
+            -ms-animation: changeshadow-red 1s linear infinite;
+            -o-animation: changeshadow-red 1s linear infinite;
+        }
+
+        @keyframes changeshadow-red {
+            0% {
+                text-shadow: 0 0 4px red;
+            }
+            50% {
+                text-shadow: 0 0 40px red
+            }
+            100% {
+                text-shadow: 0 0 4px red
+            }
+        }
+
+        /* 添加兼容性前缀 */
+        @-webkit-keyframes changeshadow-red {
+            0% {
+                text-shadow: 0 0 4px red
+            }
+            50% {
+                text-shadow: 0 0 40px red
+            }
+            100% {
+                text-shadow: 0 0 4px red
+            }
+        }
+
+        @-moz-keyframes changeshadow-red {
+            0% {
+                text-shadow: 0 0 4px red
+            }
+            50% {
+                text-shadow: 0 0 40px red
+            }
+            100% {
+                text-shadow: 0 0 4px red
+            }
+        }
+
+        @-ms-keyframes changeshadow-red {
+            0% {
+                text-shadow: 0 0 4px red
+            }
+            50% {
+                text-shadow: 0 0 40px red
+            }
+            100% {
+                text-shadow: 0 0 4px red
+            }
+        }
+
+        @-o-keyframes changeshadow-red {
+            0% {
+                text-shadow: 0 0 4px red
+            }
+            50% {
+                text-shadow: 0 0 40px red
+            }
+            100% {
+                text-shadow: 0 0 4px red
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -275,7 +349,7 @@
         pagePars.tableDataCur.scrollY = 72;
         pagePars.tableDataCur.buttons = "P";
         pagePars.tableDataCur.lengthInfo = {
-            lengthMenu: [[50, 100, 300,500,-1], ["50条", "100条", "300条","500条","全部"]],
+            lengthMenu: [[50, 100, 300, 500, -1], ["50条", "100条", "300条", "500条", "全部"]],
             pageLength: 100
         };
         // ***** Add information to Column *****
@@ -383,6 +457,7 @@
             callback(tableData);
             return;
         }
+        pagePars.alarmVoice = false;
         $.ajax({
             type: "POST",
             url: "${ctx}/viewHbDataHis/refHbDataHis",
@@ -438,7 +513,11 @@
 
                                         if (showValue != "") {
                                             if (nodeItem[item].itemAlarm == 1) {
-                                                lineData["_" + item] = showValue + '<kbd style="background:red">' + lineData[item] + '</kbd>';
+                                                if (nodeItem[item].itemAlarmVoice && nodeItem[item].itemAlarmVoice == 1) {
+                                                    lineData["_" + item] = showValue + '<kdb class="box-red">' + lineData[item] + '</kbd>';
+                                                } else {
+                                                    lineData["_" + item] = '<kbd style="background:red" title="' + showTitle + '">' + lineData[item] + '</kbd>';
+                                                }
                                             } else {
                                                 lineData["_" + item] = '<kbd style="background:green" title="' + showTitle + '">' + lineData[item] + '</kbd>';
                                             }

@@ -50,6 +50,8 @@ public class HbTypeItemNode {
 
     private Integer itemAlarm;
 
+    private Integer itemAlarmVoice;
+
     private Integer itemOperating;
 
     private Integer itemLog;
@@ -205,6 +207,14 @@ public class HbTypeItemNode {
 
     public void setItemAlarm(Integer itemAlarm) {
         this.itemAlarm = itemAlarm;
+    }
+
+    public Integer getItemAlarmVoice() {
+        return itemAlarmVoice;
+    }
+
+    public void setItemAlarmVoice(Integer itemAlarmVoice) {
+        this.itemAlarmVoice = itemAlarmVoice;
     }
 
     public Integer getItemShowMain() {

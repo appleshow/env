@@ -10,58 +10,131 @@
 <html>
 <head>
     <title>站点分布</title>
-</head>
-<meta name="description"
-      content="Dashboard"/>
-<meta name="viewport"
-      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta http-equiv="X-UA-Compatible"
-      content="IE=edge"/>
-<meta http-equiv="Content-Type"
-      content="text/html; charset=utf-8"/>
-<link rel="stylesheet"
-      href="${ctx}/dataTables/Bootstrap-3.3.6/css/bootstrap.min.css"/>
-<!--  -->
-<link rel="stylesheet"
-      href="${ctx}/assets-view/comm/color.css"/>
-<link rel="stylesheet"
-      href="${ctx}/assets/css/font-awesome.min.css"/>
-<link rel="stylesheet"
-      href="${ctx}/assets-view/comm/tree/css/tree.css"/>
-<style type="text/css">
-    body, html, #allmap {
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-        margin: 0;
-        font-family: "微软雅黑";
-    }
 
-    .maskBox {
-        position: absolute;
-        width: 130px;
-        left: 50%;
-        height: auto;
-        z-index: 100;
-        background-color: #fff;
-        border: 1px #ddd solid;
-        padding: 1px;
-    }
+    <meta name="description"
+          content="Dashboard"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible"
+          content="IE=edge"/>
+    <meta http-equiv="Content-Type"
+          content="text/html; charset=utf-8"/>
+    <link rel="stylesheet"
+          href="${ctx}/dataTables/Bootstrap-3.3.6/css/bootstrap.min.css"/>
+    <!--  -->
+    <link rel="stylesheet"
+          href="${ctx}/assets-view/comm/color.css"/>
+    <link rel="stylesheet"
+          href="${ctx}/assets/css/font-awesome.min.css"/>
+    <link rel="stylesheet"
+          href="${ctx}/assets-view/comm/tree/css/tree.css"/>
+    <style type="text/css">
+        body, html, #allmap {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            margin: 0;
+            font-family: "微软雅黑";
+        }
 
-    #mask {
-        background-color: #666;
-        position: absolute;
-        z-index: 99;
-        left: 0;
-        top: 0;
-        display: none;
-        width: 100%;
-        height: 100%;
-        opacity: 0.5;
-        filter: alpha(opacity=50);
-        -moz-opacity: 0.5;
-    }
-</style>
+        .maskBox {
+            position: absolute;
+            width: 130px;
+            left: 50%;
+            height: auto;
+            z-index: 100;
+            background-color: #fff;
+            border: 1px #ddd solid;
+            padding: 1px;
+        }
+
+        #mask {
+            background-color: #666;
+            position: absolute;
+            z-index: 99;
+            left: 0;
+            top: 0;
+            display: none;
+            width: 100%;
+            height: 100%;
+            opacity: 0.5;
+            filter: alpha(opacity=50);
+            -moz-opacity: 0.5;
+        }
+
+        .box-red {
+            font-size: 12px;
+            color: red;
+            margin: 0px;
+            animation: changeshadow-red 1s ease-in infinite;
+            /* 其它浏览器兼容性前缀 */
+            -webkit-animation: changeshadow-red 1s linear infinite;
+            -moz-animation: changeshadow-red 1s linear infinite;
+            -ms-animation: changeshadow-red 1s linear infinite;
+            -o-animation: changeshadow-red 1s linear infinite;
+        }
+
+        @keyframes changeshadow-red {
+            0% {
+                text-shadow: 0 0 4px red;
+            }
+            50% {
+                text-shadow: 0 0 40px red
+            }
+            100% {
+                text-shadow: 0 0 4px red
+            }
+        }
+
+        /* 添加兼容性前缀 */
+        @-webkit-keyframes changeshadow-red {
+            0% {
+                text-shadow: 0 0 4px red
+            }
+            50% {
+                text-shadow: 0 0 40px red
+            }
+            100% {
+                text-shadow: 0 0 4px red
+            }
+        }
+
+        @-moz-keyframes changeshadow-red {
+            0% {
+                text-shadow: 0 0 4px red
+            }
+            50% {
+                text-shadow: 0 0 40px red
+            }
+            100% {
+                text-shadow: 0 0 4px red
+            }
+        }
+
+        @-ms-keyframes changeshadow-red {
+            0% {
+                text-shadow: 0 0 4px red
+            }
+            50% {
+                text-shadow: 0 0 40px red
+            }
+            100% {
+                text-shadow: 0 0 4px red
+            }
+        }
+
+        @-o-keyframes changeshadow-red {
+            0% {
+                text-shadow: 0 0 4px red
+            }
+            50% {
+                text-shadow: 0 0 40px red
+            }
+            100% {
+                text-shadow: 0 0 4px red
+            }
+        }
+    </style>
 </head>
 <body>
 <div id="allmap"></div>
@@ -133,6 +206,11 @@
         </div>
     </div>
 </div>
+<audio id="alarmVoice"
+       loop="loop"
+       src="${ctx}/assets-view/comm/alarm-voice.mp3">您的浏览器不支持 audio 元素
+</audio>
+
 <script src="${ctx}/dataTables/jQuery-2.2.0/jquery-2.2.0.min.js"></script>
 <script src="${ctx}/dataTables/Bootstrap-3.3.6/js/bootstrap.min.js"></script>
 
@@ -141,10 +219,15 @@
 <script type="application/javascript">
     showMask();
     var pagePars = {
+        pause: false,
+        currentNodeIndex: -1,
+        alarmVoiceSilence: 30 * 60 * 1000, //30分钟
         loaded: false,
         map: undefined,
+        mapZoomDefault: 12,
         enterpriseNode: [],
         infoWindows: {},
+        nodeAlarmVoice: {},
     };
     var nodeDataSource = function (options) {
         this._data = options.data;
@@ -240,7 +323,10 @@
                                                         } else {
                                                             subRegionCount = 0;
                                                         }
-                                                        subRegions.push({regionName: regionTargets[regionIndex + 1], regionCount: subRegionCount,});
+                                                        subRegions.push({
+                                                            regionName: regionTargets[regionIndex + 1],
+                                                            regionCount: subRegionCount,
+                                                        });
                                                     } else {
                                                         if (value.nodeId && value.nodeId != "") {
                                                             subRegionCount++;
@@ -306,7 +392,12 @@
                                                 }
                                             }
                                         });
-                                        treeData.push({id: "所有", name: "<b>所有站点</b> - [" + allCount + "]", type: "folder", isEnterprise: false,});
+                                        treeData.push({
+                                            id: "所有",
+                                            name: "<b>所有站点</b> - [" + allCount + "]",
+                                            type: "folder",
+                                            isEnterprise: false,
+                                        });
 
                                         $.each(pagePars.enterpriseNode, function (index, value) {
                                             var regionDesc = value.hbEnterprise.enterpriseRegionDesc;
@@ -365,6 +456,7 @@
 
     jQuery(document).ready(function () {
         loadJScript();
+        window.setInterval(circulation, 1000 * 7);
     });
 
     // 百度地图API功能
@@ -375,7 +467,52 @@
         document.body.appendChild(script);
     }
 
+    function circulation() {
+        try {
+            if (pagePars.currentNodeIndex >= pagePars.enterpriseNode.length) {
+                pagePars.currentNodeIndex = 0;
+            } else if (pagePars.pause) {
+            } else {
+                pagePars.currentNodeIndex++;
+            }
+            $.each(pagePars.enterpriseNode, function (index, node) {
+                if (index == pagePars.currentNodeIndex) {
+                    var longitude = parseFloat(node.nodeLongitude);
+                    var latitude = parseFloat(node.nodeLatitude);
+                    pagePars.map.openInfoWindow(pagePars.infoWindows[node.nodeId], new BMap.Point(longitude, latitude));
+                    if (pagePars.nodeAlarmVoice[node.nodeId].alarm) {
+                        pagePars.pause = true;
+                        try {
+                            document.getElementById("alarmVoice").play();
+                        } catch (e) {
+                            console.log(e)
+                        }
+                    }
+                }
+            });
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    function mute(nodeId, guid) {
+        if (guid && guid != "") {
+            pagePars.nodeAlarmVoice[nodeId].guid = guid;
+            pagePars.nodeAlarmVoice[nodeId].time = new Date();
+        }
+
+        document.getElementById("alarmVoice").pause();
+        pagePars.pause = false;
+        pagePars.nodeAlarmVoice[nodeId].alarm = false;
+        pagePars.map.closeInfoWindow();
+        init();
+    }
+
     function init() {
+        if (pagePars.pause) {
+            return;
+        }
+
         hideMask();
         showMask();
         $.ajax({
@@ -394,7 +531,7 @@
                     hideMask();
                     if (!pagePars.loaded) {
                         pagePars.loaded = true;
-                        window.setInterval(init, 1000 * 60 * 1);
+                        window.setInterval(init, 1000 * 57 * 2);
                     }
                 }
             },
@@ -433,15 +570,35 @@
 
             var content = "";
             var itemCount = 0;
+
+            if (!pagePars.nodeAlarmVoice[node.nodeId]) {
+                pagePars.nodeAlarmVoice[node.nodeId] = {};
+                pagePars.nodeAlarmVoice[node.nodeId].alarm = false;
+                pagePars.nodeAlarmVoice[node.nodeId].checkStatus = true;
+            }
+            if (node.prflag == 1) {
+                if (!pagePars.nodeAlarmVoice[node.nodeId].checkStatus) {
+                    pagePars.nodeAlarmVoice[node.nodeId].checkStatus = true;
+                }
+                pagePars.nodeAlarmVoice[node.nodeId].online = true;
+            } else {
+                if (pagePars.nodeAlarmVoice[node.nodeId].checkStatus) {
+                    pagePars.nodeAlarmVoice[node.nodeId].checkStatus = false;
+                    pagePars.nodeAlarmVoice[node.nodeId].alarm = true;
+                }
+                pagePars.nodeAlarmVoice[node.nodeId].online = false;
+            }
             for (var itemId in nodeItems) {
                 nodeItems[itemId] = $.parseJSON(nodeItems[itemId]);
                 if (nodeItems[itemId].itemMonitor == 1 && nodeItems[itemId].itemSelect == 1 && nodeItems[itemId].itemShowMain == 1) {
                     var itemValue = undefined;
+                    var itemDataGuid = "";
 
                     itemCount++;
                     $.each(nodeDataLatstOne, function (indexData, data) {
                         if (data.nodeId == node.nodeId) {
                             nodeTime = data.dataTime;
+                            itemDataGuid = data.dataGuid;
                             var nodeData = $.parseJSON(data.nodeData);
                             if (nodeData.hasOwnProperty(itemId)) {
                                 itemValue = nodeData[itemId];
@@ -468,9 +625,19 @@
                         if (showTitle != "") {
                             if (nodeItems[itemId].itemAlarm == 1) {
                                 exceptionPar = true;
-                                content += "<button class='btn btn-danger' type='button' style='width:200px;text-align: left' title='" + showTitle + "'>" + nodeItems[itemId].itemName + " <span class='badge'>" + itemValue + nodeItems[itemId].itemUnit + "</span></button>";
+                                if (nodeItems[itemId].itemAlarmVoice && nodeItems[itemId].itemAlarmVoice == 1) {
+                                    content += "<button class='btn btn-danger' type='button' style='width:200px;text-align: left' title='" + showTitle + "'>" + nodeItems[itemId].itemName + " <span class='badge box-red'>" + itemValue + nodeItems[itemId].itemUnit + "</span></button>";
+                                    if (pagePars.nodeAlarmVoice[node.nodeId].alarm) {
+                                    } else if (!pagePars.nodeAlarmVoice[node.nodeId].guid) {
+                                        pagePars.nodeAlarmVoice[node.nodeId].alarm = true;
+                                    } else if ((new Date()).getTime() - pagePars.nodeAlarmVoice[node.nodeId].time.getTime() >= pagePars.alarmVoiceSilence) {
+                                        pagePars.nodeAlarmVoice[node.nodeId].alarm = true;
+                                    }
+                                } else {
+                                    content += "<button class='btn btn-danger' type='button' style='width:200px;text-align: left' title='" + showTitle + "'>" + nodeItems[itemId].itemName + " <span class='badge'>" + itemValue + nodeItems[itemId].itemUnit + "</span></button>";
+                                }
                             } else {
-                                content += "<button class='btn btn-success' type='button' style='width:200px;text-align: left' title=':" + showTitle + "'>" + nodeItems[itemId].itemName + " <span class='badge'>" + itemValue + nodeItems[itemId].itemUnit + "</span></button>";
+                                content += "<button class='btn btn-success' type='button' style='width:200px;text-align: left' title='" + showTitle + "'>" + nodeItems[itemId].itemName + " <span class='badge'>" + itemValue + nodeItems[itemId].itemUnit + "</span></button>";
                             }
                         } else {
                             content += "<button class='btn btn-default' type='button' style='width:200px;text-align: left'>" + nodeItems[itemId].itemName + " <span class='badge'>" + itemValue + nodeItems[itemId].itemUnit + "</span></button>";
@@ -497,11 +664,43 @@
             if (exceptionPar) {
                 marker.setAnimation(BMAP_ANIMATION_BOUNCE);
             }
-
+            var nodeStatus = "";
+            if (!pagePars.nodeAlarmVoice[node.nodeId].online) {
+                nodeStatus = "<sup><span class='badge' style='background-color: red;font-size:10px;'>离线</span></sup>";
+            } else {
+                nodeStatus = "<sup><span class='badge' style='background-color: green;font-size:10px;'>在线</span></sup>";
+            }
+            var title = "";
+            if (pagePars.nodeAlarmVoice[node.nodeId].alarm) {
+                title = "<div class='panel panel-default' style='margin-bottom:5px'>" +
+                    "<div class='panel-heading'>" +
+                    "<strong>" +
+                    node.nodeName +
+                    "</strong>" +
+                    nodeStatus +
+                    "<small>&nbsp&nbsp&nbsp&nbsp更新时间: " +
+                    nodeTime +
+                    "</small>" +
+                    "<button class='btn btn-mini btn-warning' type='button' style='height:30px;font-size:12;text-align:center;float:right;' title='点击关闭报警声音' onclick='mute(" + node.nodeId + ",\"" + itemDataGuid + "\")'>静音</button>" +
+                    "</div>" +
+                    "</div>";
+            } else {
+                title = "<div class='panel panel-default' style='margin-bottom:5px'>" +
+                    "<div class='panel-heading'>" +
+                    "<strong>" +
+                    node.nodeName +
+                    "</strong>" +
+                    nodeStatus +
+                    "<small>&nbsp&nbsp&nbsp&nbsp更新时间: " +
+                    nodeTime +
+                    "</small>" +
+                    "</div>" +
+                    "</div>";
+            }
             var opts = {
                 width: 400, // 信息窗口宽度
                 height: itemCount, // 信息窗口高度
-                title: "<div class='panel panel-default' style='margin-bottom:5px'><div class='panel-heading'><strong>" + node.nodeName + "</strong><small>&nbsp&nbsp&nbsp&nbsp更新时间: " + nodeTime + "</small></div></div>", // 信息窗口标题
+                title: title,// 信息窗口标题
                 enableMessage: true,// 设置允许信息窗发送短息
             };
 
@@ -519,7 +718,10 @@
                     }
                 });
             });
+        });
 
+        map.addEventListener("zoomend", function () {
+            pagePars.mapZoomDefault = this.getZoom();
         });
 
         longitude.sort();
@@ -527,7 +729,7 @@
         count = parseInt(count / 2);
 
         if (count > 0) {
-            map.centerAndZoom(new BMap.Point(longitude[count], latitude[count]), 12);
+            map.centerAndZoom(new BMap.Point(longitude[count], latitude[count]), pagePars.mapZoomDefault);
         }
         map.enableScrollWheelZoom();
 

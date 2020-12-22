@@ -156,7 +156,7 @@
                                 type: "POST",
                                 url: '${ctx}/viewHbEnterpriseCfg/refEnterprise',
                                 cache: false,
-                                data: ServerRequestPar(0, {}),
+                                data: ServerRequestPar(1, {byPerson: "1",}),
                                 dataType: "json",
                                 headers: {
                                     'Content-Type': 'application/json;charset=utf-8'

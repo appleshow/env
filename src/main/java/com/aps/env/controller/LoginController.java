@@ -4,6 +4,7 @@ import com.aps.env.comm.RequestRefPar;
 import com.aps.env.comm.ResponseData;
 import com.aps.env.service.LoginViewService;
 import com.aps.env.service.PreLoginHandler;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -61,7 +62,7 @@ public class LoginController extends ExceptionController {
      * @param: @param session
      * @param: @return
      * @param: @throws Exception
-     * @return: Map<?,?>
+     * @return: Map<?, ?>
      * @since 1.0.0
      */
     @RequestMapping(value = "/perVerificationImg", method = RequestMethod.POST)

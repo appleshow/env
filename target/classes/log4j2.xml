@@ -10,15 +10,15 @@
 		</Console>
 		<RollingFile name="c3p0" fileName="${LOG_HOME}/c3p0/c3p0.log" filePattern="${LOG_HOME}/c3p0/$${date:yyyy-MM}/c3p0-%d{MM-dd-yyyy}-%i.log.gz">
 			<PatternLayout pattern="${PATTENR}"/>
-			<SizeBasedTriggeringPolicy size="2 MB"/>
+			<SizeBasedTriggeringPolicy size="5 MB"/>
 		</RollingFile>
 		<RollingFile name="mybatis" fileName="${LOG_HOME}/mybatis/mybatis.log" filePattern="${LOG_HOME}/mybatis/$${date:yyyy-MM}/mybatis-%d{MM-dd-yyyy}-%i.log.gz">
 			<PatternLayout pattern="${PATTENR}"/>
-			<SizeBasedTriggeringPolicy size="2 MB"/>
+			<SizeBasedTriggeringPolicy size="5 MB"/>
 		</RollingFile>
 		<RollingFile name="service" fileName="${LOG_HOME}/service/service.log" filePattern="${LOG_HOME}/service/$${date:yyyy-MM}/service-%d{MM-dd-yyyy}-%i.log.gz">
 			<PatternLayout pattern="${PATTENR}"/>
-			<SizeBasedTriggeringPolicy size="2 MB"/>
+			<SizeBasedTriggeringPolicy size="5 MB"/>
 		</RollingFile>
 	</appenders>
 	<loggers>

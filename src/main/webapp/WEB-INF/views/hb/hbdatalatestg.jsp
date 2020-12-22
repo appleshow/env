@@ -10,7 +10,7 @@
          language="java" %>
 <html>
 <head>
-    <title></title>
+    <title>实时参数</title>
     <meta name="description"
           content="Dashboard"/>
     <meta name="viewport"
@@ -50,6 +50,80 @@
         .table-bordered > thead > tr > td, .table-bordered > thead > tr > th {
             border: 1px solid black;
         }
+
+        .box-red {
+            font-size: 14px;
+            color: red;
+            margin: 10px;
+            animation: changeshadow-red 1s ease-in infinite;
+            /* 其它浏览器兼容性前缀 */
+            -webkit-animation: changeshadow-red 1s linear infinite;
+            -moz-animation: changeshadow-red 1s linear infinite;
+            -ms-animation: changeshadow-red 1s linear infinite;
+            -o-animation: changeshadow-red 1s linear infinite;
+        }
+
+        @keyframes changeshadow-red {
+            0% {
+                text-shadow: 0 0 4px red;
+            }
+            50% {
+                text-shadow: 0 0 40px red
+            }
+            100% {
+                text-shadow: 0 0 4px red
+            }
+        }
+
+        /* 添加兼容性前缀 */
+        @-webkit-keyframes changeshadow-red {
+            0% {
+                text-shadow: 0 0 4px red
+            }
+            50% {
+                text-shadow: 0 0 40px red
+            }
+            100% {
+                text-shadow: 0 0 4px red
+            }
+        }
+
+        @-moz-keyframes changeshadow-red {
+            0% {
+                text-shadow: 0 0 4px red
+            }
+            50% {
+                text-shadow: 0 0 40px red
+            }
+            100% {
+                text-shadow: 0 0 4px red
+            }
+        }
+
+        @-ms-keyframes changeshadow-red {
+            0% {
+                text-shadow: 0 0 4px red
+            }
+            50% {
+                text-shadow: 0 0 40px red
+            }
+            100% {
+                text-shadow: 0 0 4px red
+            }
+        }
+
+        @-o-keyframes changeshadow-red {
+            0% {
+                text-shadow: 0 0 4px red
+            }
+            50% {
+                text-shadow: 0 0 40px red
+            }
+            100% {
+                text-shadow: 0 0 4px red
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -276,7 +350,10 @@
                                                         } else {
                                                             subRegionCount = 0;
                                                         }
-                                                        subRegions.push({regionName: regionTargets[regionIndex + 1], regionCount: subRegionCount,});
+                                                        subRegions.push({
+                                                            regionName: regionTargets[regionIndex + 1],
+                                                            regionCount: subRegionCount,
+                                                        });
                                                     } else {
                                                         if (value.nodeId && value.nodeId != "") {
                                                             subRegionCount++;
@@ -342,7 +419,12 @@
                                                 }
                                             }
                                         });
-                                        treeData.push({id: "所有", name: "<b>所有站点</b> - [" + allCount + "]", type: "folder", isEnterprise: false,});
+                                        treeData.push({
+                                            id: "所有",
+                                            name: "<b>所有站点</b> - [" + allCount + "]",
+                                            type: "folder",
+                                            isEnterprise: false,
+                                        });
 
                                         $.each(pagePars.enterpriseNode, function (index, value) {
                                             var regionDesc = value.hbEnterprise.enterpriseRegionDesc;
@@ -438,6 +520,7 @@
             data: []
         };
 
+        pagePars.alarmVoice = false;
         if (pagePars.selectNodeId != undefined) {
             var nodeArray = $.extend(true, [], pagePars.enterpriseNode);
 
@@ -494,7 +577,11 @@
                                             }
                                             if (alarm) {
                                                 if (nodeItem[item].itemAlarm == 1) {
-                                                    dataLine.itemValue = '<kbd style="background:red">' + dataLine.itemValue + '</kbd>';
+                                                    if (nodeItem[item].itemAlarmVoice && nodeItem[item].itemAlarmVoice == 1) {
+                                                        dataLine.itemValue = ' <kdb class="box-red">' + dataLine.itemValue + '</kbd>';
+                                                    } else {
+                                                        dataLine.itemValue = '<kbd style="background:red">' + dataLine.itemValue + '</kbd>';
+                                                    }
                                                 } else {
                                                     dataLine.itemValue = '<kbd style="background:green">' + dataLine.itemValue + '</kbd>';
                                                 }

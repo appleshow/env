@@ -118,7 +118,7 @@
      class="easyui-window"
      title="菜单管理"
      data-options="modal:true,closed:true,collapsible:false,minimizable:false,maximizable:false,iconCls:'icon-edit'"
-     style="width: 360px; height: 186px; padding: 0px;">
+     style="width: 380px; height: 186px; padding: 0px;">
     <div class="easyui-panel"
          style="width: 100%; height: 30px; padding: 5px; background-color: #E0ECFF"
          data-options="border:true">
@@ -153,7 +153,7 @@
     <div class="easyui-panel"
          style="width: 100%; height: 40px; padding: 5px;"
          data-options="border:true">
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <a href="javascript:modifyOK()"
            class="easyui-linkbutton c6"
            style="width: 60px">确定</a>

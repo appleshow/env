@@ -63,6 +63,7 @@ public class HbNodeItemServiceImpl implements HbNodeItemService {
                 hbTypeItemNode.setItemSelect(0);
                 hbTypeItemNode.setItemMonitor(null == item.getProperty10() ? 0 : item.getProperty10().intValue());
                 hbTypeItemNode.setItemAlarm(0);
+                hbTypeItemNode.setItemAlarmVoice(0);
                 hbTypeItemNode.setItemShowMain(0);
 
                 if (hbNode != null) {
@@ -90,6 +91,7 @@ public class HbNodeItemServiceImpl implements HbNodeItemService {
                                         hbTypeItemNode.setItemOperating(hbTypeItemNodeTemp.getItemOperating());
                                         hbTypeItemNode.setItemLog(hbTypeItemNodeTemp.getItemLog());
                                         hbTypeItemNode.setItemAlarm(hbTypeItemNodeTemp.getItemAlarm());
+                                        hbTypeItemNode.setItemAlarmVoice(hbTypeItemNodeTemp.getItemAlarmVoice());
                                         hbTypeItemNode.setItemShowMain(hbTypeItemNodeTemp.getItemShowMain());
                                     }
                                 }

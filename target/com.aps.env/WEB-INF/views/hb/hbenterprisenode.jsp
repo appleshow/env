@@ -193,7 +193,7 @@
                                 <span class="input-group-btn">
                                 <button class="btn btn-default"
                                         type="button"
-                                        onclick="openEnterpriseWindow()">...</button>
+                                        onclick="openEnterpriseWindow()">选择</button>
                             </span>
                             </div>
                         </div>
@@ -296,6 +296,10 @@
                                        id="nodeOfflineTarget"
                                        name="nodeOfflineTarget">
                                 </input>
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default"
+                                        type="button">分钟</button>
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -564,7 +568,7 @@
                                 type: "POST",
                                 url: '${ctx}/viewHbEnterpriseNodeCfg/refEnterpriseNode',
                                 cache: false,
-                                data: ServerRequestPar(0, {}),
+                                data: ServerRequestPar(1, {byPerson: "1",}),
                                 dataType: "json",
                                 headers: {
                                     'Content-Type': 'application/json;charset=utf-8'
@@ -756,8 +760,8 @@
                             message: '此项不能为空...',
                         },
                         regexp: {
-                            regexp: /^([1-9]{1,1})?$/,
-                            message: '此项只能录入一位整数...',
+                            regexp: /^([0-9]{1,2})?$/,
+                            message: '此项只能录入二位整数...',
                         },
                     },
                 },

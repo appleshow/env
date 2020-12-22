@@ -271,8 +271,8 @@
         pagePars.tableDataCur.scrollY = 72;
         pagePars.tableDataCur.buttons = "P";
         pagePars.tableDataCur.lengthInfo = {
-            lengthMenu: [[50, 100, 300], ["50条", "100条", "300条"]],
-            pageLength: 50
+            lengthMenu: [[50, 100, 300,500,-1], ["50条", "100条", "300条","500条","全部"]],
+            pageLength: 100
         };
         // ***** Add information to Column *****
         // *********************************

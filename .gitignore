@@ -1,64 +1,41 @@
-# Windows image file caches
-Thumbs.db
-ehthumbs.db
+# =========================
+# IDE Files
+# =========================
 
-# Folder config file
-Desktop.ini
+# Eclipse
+.classpath
+.project
+.settings/
+.externalToolBuilders/
+*.launch
+*.tern-project
+*.ejbdeploy
 
-# Recycle Bin used on file shares
-$RECYCLE.BIN/
+# Intellij
+out/
+.idea/
+lib/
+*.iml
+*.iws
 
-# Windows Installer files
-*.cab
-*.msi
-*.msm
-*.msp
+# =========================
+# Build Files
+# =========================
+src/main/resources/application-local.properties
 
-# Windows shortcuts
-*.lnk
+# Maven
+log/
+target/
 
 # =========================
 # Operating System Files
 # =========================
 
-# OSX
-# =========================
-
+# Mac
 .DS_Store
 .AppleDouble
 .LSOverride
 
-# Thumbnails
-._*
-
-# Files that might appear in the root of a volume
-.DocumentRevisions-V100
-.fseventsd
-.Spotlight-V100
-.TemporaryItems
-.Trashes
-.VolumeIcon.icns
-
-# Directories potentially created on remote AFP share
-.AppleDB
-.AppleDesktop
-Network Trash Folder
-Temporary Items
-.apdisk
-target/env-2018.12.18.war
-target/classes/mapper/HbEnterpriseMapper.xml
-target/classes/mapper/HbEnterpriseMapper.xml
-target/classes/mapper/HbEnterpriseMapper.xml
-*.war
-target/env.war
-target/classes/mapper/HbEnterpriseMapper.xml
-target/com.aps.env/WEB-INF/classes/mapper/HbEnterpriseMapper.xml
-target/com.aps.env/WEB-INF/classes/mapper/HbNodeMapper.xml
-target/com.aps.env/WEB-INF/views/hb/hbdatahistoryg.jsp
-target/com.aps.env/WEB-INF/views/hb/hbenterprise.jsp
-target/com.aps.env/WEB-INF/views/hb/hbenterprisenode.jsp
-target/com.aps.env/WEB-INF/views/hb/hblog.jsp
-target/com.aps.env/WEB-INF/views/hb/hbnodecfg.jsp
-target/com.aps.env/WEB-INF/views/hb/hboperating.jsp
-.idea/workspace.xml
-target/classes/mapper/HbEnterpriseMapper.xml
+# Windows image file caches
+Thumbs.db
+ehthumbs.db

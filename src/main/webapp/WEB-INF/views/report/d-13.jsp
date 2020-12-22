@@ -226,6 +226,7 @@
         selectNodeName: "",
         selectNodeMN: "",
         selectNodeTypId: undefined,
+        moreColumns: false
     };
     var tableG = '<!--#tbReport-->\n' +
         '                <table class="table table-striped table-bordered display responsive nowrap"\n' +
@@ -799,7 +800,7 @@
         tableColumnInfo["c5"] = columnInfo;
         tableColumnInfo["c6"] = columnInfo;
         tableColumnInfo["c7"] = columnInfo;
-        if (pagePars.selectNodeTypId.indexOf("废气") >= 0 || pagePars.selectNodeTypId.indexOf("VOC") >= 0) {
+        if (pagePars.moreColumns) {
             tableColumnInfo["c8"] = columnInfo;
             tableColumnInfo["c9"] = columnInfo;
             tableColumnInfo["c10"] = columnInfo;
@@ -872,12 +873,16 @@
 
                         if (pagePars.selectNodeTypId.indexOf("VOC") >= 0) {
                             html = tableV;
+                            pagePars.moreColumns = true;
                         } else if (pagePars.selectNodeTypId.indexOf("空气") >= 0) {
                             html = tableD;
+                            pagePars.moreColumns = false;
                         } else if (pagePars.selectNodeTypId.indexOf("水") >= 0) {
                             html = tableW;
+                            pagePars.moreColumns = false;
                         } else {
                             html = tableG;
+                            pagePars.moreColumns = true;
                         }
                     }
                 });
